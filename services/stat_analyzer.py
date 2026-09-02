@@ -1725,8 +1725,15 @@ class StatAnalyzer:
         # Anti-shield and QSS checks
         shield_count = self._count_shields(enemies)
         shield_weight, shield_max, shield_sources = self._shield_weight(enemies)
-        # Même seuil que l'anti-soin : un cumul de 1.5, ou un spécialiste seul.
-        need_antishield = shield_weight >= 1.5 or shield_max >= 0.9
+        # Seuil propre aux boucliers : 1.3, contre 1.5 pour l'anti-soin. Les deux
+        # échelles ne sont pas comparables — plusieurs champions atteignent 1.0
+        # en soin (Aatrox, Vladimir, Soraka, Yuumi) alors que seule Lulu y arrive
+        # en bouclier, donc les cumuls y sont mécaniquement plus bas.
+        # 1.3 sépare deux vrais porteurs (Tahm Kench + Shen = 1.35, Lux +
+        # Orianna = 1.30) des boucliers secondaires (Braum + Riven = 1.15,
+        # Malphite + Diana = 0.85).
+        _SEUIL_BOUCLIER = 1.3
+        need_antishield = shield_weight >= _SEUIL_BOUCLIER or shield_max >= 0.9
         qss_cc_sources = [p.champion_name for p in enemies if p.champion_name in _QSS_CC_CHAMPIONS]
         need_qss = len(qss_cc_sources) > 0
 

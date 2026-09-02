@@ -147,6 +147,22 @@ def test_un_bouclier_marginal_ne_suffit_pas(analyzer):
     assert t["need_antishield"] is False
 
 
+@pytest.mark.parametrize("noms,attendu", [
+    (["Tahm Kench", "Shen"], True),      # 1.35 — deux vrais porteurs
+    (["Lux", "Orianna"], True),          # 1.30 — pile au seuil
+    (["Braum", "Riven"], False),         # 1.15 — boucliers secondaires
+    (["Malphite", "Diana"], False),      # 0.85 — passives marginales
+    (["Sett", "Sion"], False),           # 1.00
+])
+def test_le_seuil_separe_les_vrais_porteurs(analyzer, noms, attendu):
+    """Calibré sur le jugement en partie : Tahm Kench + Shen doit passer."""
+    sp = [(n, 13, []) for n in noms] + [(f, 13, []) for f in ("Darius", "Nasus", "Yorick")][:5 - len(noms)]
+    t = analyzer._check_triggers(_eq(sp), "Assassin", 0.5, "AD", [], my_champion_name="Zed")
+    assert t["need_antishield"] is attendu, (
+        f"{' + '.join(noms)} : poids {t['shield_weight']}, attendu {attendu}"
+    )
+
+
 def test_aucun_bouclier_en_face(analyzer):
     sp = [(n, 13, []) for n in ("Darius", "Garen", "Nasus", "Zed", "Yorick")]
     t = analyzer._check_triggers(_eq(sp), "Assassin", 0.5, "AD", [], my_champion_name="Zed")
