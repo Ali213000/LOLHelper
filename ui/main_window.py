@@ -490,7 +490,9 @@ class MainWindow(ctk.CTk):
     def _on_champ_suggestions(self, payload: dict) -> None:
         suggestions = payload.get("suggestions", [])
         reasons     = payload.get("reasons", [])
-        self.after(0, lambda: self._panels["champ_select"].set_suggestions(suggestions, reasons))
+        pool        = payload.get("pool", [])
+        self.after(0, lambda: self._panels["champ_select"].set_suggestions(
+            suggestions, reasons, pool))
 
     def _on_ban_suggestions(self, payload: dict) -> None:
         # Note: the BanSuggestionsWidget internally uses a thread-safe Queue, 

@@ -228,6 +228,10 @@ class ChampSelectPanel(ctk.CTkFrame):
         self._sug_slots_frame.pack(fill="x", padx=14, pady=(0, 12))
 
         self._sug_slots = []
+        # Marqueurs « déjà joué » gardés à part : _sug_slots reste un triplet
+        # (icone, nom, raison), et le nom _sug_badge appartenait au carrousel
+        # supprimé — un test veille à ce qu'il ne réapparaisse pas.
+        self._sug_pool_labels = []
         for _ in range(3):
             col = ctk.CTkFrame(self._sug_slots_frame, fg_color="transparent")
             col.pack(side="left", expand=True, fill="both", padx=4)
@@ -246,7 +250,12 @@ class ChampSelectPanel(ctk.CTkFrame):
                 wraplength=140, justify="center",
             )
             raison.pack(anchor="center")
+            pool = ctk.CTkLabel(
+                col, text="", font=T.font_sm(), text_color=T.TEXT_FAINT,
+            )
+            pool.pack(anchor="center")
             self._sug_slots.append((icone, nom, raison))
+            self._sug_pool_labels.append(pool)
 
         self._sug_vide = ctk.CTkLabel(
             self._sug_card,
@@ -505,10 +514,20 @@ class ChampSelectPanel(ctk.CTkFrame):
         """Called by main thread or background thread. Queue-safe."""
         self._ban_sug_widget.enqueue(payload)
 
-    def set_suggestions(self, suggestions: list[str], reasons: list[str]) -> None:
-        """Appelé depuis main_window quand CHAMP_SUGGESTIONS_READY est émis."""
+    def set_suggestions(self, suggestions: list[str], reasons: list[str],
+                        pool: list[str] | None = None) -> None:
+        """
+        Appelé depuis main_window quand CHAMP_SUGGESTIONS_READY est émis.
+
+        *pool* liste les champions que le joueur a joués récemment à ce poste.
+        C'est un repère d'AFFICHAGE : il ne pondère pas le classement, parce que
+        l'effet de la maîtrise n'est mesurable sur aucune de nos données. Le
+        signaler sans départager reste honnête ; le contraire ferait entrer une
+        hypothèse non vérifiée dans un score qui n'en contient plus.
+        """
         self._suggestions = suggestions
         self._reasons     = reasons
+        self._pool        = set(pool or [])
         self._render_suggestion()
 
     def _render_suggestion(self) -> None:
@@ -536,10 +555,13 @@ class ChampSelectPanel(ctk.CTkFrame):
                 nom.configure(text=champ, text_color=T.GOLD_ACCENT)
                 raison.configure(
                     text=self._reasons[i] if i < len(self._reasons) else "")
+                self._sug_pool_labels[i].configure(
+                    text="déjà joué" if champ in getattr(self, "_pool", set()) else "")
             else:
                 icone.configure(image=None, text="?")
                 nom.configure(text="—", text_color=T.TEXT_FAINT)
                 raison.configure(text="")
+                self._sug_pool_labels[i].configure(text="")
 
     def _on_regen(self) -> None:
         """Signal the main window to request new suggestions."""
