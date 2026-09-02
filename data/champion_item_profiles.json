@@ -1345,6 +1345,40 @@
         "on_hit": false
       },
       "note": "Jungleur AP — Zhonya 64 %, Malfaisance 53 %, Rocketbelt 51 % sur 192 parties"
+    },
+    "Pantheon": {
+      "affinity": {
+        "lethality": 1.15,
+        "ad": 1.2,
+        "ability_haste": 1.2,
+        "health": 1.1,
+        "armor": 0.95,
+        "mr": 0.95,
+        "crit": 0.2,
+        "on_hit": 0.4,
+        "attack_speed": 0.6
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Letalite, pas resistances. Mesure sur 517 parties : Couperet noir et Eclipse dominent a TOUS les postes (top 64/58 %, support 45/43 %, jungle 57/40 %). L'archetype bruiser_splitpush penalisait la letalite a 0.55 et survalorisait PV et resistances."
     }
+  },
+  "part_defensive_observee": {
+    "_note": "Fraction des emplacements d'objets occupes par un objet sans AP ni AD, mesuree sur les parties collectees. Voir scratch/part_defensive.py pour la reproduire.",
+    "support_engage": 0.96,
+    "tank_engage": 0.82,
+    "enchanter": 0.52,
+    "bruiser_splitpush": 0.37,
+    "battlemage": 0.34,
+    "ranged_bruiser": 0.33,
+    "jungler_ganker": 0.3,
+    "jungler_farm": 0.28,
+    "adc_hypercarry": 0.24,
+    "mage_poke": 0.23,
+    "assassin": 0.22,
+    "mage_control": 0.21,
+    "adc_lane_bully": 0.19
   }
 }

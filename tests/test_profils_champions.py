@@ -130,3 +130,52 @@ def test_occuper_le_poste_de_support_ne_fait_pas_un_enchanteur(affinite):
     soraka = affinite.profile("Soraka")
     assert (pantheon.get("affinity") or {}).get("heal_shield_power", 0) == 0
     assert (soraka.get("affinity") or {}).get("heal_shield_power", 0) > 0
+
+
+# ------------------------------------------- objets sans dégâts
+
+@pytest.mark.parametrize("champion,plafond", [
+    ("Ornn", 1.01),        # tank d'engagement : 82 % de ses objets n'ont aucun dégât
+    ("Leona", 1.01),       # support d'engagement : 96 %
+    ("Soraka", 0.90),      # enchanteresse : 52 %
+    ("Pantheon", 0.80),    # bruiser : 37 %
+    ("Kai'Sa", 0.70),      # ADC : 24 %
+    ("Zed", 0.70),         # assassin : 22 %
+])
+def test_la_penalite_sans_degats_suit_l_archetype(affinite, champion, plafond):
+    """
+    item_filter rejetait un objet du MAUVAIS type de dégâts mais pas un objet
+    SANS aucun dégât : Jak'Sho ressortait à égalité avec une Coiffe de Rabadon
+    pour Lillia. La pénalité est graduée par la part observée dans les builds
+    réels — on ne peut pas traiter un Ornn comme un Zed.
+    """
+    from services.stat_analyzer import StatAnalyzer
+
+    a = StatAnalyzer()
+    a._ensure_loaded()
+    nom = "Jak'Sho, le Protéiforme"
+    stats = a._to_affinity_keys(a._item_stat_breakdown(nom), nom)
+    _, facteur, _ = affinite.item_filter(affinite.profile(champion), stats, 3000)
+    assert facteur <= plafond
+
+
+def test_un_objet_avec_degats_reste_intact(affinite):
+    from services.stat_analyzer import StatAnalyzer
+
+    a = StatAnalyzer()
+    a._ensure_loaded()
+    for champion, objet in (("Lillia", "Coiffe de Rabadon"), ("Kai'Sa", "Tueur de krakens")):
+        stats = a._to_affinity_keys(a._item_stat_breakdown(objet), objet)
+        _, facteur, _ = affinite.item_filter(affinite.profile(champion), stats, 3000)
+        assert facteur > 0.99, f"{objet} pénalisé à tort pour {champion}"
+
+
+@pytest.mark.parametrize("champion", ["Lillia", "Fiddlesticks", "Karthus", "Elise", "Nidalee"])
+def test_les_jungleurs_ap_ne_sont_plus_hybrides(affinite, champion):
+    """
+    jungler_farm et jungler_ganker accordaient ad=1.10 ET ap=1.10 à égalité :
+    quinze champions en héritaient, dont ces cinq purement AP.
+    """
+    aff = affinite.profile(champion)["affinity"]
+    assert aff.get("ap", 0) >= 1.2
+    assert aff.get("ad", 1) <= 0.3

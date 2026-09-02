@@ -24,6 +24,11 @@ import os
 
 log = logging.getLogger(__name__)
 
+# Part de référence : celle du profil qui s'équipe le plus défensivement
+# (tank_engage, 82 % des emplacements). Un archétype qui l'atteint n'est pas
+# pénalisé du tout.
+_PART_DEFENSIVE_REFERENCE = 0.82
+
 # Multiplicateur appliqué à un objet retenu malgré un flag défavorable.
 # 0.0 = exclusion pure. On préfère une pénalité forte à l'exclusion, sauf
 # pour le mana sur un champion sans ressource, qui est un gaspillage total.
@@ -50,6 +55,11 @@ class ChampionAffinity:
         with open(profiles_path, encoding="utf-8") as f:
             d = json.load(f)
         self.defaults = d["archetype_defaults"]
+        # Part d'objets sans dégâts observée dans les builds réels, par archétype.
+        self.part_defensive = {
+            k: v for k, v in (d.get("part_defensive_observee") or {}).items()
+            if not k.startswith("_")
+        }
         self._tags: dict | None = None
         self._warned_tags: set[str] = set()
         self.overrides = d["champion_overrides"]
@@ -242,6 +252,20 @@ class ChampionAffinity:
         if item_stats.get("on_hit", 0) > 0 and not flags.get("on_hit", False):
             factor *= _ONHIT_PENALTY
             reasons.append("effets à l'impact sous-exploités")
+
+        # --- objet sans AUCUN dégât sur un champion dont c'est le métier ---
+        # La règle voisine ne rejette qu'un objet du MAUVAIS type de dégâts.
+        # Un objet qui n'en apporte aucun — Jak'Sho, Force de la nature — ne
+        # déclenchait rien et ressortait à égalité avec une Coiffe de Rabadon.
+        # La pénalité est graduée par la part réellement observée dans les
+        # builds : un tank d'engagement consacre 82 % de ses emplacements à des
+        # objets sans dégâts, un ADC 19 %. On ne peut pas les traiter pareil.
+        if item_stats.get("ap", 0) == 0 and item_stats.get("ad", 0) == 0:
+            part = self.part_defensive.get(prof.get("archetype") or "", 0.30)
+            f = min(1.0, 0.5 + 0.5 * part / _PART_DEFENSIVE_REFERENCE)
+            if f < 0.99:
+                factor *= f
+                reasons.append("aucun dégât, peu conforme au profil")
 
         # --- profil de dégâts : AP sur un champion 100% AD et inversement ---
         mix = prof.get("damage_mix")
