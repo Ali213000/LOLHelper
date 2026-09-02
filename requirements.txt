@@ -1,0 +1,47 @@
+# ============================================================
+# LoL Coaching Assistant — Python Dependencies
+# ============================================================
+#
+# IMPORTANT: For GPU-accelerated PyTorch (CUDA 12.x), do NOT
+# install torch from PyPI directly. Use setup.bat which runs:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# This installs the correct CUDA build for your RTX 5070 Ti.
+#
+# All other packages below can be installed normally.
+# ============================================================
+
+# --- UI ---
+customtkinter>=5.2.2
+pystray>=0.19.5
+Pillow>=10.3.0
+
+# --- HTTP clients ---
+httpx>=0.27.0
+requests>=2.31.0
+aiohttp>=3.9.5
+
+# --- Vision / OCR ---
+# torch and torchvision installed separately via setup.bat (CUDA build)
+easyocr>=1.7.1
+opencv-python>=4.9.0
+mss>=9.0.1
+
+# --- Input monitoring ---
+pynput>=1.7.7
+
+# --- AI / LangChain ---
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-google-genai>=1.0.0
+langchain-openai>=0.1.0
+langchain-anthropic>=0.1.0
+openai>=1.30.0
+google-generativeai>=0.7.0
+anthropic>=0.28.0
+
+# --- TTS ---
+edge-tts>=6.1.9
+pyttsx3>=2.90
+
+# --- Config ---
+python-dotenv>=1.0.0

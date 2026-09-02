@@ -1,0 +1,955 @@
+{
+  "schema_version": "1.0",
+  "role": "ADC",
+  "patch": "TO_FILL",
+  "notes": "Valeurs estimees a la main (0-1), coherentes entre elles pour un scoring relatif. A recalibrer apres backtest. Les ids suivent la convention Riot championName (MonkeyKing = Wukong, Renata = Renata Glasc, Belveth = Bel'Veth).",
+  "axes_order": [
+    "engage",
+    "disengage_peel",
+    "frontline",
+    "mobility",
+    "hard_cc",
+    "soft_cc",
+    "waveclear",
+    "poke_siege",
+    "splitpush",
+    "pick_potential",
+    "objective_dps",
+    "sustain",
+    "self_peel",
+    "dive_resistance"
+  ],
+  "champions": [
+    {
+      "id": "Aphelios",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.2,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.2,
+        "hard_cc": 0.5,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.5,
+        "splitpush": 0.3,
+        "pick_potential": 0.3,
+        "objective_dps": 0.9,
+        "sustain": 0.2,
+        "self_peel": 0.4,
+        "dive_resistance": 0.2
+      },
+      "power_curve": {
+        "early": 0.3,
+        "mid": 0.6,
+        "late": 0.95
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.9
+    },
+    {
+      "id": "Ashe",
+      "roles": [
+        "ADC",
+        "SUPPORT"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 600,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.7,
+        "frontline": 0.05,
+        "mobility": 0.15,
+        "hard_cc": 0.9,
+        "soft_cc": 0.8,
+        "waveclear": 0.5,
+        "poke_siege": 0.5,
+        "splitpush": 0.2,
+        "pick_potential": 0.7,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.2
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.7,
+        "late": 0.8
+      },
+      "flex_score": 0.5,
+      "mechanical_difficulty": 0.2
+    },
+    {
+      "id": "Caitlyn",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 650,
+      "axes": {
+        "engage": 0.2,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.3,
+        "hard_cc": 0.5,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.7,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.5,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.7,
+        "mid": 0.7,
+        "late": 0.8
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Corki",
+      "roles": [
+        "ADC",
+        "MID"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 0.45,
+        "ap": 0.5,
+        "true": 0.05
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.5,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.8,
+        "poke_siege": 0.8,
+        "splitpush": 0.5,
+        "pick_potential": 0.2,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.75,
+        "late": 0.9
+      },
+      "flex_score": 0.4,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Draven",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.4,
+        "frontline": 0.05,
+        "mobility": 0.3,
+        "hard_cc": 0.5,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.4,
+        "pick_potential": 0.3,
+        "objective_dps": 0.9,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.25
+      },
+      "power_curve": {
+        "early": 0.9,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.75
+    },
+    {
+      "id": "Ezreal",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 0.8,
+        "ap": 0.2,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.2,
+        "disengage_peel": 0.7,
+        "frontline": 0.05,
+        "mobility": 0.6,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.7,
+        "splitpush": 0.4,
+        "pick_potential": 0.2,
+        "objective_dps": 0.6,
+        "sustain": 0.1,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.85
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Jhin",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.2,
+        "hard_cc": 0.7,
+        "soft_cc": 0.6,
+        "waveclear": 0.6,
+        "poke_siege": 0.8,
+        "splitpush": 0.3,
+        "pick_potential": 0.6,
+        "objective_dps": 0.6,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.25
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.7
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.45
+    },
+    {
+      "id": "Jinx",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.2,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.2,
+        "hard_cc": 0.6,
+        "soft_cc": 0.4,
+        "waveclear": 0.8,
+        "poke_siege": 0.5,
+        "splitpush": 0.4,
+        "pick_potential": 0.3,
+        "objective_dps": 0.9,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.2
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.65,
+        "late": 1.0
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "Kaisa",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.55,
+        "ap": 0.45,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.7,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.85,
+        "sustain": 0.1,
+        "self_peel": 0.7,
+        "dive_resistance": 0.45
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.7,
+        "late": 0.95
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Kalista",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.8,
+        "hard_cc": 0.6,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.4,
+        "pick_potential": 0.5,
+        "objective_dps": 0.9,
+        "sustain": 0.1,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.75,
+        "mid": 0.7,
+        "late": 0.6
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.8
+    },
+    {
+      "id": "KogMaw",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.7,
+        "ap": 0.3,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.1,
+        "disengage_peel": 0.3,
+        "frontline": 0.05,
+        "mobility": 0.05,
+        "hard_cc": 0.0,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.5,
+        "splitpush": 0.2,
+        "pick_potential": 0.2,
+        "objective_dps": 1.0,
+        "sustain": 0.1,
+        "self_peel": 0.15,
+        "dive_resistance": 0.1
+      },
+      "power_curve": {
+        "early": 0.25,
+        "mid": 0.5,
+        "late": 1.0
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Lucian",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.4,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.7,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.4,
+        "splitpush": 0.5,
+        "pick_potential": 0.3,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.85,
+        "mid": 0.75,
+        "late": 0.55
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "MissFortune",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 0.85,
+        "ap": 0.15,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.3,
+        "hard_cc": 0.0,
+        "soft_cc": 0.6,
+        "waveclear": 0.8,
+        "poke_siege": 0.6,
+        "splitpush": 0.4,
+        "pick_potential": 0.3,
+        "objective_dps": 0.7,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.25
+      },
+      "power_curve": {
+        "early": 0.7,
+        "mid": 0.75,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.2
+    },
+    {
+      "id": "Nilah",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 225,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.7,
+        "frontline": 0.15,
+        "mobility": 0.7,
+        "hard_cc": 0.6,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.1,
+        "splitpush": 0.4,
+        "pick_potential": 0.3,
+        "objective_dps": 0.85,
+        "sustain": 0.5,
+        "self_peel": 0.7,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.9
+      },
+      "flex_score": 0.05,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Samira",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.3,
+        "frontline": 0.05,
+        "mobility": 0.7,
+        "hard_cc": 0.5,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.85,
+        "sustain": 0.2,
+        "self_peel": 0.6,
+        "dive_resistance": 0.45
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.85
+      },
+      "flex_score": 0.05,
+      "mechanical_difficulty": 0.75
+    },
+    {
+      "id": "Senna",
+      "roles": [
+        "ADC",
+        "SUPPORT"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 600,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.8,
+        "frontline": 0.05,
+        "mobility": 0.3,
+        "hard_cc": 0.6,
+        "soft_cc": 0.6,
+        "waveclear": 0.4,
+        "poke_siege": 0.6,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.6,
+        "sustain": 0.7,
+        "self_peel": 0.5,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.6,
+        "late": 0.9
+      },
+      "flex_score": 0.7,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Sivir",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.4,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.95,
+        "poke_siege": 0.4,
+        "splitpush": 0.5,
+        "pick_potential": 0.2,
+        "objective_dps": 0.85,
+        "sustain": 0.1,
+        "self_peel": 0.6,
+        "dive_resistance": 0.35
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.7,
+        "late": 0.85
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Smolder",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.7,
+        "ap": 0.3,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.2,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.4,
+        "hard_cc": 0.0,
+        "soft_cc": 0.5,
+        "waveclear": 0.7,
+        "poke_siege": 0.6,
+        "splitpush": 0.3,
+        "pick_potential": 0.2,
+        "objective_dps": 0.7,
+        "sustain": 0.1,
+        "self_peel": 0.5,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.25,
+        "mid": 0.5,
+        "late": 1.0
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Tristana",
+      "roles": [
+        "ADC",
+        "MID"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.7,
+        "hard_cc": 0.4,
+        "soft_cc": 0.3,
+        "waveclear": 0.6,
+        "poke_siege": 0.5,
+        "splitpush": 0.7,
+        "pick_potential": 0.3,
+        "objective_dps": 0.9,
+        "sustain": 0.1,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.6,
+        "late": 0.9
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.45
+    },
+    {
+      "id": "Twitch",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.85,
+        "ap": 0.15,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.4,
+        "disengage_peel": 0.3,
+        "frontline": 0.05,
+        "mobility": 0.4,
+        "hard_cc": 0.0,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.4,
+        "splitpush": 0.5,
+        "pick_potential": 0.6,
+        "objective_dps": 0.9,
+        "sustain": 0.1,
+        "self_peel": 0.4,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.75,
+        "late": 0.9
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Varus",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_lane_bully",
+      "damage_mix": {
+        "ad": 0.8,
+        "ap": 0.2,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 575,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.5,
+        "frontline": 0.05,
+        "mobility": 0.15,
+        "hard_cc": 0.7,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.8,
+        "splitpush": 0.3,
+        "pick_potential": 0.5,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.3,
+        "dive_resistance": 0.2
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.75,
+        "late": 0.75
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Vayne",
+      "roles": [
+        "ADC",
+        "TOP"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.8,
+        "ap": 0,
+        "true": 0.2
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.7,
+        "hard_cc": 0.5,
+        "soft_cc": 0.4,
+        "waveclear": 0.3,
+        "poke_siege": 0.2,
+        "splitpush": 0.6,
+        "pick_potential": 0.3,
+        "objective_dps": 0.95,
+        "sustain": 0.1,
+        "self_peel": 0.8,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.3,
+        "mid": 0.55,
+        "late": 1.0
+      },
+      "flex_score": 0.3,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Xayah",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.4,
+        "hard_cc": 0.7,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.4,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.85,
+        "sustain": 0.1,
+        "self_peel": 0.8,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.9
+      },
+      "flex_score": 0.05,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Zeri",
+      "roles": [
+        "ADC"
+      ],
+      "archetype": "adc_hypercarry",
+      "damage_mix": {
+        "ad": 0.9,
+        "ap": 0.1,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.85,
+        "hard_cc": 0.5,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.4,
+        "splitpush": 0.5,
+        "pick_potential": 0.2,
+        "objective_dps": 0.8,
+        "sustain": 0.1,
+        "self_peel": 0.75,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.3,
+        "mid": 0.65,
+        "late": 0.95
+      },
+      "flex_score": 0.05,
+      "mechanical_difficulty": 0.8
+    },
+    {
+      "id": "Ziggs",
+      "roles": [
+        "ADC",
+        "MID"
+      ],
+      "archetype": "mage_poke",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.15,
+        "disengage_peel": 0.6,
+        "frontline": 0.05,
+        "mobility": 0.2,
+        "hard_cc": 0.3,
+        "soft_cc": 0.5,
+        "waveclear": 1.0,
+        "poke_siege": 0.95,
+        "splitpush": 0.6,
+        "pick_potential": 0.2,
+        "objective_dps": 0.4,
+        "sustain": 0.1,
+        "self_peel": 0.5,
+        "dive_resistance": 0.25
+      },
+      "power_curve": {
+        "early": 0.45,
+        "mid": 0.75,
+        "late": 0.85
+      },
+      "flex_score": 0.45,
+      "mechanical_difficulty": 0.35
+    }
+  ]
+}

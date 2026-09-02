@@ -1,0 +1,3167 @@
+{
+  "Olaf|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6631,
+        3073
+      ],
+      "confidence": 0.244,
+      "samples": 127
+    },
+    "strata": {}
+  },
+  "Lillia|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        4633
+      ],
+      "confidence": 0.565,
+      "samples": 115
+    },
+    "strata": {}
+  },
+  "Aurora|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.42,
+      "samples": 100
+    },
+    "strata": {}
+  },
+  "Samira|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6676,
+        3031
+      ],
+      "confidence": 0.846,
+      "samples": 208
+    },
+    "strata": {}
+  },
+  "Morgana|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        3157
+      ],
+      "confidence": 0.269,
+      "samples": 130
+    },
+    "strata": {}
+  },
+  "Tryndamere|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3074,
+        3046
+      ],
+      "confidence": 0.285,
+      "samples": 151
+    },
+    "strata": {}
+  },
+  "FiddleSticks|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4645
+      ],
+      "confidence": 0.216,
+      "samples": 97
+    },
+    "strata": {}
+  },
+  "Kassadin|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3003
+      ],
+      "confidence": 0.467,
+      "samples": 152
+    },
+    "strata": {}
+  },
+  "Yunara|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6672,
+        2512
+      ],
+      "confidence": 0.527,
+      "samples": 279
+    },
+    "strata": {}
+  },
+  "Braum|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3109
+      ],
+      "confidence": 0.307,
+      "samples": 215
+    },
+    "strata": {}
+  },
+  "Teemo|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3087,
+        6653
+      ],
+      "confidence": 0.409,
+      "samples": 159
+    },
+    "strata": {}
+  },
+  "Nunu|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        3742
+      ],
+      "confidence": 0.103,
+      "samples": 78
+    },
+    "strata": {}
+  },
+  "Aphelios|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6676,
+        3031
+      ],
+      "confidence": 0.291,
+      "samples": 227
+    },
+    "strata": {}
+  },
+  "Velkoz|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.328,
+      "samples": 122
+    },
+    "strata": {}
+  },
+  "Ahri|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3118,
+        4645
+      ],
+      "confidence": 0.313,
+      "samples": 451
+    },
+    "strata": {}
+  },
+  "Ashe|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2523,
+        3046
+      ],
+      "confidence": 0.55,
+      "samples": 322
+    },
+    "strata": {}
+  },
+  "Sona|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6620,
+        6617
+      ],
+      "confidence": 0.283,
+      "samples": 120
+    },
+    "strata": {}
+  },
+  "Khazix|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3179,
+        6699
+      ],
+      "confidence": 0.401,
+      "samples": 292
+    },
+    "strata": {}
+  },
+  "Qiyana|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6699,
+        6698
+      ],
+      "confidence": 0.2,
+      "samples": 130
+    },
+    "strata": {}
+  },
+  "Jinx|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2523,
+        3085
+      ],
+      "confidence": 0.33,
+      "samples": 542
+    },
+    "strata": {}
+  },
+  "Lulu|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3504,
+        6617
+      ],
+      "confidence": 0.242,
+      "samples": 335
+    },
+    "strata": {}
+  },
+  "Gwen|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2510,
+        4645
+      ],
+      "confidence": 0.347,
+      "samples": 144
+    },
+    "strata": {}
+  },
+  "Diana|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2510,
+        4633
+      ],
+      "confidence": 0.423,
+      "samples": 234
+    },
+    "strata": {}
+  },
+  "Syndra|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.361,
+      "samples": 391
+    },
+    "strata": {}
+  },
+  "Poppy|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3742,
+        3190
+      ],
+      "confidence": 0.324,
+      "samples": 74
+    },
+    "strata": {}
+  },
+  "Hwei|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        4645
+      ],
+      "confidence": 0.304,
+      "samples": 161
+    },
+    "strata": {}
+  },
+  "Ziggs|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.46,
+      "samples": 126
+    },
+    "strata": {}
+  },
+  "Kayle|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3115,
+        2510
+      ],
+      "confidence": 0.637,
+      "samples": 135
+    },
+    "strata": {}
+  },
+  "Nocturne|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3073,
+        6631
+      ],
+      "confidence": 0.373,
+      "samples": 284
+    },
+    "strata": {}
+  },
+  "Taliyah|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3003,
+        3116
+      ],
+      "confidence": 0.212,
+      "samples": 85
+    },
+    "strata": {}
+  },
+  "Vayne|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        3124
+      ],
+      "confidence": 0.254,
+      "samples": 240
+    },
+    "strata": {}
+  },
+  "Riven|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6692,
+        6610
+      ],
+      "confidence": 0.184,
+      "samples": 158
+    },
+    "strata": {}
+  },
+  "Irelia|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        3181
+      ],
+      "confidence": 0.316,
+      "samples": 95
+    },
+    "strata": {}
+  },
+  "Ezreal|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3004
+      ],
+      "confidence": 0.889,
+      "samples": 442
+    },
+    "strata": {}
+  },
+  "Thresh|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3109
+      ],
+      "confidence": 0.33,
+      "samples": 509
+    },
+    "strata": {}
+  },
+  "Nasus|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3110
+      ],
+      "confidence": 0.314,
+      "samples": 185
+    },
+    "strata": {}
+  },
+  "Shyvana|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3161
+      ],
+      "confidence": 0.405,
+      "samples": 227
+    },
+    "strata": {}
+  },
+  "Sylas|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4633
+      ],
+      "confidence": 0.4,
+      "samples": 250
+    },
+    "strata": {}
+  },
+  "Kaisa|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6672,
+        3124
+      ],
+      "confidence": 0.676,
+      "samples": 654
+    },
+    "strata": {}
+  },
+  "Sion|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3068,
+        2502
+      ],
+      "confidence": 0.165,
+      "samples": 170
+    },
+    "strata": {}
+  },
+  "Karma|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6620,
+        6617
+      ],
+      "confidence": 0.225,
+      "samples": 293
+    },
+    "strata": {}
+  },
+  "Malzahar|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        6653
+      ],
+      "confidence": 0.475,
+      "samples": 257
+    },
+    "strata": {}
+  },
+  "Jhin|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6676,
+        3031
+      ],
+      "confidence": 0.272,
+      "samples": 503
+    },
+    "strata": {}
+  },
+  "Shen|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3748,
+        2510
+      ],
+      "confidence": 0.507,
+      "samples": 221
+    },
+    "strata": {}
+  },
+  "Anivia|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3003
+      ],
+      "confidence": 0.406,
+      "samples": 143
+    },
+    "strata": {}
+  },
+  "Caitlyn|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2523,
+        3031
+      ],
+      "confidence": 0.556,
+      "samples": 577
+    },
+    "strata": {}
+  },
+  "Ambessa|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6692,
+        3161
+      ],
+      "confidence": 0.441,
+      "samples": 179
+    },
+    "strata": {}
+  },
+  "Talon|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3179,
+        2520
+      ],
+      "confidence": 0.265,
+      "samples": 291
+    },
+    "strata": {}
+  },
+  "KogMaw|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        3124
+      ],
+      "confidence": 0.236,
+      "samples": 89
+    },
+    "strata": {}
+  },
+  "MasterYi|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6672,
+        3124
+      ],
+      "confidence": 0.582,
+      "samples": 256
+    },
+    "strata": {}
+  },
+  "Fizz|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3100,
+        3157
+      ],
+      "confidence": 0.423,
+      "samples": 220
+    },
+    "strata": {}
+  },
+  "Lucian|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3508,
+        6675
+      ],
+      "confidence": 0.578,
+      "samples": 249
+    },
+    "strata": {}
+  },
+  "Blitzcrank|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3050
+      ],
+      "confidence": 0.213,
+      "samples": 174
+    },
+    "strata": {}
+  },
+  "Smolder|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3508,
+        3071
+      ],
+      "confidence": 0.438,
+      "samples": 267
+    },
+    "strata": {}
+  },
+  "Galio|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4005
+      ],
+      "confidence": 0.168,
+      "samples": 125
+    },
+    "strata": {}
+  },
+  "Senna|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3087,
+        3071
+      ],
+      "confidence": 0.59,
+      "samples": 200
+    },
+    "strata": {}
+  },
+  "Bard|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3742,
+        2524
+      ],
+      "confidence": 0.208,
+      "samples": 265
+    },
+    "strata": {}
+  },
+  "Jax|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        6610
+      ],
+      "confidence": 0.475,
+      "samples": 177
+    },
+    "strata": {}
+  },
+  "Sylas|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4633
+      ],
+      "confidence": 0.677,
+      "samples": 269
+    },
+    "strata": {}
+  },
+  "Lissandra|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3118,
+        4645
+      ],
+      "confidence": 0.404,
+      "samples": 198
+    },
+    "strata": {}
+  },
+  "Camille|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3074
+      ],
+      "confidence": 0.953,
+      "samples": 171
+    },
+    "strata": {}
+  },
+  "Amumu|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        3068
+      ],
+      "confidence": 0.416,
+      "samples": 89
+    },
+    "strata": {}
+  },
+  "Akali|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3146,
+        4645
+      ],
+      "confidence": 0.614,
+      "samples": 233
+    },
+    "strata": {}
+  },
+  "MissFortune|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6697,
+        6676
+      ],
+      "confidence": 0.327,
+      "samples": 300
+    },
+    "strata": {}
+  },
+  "Gnar|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3071
+      ],
+      "confidence": 0.58,
+      "samples": 169
+    },
+    "strata": {}
+  },
+  "Jayce|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3142,
+        3004
+      ],
+      "confidence": 0.475,
+      "samples": 158
+    },
+    "strata": {}
+  },
+  "Kayn|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6699,
+        3071
+      ],
+      "confidence": 0.182,
+      "samples": 253
+    },
+    "strata": {}
+  },
+  "Alistar|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3050
+      ],
+      "confidence": 0.229,
+      "samples": 166
+    },
+    "strata": {}
+  },
+  "JarvanIV|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3071
+      ],
+      "confidence": 0.32,
+      "samples": 284
+    },
+    "strata": {}
+  },
+  "Seraphine|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6620,
+        6617
+      ],
+      "confidence": 0.296,
+      "samples": 291
+    },
+    "strata": {}
+  },
+  "Viego|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6672,
+        6676
+      ],
+      "confidence": 0.518,
+      "samples": 463
+    },
+    "strata": {}
+  },
+  "Lux|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4646
+      ],
+      "confidence": 0.31,
+      "samples": 174
+    },
+    "strata": {}
+  },
+  "Zilean|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2065,
+        4005
+      ],
+      "confidence": 0.193,
+      "samples": 150
+    },
+    "strata": {}
+  },
+  "Mordekaiser|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3116,
+        4633
+      ],
+      "confidence": 0.49,
+      "samples": 206
+    },
+    "strata": {}
+  },
+  "Rammus|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3075,
+        3068
+      ],
+      "confidence": 0.319,
+      "samples": 69
+    },
+    "strata": {}
+  },
+  "Locke|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3100,
+        4645
+      ],
+      "confidence": 0.563,
+      "samples": 215
+    },
+    "strata": {}
+  },
+  "Seraphine|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2503,
+        3003
+      ],
+      "confidence": 0.4,
+      "samples": 105
+    },
+    "strata": {}
+  },
+  "Aatrox|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6692,
+        6610
+      ],
+      "confidence": 0.186,
+      "samples": 199
+    },
+    "strata": {}
+  },
+  "Rengar|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3179,
+        6698
+      ],
+      "confidence": 0.632,
+      "samples": 201
+    },
+    "strata": {}
+  },
+  "Vex|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.597,
+      "samples": 124
+    },
+    "strata": {}
+  },
+  "Yasuo|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6673
+      ],
+      "confidence": 0.541,
+      "samples": 111
+    },
+    "strata": {}
+  },
+  "Ryze|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3003
+      ],
+      "confidence": 0.946,
+      "samples": 147
+    },
+    "strata": {}
+  },
+  "Pantheon|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3071
+      ],
+      "confidence": 0.155,
+      "samples": 110
+    },
+    "strata": {}
+  },
+  "Zaahen|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        6631
+      ],
+      "confidence": 0.202,
+      "samples": 129
+    },
+    "strata": {}
+  },
+  "Udyr|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3161,
+        3073
+      ],
+      "confidence": 0.179,
+      "samples": 112
+    },
+    "strata": {}
+  },
+  "Zeri|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3032,
+        3085
+      ],
+      "confidence": 0.431,
+      "samples": 160
+    },
+    "strata": {}
+  },
+  "Illaoi|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3071,
+        6662
+      ],
+      "confidence": 0.311,
+      "samples": 119
+    },
+    "strata": {}
+  },
+  "Ambessa|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6698,
+        6696
+      ],
+      "confidence": 0.258,
+      "samples": 66
+    },
+    "strata": {}
+  },
+  "Nami|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        4005,
+        6617
+      ],
+      "confidence": 0.166,
+      "samples": 559
+    },
+    "strata": {}
+  },
+  "Garen|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6631,
+        3046
+      ],
+      "confidence": 0.573,
+      "samples": 396
+    },
+    "strata": {}
+  },
+  "Riven|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6696,
+        2517
+      ],
+      "confidence": 0.269,
+      "samples": 52
+    },
+    "strata": {}
+  },
+  "Leona|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3109
+      ],
+      "confidence": 0.305,
+      "samples": 302
+    },
+    "strata": {}
+  },
+  "Akshan|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6672,
+        2523
+      ],
+      "confidence": 0.247,
+      "samples": 166
+    },
+    "strata": {}
+  },
+  "Irelia|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3153,
+        3181
+      ],
+      "confidence": 0.523,
+      "samples": 155
+    },
+    "strata": {}
+  },
+  "Swain|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3118,
+        3116
+      ],
+      "confidence": 0.385,
+      "samples": 65
+    },
+    "strata": {}
+  },
+  "Volibear|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2510,
+        6675
+      ],
+      "confidence": 0.516,
+      "samples": 62
+    },
+    "strata": {}
+  },
+  "Mel|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.459,
+      "samples": 109
+    },
+    "strata": {}
+  },
+  "Xerath|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4628
+      ],
+      "confidence": 0.4,
+      "samples": 60
+    },
+    "strata": {}
+  },
+  "Hecarim|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3161,
+        3071
+      ],
+      "confidence": 0.167,
+      "samples": 198
+    },
+    "strata": {}
+  },
+  "Annie|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3118,
+        3152
+      ],
+      "confidence": 0.361,
+      "samples": 97
+    },
+    "strata": {}
+  },
+  "Elise|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        4646,
+        4645
+      ],
+      "confidence": 0.389,
+      "samples": 95
+    },
+    "strata": {}
+  },
+  "Sivir|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3508,
+        6675
+      ],
+      "confidence": 0.402,
+      "samples": 204
+    },
+    "strata": {}
+  },
+  "Belveth|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6672,
+        6631
+      ],
+      "confidence": 0.329,
+      "samples": 161
+    },
+    "strata": {}
+  },
+  "Brand|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3116,
+        6653
+      ],
+      "confidence": 0.375,
+      "samples": 72
+    },
+    "strata": {}
+  },
+  "Renekton|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6692,
+        3071
+      ],
+      "confidence": 0.376,
+      "samples": 202
+    },
+    "strata": {}
+  },
+  "Evelynn|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3100,
+        3089
+      ],
+      "confidence": 0.57,
+      "samples": 114
+    },
+    "strata": {}
+  },
+  "Tristana|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3032,
+        3031
+      ],
+      "confidence": 0.33,
+      "samples": 373
+    },
+    "strata": {}
+  },
+  "Nautilus|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3109
+      ],
+      "confidence": 0.349,
+      "samples": 375
+    },
+    "strata": {}
+  },
+  "Vayne|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        3124
+      ],
+      "confidence": 0.226,
+      "samples": 124
+    },
+    "strata": {}
+  },
+  "Cassiopeia|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3003
+      ],
+      "confidence": 0.573,
+      "samples": 89
+    },
+    "strata": {}
+  },
+  "Xayah|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3508,
+        6675
+      ],
+      "confidence": 0.448,
+      "samples": 181
+    },
+    "strata": {}
+  },
+  "Soraka|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6617,
+        3107
+      ],
+      "confidence": 0.401,
+      "samples": 167
+    },
+    "strata": {}
+  },
+  "Ekko|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2510,
+        4645
+      ],
+      "confidence": 0.6,
+      "samples": 175
+    },
+    "strata": {}
+  },
+  "Pyke|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3179,
+        3814
+      ],
+      "confidence": 0.288,
+      "samples": 236
+    },
+    "strata": {}
+  },
+  "Rumble|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        8010
+      ],
+      "confidence": 0.333,
+      "samples": 69
+    },
+    "strata": {}
+  },
+  "Vladimir|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4633
+      ],
+      "confidence": 0.215,
+      "samples": 191
+    },
+    "strata": {}
+  },
+  "Pantheon|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6692,
+        3071
+      ],
+      "confidence": 0.338,
+      "samples": 80
+    },
+    "strata": {}
+  },
+  "Zac|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3152,
+        3068
+      ],
+      "confidence": 0.27,
+      "samples": 126
+    },
+    "strata": {}
+  },
+  "Poppy|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3119
+      ],
+      "confidence": 0.333,
+      "samples": 51
+    },
+    "strata": {}
+  },
+  "TwistedFate|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3100
+      ],
+      "confidence": 0.521,
+      "samples": 144
+    },
+    "strata": {}
+  },
+  "DrMundo|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3084,
+        3742
+      ],
+      "confidence": 0.596,
+      "samples": 57
+    },
+    "strata": {}
+  },
+  "Vi|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3071
+      ],
+      "confidence": 0.29,
+      "samples": 169
+    },
+    "strata": {}
+  },
+  "Twitch|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6676,
+        2512
+      ],
+      "confidence": 0.441,
+      "samples": 254
+    },
+    "strata": {}
+  },
+  "TahmKench|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3084,
+        3065
+      ],
+      "confidence": 0.2,
+      "samples": 85
+    },
+    "strata": {}
+  },
+  "Zed|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6699,
+        6696
+      ],
+      "confidence": 0.255,
+      "samples": 94
+    },
+    "strata": {}
+  },
+  "Ivern|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3107,
+        6617
+      ],
+      "confidence": 0.421,
+      "samples": 57
+    },
+    "strata": {}
+  },
+  "Nasus|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2525,
+        6662
+      ],
+      "confidence": 0.359,
+      "samples": 92
+    },
+    "strata": {}
+  },
+  "Katarina|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3100,
+        4645
+      ],
+      "confidence": 0.331,
+      "samples": 317
+    },
+    "strata": {}
+  },
+  "Milio|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6620,
+        6617
+      ],
+      "confidence": 0.322,
+      "samples": 239
+    },
+    "strata": {}
+  },
+  "Lux|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4646
+      ],
+      "confidence": 0.387,
+      "samples": 142
+    },
+    "strata": {}
+  },
+  "Yone|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6673
+      ],
+      "confidence": 0.656,
+      "samples": 195
+    },
+    "strata": {}
+  },
+  "Kennen|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4645
+      ],
+      "confidence": 0.5,
+      "samples": 70
+    },
+    "strata": {}
+  },
+  "Yuumi|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6617,
+        3504
+      ],
+      "confidence": 0.112,
+      "samples": 152
+    },
+    "strata": {}
+  },
+  "Volibear|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2510,
+        6675
+      ],
+      "confidence": 0.432,
+      "samples": 111
+    },
+    "strata": {}
+  },
+  "Gangplank|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3508,
+        6676
+      ],
+      "confidence": 0.422,
+      "samples": 192
+    },
+    "strata": {}
+  },
+  "Viktor|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        6653
+      ],
+      "confidence": 0.218,
+      "samples": 353
+    },
+    "strata": {}
+  },
+  "Warwick|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6631
+      ],
+      "confidence": 0.329,
+      "samples": 73
+    },
+    "strata": {}
+  },
+  "Rell|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3050,
+        3190
+      ],
+      "confidence": 0.268,
+      "samples": 179
+    },
+    "strata": {}
+  },
+  "Shaco|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        6653
+      ],
+      "confidence": 0.28,
+      "samples": 236
+    },
+    "strata": {}
+  },
+  "Yorick|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3161
+      ],
+      "confidence": 0.285,
+      "samples": 123
+    },
+    "strata": {}
+  },
+  "Yasuo|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6673
+      ],
+      "confidence": 0.39,
+      "samples": 100
+    },
+    "strata": {}
+  },
+  "Kindred|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6672,
+        6676
+      ],
+      "confidence": 0.588,
+      "samples": 102
+    },
+    "strata": {}
+  },
+  "Zed|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6699,
+        2520
+      ],
+      "confidence": 0.262,
+      "samples": 294
+    },
+    "strata": {}
+  },
+  "Neeko|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3152,
+        3157
+      ],
+      "confidence": 0.635,
+      "samples": 52
+    },
+    "strata": {}
+  },
+  "Chogath|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4633
+      ],
+      "confidence": 0.252,
+      "samples": 107
+    },
+    "strata": {}
+  },
+  "Hwei|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        6653
+      ],
+      "confidence": 0.466,
+      "samples": 73
+    },
+    "strata": {}
+  },
+  "Senna|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3071,
+        3087
+      ],
+      "confidence": 0.358,
+      "samples": 265
+    },
+    "strata": {}
+  },
+  "Ornn|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3068,
+        3075
+      ],
+      "confidence": 0.098,
+      "samples": 184
+    },
+    "strata": {}
+  },
+  "Corki|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3078,
+        3004
+      ],
+      "confidence": 0.596,
+      "samples": 114
+    },
+    "strata": {}
+  },
+  "Leblanc|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.522,
+      "samples": 159
+    },
+    "strata": {}
+  },
+  "Talon|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3142,
+        6699
+      ],
+      "confidence": 0.192,
+      "samples": 73
+    },
+    "strata": {}
+  },
+  "Malphite|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3068,
+        3075
+      ],
+      "confidence": 0.221,
+      "samples": 253
+    },
+    "strata": {}
+  },
+  "XinZhao|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3071
+      ],
+      "confidence": 0.462,
+      "samples": 130
+    },
+    "strata": {}
+  },
+  "KSante|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6662,
+        2502
+      ],
+      "confidence": 0.193,
+      "samples": 119
+    },
+    "strata": {}
+  },
+  "Draven|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6697,
+        2523
+      ],
+      "confidence": 0.322,
+      "samples": 208
+    },
+    "strata": {}
+  },
+  "LeeSin|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6692,
+        6610
+      ],
+      "confidence": 0.489,
+      "samples": 282
+    },
+    "strata": {}
+  },
+  "Aatrox|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6697,
+        6610
+      ],
+      "confidence": 0.351,
+      "samples": 94
+    },
+    "strata": {}
+  },
+  "Zoe|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        3100
+      ],
+      "confidence": 0.333,
+      "samples": 90
+    },
+    "strata": {}
+  },
+  "Briar|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6676,
+        3748
+      ],
+      "confidence": 0.291,
+      "samples": 182
+    },
+    "strata": {}
+  },
+  "Orianna|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.214,
+      "samples": 131
+    },
+    "strata": {}
+  },
+  "Janna|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6617,
+        3107
+      ],
+      "confidence": 0.343,
+      "samples": 233
+    },
+    "strata": {}
+  },
+  "Fiora|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3074,
+        3078
+      ],
+      "confidence": 0.736,
+      "samples": 148
+    },
+    "strata": {}
+  },
+  "Urgot|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3071,
+        3053
+      ],
+      "confidence": 0.728,
+      "samples": 151
+    },
+    "strata": {}
+  },
+  "Naafiri|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6699,
+        6696
+      ],
+      "confidence": 0.295,
+      "samples": 183
+    },
+    "strata": {}
+  },
+  "Warwick|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6631,
+        3153
+      ],
+      "confidence": 0.28,
+      "samples": 93
+    },
+    "strata": {}
+  },
+  "MonkeyKing|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        6610
+      ],
+      "confidence": 0.606,
+      "samples": 218
+    },
+    "strata": {}
+  },
+  "Veigar|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6657,
+        3003
+      ],
+      "confidence": 0.443,
+      "samples": 176
+    },
+    "strata": {}
+  },
+  "Graves|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6697,
+        6676
+      ],
+      "confidence": 0.677,
+      "samples": 400
+    },
+    "strata": {}
+  },
+  "Zyra|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6653,
+        3116
+      ],
+      "confidence": 0.471,
+      "samples": 87
+    },
+    "strata": {}
+  },
+  "Ekko|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2510,
+        4645
+      ],
+      "confidence": 0.44,
+      "samples": 184
+    },
+    "strata": {}
+  },
+  "Kled|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3748,
+        3181
+      ],
+      "confidence": 0.269,
+      "samples": 67
+    },
+    "strata": {}
+  },
+  "DrMundo|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3083,
+        3084
+      ],
+      "confidence": 0.679,
+      "samples": 168
+    },
+    "strata": {}
+  },
+  "Varus|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3087,
+        3124
+      ],
+      "confidence": 0.298,
+      "samples": 121
+    },
+    "strata": {}
+  },
+  "Darius|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3142,
+        3742
+      ],
+      "confidence": 0.328,
+      "samples": 338
+    },
+    "strata": {}
+  },
+  "Nidalee|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3100,
+        4645
+      ],
+      "confidence": 0.286,
+      "samples": 91
+    },
+    "strata": {}
+  },
+  "Yasuo|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6673
+      ],
+      "confidence": 0.447,
+      "samples": 295
+    },
+    "strata": {}
+  },
+  "Xerath|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.468,
+      "samples": 62
+    },
+    "strata": {}
+  },
+  "Mel|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.398,
+      "samples": 103
+    },
+    "strata": {}
+  },
+  "AurelionSol|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3116,
+        6653
+      ],
+      "confidence": 0.429,
+      "samples": 105
+    },
+    "strata": {}
+  },
+  "Vladimir|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3152,
+        4633
+      ],
+      "confidence": 0.226,
+      "samples": 53
+    },
+    "strata": {}
+  },
+  "Veigar|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4646
+      ],
+      "confidence": 0.398,
+      "samples": 88
+    },
+    "strata": {}
+  },
+  "Rakan|SUPPORT": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3050,
+        3190
+      ],
+      "confidence": 0.327,
+      "samples": 165
+    },
+    "strata": {}
+  },
+  "Singed|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        3116
+      ],
+      "confidence": 0.625,
+      "samples": 128
+    },
+    "strata": {}
+  },
+  "Qiyana|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6698,
+        6699
+      ],
+      "confidence": 0.212,
+      "samples": 170
+    },
+    "strata": {}
+  },
+  "Xerath|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.486,
+      "samples": 183
+    },
+    "strata": {}
+  },
+  "RekSai|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3748,
+        3161
+      ],
+      "confidence": 0.442,
+      "samples": 77
+    },
+    "strata": {}
+  },
+  "Swain|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3116,
+        6653
+      ],
+      "confidence": 0.282,
+      "samples": 71
+    },
+    "strata": {}
+  },
+  "Viktor|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        3152
+      ],
+      "confidence": 0.367,
+      "samples": 147
+    },
+    "strata": {}
+  },
+  "Shen|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2525,
+        3190
+      ],
+      "confidence": 0.226,
+      "samples": 53
+    },
+    "strata": {}
+  },
+  "Sett|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6631,
+        3071
+      ],
+      "confidence": 0.346,
+      "samples": 182
+    },
+    "strata": {}
+  },
+  "Sejuani|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3084,
+        2502
+      ],
+      "confidence": 0.4,
+      "samples": 90
+    },
+    "strata": {}
+  },
+  "Diana|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        4646,
+        4645
+      ],
+      "confidence": 0.565,
+      "samples": 138
+    },
+    "strata": {}
+  },
+  "Jax|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3078,
+        6610
+      ],
+      "confidence": 0.512,
+      "samples": 86
+    },
+    "strata": {}
+  },
+  "Gragas|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3152,
+        3100
+      ],
+      "confidence": 0.162,
+      "samples": 99
+    },
+    "strata": {}
+  },
+  "Yone|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3153,
+        6673
+      ],
+      "confidence": 0.71,
+      "samples": 224
+    },
+    "strata": {}
+  },
+  "Karthus|JUNGLE": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        4645
+      ],
+      "confidence": 0.692,
+      "samples": 65
+    },
+    "strata": {}
+  },
+  "TahmKench|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3084,
+        2510
+      ],
+      "confidence": 0.529,
+      "samples": 70
+    },
+    "strata": {}
+  },
+  "Naafiri|MID": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        6699,
+        6696
+      ],
+      "confidence": 0.324,
+      "samples": 74
+    },
+    "strata": {}
+  },
+  "Azir|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3115,
+        4645
+      ],
+      "confidence": 0.474,
+      "samples": 78
+    },
+    "strata": {}
+  },
+  "Syndra|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.454,
+      "samples": 97
+    },
+    "strata": {}
+  },
+  "Taric|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3190,
+        3119
+      ],
+      "confidence": 0.254,
+      "samples": 63
+    },
+    "strata": {}
+  },
+  "Velkoz|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        2503,
+        4645
+      ],
+      "confidence": 0.267,
+      "samples": 60
+    },
+    "strata": {}
+  },
+  "Brand|ADC": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        2503,
+        3116
+      ],
+      "confidence": 0.425,
+      "samples": 80
+    },
+    "strata": {}
+  },
+  "Kalista|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3087,
+        3124
+      ],
+      "confidence": 0.587,
+      "samples": 92
+    },
+    "strata": {}
+  },
+  "Zyra|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6653,
+        4645
+      ],
+      "confidence": 0.508,
+      "samples": 59
+    },
+    "strata": {}
+  },
+  "Camille|SUPPORT": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6610,
+        3053
+      ],
+      "confidence": 0.378,
+      "samples": 90
+    },
+    "strata": {}
+  },
+  "Trundle|TOP": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3074,
+        3078
+      ],
+      "confidence": 0.412,
+      "samples": 68
+    },
+    "strata": {}
+  },
+  "Velkoz|MID": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4645
+      ],
+      "confidence": 0.338,
+      "samples": 68
+    },
+    "strata": {}
+  },
+  "Akali|TOP": {
+    "strata_order": [
+      "enemy_tank_count",
+      "lane_opp_type"
+    ],
+    "global": {
+      "items": [
+        3146,
+        4645
+      ],
+      "confidence": 0.506,
+      "samples": 79
+    },
+    "strata": {}
+  },
+  "Lux|ADC": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        6655,
+        4646
+      ],
+      "confidence": 0.3,
+      "samples": 50
+    },
+    "strata": {}
+  },
+  "Skarner|JUNGLE": {
+    "strata_order": [
+      "lane_opp_type",
+      "enemy_tank_count"
+    ],
+    "global": {
+      "items": [
+        3084,
+        2502
+      ],
+      "confidence": 0.579,
+      "samples": 57
+    },
+    "strata": {}
+  }
+}

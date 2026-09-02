@@ -1,0 +1,28 @@
+# ---- Secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- Logs & artefacts de run ----
+*.log
+lol_helper.log
+benchmark_debug.log
+.patch_stats_checkpoint.json
+
+# ---- Données lourdes / générées ----
+scratch/
+data/matches/
+assets/img/
+assets/champion_data.json
+assets/item_data.json
+
+# ---- OS ----
+Thumbs.db
+desktop.ini

@@ -1,0 +1,1671 @@
+{
+  "schema_version": "1.0",
+  "role": "JUNGLE",
+  "patch": "TO_FILL",
+  "notes": "Valeurs estimees a la main (0-1), coherentes entre elles pour un scoring relatif. A recalibrer apres backtest. Les ids suivent la convention Riot championName (MonkeyKing = Wukong, Renata = Renata Glasc, Belveth = Bel'Veth).",
+  "axes_order": [
+    "engage",
+    "disengage_peel",
+    "frontline",
+    "mobility",
+    "hard_cc",
+    "soft_cc",
+    "waveclear",
+    "poke_siege",
+    "splitpush",
+    "pick_potential",
+    "objective_dps",
+    "sustain",
+    "self_peel",
+    "dive_resistance"
+  ],
+  "champions": [
+    {
+      "id": "Amumu",
+      "roles": [
+        "JUNGLE",
+        "SUPPORT"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.95,
+        "disengage_peel": 0.4,
+        "frontline": 0.8,
+        "mobility": 0.3,
+        "hard_cc": 0.9,
+        "soft_cc": 0.6,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.3,
+        "sustain": 0.2,
+        "self_peel": 0.5,
+        "dive_resistance": 0.75
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.5,
+      "mechanical_difficulty": 0.25
+    },
+    {
+      "id": "Belveth",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.4,
+        "frontline": 0.3,
+        "mobility": 0.8,
+        "hard_cc": 0.4,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.8,
+        "pick_potential": 0.3,
+        "objective_dps": 0.9,
+        "sustain": 0.4,
+        "self_peel": 0.7,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.95
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Briar",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0.85,
+        "ap": 0,
+        "true": 0.15
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.2,
+        "frontline": 0.6,
+        "mobility": 0.7,
+        "hard_cc": 0.7,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.6,
+        "pick_potential": 0.6,
+        "objective_dps": 0.6,
+        "sustain": 0.8,
+        "self_peel": 0.5,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.85,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Diana",
+      "roles": [
+        "JUNGLE",
+        "MID"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 150,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.3,
+        "frontline": 0.4,
+        "mobility": 0.7,
+        "hard_cc": 0.7,
+        "soft_cc": 0.5,
+        "waveclear": 0.7,
+        "poke_siege": 0.3,
+        "splitpush": 0.4,
+        "pick_potential": 0.5,
+        "objective_dps": 0.5,
+        "sustain": 0.4,
+        "self_peel": 0.6,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.45,
+        "mid": 0.8,
+        "late": 0.75
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "Ekko",
+      "roles": [
+        "JUNGLE",
+        "MID"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.7,
+        "frontline": 0.2,
+        "mobility": 0.85,
+        "hard_cc": 0.7,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.3,
+        "splitpush": 0.5,
+        "pick_potential": 0.6,
+        "objective_dps": 0.4,
+        "sustain": 0.3,
+        "self_peel": 0.85,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.85,
+        "late": 0.7
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Elise",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 550,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.4,
+        "frontline": 0.3,
+        "mobility": 0.7,
+        "hard_cc": 0.7,
+        "soft_cc": 0.3,
+        "waveclear": 0.5,
+        "poke_siege": 0.4,
+        "splitpush": 0.4,
+        "pick_potential": 0.6,
+        "objective_dps": 0.5,
+        "sustain": 0.2,
+        "self_peel": 0.6,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.85,
+        "mid": 0.7,
+        "late": 0.4
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Evelynn",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.4,
+        "frontline": 0.1,
+        "mobility": 0.8,
+        "hard_cc": 0.6,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.5,
+        "pick_potential": 0.85,
+        "objective_dps": 0.3,
+        "sustain": 0.2,
+        "self_peel": 0.6,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.85,
+        "late": 0.7
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.55
+    },
+    {
+      "id": "Fiddlesticks",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 480,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.5,
+        "frontline": 0.2,
+        "mobility": 0.5,
+        "hard_cc": 0.85,
+        "soft_cc": 0.5,
+        "waveclear": 0.7,
+        "poke_siege": 0.4,
+        "splitpush": 0.3,
+        "pick_potential": 0.6,
+        "objective_dps": 0.5,
+        "sustain": 0.3,
+        "self_peel": 0.4,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.8,
+        "late": 0.8
+      },
+      "flex_score": 0.25,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Gragas",
+      "roles": [
+        "JUNGLE",
+        "TOP",
+        "MID",
+        "SUPPORT"
+      ],
+      "archetype": "battlemage",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.85,
+        "frontline": 0.6,
+        "mobility": 0.6,
+        "hard_cc": 0.8,
+        "soft_cc": 0.5,
+        "waveclear": 0.7,
+        "poke_siege": 0.5,
+        "splitpush": 0.3,
+        "pick_potential": 0.5,
+        "objective_dps": 0.3,
+        "sustain": 0.4,
+        "self_peel": 0.6,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.8,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Graves",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 425,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.5,
+        "frontline": 0.3,
+        "mobility": 0.7,
+        "hard_cc": 0.4,
+        "soft_cc": 0.5,
+        "waveclear": 0.7,
+        "poke_siege": 0.4,
+        "splitpush": 0.7,
+        "pick_potential": 0.4,
+        "objective_dps": 0.9,
+        "sustain": 0.2,
+        "self_peel": 0.7,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.7,
+        "mid": 0.85,
+        "late": 0.7
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Hecarim",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0.8,
+        "ap": 0.2,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.3,
+        "frontline": 0.6,
+        "mobility": 0.9,
+        "hard_cc": 0.8,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.6,
+        "objective_dps": 0.5,
+        "sustain": 0.5,
+        "self_peel": 0.6,
+        "dive_resistance": 0.65
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.85,
+        "late": 0.75
+      },
+      "flex_score": 0.25,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "Ivern",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "enchanter",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 475,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.8,
+        "frontline": 0.3,
+        "mobility": 0.5,
+        "hard_cc": 0.8,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.5,
+        "sustain": 0.6,
+        "self_peel": 0.4,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.7
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.55
+    },
+    {
+      "id": "JarvanIV",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.95,
+        "disengage_peel": 0.4,
+        "frontline": 0.7,
+        "mobility": 0.7,
+        "hard_cc": 0.9,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.4,
+        "pick_potential": 0.6,
+        "objective_dps": 0.5,
+        "sustain": 0.3,
+        "self_peel": 0.5,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.7,
+        "mid": 0.8,
+        "late": 0.55
+      },
+      "flex_score": 0.4,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Karthus",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 450,
+      "axes": {
+        "engage": 0.3,
+        "disengage_peel": 0.4,
+        "frontline": 0.1,
+        "mobility": 0.2,
+        "hard_cc": 0.5,
+        "soft_cc": 0.6,
+        "waveclear": 0.9,
+        "poke_siege": 0.5,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.6,
+        "sustain": 0.1,
+        "self_peel": 0.3,
+        "dive_resistance": 0.3
+      },
+      "power_curve": {
+        "early": 0.3,
+        "mid": 0.6,
+        "late": 0.95
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Kayn",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0.6,
+        "ap": 0.4,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.8,
+        "disengage_peel": 0.5,
+        "frontline": 0.4,
+        "mobility": 0.85,
+        "hard_cc": 0.7,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.6,
+        "objective_dps": 0.5,
+        "sustain": 0.6,
+        "self_peel": 0.7,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.8,
+        "late": 0.85
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.6
+    },
+    {
+      "id": "Khazix",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.5,
+        "frontline": 0.1,
+        "mobility": 0.85,
+        "hard_cc": 0.3,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.7,
+        "pick_potential": 0.8,
+        "objective_dps": 0.5,
+        "sustain": 0.3,
+        "self_peel": 0.6,
+        "dive_resistance": 0.45
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.9,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Kindred",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 500,
+      "axes": {
+        "engage": 0.4,
+        "disengage_peel": 0.7,
+        "frontline": 0.1,
+        "mobility": 0.7,
+        "hard_cc": 0.4,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.4,
+        "splitpush": 0.6,
+        "pick_potential": 0.3,
+        "objective_dps": 0.95,
+        "sustain": 0.3,
+        "self_peel": 0.8,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.9
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "LeeSin",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.5,
+        "frontline": 0.4,
+        "mobility": 0.85,
+        "hard_cc": 0.8,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.5,
+        "pick_potential": 0.7,
+        "objective_dps": 0.6,
+        "sustain": 0.4,
+        "self_peel": 0.7,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.9,
+        "mid": 0.65,
+        "late": 0.3
+      },
+      "flex_score": 0.25,
+      "mechanical_difficulty": 0.85
+    },
+    {
+      "id": "Lillia",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 325,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.5,
+        "frontline": 0.4,
+        "mobility": 0.8,
+        "hard_cc": 0.7,
+        "soft_cc": 0.7,
+        "waveclear": 0.7,
+        "poke_siege": 0.3,
+        "splitpush": 0.5,
+        "pick_potential": 0.4,
+        "objective_dps": 0.5,
+        "sustain": 0.5,
+        "self_peel": 0.6,
+        "dive_resistance": 0.55
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.75,
+        "late": 0.85
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "MasterYi",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0.85,
+        "ap": 0,
+        "true": 0.15
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.2,
+        "frontline": 0.2,
+        "mobility": 0.8,
+        "hard_cc": 0.0,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.1,
+        "splitpush": 0.8,
+        "pick_potential": 0.3,
+        "objective_dps": 0.95,
+        "sustain": 0.4,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.35,
+        "mid": 0.7,
+        "late": 0.95
+      },
+      "flex_score": 0.1,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Maokai",
+      "roles": [
+        "JUNGLE",
+        "TOP",
+        "SUPPORT"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.7,
+        "frontline": 0.85,
+        "mobility": 0.4,
+        "hard_cc": 0.9,
+        "soft_cc": 0.6,
+        "waveclear": 0.7,
+        "poke_siege": 0.3,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.2,
+        "sustain": 0.7,
+        "self_peel": 0.6,
+        "dive_resistance": 0.8
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.8,
+      "mechanical_difficulty": 0.25
+    },
+    {
+      "id": "Nidalee",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.4,
+        "disengage_peel": 0.5,
+        "frontline": 0.2,
+        "mobility": 0.8,
+        "hard_cc": 0.0,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.8,
+        "splitpush": 0.5,
+        "pick_potential": 0.5,
+        "objective_dps": 0.5,
+        "sustain": 0.5,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.85,
+        "mid": 0.7,
+        "late": 0.4
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.8
+    },
+    {
+      "id": "Nocturne",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.3,
+        "frontline": 0.3,
+        "mobility": 0.8,
+        "hard_cc": 0.7,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.6,
+        "pick_potential": 0.7,
+        "objective_dps": 0.6,
+        "sustain": 0.3,
+        "self_peel": 0.7,
+        "dive_resistance": 0.5
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.85,
+        "late": 0.7
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "Nunu",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.6,
+        "frontline": 0.7,
+        "mobility": 0.5,
+        "hard_cc": 0.8,
+        "soft_cc": 0.6,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.95,
+        "sustain": 0.4,
+        "self_peel": 0.5,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "Olaf",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "bruiser_splitpush",
+      "damage_mix": {
+        "ad": 0.85,
+        "ap": 0,
+        "true": 0.15
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.2,
+        "frontline": 0.6,
+        "mobility": 0.5,
+        "hard_cc": 0.5,
+        "soft_cc": 0.6,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.7,
+        "pick_potential": 0.5,
+        "objective_dps": 0.7,
+        "sustain": 0.5,
+        "self_peel": 0.6,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.8,
+        "mid": 0.75,
+        "late": 0.5
+      },
+      "flex_score": 0.5,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Poppy",
+      "roles": [
+        "JUNGLE",
+        "TOP",
+        "SUPPORT"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0.7,
+        "ap": 0.3,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.9,
+        "frontline": 0.85,
+        "mobility": 0.4,
+        "hard_cc": 0.85,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.4,
+        "pick_potential": 0.4,
+        "objective_dps": 0.3,
+        "sustain": 0.3,
+        "self_peel": 0.6,
+        "dive_resistance": 0.85
+      },
+      "power_curve": {
+        "early": 0.55,
+        "mid": 0.75,
+        "late": 0.6
+      },
+      "flex_score": 0.7,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Rammus",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0.3,
+        "ap": 0.7,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.5,
+        "frontline": 0.9,
+        "mobility": 0.7,
+        "hard_cc": 0.85,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.1,
+        "splitpush": 0.3,
+        "pick_potential": 0.5,
+        "objective_dps": 0.4,
+        "sustain": 0.2,
+        "self_peel": 0.5,
+        "dive_resistance": 0.8
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.2
+    },
+    {
+      "id": "RekSai",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.3,
+        "frontline": 0.5,
+        "mobility": 0.7,
+        "hard_cc": 0.8,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.5,
+        "pick_potential": 0.7,
+        "objective_dps": 0.5,
+        "sustain": 0.4,
+        "self_peel": 0.6,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.85,
+        "mid": 0.7,
+        "late": 0.4
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.55
+    },
+    {
+      "id": "Rengar",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.4,
+        "frontline": 0.2,
+        "mobility": 0.85,
+        "hard_cc": 0.5,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.85,
+        "objective_dps": 0.5,
+        "sustain": 0.3,
+        "self_peel": 0.6,
+        "dive_resistance": 0.45
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.9,
+        "late": 0.6
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Sejuani",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0.4,
+        "ap": 0.6,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.95,
+        "disengage_peel": 0.6,
+        "frontline": 0.9,
+        "mobility": 0.5,
+        "hard_cc": 0.95,
+        "soft_cc": 0.6,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.2,
+        "pick_potential": 0.5,
+        "objective_dps": 0.4,
+        "sustain": 0.3,
+        "self_peel": 0.5,
+        "dive_resistance": 0.8
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.8,
+        "late": 0.75
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Shaco",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "assassin",
+      "damage_mix": {
+        "ad": 0.7,
+        "ap": 0.3,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.6,
+        "frontline": 0.1,
+        "mobility": 0.85,
+        "hard_cc": 0.5,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.3,
+        "splitpush": 0.7,
+        "pick_potential": 0.8,
+        "objective_dps": 0.5,
+        "sustain": 0.2,
+        "self_peel": 0.7,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.85,
+        "mid": 0.7,
+        "late": 0.5
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Shyvana",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0.5,
+        "ap": 0.5,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 300,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.3,
+        "frontline": 0.6,
+        "mobility": 0.6,
+        "hard_cc": 0.4,
+        "soft_cc": 0.4,
+        "waveclear": 0.7,
+        "poke_siege": 0.3,
+        "splitpush": 0.7,
+        "pick_potential": 0.3,
+        "objective_dps": 0.85,
+        "sustain": 0.3,
+        "self_peel": 0.5,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.4,
+        "mid": 0.7,
+        "late": 0.9
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.25
+    },
+    {
+      "id": "Skarner",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0.6,
+        "ap": 0.4,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.5,
+        "frontline": 0.85,
+        "mobility": 0.4,
+        "hard_cc": 0.95,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.3,
+        "pick_potential": 0.6,
+        "objective_dps": 0.4,
+        "sustain": 0.3,
+        "self_peel": 0.5,
+        "dive_resistance": 0.8
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.7
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.4
+    },
+    {
+      "id": "Sylas",
+      "roles": [
+        "JUNGLE",
+        "MID",
+        "TOP"
+      ],
+      "archetype": "bruiser_splitpush",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.5,
+        "disengage_peel": 0.5,
+        "frontline": 0.35,
+        "mobility": 0.7,
+        "hard_cc": 0.5,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.4,
+        "splitpush": 0.5,
+        "pick_potential": 0.5,
+        "objective_dps": 0.4,
+        "sustain": 0.75,
+        "self_peel": 0.6,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.8,
+        "late": 0.7
+      },
+      "flex_score": 0.5,
+      "mechanical_difficulty": 0.75
+    },
+    {
+      "id": "Taliyah",
+      "roles": [
+        "JUNGLE",
+        "MID"
+      ],
+      "archetype": "mage_control",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 525,
+      "axes": {
+        "engage": 0.35,
+        "disengage_peel": 0.85,
+        "frontline": 0.05,
+        "mobility": 0.4,
+        "hard_cc": 0.6,
+        "soft_cc": 0.7,
+        "waveclear": 0.85,
+        "poke_siege": 0.7,
+        "splitpush": 0.3,
+        "pick_potential": 0.4,
+        "objective_dps": 0.3,
+        "sustain": 0.1,
+        "self_peel": 0.6,
+        "dive_resistance": 0.4
+      },
+      "power_curve": {
+        "early": 0.45,
+        "mid": 0.75,
+        "late": 0.75
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Trundle",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "bruiser_splitpush",
+      "damage_mix": {
+        "ad": 0.8,
+        "ap": 0.2,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.7,
+        "frontline": 0.6,
+        "mobility": 0.4,
+        "hard_cc": 0.7,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.4,
+        "objective_dps": 0.8,
+        "sustain": 0.6,
+        "self_peel": 0.6,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.7,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.5,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Udyr",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 0.5,
+        "ap": 0.5,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.7,
+        "disengage_peel": 0.4,
+        "frontline": 0.7,
+        "mobility": 0.6,
+        "hard_cc": 0.6,
+        "soft_cc": 0.5,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.4,
+        "objective_dps": 0.85,
+        "sustain": 0.6,
+        "self_peel": 0.6,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.75
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.5
+    },
+    {
+      "id": "Vi",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.9,
+        "disengage_peel": 0.3,
+        "frontline": 0.6,
+        "mobility": 0.7,
+        "hard_cc": 0.9,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.4,
+        "pick_potential": 0.8,
+        "objective_dps": 0.6,
+        "sustain": 0.3,
+        "self_peel": 0.5,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.85,
+        "late": 0.6
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Viego",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_farm",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 200,
+      "axes": {
+        "engage": 0.6,
+        "disengage_peel": 0.4,
+        "frontline": 0.3,
+        "mobility": 0.8,
+        "hard_cc": 0.6,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.6,
+        "objective_dps": 0.7,
+        "sustain": 0.6,
+        "self_peel": 0.7,
+        "dive_resistance": 0.6
+      },
+      "power_curve": {
+        "early": 0.5,
+        "mid": 0.85,
+        "late": 0.8
+      },
+      "flex_score": 0.15,
+      "mechanical_difficulty": 0.7
+    },
+    {
+      "id": "Volibear",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "bruiser_splitpush",
+      "damage_mix": {
+        "ad": 0.7,
+        "ap": 0.3,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 150,
+      "axes": {
+        "engage": 0.8,
+        "disengage_peel": 0.3,
+        "frontline": 0.7,
+        "mobility": 0.5,
+        "hard_cc": 0.8,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.7,
+        "pick_potential": 0.5,
+        "objective_dps": 0.6,
+        "sustain": 0.5,
+        "self_peel": 0.5,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.75
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.3
+    },
+    {
+      "id": "Warwick",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 0.5,
+        "ap": 0.5,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.3,
+        "frontline": 0.7,
+        "mobility": 0.5,
+        "hard_cc": 0.85,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.5,
+        "pick_potential": 0.5,
+        "objective_dps": 0.6,
+        "sustain": 0.85,
+        "self_peel": 0.5,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.2
+    },
+    {
+      "id": "MonkeyKing",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 125,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.3,
+        "frontline": 0.6,
+        "mobility": 0.6,
+        "hard_cc": 0.8,
+        "soft_cc": 0.4,
+        "waveclear": 0.6,
+        "poke_siege": 0.2,
+        "splitpush": 0.6,
+        "pick_potential": 0.4,
+        "objective_dps": 0.5,
+        "sustain": 0.3,
+        "self_peel": 0.6,
+        "dive_resistance": 0.65
+      },
+      "power_curve": {
+        "early": 0.6,
+        "mid": 0.8,
+        "late": 0.6
+      },
+      "flex_score": 0.6,
+      "mechanical_difficulty": 0.35
+    },
+    {
+      "id": "XinZhao",
+      "roles": [
+        "JUNGLE"
+      ],
+      "archetype": "jungler_ganker",
+      "damage_mix": {
+        "ad": 1.0,
+        "ap": 0,
+        "true": 0
+      },
+      "damage_profile": "sustained",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.85,
+        "disengage_peel": 0.4,
+        "frontline": 0.6,
+        "mobility": 0.6,
+        "hard_cc": 0.8,
+        "soft_cc": 0.4,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.5,
+        "pick_potential": 0.6,
+        "objective_dps": 0.8,
+        "sustain": 0.4,
+        "self_peel": 0.6,
+        "dive_resistance": 0.7
+      },
+      "power_curve": {
+        "early": 0.8,
+        "mid": 0.75,
+        "late": 0.45
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.25
+    },
+    {
+      "id": "Zac",
+      "roles": [
+        "JUNGLE",
+        "TOP"
+      ],
+      "archetype": "tank_engage",
+      "damage_mix": {
+        "ad": 0,
+        "ap": 1.0,
+        "true": 0
+      },
+      "damage_profile": "burst",
+      "attack_range": 175,
+      "axes": {
+        "engage": 0.95,
+        "disengage_peel": 0.6,
+        "frontline": 0.85,
+        "mobility": 0.7,
+        "hard_cc": 0.9,
+        "soft_cc": 0.5,
+        "waveclear": 0.5,
+        "poke_siege": 0.2,
+        "splitpush": 0.3,
+        "pick_potential": 0.6,
+        "objective_dps": 0.3,
+        "sustain": 0.6,
+        "self_peel": 0.5,
+        "dive_resistance": 0.8
+      },
+      "power_curve": {
+        "early": 0.45,
+        "mid": 0.8,
+        "late": 0.7
+      },
+      "flex_score": 0.2,
+      "mechanical_difficulty": 0.4
+    }
+  ]
+}
