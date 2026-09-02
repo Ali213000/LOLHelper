@@ -1601,5 +1601,22 @@
    "ecart_haut": 0.3,
    "n": 10112
   }
- }
+ },
+ "composantes_effet": {
+  "team_fit": {
+   "quintile_bas": 0.4916,
+   "quintile_haut": 0.5084,
+   "ecart": 0.0168,
+   "z": 1.07,
+   "n": 10112
+  },
+  "counter_comp": {
+   "quintile_bas": 0.5143,
+   "quintile_haut": 0.4857,
+   "ecart": -0.0287,
+   "z": -1.82,
+   "n": 10112
+  }
+ },
+ "composantes_matchs": 5056
 }
