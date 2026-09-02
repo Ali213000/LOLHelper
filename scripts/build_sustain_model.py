@@ -73,6 +73,29 @@ DOMINATION = {
 }
 
 
+def table_ddragon(chemin: str) -> dict:
+    """Noms d'affichage Data Dragon, indexés en minuscules.
+
+    Match-V5 et la Live Client API n'orthographient pas les champions
+    identiquement : la première renvoie « FiddleSticks », la seconde
+    « Fiddlesticks ». Un modèle construit sur les noms de Match-V5 ne serait
+    donc jamais consulté en jeu.
+    """
+    import json as _json
+    try:
+        with open(chemin, encoding="utf-8") as f:
+            data = _json.load(f)["data"]
+    except Exception:
+        return {}
+    table = {}
+    for cid, v in data.items():
+        nom = v.get("name", "")
+        if nom:
+            table[nom.lower()] = nom
+            table[cid.lower()] = nom
+    return table
+
+
 def sans_balises(t: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t or "")).lower()
 
@@ -88,6 +111,7 @@ def main() -> None:
     mesures = json.loads(open(args.mesures, encoding="utf-8").read())
     contexte = json.loads(open(args.contexte, encoding="utf-8").read())
     items = json.loads(open(args.items, encoding="utf-8").read())["data"]
+    ddragon = table_ddragon("assets/champion_data.json")
 
     # --- Excès de soin par champion, rapporté à la médiane de son poste ---
     champions = {}
@@ -95,7 +119,9 @@ def main() -> None:
         exces = v.get("exces_sur_poste")
         if exces is None or exces < 40:
             continue
-        champions[ALIAS.get(champ, champ)] = {
+        nom = ALIAS.get(champ, champ)
+        nom = ddragon.get(nom.lower(), ddragon.get(champ.lower(), nom))
+        champions[nom] = {
             "exces_par_min": exces,
             "poste": v["poste"],
             "n": v["n_poste"],

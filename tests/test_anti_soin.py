@@ -56,13 +56,22 @@ def test_les_faux_soigneurs_ont_ete_ecartes(champ):
     assert _HEALING_CHAMPION_WEIGHTS.get(champ, 0) == 0
 
 
-def test_fiddlesticks_reste_non_mesure():
+def test_fiddlesticks_est_orthographie_comme_l_api_live():
     """
-    Moins de 30 parties sur 7 810 : aucune mesure possible. Il est donc absent
-    de la table plutôt que porté par un jugement. Le conseil d'anti-soin qu'il
-    avait motivé reposait sur une valeur que rien n'appuie.
+    Match-V5 écrit « FiddleSticks », la Live Client API « Fiddlesticks ».
+    Les mesures venant de la première, une clé non alignée aurait rendu son
+    poids inaccessible en jeu — le cas est passé inaperçu une première fois.
     """
-    assert "Fiddlesticks" not in _HEALING_CHAMPION_WEIGHTS
+    assert "Fiddlesticks" in _HEALING_CHAMPION_WEIGHTS
+    assert "FiddleSticks" not in _HEALING_CHAMPION_WEIGHTS
+
+
+def test_fiddlesticks_soigne_peu_une_fois_le_poste_pris_en_compte():
+    """
+    462 PV/min bruts, mais la médiane jungle est à 429 : son excès n'est que
+    de +80, l'essentiel de son soin venant des camps et non des combats.
+    """
+    assert 0.25 <= _HEALING_CHAMPION_WEIGHTS["Fiddlesticks"] <= 0.45
 
 
 # --------------------------------------- 2. les objets anti-soin sont réels
