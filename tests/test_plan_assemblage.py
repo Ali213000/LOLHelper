@@ -163,3 +163,34 @@ def test_les_achats_s_accumulent_sans_perdre_le_conseil():
     for p in (sans, un, deux):
         planifies = [s for s in p.legendary_slots if s.state is SlotState.PLANNED]
         assert planifies, "plus aucune recommandation à acheter"
+
+
+THORNMAIL = 3075
+
+
+def test_l_anti_soin_achete_est_affiche_comme_conforme():
+    """
+    Acheter l'objet conseillé le faisait passer en écart (gris) : une fois
+    acquis, il sort de la liste des recommandations, et son absence était
+    interprétée comme une déviation.
+    """
+    plan = _plan([COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN])
+    slot = next(s for s in plan.legendary_slots if s.item_id == THORNMAIL)
+    assert slot.state is SlotState.OWNED_ON_PLAN
+
+
+def test_tous_les_achats_conformes_restent_verts():
+    plan = _plan([COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN])
+    possedes = [
+        s for s in plan.legendary_slots
+        if s.state in (SlotState.OWNED_ON_PLAN, SlotState.OWNED_OFF_PLAN)
+    ]
+    assert len(possedes) == 3
+    assert all(s.state is SlotState.OWNED_ON_PLAN for s in possedes)
+
+
+def test_le_plan_continue_apres_quatre_objets():
+    plan = _plan([COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN])
+    assert [s for s in plan.legendary_slots if s.state is SlotState.PLANNED], (
+        "il reste des emplacements à remplir, le plan doit continuer à conseiller"
+    )

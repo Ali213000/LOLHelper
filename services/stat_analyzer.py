@@ -405,6 +405,9 @@ _CONDITIONAL_SHARES = {
     "Morellonomicon": {"trigger": "need_grievous", "conditional_share": 0.20},
     "Cotte épineuse": {"trigger": "need_grievous", "conditional_share": 0.25},
     "Putrificateur techno-chimique": {"trigger": "need_grievous", "conditional_share": 0.25},
+    # Sa passive réduit les dégâts critiques subis : sans porteur de crit en
+    # face, cette part du prix ne sert à rien.
+    "Présage de Randuin": {"trigger": "need_anticrit", "conditional_share": 0.30},
 }
 
 # ============================================================
@@ -418,6 +421,7 @@ _TRIGGER_EFFECT = {
     "need_qss":        None,
     "need_tenacity":   None,
     "need_antishield": None,
+    "need_anticrit": None,
     "can_adapt_defense": None,
     "need_armor": None,
     "need_mr": None,
@@ -1622,6 +1626,24 @@ class StatAnalyzer:
 
         need_ten = cc_count >= 3
 
+        # Menace de coups critiques. Sans cette mesure, les objets anti-critique
+        # étaient notés sur leurs seules stats brutes : Présage de Randuin
+        # ressortait à 75 armure + 350 PV pour 2700 or, sans que le moteur voie
+        # qu'une part du prix paie une passive inutile face à une équipe sans crit.
+        need_anticrit = False
+        for p in enemies:
+            prof = self.affinity.profile(p.champion_name) if self.affinity else {}
+            if (prof.get("flags") or {}).get("crit_viable", False):
+                need_anticrit = True
+                break
+            for iid in getattr(p, "items", []):
+                nm = self._item_id_to_name.get(iid)
+                if nm and self._item_stat_breakdown(nm).get("crit_frac", 0) > 0:
+                    need_anticrit = True
+                    break
+            if need_anticrit:
+                break
+
         # ---- Gold-based ahead/behind detection ----
         # Item gold = the most honest measure of economic state.
         # 2 shutdown kills (2000g each) appear as +4000g → correctly shows you're fed.
@@ -1662,12 +1684,11 @@ class StatAnalyzer:
         # so we don't force them to finish the full item immediately.
         my_items_set = set(my_items)
         
-        # Anti-heal items (components + full)
-        gw_all_items = {
-            "Orbe de l'oubli", "Morellonomicon", 
-            "Marque du bourreau", "Rappel mortel", "Chaîne de Chempunk", 
-            "Gilet d'épines", "Plaques de l'épineux"
-        }
+        # Anti-soin déjà en inventaire → on relâche le déclencheur.
+        # Cette liste était écrite à la main et contenait des noms disparus
+        # ("Gilet d'épines", "Plaques de l'épineux", "Chaîne de Chempunk") :
+        # acheter Thornmail ne désactivait donc pas le déclencheur.
+        gw_all_items = self._gw_ad | self._gw_ap | self._gw_tank
         if my_items_set & gw_all_items:
             need_gw = False
 
@@ -1687,6 +1708,7 @@ class StatAnalyzer:
 
         return {
             "need_grievous":     need_gw,
+            "need_anticrit":     need_anticrit,
             "gw_source":         gw_source_str,
             "need_armor_pen":    need_pen,
             "need_magic_pen":    need_mpen,
