@@ -348,28 +348,27 @@ _ITEM_BUILD_PATH_PRIORITY: dict[str, list[str]] = {
 # ============================================================
 
 # Champions with strong personal shields (trigger anti-shield recommendation)
-_SHIELD_CHAMPIONS: set[str] = {
-    "Karma",       # E shield
-    "Lulu",        # W/E shield
-    "Shen",        # W shield on ally
-    "Morgana",     # E spell shield
-    "Janna",       # E shield
-    "Orianna",     # W shield
-    "Lux",         # E shield
-    "Malphite",    # Passive shield
-    "Sivir",       # E spell shield
-    "Camille",     # Passive shield
-    "Aatrox",      # passive shield
-    "Ekko",        # R shield
-    "Rakan",       # E shield
-    "Seraphine",   # E shield
-    "Braum",       # passive shield
-    "Renata Glasc",# passive
-    "Bard",        # shield items
-    "Yuumi",       # shield
-    "Tahm Kench",  # Devour shield
-    "Poppy",       # W shield
+# Poids des boucliers adverses (même logique que les soins) : un bouclier
+# passif marginal ne doit pas peser autant qu'une Lulu dédiée au sujet.
+# Auparavant un simple comptage à seuil 2 : une seule enchanteresse, si
+# spécialisée soit-elle, ne déclenchait jamais le Crochet de serpent.
+_SHIELD_CHAMPION_WEIGHTS: dict[str, float] = {
+    # Bouclier = raison d'être du champion
+    "Lulu":         1.0,   "Karma":        0.9,   "Janna":        0.9,
+    "Yuumi":        0.85,  "Seraphine":    0.8,   "Orianna":      0.75,
+    "Shen":         0.75,  "Renata Glasc": 0.7,   "Rakan":        0.7,
+    "Taric":        0.6,   "Milio":        0.55,  "Sona":         0.55,
+    "Ivern":        0.7,
+    # Bouclier significatif mais secondaire
+    "Lux":          0.55,  "Morgana":      0.55,  "Braum":        0.6,
+    "Tahm Kench":   0.6,   "Bard":         0.5,   "Poppy":        0.5,
+    "Sivir":        0.5,   "Ekko":         0.55,  "Camille":      0.5,
+    "Aatrox":       0.45,  "Riven":        0.55,  "Sett":         0.5,
+    "Sion":         0.5,   "Diana":        0.5,   "Annie":        0.4,
+    "Blitzcrank":   0.4,   "Malphite":     0.35,  "Kai'Sa":       0.4,
+    "Volibear":     0.4,
 }
+_SHIELD_CHAMPIONS: set[str] = set(_SHIELD_CHAMPION_WEIGHTS.keys())
 
 # Champions whose key CC can be removed by QSS
 _QSS_CC_CHAMPIONS: set[str] = {
@@ -685,15 +684,19 @@ class StatAnalyzer:
         
         self.affinity = ChampionAffinity("data/champion_item_profiles.json", champion_tables_dir="data")
 
+        self._champ_stats: dict[str, dict] = {}
         try:
             with open("assets/champion_data.json", encoding="utf-8") as f:
                 for champ_id, v in json.load(f).get("data", {}).items():
                     n = v.get("name", "")
                     tags = v.get("tags", [])
+                    st = v.get("stats", {}) or {}
                     if n:
                         self._champ_tags[n] = tags
+                        self._champ_stats[n] = st
                     if champ_id:
                         self._champ_tags[champ_id] = tags
+                        self._champ_stats[champ_id] = st
         except Exception as e:
             logger.warning("StatAnalyzer: champion_data load error: %s", e)
 
@@ -881,35 +884,49 @@ class StatAnalyzer:
     # Enemy stats estimation (from level + items, since we can't read them directly)
     # ----------------------------------------------------------
 
-    def _estimate_enemy_stats(self, champion_name: str, level: int, items: list[str]) -> tuple[float, float, float]:
-        """Estimate HP, armor, MR of an enemy champion."""
-        tags = self._champ_tags.get(champion_name, [])
-        cls  = self._get_class(champion_name)
+    @staticmethod
+    def _croissance(base: float, par_niveau: float, level: int) -> float:
+        """Croissance de statistique de League : non linéaire avec le niveau."""
+        n = max(0, level - 1)
+        return base + par_niveau * n * (0.7025 + 0.0175 * n)
 
-        # Base stats depend on class
-        if cls == "Tank":
-            base_hp, base_armor, base_mr = 650, 32, 32
-        elif cls == "Fighter":
-            base_hp, base_armor, base_mr = 600, 30, 28
-        elif cls in ("Assassin", "Mage"):
-            base_hp, base_armor, base_mr = 510, 22, 30
-        elif cls == "Marksman":
-            base_hp, base_armor, base_mr = 490, 22, 30
-        else:  # Support
-            base_hp, base_armor, base_mr = 530, 24, 30
+    def _estimate_enemy_stats(self, champion_name: str, level: int, items) -> tuple[float, float, float]:
+        """
+        Estime PV, armure et RM d'un adversaire.
 
-        # Level scaling
-        hp    = base_hp + level * 90
-        armor = base_armor + level * 3.5
-        mr    = base_mr    + level * 1.25
+        La Live Client API n'expose championStats QUE pour le joueur local : les
+        résistances adverses ne peuvent qu'être reconstituées, à partir des
+        statistiques de base Data Dragon (exactes, 173 champions) et des objets
+        portés — que l'API donne, elle, sous forme d'IDENTIFIANTS.
 
-        # Add item stats
-        for item_name in items:
-            d = self._item_db.get(item_name, {})
-            st = d.get("stats", {})
-            hp    += st.get("FlatHPPoolMod", 0)
-            armor += st.get("FlatArmorMod",  0)
-            mr    += st.get("FlatSpellBlockMod", 0)
+        C'est le second point : la version précédente cherchait ces objets dans
+        un dictionnaire indexé par nom. Les identifiants ne correspondaient à
+        rien, et l'armure d'équipement adverse n'était donc jamais comptée —
+        un Malphite plein d'armure ressortait à 88.
+        """
+        st = self._champ_stats.get(champion_name) or {}
+        if st:
+            hp = self._croissance(st.get("hp", 570), st.get("hpperlevel", 90), level)
+            armor = self._croissance(st.get("armor", 28), st.get("armorperlevel", 4.2), level)
+            mr = self._croissance(st.get("spellblock", 30), st.get("spellblockperlevel", 1.3), level)
+        else:
+            # Repli sur des moyennes de classe si le champion est inconnu.
+            cls = self._get_class(champion_name)
+            base = {
+                "Tank": (650, 32, 32), "Fighter": (600, 30, 28),
+                "Assassin": (510, 22, 30), "Mage": (510, 22, 30),
+                "Marksman": (490, 22, 30),
+            }.get(cls, (530, 24, 30))
+            hp = base[0] + level * 90
+            armor = base[1] + level * 3.5
+            mr = base[2] + level * 1.25
+
+        for item in items or []:
+            nom = self._item_id_to_name.get(item) if isinstance(item, int) else item
+            st_item = (self._item_db.get(nom) or {}).get("stats", {})
+            hp += st_item.get("FlatHPPoolMod", 0)
+            armor += st_item.get("FlatArmorMod", 0)
+            mr += st_item.get("FlatSpellBlockMod", 0)
 
         return hp, armor, mr
 
@@ -1370,8 +1387,15 @@ class StatAnalyzer:
     # ----------------------------------------------------------
 
     def _count_shields(self, enemies) -> int:
-        """Count enemies with significant shields (passive or active)."""
+        """Nombre d'ennemis porteurs d'un bouclier notable (compat historique)."""
         return sum(1 for p in enemies if p.champion_name in _SHIELD_CHAMPIONS)
+
+    @staticmethod
+    def _shield_weight(enemies) -> tuple[float, float, list[str]]:
+        """Poids cumulé des boucliers adverses, poids maximal, et sources."""
+        noms = sorted({p.champion_name for p in enemies} & _SHIELD_CHAMPIONS)
+        poids = [_SHIELD_CHAMPION_WEIGHTS.get(n, 0.0) for n in noms]
+        return sum(poids), max(poids, default=0.0), noms
 
     def _count_qss_cc(self, enemies) -> int:
         """Count enemies with QSS-removable hard CC."""
@@ -1579,6 +1603,7 @@ class StatAnalyzer:
         ap_pct: float = 0.5,
         player_deaths: int = 0,
         lane_opponent_name: str = "",
+        my_champion_name: str = "",
     ) -> dict:
         enemy_names = {p.champion_name for p in enemies}
         tank_count  = self._count_tanks(enemies)
@@ -1606,17 +1631,42 @@ class StatAnalyzer:
         max_single  = max((_HEALING_CHAMPION_WEIGHTS.get(c, 0.0) for c in heal_champs), default=0.0)
         need_gw     = gw_weight >= 1.5 or max_single >= 0.9
         gw_source_str = ", ".join(gw_sources) if gw_sources else ""
-        need_pen = tank_count >= 2 and player_class in ("Assassin", "Fighter", "Marksman")
+        # ---- Pénétration : on lit les RÉSISTANCES, pas les étiquettes ----
+        # L'ancienne règle armure comptait les champions taggés Tank/Fighter et
+        # ignorait leur armure réelle : un unique adversaire à 250 d'armure ne
+        # déclenchait rien, alors que le pendant magique lisait déjà la
+        # résistance estimée. Les deux voies sont désormais symétriques.
+        resist = [
+            self._estimate_enemy_stats(p.champion_name, p.level, p.items)
+            for p in enemies
+        ]
+        armures = [r[1] for r in resist]
+        rms = [r[2] for r in resist]
+        armure_max = max(armures, default=0.0)
+        rm_max = max(rms, default=0.0)
 
-        need_mpen = False
-        if player_class == "Mage":
-            # MR >= 50 is the standard base for many champions at level 10+.
-            # Trigger if 2+ enemies are hardened vs magic.
-            high_mr_count = sum(
-                1 for p in enemies
-                if self._estimate_enemy_stats(p.champion_name, p.level, p.items)[2] >= 50
-            )
-            need_mpen = high_mr_count >= 2
+        # Profil de dégâts du joueur : un assassin AP ou un bruiser AP doit
+        # pouvoir se voir conseiller de la pénétration magique, ce que le test
+        # `player_class == "Mage"` interdisait.
+        mon_ap, mon_ad = 0.0, 0.0
+        if my_champion_name and self.affinity:
+            mix = (self.affinity.profile(my_champion_name) or {}).get("damage_mix") or {}
+            mon_ap, mon_ad = mix.get("ap", 0.0), mix.get("ad", 0.0)
+        if not (mon_ap or mon_ad):
+            mon_ad, mon_ap = _CLASS_DAMAGE_SPLIT.get(player_class, (0.5, 0.5))
+
+        # Seuils distincts : armure et RM n'ont pas la même échelle. Au niveau 16
+        # un champion nu tourne autour de 100 d'armure mais seulement 55 de RM ;
+        # appliquer le même seuil aux deux rendait la pénétration magique
+        # pratiquement indéclenchable.
+        SEUIL_ARMURE, SEUIL_ARMURE_MAX = 150.0, 250.0
+        SEUIL_RM, SEUIL_RM_MAX = 80.0, 120.0
+
+        armure_haute = sum(1 for a in armures if a >= SEUIL_ARMURE)
+        rm_haute = sum(1 for m in rms if m >= SEUIL_RM)
+
+        need_pen = mon_ad >= 0.45 and (armure_haute >= 2 or armure_max >= SEUIL_ARMURE_MAX)
+        need_mpen = mon_ap >= 0.45 and (rm_haute >= 2 or rm_max >= SEUIL_RM_MAX)
 
         need_ten = cc_count >= 3
 
@@ -1674,7 +1724,9 @@ class StatAnalyzer:
 
         # Anti-shield and QSS checks
         shield_count = self._count_shields(enemies)
-        need_antishield = shield_count >= 2
+        shield_weight, shield_max, shield_sources = self._shield_weight(enemies)
+        # Même seuil que l'anti-soin : un cumul de 1.5, ou un spécialiste seul.
+        need_antishield = shield_weight >= 1.5 or shield_max >= 0.9
         qss_cc_sources = [p.champion_name for p in enemies if p.champion_name in _QSS_CC_CHAMPIONS]
         need_qss = len(qss_cc_sources) > 0
 
@@ -1714,6 +1766,8 @@ class StatAnalyzer:
         return {
             "need_grievous":     need_gw,
             "need_anticrit":     need_anticrit,
+            "enemy_max_armor":   round(armure_max, 1),
+            "enemy_max_mr":      round(rm_max, 1),
             "need_antiauto":     need_antiauto,
             "gw_source":         gw_source_str,
             "need_armor_pen":    need_pen,
@@ -1729,6 +1783,8 @@ class StatAnalyzer:
             "adapt_threshold":   adapt_threshold,
             "need_antishield":   need_antishield,
             "shield_count":      shield_count,
+            "shield_weight":     round(shield_weight, 2),
+            "shield_source":     ", ".join(shield_sources),
             "need_qss":          need_qss,
             "qss_cc_source":     ", ".join(qss_cc_sources) if qss_cc_sources else "",
         }
@@ -2331,6 +2387,7 @@ class StatAnalyzer:
             ap_pct=ap_pct,
             player_deaths=game_state.local_player.deaths,
             lane_opponent_name=getattr(lane_opponent, "champion_name", "") or "",
+            my_champion_name=game_state.local_player.champion_name,
         )
         logger.debug("Triggers: %s", triggers)
 
@@ -2557,6 +2614,7 @@ class StatAnalyzer:
                 ap_pct=ap_pct,
                 player_deaths=game_state.local_player.deaths,
                 lane_opponent_name=getattr(lane_opponent, "champion_name", "") or "",
+                my_champion_name=game_state.local_player.champion_name,
             )
 
             # Re-score all candidates except first, find diverse best second
