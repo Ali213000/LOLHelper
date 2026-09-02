@@ -36,6 +36,25 @@ def scorer():
     return ChampionScorer(ROOT / "data")
 
 
+@pytest.fixture(scope="module")
+def un_duel():
+    """
+    Un duel present dans le fichier, choisi dynamiquement.
+
+    Les duels dependent du palier collecte : epingler « Lee Sin contre Aatrox »
+    faisait echouer la suite des qu'on recollectait a un autre niveau, alors que
+    le comportement teste n'a rien de specifique a cette paire.
+    """
+    entrees = json.loads(
+        (ROOT / "data" / "opgg_matchups.json").read_text(encoding="utf-8"))["entrees"]
+    for cle, v in entrees.items():
+        champ, poste = cle.rsplit("|", 1)
+        for d in v.get("duels", []):
+            if d["parties"] >= 100:
+                return champ, d["adversaire"], poste, d
+    pytest.skip("aucun duel exploitable dans le fichier")
+
+
 # ------------------------------------------------------ base de duels
 
 def test_la_base_de_duels_est_disponible():
@@ -51,19 +70,21 @@ def test_la_source_est_citee():
     assert d.get("attribution")
 
 
-def test_un_duel_connu_est_retrouve():
-    d = matchup_db.duel("Lee Sin", "Aatrox", "JUNGLE")
-    assert d and d["parties"] > 100
+def test_un_duel_connu_est_retrouve(un_duel):
+    champ, adversaire, poste, attendu = un_duel
+    d = matchup_db.duel(champ, adversaire, poste)
+    assert d and d["parties"] == attendu["parties"]
     assert 0.0 < d["victoire"] < 1.0
 
 
-def test_le_duel_inverse_est_symetrique():
+def test_le_duel_inverse_est_symetrique(un_duel):
     """
     OP.GG ne liste que six duels par champion : un appariement peut n'exister
     que d'un seul côté. Le lire à l'envers doit rendre le complément, pas rien.
     """
-    direct = matchup_db.duel("Lee Sin", "Aatrox", "JUNGLE")
-    inverse = matchup_db.duel("Aatrox", "Lee Sin", "JUNGLE")
+    champ, adversaire, poste, _ = un_duel
+    direct = matchup_db.duel(champ, adversaire, poste)
+    inverse = matchup_db.duel(adversaire, champ, poste)
     assert direct and inverse
     assert direct["parties"] == inverse["parties"]
     assert abs(direct["victoire"] + inverse["victoire"] - 1.0) < 0.01
@@ -86,6 +107,22 @@ def test_les_graphies_de_poste_de_riot_sont_acceptees(poste):
     cle = next(k for k in entrees if k.endswith(f"|{equivalent}"))
     champ = cle.rsplit("|", 1)[0]
     assert matchup_db.stats_poste(champ, poste) == matchup_db.stats_poste(champ, equivalent)
+
+
+@pytest.fixture(scope="module")
+def duel_favorable():
+    """Un duel nettement favorable, choisi dans le fichier du palier collecte."""
+    entrees = json.loads(
+        (ROOT / "data" / "opgg_matchups.json").read_text(encoding="utf-8"))["entrees"]
+    for cle, v in entrees.items():
+        champ, poste = cle.rsplit("|", 1)
+        if champ not in cs.by_role.get(poste, {}):
+            continue
+        for d in v.get("duels", []):
+            adv = cs.norm_name(d["adversaire"])
+            if d["victoire"] > 0.54 and d["parties"] >= 300 and adv in cs.by_role[poste]:
+                return champ, adv, poste
+    pytest.skip("aucun duel favorable assez fourni")
 
 
 # ------------------------------------------------- échelle commune
@@ -115,27 +152,28 @@ def test_l_echelle_preserve_la_taille_d_effet():
     assert ecart_duel > ecart_meta * 2
 
 
-def test_le_duel_deplace_le_classement(scorer):
+def test_le_duel_deplace_le_classement(scorer, duel_favorable):
     """
-    Avec S2 constante, un duel mesuré ne changeait rien. Lissandra contre Yasuo
-    est mesurée à 56 % sur 3 126 parties : elle doit remonter.
+    Avec S2 constante, un duel mesure ne changeait rien : le candidat qui gagne
+    nettement son duel doit remonter au classement.
     """
+    champion, adversaire, poste = duel_favorable
     def rang(avec_duel):
         reel = ChampionScorer._score_lane
         if not avec_duel:
             ChampionScorer._score_lane = lambda self, c, d: 0.5
         try:
             d = ScorerDraftState(
-                my_role="MID", pick_slot=4, mode="draft",
-                available=[c for c in cs.by_role["MID"] if c != "Yasuo"],
-                allies=[], enemies=[{"id": "Yasuo", "role": "MID"}],
-                bans=[], rank="PLATINUM", lane_opponent="Yasuo")
+                my_role=poste, pick_slot=4, mode="draft",
+                available=[c for c in cs.by_role[poste] if c != adversaire],
+                allies=[], enemies=[{"id": adversaire, "role": poste}],
+                bans=[], rank="", lane_opponent=adversaire)
             besoins = scorer._calculer_besoins([])
-            menaces = scorer._calculer_menaces([cs.get_champion("Yasuo")], [])
+            menaces = scorer._calculer_menaces([cs.get_champion(adversaire)], [])
             w = scorer._get_weights(d)
             scores = []
-            for cid, t in cs.by_role["MID"].items():
-                if cid == "Yasuo":
+            for cid, t in cs.by_role[poste].items():
+                if cid == adversaire:
                     continue
                 scores.append((cid,
                     w["meta"] * scorer._score_meta(t, d)
@@ -149,18 +187,27 @@ def test_le_duel_deplace_le_classement(scorer):
             ChampionScorer._score_lane = reel
 
     avant, apres = rang(False), rang(True)
-    assert apres["Lissandra"] < avant["Lissandra"], "duel favorable ignore"
+    assert apres[champion] < avant[champion], "duel favorable ignore"
 
 
 def test_un_duel_defavorable_fait_reculer(scorer):
-    """Kai'Sa est mesuree a 46 % contre Jinx sur 18 498 parties."""
-    d = matchup_db.duel("Kai'Sa", "Jinx", "ADC")
-    assert d and d["victoire"] < 0.5
-    etat = ScorerDraftState(
-        my_role="ADC", pick_slot=4, mode="draft", available=list(cs.by_role["ADC"]),
-        allies=[], enemies=[{"id": "Jinx", "role": "ADC"}], bans=[],
-        rank="PLATINUM", lane_opponent="Jinx")
-    assert scorer._score_lane(cs.by_role["ADC"]["Kaisa"], etat) < 0.5
+    """Un duel mesure sous 50 % doit tirer la composante vers le bas."""
+    entrees = json.loads(
+        (ROOT / "data" / "opgg_matchups.json").read_text(encoding="utf-8"))["entrees"]
+    for cle, v in entrees.items():
+        champ, poste = cle.rsplit("|", 1)
+        if champ not in cs.by_role.get(poste, {}):
+            continue
+        for d in v.get("duels", []):
+            if d["victoire"] < 0.47 and d["parties"] >= 300:
+                etat = ScorerDraftState(
+                    my_role=poste, pick_slot=4, mode="draft",
+                    available=list(cs.by_role[poste]), allies=[],
+                    enemies=[{"id": d["adversaire"], "role": poste}], bans=[],
+                    rank="", lane_opponent=d["adversaire"])
+                assert scorer._score_lane(cs.by_role[poste][champ], etat) < 0.5
+                return
+    pytest.skip("aucun duel defavorable assez fourni")
 
 
 def test_sans_adversaire_connu_la_composante_est_neutre(scorer):
