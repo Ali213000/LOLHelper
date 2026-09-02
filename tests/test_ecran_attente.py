@@ -13,24 +13,36 @@ pytest.importorskip("customtkinter")
 
 
 @pytest.fixture(scope="module")
-def panneau():
-    """Panneau réel, sur une racine Tk jetable."""
+def racine():
+    """
+    Racine Tk unique pour tout le module.
+
+    Indispensable : les images Tk sont liées à leur interpréteur, et
+    ImageCache est un singleton. Deux racines dans le même processus font
+    échouer le rendu sur « image pyimageN doesn't exist ».
+    """
     import customtkinter as ctk
-    from ui.ingame_panel import InGamePanel
 
     try:
-        racine = ctk.CTk()
+        r = ctk.CTk()
     except Exception as exc:                      # pas d'affichage disponible
         pytest.skip(f"Tk indisponible : {exc}")
-    racine.withdraw()
+    r.withdraw()
+    yield r
+    try:
+        r.destroy()
+    except Exception:
+        pass
+
+
+@pytest.fixture(scope="module")
+def panneau(racine):
+    from ui.ingame_panel import InGamePanel
+
     p = InGamePanel(racine)
     p.pack(fill="both", expand=True)
     racine.update_idletasks()
-    yield p
-    try:
-        racine.destroy()
-    except Exception:
-        pass
+    return p
 
 
 def _visible(widget) -> bool:
@@ -102,3 +114,68 @@ def test_le_client_lcu_reste_en_lecture_seule():
     texte = src.read_text(encoding="utf-8")
     for interdit in ("lol-lobby", "matchmaking/search", "def _post", "def _put"):
         assert interdit not in texte, f"{interdit!r} : écriture vers le client Riot"
+
+
+# ---------------------------------------------------- onglet Draft
+
+@pytest.fixture(scope="module")
+def draft(racine):
+    from ui.champ_select_panel import ChampSelectPanel
+
+    p = ChampSelectPanel(racine)
+    p.pack(fill="both", expand=True)
+    racine.update_idletasks()
+    return p
+
+
+def test_le_draft_demarre_en_attente(draft):
+    assert draft.en_attente()
+    assert draft._attente.winfo_manager() == "place"
+
+
+def test_la_selection_revele_le_tableau(draft):
+    draft.afficher_draft()
+    draft.update()
+    assert not draft.en_attente()
+    assert draft._attente.winfo_manager() == ""
+
+
+def test_la_fin_de_selection_revient_a_l_attente(draft):
+    draft.afficher_draft()
+    draft.afficher_attente()
+    draft.update()
+    assert draft.en_attente()
+    assert draft._attente.winfo_manager() == "place"
+
+
+def test_les_trois_suggestions_sont_affichees_ensemble(draft):
+    """Plus de carrousel : les trois champions conseillés sont visibles d'un coup."""
+    draft.afficher_draft()
+    draft.set_suggestions(["Caitlyn", "Ezreal", "Sivir"], ["portée", "sûreté", "waveclear"])
+    draft.update()
+    noms = [nom.cget("text") for _, nom, _ in draft._sug_slots]
+    assert noms == ["Caitlyn", "Ezreal", "Sivir"]
+    assert draft._sug_slots_frame.winfo_manager() == "pack"
+
+
+def test_la_navigation_du_carrousel_a_disparu(draft):
+    for parti in ("_next_suggestion", "_prev_suggestion", "_sug_badge"):
+        assert not hasattr(draft, parti), f"{parti} devrait avoir disparu"
+
+
+def test_les_allies_s_affichent_sans_draft_actions(draft):
+    """
+    Les ennemis viennent d'enemy_champion_names, les alliés de draft_actions.
+    Si ces actions manquent, la colonne alliée doit se rabattre sur la liste
+    de noms plutôt que de rester vide.
+    """
+    from core.state_manager import ChampSelectState
+
+    draft.afficher_draft()
+    draft.update_draft(ChampSelectState(
+        in_champ_select=True,
+        ally_champion_names=["Ornn", "Vi", "Ahri", "Jinx", "Nautilus"],
+        enemy_champion_names=["Darius", "Lee Sin", "Anivia", "Caitlyn", "Lulu"],
+    ))
+    draft.update()
+    assert [l.cget("text") for l in draft._ally_name_labels][0] == "Ornn"
