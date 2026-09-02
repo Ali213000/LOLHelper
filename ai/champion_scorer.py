@@ -24,6 +24,24 @@ _CONF_HOVER = 1.0
 _CONF_POOL = 0.6
 _CONF_FLAT_SCHEMA = 0.5
 
+# Ecart-type REEL du taux de victoire entre champions, estime par methode des
+# moments sur les matchs collectes : variance observee 0.00229 = variance vraie
+# 0.00049 + variance d'echantillonnage 0.00180. Soit 2.2 points seulement --
+# l'etendue brute 32 %-62 % est presque entierement du bruit.
+_META_SD = 0.022
+
+# Part de la menace de ban imputee a ma propre voie, le reste etant la menace
+# globale du champion sur l'ensemble de l'equipe adverse.
+_BAN_PART_VOIE = 0.65
+
+# Riot nomme le meme poste de trois facons selon l'API interrogee.
+_ALIAS_POSTE = {
+    "UTILITY": "SUPPORT", "SUPPORT": "SUPPORT",
+    "MIDDLE": "MID", "MID": "MID",
+    "BOTTOM": "ADC", "ADC": "ADC", "BOT": "ADC",
+    "TOP": "TOP", "JUNGLE": "JUNGLE",
+}
+
 # =============================================================================
 # Data Models
 # =============================================================================
@@ -135,6 +153,7 @@ class ChampionScorer:
         load_data(data_dir)
         self.stats = {}  # Dynamic stats
         self._load_stats(data_dir / "patch_stats.json")
+        self._load_measures(data_dir / "draft_measures.json")
 
     def _load_stats(self, path: Path):
         """Load and parse dynamic stats."""
@@ -148,6 +167,30 @@ class ChampionScorer:
         global STUB_STATS
         STUB_STATS = False
         logger.info(f"Loaded patch stats: {self.stats.get('patch', 'unknown')} for {self.stats.get('rank_bracket', 'unknown')}")
+
+    def _load_measures(self, path: Path):
+        """
+        Mesures de draft issues des matchs collectés.
+
+        patch_stats.json ne contient AUCUNE clé « meta » : _score_meta renvoyait
+        0.5 pour tous les candidats alors qu'elle pèse 0.40 en premier pick et
+        0.50 en blind. Aucune force de champion n'entrait donc dans le calcul et
+        seule la composition départageait — d'où les mêmes propositions d'une
+        partie à l'autre.
+        """
+        self.mesures = {}
+        if not path.exists():
+            logger.warning("Mesures de draft absentes (%s) : S1 restera neutre.", path)
+            return
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                self.mesures = json.load(f)
+        except Exception as exc:
+            logger.warning("Mesures de draft illisibles : %s", exc)
+            return
+        logger.info("Mesures de draft : %d couples champion|poste (%s)",
+                    len(self.mesures.get("meta", {})),
+                    self.mesures.get("reference", "?"))
 
     def recommend(self, draft: ScorerDraftState) -> list[CandidateScore]:
         if not config:
@@ -385,15 +428,18 @@ class ChampionScorer:
     # -------------------------------------------------------------------------
     
     def _score_meta(self, candidat: dict, draft: ScorerDraftState) -> float:
-        if STUB_STATS: return 0.5
-        
-        cid = candidat["id"]
-        key = f"{cid}|{draft.my_role.upper()}"
-        
-        meta_stats = self.stats.get("meta", {}).get(key)
+        cid = norm_name(candidat["id"])
+        role = _ALIAS_POSTE.get(draft.my_role.upper(), draft.my_role.upper())
+        key = f"{cid}|{role}"
+
+        # Les mesures issues des matchs collectés priment ; patch_stats.json ne
+        # contient pas de clé « meta » et sert de repli au cas où on en publie
+        # une un jour.
+        meta_stats = (self.mesures.get("meta", {}).get(key)
+                      or self.stats.get("meta", {}).get(key))
         if not meta_stats:
             return 0.5
-            
+
         games = meta_stats.get("games", 0)
         wins = meta_stats.get("wins", 0)
         
@@ -440,7 +486,58 @@ class ChampionScorer:
         return (wins + k * prior) / (games + k)
 
     def _calculer_penalites(self, candidat: dict, draft: ScorerDraftState, allies: list[dict], enemies: list[dict]) -> float:
-        return 0.0
+        """
+        Pénalités de composition — redondance, monochromie des dégâts, scaling.
+
+        draft_config.json spécifie les trois mécanismes depuis le départ, avec
+        leurs constantes et leurs commentaires, mais cette fonction renvoyait
+        0.0 : aucun n'était appliqué. Rien n'empêchait donc d'entasser une
+        cinquième source du même axe, ni de composer une équipe entièrement AD.
+
+        Ce sont des règles structurelles, pas des affirmations statistiques :
+        elles disent « n'accumule pas ce que l'équipe a déjà », ce qui reste
+        vrai indépendamment du volume de matchs mesuré.
+        """
+        penalite = 0.0
+        axes_cand = candidat.get("axes", {})
+        seuils = config.get("team_thresholds", {})
+
+        # ── Redondance : saturation d'un axe déjà couvert ─────────────────
+        red = config.get("redundancy", {})
+        facteur = red.get("saturation_factor", 1.6)
+        par_axe = red.get("penalty_per_axis", 0.04)
+        for axe, cfg in seuils.items():
+            cible = cfg.get("target", 0.0)
+            if cible <= 0:
+                continue
+            deja = sum(a.get("axes", {}).get(axe, 0.0) for a in allies)
+            if deja > cible * facteur:
+                penalite += par_axe * axes_cand.get(axe, 0.0) * cfg.get("importance", 1.0)
+
+        # ── Monochromie des dégâts ────────────────────────────────────────
+        # Mesuré : les équipes sous 40 % d'AP gagnent 48.5 % contre ~50.5 %
+        # au-dessus. C'est le seul effet net de l'équilibre AD/AP dans les
+        # données, et il ne concerne que les compositions extrêmes.
+        mix = config.get("damage_mix", {})
+        seuil_dur = mix.get("hard_penalty_threshold", 0.8)
+        total = len(allies) + 1
+        if total > 0:
+            part_ad = (sum(a.get("damage_mix", {}).get("ad", 0.0) for a in allies)
+                       + candidat.get("damage_mix", {}).get("ad", 0.0)) / total
+            if part_ad > seuil_dur or part_ad < (1.0 - seuil_dur):
+                penalite += mix.get("hard_penalty_value", 0.12)
+
+        # ── Scaling : ne pas subir la fin de partie adverse ───────────────
+        sc = config.get("scaling", {})
+        if allies and enemies:
+            tard_nous = sum(a.get("power_curve", {}).get("late", 0.0) for a in allies) / len(allies)
+            tard_eux = sum(e.get("power_curve", {}).get("late", 0.0) for e in enemies) / len(enemies)
+            if tard_eux - tard_nous > sc.get("max_negative_gap", 0.30):
+                # En retard sur la fin de partie, un candidat qui monte encore
+                # plus tard aggrave le problème au lieu de le corriger.
+                penalite += sc.get("penalty_value", 0.08) * candidat.get("power_curve", {}).get("late", 0.0)
+
+        return penalite
 
     # -------------------------------------------------------------------------
     # Diversity
@@ -568,7 +665,7 @@ class ChampionScorer:
                 
             cm, conf_cm = self._counter_me(cid, state)
             pa, conf_pa = self._protects_ally(cid, state)
-            mt = self._meta_threat(cid)
+            mt = self._meta_threat(cid, state.my_role)
             
             w_me = 0.45 * conf_cm
             w_ally = 0.20 * conf_pa * min(1.0, len(state.ally_hovers) / 4)
@@ -620,18 +717,89 @@ class ChampionScorer:
         p_enemy_bans = min(0.85, br * 1.2)
         return max(0.4, 1.0 - p_enemy_bans)
 
-    def _meta_threat(self, cid: str) -> float:
+    def _meta_threat(self, cid: str, my_role: str = "") -> float:
+        """
+        Menace de fond d'un champion : à quel point on risque de le croiser,
+        pondéré par sa force réelle.
+
+        L'ancienne formule multipliait taux de ban par taux de pick. Un produit
+        de deux petites fractions concentre tout sur une poignée de champions —
+        d'où trois bans conseillés toujours identiques — et fait disparaître
+        celui qu'on bannit beaucoup PARCE QU'on ne le joue plus. La présence
+        (bans + picks) traduit correctement « risque de le rencontrer ».
+
+        Surtout, le taux de victoire n'entrait pas du tout dans le calcul : on
+        conseillait de bannir le populaire, pas le fort.
+        """
         ch = get_champion(cid)
-        br_sum = 0.0
-        pr_sum = 0.0
-        for role in ch.get("roles", []):
-            key = f"{cid}|{role}"
-            br_sum += self.stats.get("banrate", {}).get(key, 0.0)
-            pr_sum += self.stats.get("pickrate", {}).get(key, 0.0)
-        
-        if not br_sum and not pr_sum:
-            return 0.05 # Stub fallback
-        return min(1.0, (br_sum * pr_sum) * 5.0)
+        tous_roles = ch.get("roles", [])
+        picks = {r: self.stats.get("pickrate", {}).get(f"{cid}|{r}") or 0.0 for r in tous_roles}
+        total_pick = sum(picks.values())
+
+        # Le taux de ban n'a PAS de poste : on ne bannit pas « Sylas ADC ». Riot
+        # renvoie une valeur globale, recopiée telle quelle sur les cinq lignes
+        # du champion. L'additionner au pickrate d'un poste marginal donnait à
+        # Sylas une présence de 0.16 en ADC, où il est joué 0.2 % du temps.
+        ban_global = max((self.stats.get("banrate", {}).get(f"{cid}|{r}") or 0.0)
+                         for r in tous_roles) if tous_roles else 0.0
+
+        def presence_et_force(roles):
+            pr = sum(picks.get(r, 0.0) for r in roles)
+            # Le ban est réparti au prorata des postes réellement joués.
+            part = (pr / total_pick) if total_pick > 0 else 0.0
+            # Force mesurée, lissée. L'écart-type réel entre champions n'est que
+            # de 2.2 points de victoire : la modulation reste volontairement
+            # modeste, elle départage sans écraser la présence.
+            return min(1.0, pr + ban_global * part), self._force_mesuree(cid, roles)
+
+        presence, force = presence_et_force(tous_roles)
+        globale = presence * (1.0 + 0.6 * force) if presence > 0 else 0.05
+
+        # Sans champion survolé, _counter_me a une confiance nulle et le score de
+        # ban se réduit à cette menace de fond : le classement devient identique
+        # d'une partie à l'autre, ce qui explique trois bans toujours pareils.
+        # Or on connaît TOUJOURS son propre poste. Bannir l'adversaire le plus
+        # fort de sa propre voie est à la fois la pratique courante et une
+        # information disponible en permanence.
+        role = _ALIAS_POSTE.get((my_role or "").upper(), (my_role or "").upper())
+        if not role:
+            return min(1.0, globale)
+
+        if role in tous_roles:
+            p_voie, f_voie = presence_et_force([role])
+            return min(1.0, _BAN_PART_VOIE * p_voie * (1.0 + 0.6 * f_voie)
+                       + (1 - _BAN_PART_VOIE) * globale)
+
+        # Un champion qui ne joue pas ma voie reste une menace — il sera dans
+        # l'équipe adverse — mais il ne me la dispute pas. Lui laisser sa menace
+        # globale entière le faisait passer DEVANT les champions de ma voie,
+        # dont la présence est par construction restreinte à un seul poste.
+        return min(1.0, (1 - _BAN_PART_VOIE) * globale)
+
+    def _force_mesuree(self, cid: str, roles: list[str]) -> float:
+        """
+        Force du champion dans [-1, 1], 0 = moyenne, depuis les matchs mesurés.
+
+        Le taux brut va de 32 % à 62 %, mais l'écart-type VRAI entre champions
+        n'est que de 2.2 points : le reste est du bruit d'échantillonnage. Le
+        lissage bayésien ramène donc l'échelle à sa portée réelle, et on norme
+        sur cet écart-type plutôt que sur l'étendue observée.
+        """
+        meta = self.mesures.get("meta", {})
+        if not meta:
+            return 0.0
+        shrink = config.get("bayesian_shrinkage", {})
+        k = shrink.get("meta_k", 500)
+        prior = shrink.get("prior", 0.50)
+
+        taux = []
+        for role in roles:
+            m = meta.get(f"{norm_name(cid)}|{_ALIAS_POSTE.get(role.upper(), role.upper())}")
+            if m and m.get("games"):
+                taux.append((m["wins"] + k * prior) / (m["games"] + k))
+        if not taux:
+            return 0.0
+        return max(-1.0, min(1.0, (max(taux) - prior) / _META_SD))
 
     def _my_likely_picks(self, state: ScorerDraftState) -> tuple[list[str], float]:
         if state.my_hover:
