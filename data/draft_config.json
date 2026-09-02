@@ -218,28 +218,28 @@
   },
   "weights_by_slot": {
     "first_pick": {
-      "meta": 0.4,
-      "lane": 0.05,
-      "team_fit": 0.3,
-      "counter_comp": 0.25
+      "meta": 0.421,
+      "lane": 0.061,
+      "team_fit": 0.326,
+      "counter_comp": 0.192
     },
     "middle": {
-      "meta": 0.3,
-      "lane": 0.15,
-      "team_fit": 0.3,
-      "counter_comp": 0.25
+      "meta": 0.338,
+      "lane": 0.246,
+      "team_fit": 0.262,
+      "counter_comp": 0.154
     },
     "last_pick": {
-      "meta": 0.2,
-      "lane": 0.25,
-      "team_fit": 0.25,
-      "counter_comp": 0.3
+      "meta": 0.272,
+      "lane": 0.395,
+      "team_fit": 0.21,
+      "counter_comp": 0.123
     },
     "blind_pick": {
-      "meta": 0.5,
+      "meta": 0.449,
       "lane": 0.0,
-      "team_fit": 0.25,
-      "counter_comp": 0.25
+      "team_fit": 0.347,
+      "counter_comp": 0.204
     }
   },
   "first_pick": {
@@ -294,5 +294,6 @@
     ],
     "id_normalization": "championId numerique en interne, championName seulement a l'affichage"
   },
-  "team_thresholds_source": "importances calibrées par scripts/calibrate_draft_config.py depuis data/draft_measures.json (écart entre camps, 7810 matchs, Bonferroni)"
+  "team_thresholds_source": "importances calibrées par scripts/calibrate_draft_config.py depuis data/draft_measures.json (écart entre camps, 7810 matchs, Bonferroni)",
+  "weights_source": "poids proportionnels aux tailles d'effet mesurees (scripts/measure_component_power.py), ponderes par la disponibilite de l'adversaire de voie selon le rang de pick"
 }

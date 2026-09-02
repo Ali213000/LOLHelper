@@ -50,8 +50,65 @@ MESURES = os.path.join(RACINE, "data", "draft_measures.json")
 IMPORTANCE_NON_CONCLUANTE = 0.35
 
 
+# ---------------------------------------------------------------- poids
+
+# Taille d'effet retenue par composante, en points de victoire.
+#   meta   2.2  ecart-type vrai entre champions (methode des moments)
+#   lane   3.2  ecart-type des duels OP.GG, corrige de la selection sur extremes
+# team_fit 1.7  mesure, NON significatif (z=1.07 sur 5 056 matchs)
+#  counter 1.0  mesure a -2.9 (z=-1.82) : aucune preuve positive, on plancher
+#
+# Les deux dernieres ne sont pas annulees. A ce volume un effet reel jusqu'a
+# ~3.2 points reste indetectable : l'absence de preuve n'est pas une preuve
+# d'absence. Mais elles ne peuvent plus porter 55 % du score sans l'avoir merite.
+EFFET_COMPOSANTE = {"meta": 2.2, "lane": 3.2, "team_fit": 1.7, "counter_comp": 1.0}
+
+# Probabilite que l'adversaire de voie soit connu au moment de choisir. En
+# premier pick on ne le connait pas, en dernier si : donner a « lane » le meme
+# poids partout revenait a gaspiller ce poids quand la composante est neutre.
+DISPONIBILITE_LANE = {"blind_pick": 0.0, "first_pick": 0.1,
+                      "middle": 0.5, "last_pick": 1.0}
+
+
+def calibrer_poids(config, mesures_composantes):
+    """Repartit les poids proportionnellement aux tailles d'effet mesurees."""
+    effets = dict(EFFET_COMPOSANTE)
+    for nom, m in (mesures_composantes or {}).items():
+        if nom in effets:
+            # On ne retient une mesure que si elle est positive ; sinon plancher.
+            effets[nom] = max(1.0, round(m["ecart"] * 100, 1))
+
+    print()
+    print(f"{'composante':14}{'effet retenu':>14}")
+    for nom, e in effets.items():
+        print(f"{nom:14}{e:>13.1f} pt")
+
+    print()
+    print(f"{'rang de pick':14}{'meta':>8}{'lane':>8}{'team_fit':>10}{'counter':>9}")
+    for slot, dispo in DISPONIBILITE_LANE.items():
+        part_lane = effets["lane"] * dispo
+        autres = {k: v for k, v in effets.items() if k != "lane"}
+        total = part_lane + sum(autres.values())
+        poids = {"lane": round(part_lane / total, 3)}
+        for k, v in autres.items():
+            poids[k] = round(v / total, 3)
+        config["weights_by_slot"][slot] = {
+            "meta": poids["meta"], "lane": poids["lane"],
+            "team_fit": poids["team_fit"], "counter_comp": poids["counter_comp"],
+        }
+        print(f"{slot:14}{poids['meta']:>8.2f}{poids['lane']:>8.2f}"
+              f"{poids['team_fit']:>10.2f}{poids['counter_comp']:>9.2f}")
+
+    config["weights_source"] = (
+        "poids proportionnels aux tailles d'effet mesurees "
+        "(scripts/measure_component_power.py), ponderes par la disponibilite "
+        "de l'adversaire de voie selon le rang de pick"
+    )
+
+
 def main() -> None:
-    mesures = json.load(open(MESURES, encoding="utf-8"))["axes_effet"]
+    brut = json.load(open(MESURES, encoding="utf-8"))
+    mesures = brut["axes_effet"]
     config = json.load(open(CONFIG, encoding="utf-8"))
     seuils = config["team_thresholds"]
 
@@ -104,6 +161,8 @@ def main() -> None:
         "Mesuré : victoire 48.5 % sous 40 % d'AP, plate ensuite (50.0-50.9 %). "
         "Cible au milieu du plateau, pente faible faute d'optimum marqué."
     )
+
+    calibrer_poids(config, brut.get("composantes_effet"))
 
     with open(CONFIG, "w", encoding="utf-8") as f:
         json.dump(config, f, ensure_ascii=False, indent=2)
