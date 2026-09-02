@@ -39,19 +39,23 @@ _EFFET_REFERENCE = 0.05
 
 # Duels de voie mesures par OP.GG (data/matchup_db.py).
 #
-# Decomposition brute sur les 1 150 duels collectes : variance observee 0.00515
-# = vraie 0.00411 + echantillonnage 0.00104, soit un ecart-type de 6.4 points --
-# pres de trois fois celui de la force par champion (2.2). Le signal est reel.
+# Decomposition brute sur les duels collectes (palier or, 1 133 duels) :
+# variance observee 0.00585 = vraie 0.00466 + echantillonnage 0.00119, soit un
+# ecart-type de 6.8 points -- trois fois celui de la force par champion (2.2).
+# Le signal est reel.
+#
+# A REDERIVER a chaque changement de palier ou de patch : voir le calcul dans
+# scripts/fetch_opgg_matchups.py et la note ci-dessous sur la selection.
 #
 # Mais OP.GG ne publie que les 3 meilleurs et 3 pires contres : l'echantillon
 # est SELECTIONNE sur sa valeur extreme. La decomposition impute tout l'exces a
 # la variance vraie alors qu'une part vient de cette selection, et un duel
 # retenu parce qu'il paraissait extreme regresse vers la moyenne quand on le
 # remesure. Les six retenus se repartissant autour de +/- 2 ecarts-types, on
-# estime l'ecart-type vrai a ~3.2 points, d'ou k ~= 240 au lieu des 61 que
+# estime l'ecart-type vrai a ~3.4 points, d'ou k ~= 215 au lieu des 54 que
 # donnerait la lecture naive. Approximation assumee : sans la table complete,
 # on ne peut pas corriger proprement, et sous-lisser serait le pire des deux.
-_DUEL_K = 240
+_DUEL_K = 215
 
 # Plancher de volume. OP.GG descend a 100 parties ; le lissage porte deja
 # l'incertitude, un plancher plus haut ne ferait que jeter des duels utiles.
