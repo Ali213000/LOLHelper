@@ -45,7 +45,20 @@ def _etat(items):
     )
 
 
-def _plan(items):
+def _etat_soigneurs(items):
+    """
+    Même joueur, mais face à une composition qui soigne d'après les MESURES.
+    L'ancienne (Fiddlesticks + Darius) reposait sur des poids estimés que les
+    données n'appuient pas : Fiddlesticks manque d'occurrences et Darius ne
+    dépasse pas la médiane de son poste.
+    """
+    etat = _etat(items)
+    for p, champ in zip(etat.all_players[1:], ("Aatrox", "Nasus", "Sona", "Ezreal", "Anivia")):
+        p.champion_name = champ
+    return etat
+
+
+def _plan(items, etat=None):
     from ai.coaching_engine import CoachingEngine
     from ai.llm_client import LLMClient
 
@@ -54,7 +67,7 @@ def _plan(items):
     bus.subscribe(EventBus.ITEM_ADVICE_READY, cb)
     try:
         CoachingEngine(llm_client=LLMClient(provider="gemini"))._compute_plan(
-            _etat(items), "TOP", "test"
+            etat if etat is not None else _etat(items), "TOP", "test"
         )
     finally:
         bus.unsubscribe(EventBus.ITEM_ADVICE_READY, cb)
@@ -116,19 +129,25 @@ def test_ni_le_bouclier_de_doran_ni_la_balise(plan_partie_reelle):
 
 # ----------------------------------- l'achat n'efface pas la recommandation
 
-def test_l_anti_soin_survit_aux_achats(plan_partie_reelle):
+@pytest.fixture(scope="module")
+def plan_face_aux_soigneurs():
+    items = [COEURACIER, SANDALES_MERCURE, WARMOG, BOUCLIER_DORAN, BALISE]
+    return _plan(items, etat=_etat_soigneurs(items))
+
+
+def test_l_anti_soin_survit_aux_achats(plan_face_aux_soigneurs):
     """
     Le symptôme d'origine : acheter Cœuracier écrasait l'emplacement anti-soin.
-    Face à Fiddlesticks + Darius, la recommandation doit rester présente.
+    Face à une composition qui soigne, la recommandation doit rester présente.
     """
-    raisons = [s.reason for s in plan_partie_reelle.legendary_slots]
+    raisons = [s.reason for s in plan_face_aux_soigneurs.legendary_slots]
     assert "anti-soin" in raisons, (
         "aucun emplacement anti-soin alors que deux soigneurs sont en face"
     )
 
 
-def test_l_anti_soin_est_a_acheter_pas_deja_possede(plan_partie_reelle):
-    slot = next(s for s in plan_partie_reelle.legendary_slots if s.reason == "anti-soin")
+def test_l_anti_soin_est_a_acheter_pas_deja_possede(plan_face_aux_soigneurs):
+    slot = next(s for s in plan_face_aux_soigneurs.legendary_slots if s.reason == "anti-soin")
     assert slot.state is SlotState.PLANNED
     assert slot.item_id is not None
 
@@ -174,13 +193,15 @@ def test_l_anti_soin_achete_est_affiche_comme_conforme():
     acquis, il sort de la liste des recommandations, et son absence était
     interprétée comme une déviation.
     """
-    plan = _plan([COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN])
+    items = [COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN]
+    plan = _plan(items, etat=_etat_soigneurs(items))
     slot = next(s for s in plan.legendary_slots if s.item_id == THORNMAIL)
     assert slot.state is SlotState.OWNED_ON_PLAN
 
 
 def test_tous_les_achats_conformes_restent_verts():
-    plan = _plan([COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN])
+    items = [COEURACIER, SANDALES_MERCURE, WARMOG, THORNMAIL, BOUCLIER_DORAN]
+    plan = _plan(items, etat=_etat_soigneurs(items))
     possedes = [
         s for s in plan.legendary_slots
         if s.state in (SlotState.OWNED_ON_PLAN, SlotState.OWNED_OFF_PLAN)

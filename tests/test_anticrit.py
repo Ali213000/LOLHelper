@@ -99,12 +99,10 @@ def test_posseder_un_anti_soin_desactive_le_declencheur(analyzer):
     La liste de contrôle était écrite à la main et contenait des noms disparus :
     acheter Thornmail ne coupait donc pas la demande d'anti-soin.
     """
-    ennemis = _equipe(SANS_CRIT)   # Fiddlesticks + Darius soignent
-    sans = analyzer._check_triggers(
-        ennemis, "Tank", 0.5, "hp", [], lane_opponent_name="Fiddlesticks"
-    )
+    soigneurs = _equipe(["Soraka", "Vladimir", "Sona", "Ezreal", "Anivia"])
+    sans = analyzer._check_triggers(soigneurs, "Tank", 0.5, "hp", [])
     avec = analyzer._check_triggers(
-        ennemis, "Tank", 0.5, "hp", ["Cotte épineuse"], lane_opponent_name="Fiddlesticks"
+        soigneurs, "Tank", 0.5, "hp", ["Cotte épineuse"]
     )
     assert sans["need_grievous"] is True
     assert avec["need_grievous"] is False

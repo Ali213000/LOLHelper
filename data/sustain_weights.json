@@ -1,0 +1,415 @@
+{
+  "_lisez_moi": [
+    "Poids mesurés sur les matchs collectés, pas estimés.",
+    "Normalisation soin     : racine(excès sur médiane du poste / 750)",
+    "Normalisation bouclier : bouclier sur alliés / 250",
+    "Le champ bouclier ne couvre PAS les auto-boucliers : les champions",
+    "qui ne protègent qu'eux-mêmes sont absents et restent estimés."
+  ],
+  "participants": 75900,
+  "references_par_poste": {
+    "BOTTOM": {
+      "n": 15180,
+      "mediane": 155.3,
+      "p90": 330.3
+    },
+    "JUNGLE": {
+      "n": 15180,
+      "mediane": 428.8,
+      "p90": 760.0
+    },
+    "MIDDLE": {
+      "n": 15180,
+      "mediane": 150.7,
+      "p90": 392.1
+    },
+    "TOP": {
+      "n": 15180,
+      "mediane": 251.6,
+      "p90": 581.6
+    },
+    "UTILITY": {
+      "n": 15179,
+      "mediane": 188.0,
+      "p90": 568.1
+    }
+  },
+  "soin": {
+    "Soraka": {
+      "poids": 1.0,
+      "exces_par_min": 758.4,
+      "poste": "UTILITY",
+      "n": 407
+    },
+    "Vladimir": {
+      "poids": 1.0,
+      "exces_par_min": 938.3,
+      "poste": "MIDDLE",
+      "n": 317
+    },
+    "Zac": {
+      "poids": 1.0,
+      "exces_par_min": 1432.9,
+      "poste": "JUNGLE",
+      "n": 222
+    },
+    "Briar": {
+      "poids": 0.85,
+      "exces_par_min": 539.5,
+      "poste": "JUNGLE",
+      "n": 297
+    },
+    "Sona": {
+      "poids": 0.77,
+      "exces_par_min": 441.8,
+      "poste": "UTILITY",
+      "n": 290
+    },
+    "Nami": {
+      "poids": 0.69,
+      "exces_par_min": 358.0,
+      "poste": "UTILITY",
+      "n": 1055
+    },
+    "Trundle": {
+      "poids": 0.69,
+      "exces_par_min": 354.1,
+      "poste": "TOP",
+      "n": 124
+    },
+    "Fiora": {
+      "poids": 0.67,
+      "exces_par_min": 333.4,
+      "poste": "TOP",
+      "n": 289
+    },
+    "Tryndamere": {
+      "poids": 0.67,
+      "exces_par_min": 334.5,
+      "poste": "TOP",
+      "n": 268
+    },
+    "Taric": {
+      "poids": 0.66,
+      "exces_par_min": 321.8,
+      "poste": "UTILITY",
+      "n": 126
+    },
+    "Nasus": {
+      "poids": 0.64,
+      "exces_par_min": 308.5,
+      "poste": "TOP",
+      "n": 373
+    },
+    "Rek'Sai": {
+      "poids": 0.64,
+      "exces_par_min": 307.3,
+      "poste": "JUNGLE",
+      "n": 118
+    },
+    "Olaf": {
+      "poids": 0.6,
+      "exces_par_min": 274.5,
+      "poste": "TOP",
+      "n": 249
+    },
+    "Xin Zhao": {
+      "poids": 0.6,
+      "exces_par_min": 268.4,
+      "poste": "JUNGLE",
+      "n": 230
+    },
+    "Aatrox": {
+      "poids": 0.58,
+      "exces_par_min": 255.8,
+      "poste": "TOP",
+      "n": 357
+    },
+    "Dr. Mundo": {
+      "poids": 0.58,
+      "exces_par_min": 254.7,
+      "poste": "TOP",
+      "n": 295
+    },
+    "Nidalee": {
+      "poids": 0.58,
+      "exces_par_min": 253.3,
+      "poste": "JUNGLE",
+      "n": 153
+    },
+    "Lillia": {
+      "poids": 0.57,
+      "exces_par_min": 244.0,
+      "poste": "JUNGLE",
+      "n": 221
+    },
+    "Locke": {
+      "poids": 0.57,
+      "exces_par_min": 241.4,
+      "poste": "MIDDLE",
+      "n": 453
+    },
+    "Senna": {
+      "poids": 0.57,
+      "exces_par_min": 242.4,
+      "poste": "UTILITY",
+      "n": 543
+    },
+    "Hecarim": {
+      "poids": 0.56,
+      "exces_par_min": 236.2,
+      "poste": "JUNGLE",
+      "n": 398
+    },
+    "Warwick": {
+      "poids": 0.56,
+      "exces_par_min": 238.0,
+      "poste": "JUNGLE",
+      "n": 175
+    },
+    "Nunu & Willump": {
+      "poids": 0.55,
+      "exces_par_min": 227.8,
+      "poste": "JUNGLE",
+      "n": 160
+    },
+    "Tahm Kench": {
+      "poids": 0.53,
+      "exces_par_min": 212.3,
+      "poste": "UTILITY",
+      "n": 178
+    },
+    "Milio": {
+      "poids": 0.52,
+      "exces_par_min": 199.5,
+      "poste": "UTILITY",
+      "n": 517
+    },
+    "Alistar": {
+      "poids": 0.51,
+      "exces_par_min": 193.8,
+      "poste": "UTILITY",
+      "n": 370
+    },
+    "Zaahen": {
+      "poids": 0.51,
+      "exces_par_min": 197.8,
+      "poste": "TOP",
+      "n": 266
+    },
+    "Gragas": {
+      "poids": 0.46,
+      "exces_par_min": 157.3,
+      "poste": "TOP",
+      "n": 176
+    },
+    "Irelia": {
+      "poids": 0.46,
+      "exces_par_min": 158.8,
+      "poste": "TOP",
+      "n": 305
+    },
+    "Illaoi": {
+      "poids": 0.44,
+      "exces_par_min": 145.2,
+      "poste": "TOP",
+      "n": 183
+    },
+    "Janna": {
+      "poids": 0.44,
+      "exces_par_min": 145.5,
+      "poste": "UTILITY",
+      "n": 515
+    },
+    "Swain": {
+      "poids": 0.44,
+      "exces_par_min": 144.9,
+      "poste": "UTILITY",
+      "n": 149
+    },
+    "Sylas": {
+      "poids": 0.41,
+      "exces_par_min": 127.7,
+      "poste": "JUNGLE",
+      "n": 533
+    },
+    "Samira": {
+      "poids": 0.4,
+      "exces_par_min": 118.4,
+      "poste": "BOTTOM",
+      "n": 368
+    },
+    "Cassiopeia": {
+      "poids": 0.38,
+      "exces_par_min": 106.7,
+      "poste": "MIDDLE",
+      "n": 158
+    },
+    "Yuumi": {
+      "poids": 0.38,
+      "exces_par_min": 106.1,
+      "poste": "UTILITY",
+      "n": 311
+    },
+    "Nilah": {
+      "poids": 0.37,
+      "exces_par_min": 100.6,
+      "poste": "BOTTOM",
+      "n": 88
+    },
+    "Seraphine": {
+      "poids": 0.37,
+      "exces_par_min": 104.6,
+      "poste": "UTILITY",
+      "n": 616
+    },
+    "Rakan": {
+      "poids": 0.35,
+      "exces_par_min": 92.9,
+      "poste": "UTILITY",
+      "n": 326
+    },
+    "Renekton": {
+      "poids": 0.35,
+      "exces_par_min": 92.0,
+      "poste": "TOP",
+      "n": 374
+    },
+    "Yasuo": {
+      "poids": 0.35,
+      "exces_par_min": 90.7,
+      "poste": "MIDDLE",
+      "n": 576
+    },
+    "Yorick": {
+      "poids": 0.34,
+      "exces_par_min": 88.9,
+      "poste": "TOP",
+      "n": 230
+    },
+    "FiddleSticks": {
+      "poids": 0.33,
+      "exces_par_min": 80.0,
+      "poste": "JUNGLE",
+      "n": 192
+    },
+    "Kayn": {
+      "poids": 0.33,
+      "exces_par_min": 80.7,
+      "poste": "JUNGLE",
+      "n": 433
+    }
+  },
+  "bouclier": {
+    "Ivern": {
+      "poids": 1.0,
+      "bouclier_par_min": 303.4,
+      "n": 142
+    },
+    "Yuumi": {
+      "poids": 1.0,
+      "bouclier_par_min": 251.7,
+      "n": 311
+    },
+    "Milio": {
+      "poids": 0.98,
+      "bouclier_par_min": 243.8,
+      "n": 517
+    },
+    "Janna": {
+      "poids": 0.89,
+      "bouclier_par_min": 223.2,
+      "n": 517
+    },
+    "Karma": {
+      "poids": 0.81,
+      "bouclier_par_min": 201.3,
+      "n": 618
+    },
+    "Lulu": {
+      "poids": 0.79,
+      "bouclier_par_min": 197.9,
+      "n": 702
+    },
+    "Sona": {
+      "poids": 0.67,
+      "bouclier_par_min": 167.8,
+      "n": 291
+    },
+    "Rakan": {
+      "poids": 0.52,
+      "bouclier_par_min": 129.1,
+      "n": 330
+    },
+    "Renata Glasc": {
+      "poids": 0.52,
+      "bouclier_par_min": 129.7,
+      "n": 86
+    },
+    "Taric": {
+      "poids": 0.48,
+      "bouclier_par_min": 120.0,
+      "n": 133
+    },
+    "Seraphine": {
+      "poids": 0.37,
+      "bouclier_par_min": 91.6,
+      "n": 838
+    },
+    "Thresh": {
+      "poids": 0.35,
+      "bouclier_par_min": 88.4,
+      "n": 1046
+    },
+    "Shen": {
+      "poids": 0.33,
+      "bouclier_par_min": 81.3,
+      "n": 571
+    },
+    "Annie": {
+      "poids": 0.27,
+      "bouclier_par_min": 66.9,
+      "n": 187
+    },
+    "Lux": {
+      "poids": 0.27,
+      "bouclier_par_min": 68.7,
+      "n": 701
+    },
+    "Braum": {
+      "poids": 0.25,
+      "bouclier_par_min": 63.6,
+      "n": 462
+    },
+    "Nami": {
+      "poids": 0.23,
+      "bouclier_par_min": 58.6,
+      "n": 1055
+    },
+    "Orianna": {
+      "poids": 0.23,
+      "bouclier_par_min": 57.7,
+      "n": 249
+    },
+    "Senna": {
+      "poids": 0.2,
+      "bouclier_par_min": 50.7,
+      "n": 812
+    },
+    "Soraka": {
+      "poids": 0.2,
+      "bouclier_par_min": 50.0,
+      "n": 410
+    },
+    "Morgana": {
+      "poids": 0.16,
+      "bouclier_par_min": 41.2,
+      "n": 350
+    },
+    "Galio": {
+      "poids": 0.15,
+      "bouclier_par_min": 38.5,
+      "n": 333
+    }
+  }
+}
