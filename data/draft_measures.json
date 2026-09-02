@@ -1,0 +1,1605 @@
+{
+ "reference": "7549 matchs, G:/matches (train+test)",
+ "parties_minimum": 40,
+ "duels_minimum": 60,
+ "meta": {
+  "Olaf|TOP": {
+   "games": 249,
+   "wins": 124
+  },
+  "Lillia|JUNGLE": {
+   "games": 221,
+   "wins": 118
+  },
+  "Aurora|MID": {
+   "games": 181,
+   "wins": 80
+  },
+  "Samira|ADC": {
+   "games": 367,
+   "wins": 188
+  },
+  "Morgana|SUPPORT": {
+   "games": 281,
+   "wins": 156
+  },
+  "Tryndamere|TOP": {
+   "games": 268,
+   "wins": 145
+  },
+  "Fiddlesticks|JUNGLE": {
+   "games": 191,
+   "wins": 101
+  },
+  "Kassadin|MID": {
+   "games": 274,
+   "wins": 161
+  },
+  "Yunara|ADC": {
+   "games": 560,
+   "wins": 294
+  },
+  "Braum|SUPPORT": {
+   "games": 459,
+   "wins": 238
+  },
+  "Teemo|TOP": {
+   "games": 295,
+   "wins": 147
+  },
+  "Nunu|JUNGLE": {
+   "games": 159,
+   "wins": 83
+  },
+  "Aphelios|ADC": {
+   "games": 371,
+   "wins": 186
+  },
+  "Velkoz|SUPPORT": {
+   "games": 258,
+   "wins": 132
+  },
+  "Ahri|MID": {
+   "games": 826,
+   "wins": 411
+  },
+  "Ashe|ADC": {
+   "games": 537,
+   "wins": 254
+  },
+  "Sona|SUPPORT": {
+   "games": 289,
+   "wins": 159
+  },
+  "Aurora|TOP": {
+   "games": 70,
+   "wins": 33
+  },
+  "Khazix|JUNGLE": {
+   "games": 569,
+   "wins": 299
+  },
+  "Qiyana|MID": {
+   "games": 248,
+   "wins": 115
+  },
+  "Jinx|ADC": {
+   "games": 1046,
+   "wins": 532
+  },
+  "Lulu|SUPPORT": {
+   "games": 694,
+   "wins": 365
+  },
+  "Gwen|TOP": {
+   "games": 279,
+   "wins": 151
+  },
+  "Diana|JUNGLE": {
+   "games": 359,
+   "wins": 166
+  },
+  "Syndra|MID": {
+   "games": 697,
+   "wins": 324
+  },
+  "Jhin|ADC": {
+   "games": 947,
+   "wins": 484
+  },
+  "Poppy|SUPPORT": {
+   "games": 136,
+   "wins": 67
+  },
+  "Mordekaiser|JUNGLE": {
+   "games": 54,
+   "wins": 34
+  },
+  "Hwei|MID": {
+   "games": 324,
+   "wins": 165
+  },
+  "Ziggs|ADC": {
+   "games": 194,
+   "wins": 88
+  },
+  "Amumu|SUPPORT": {
+   "games": 42,
+   "wins": 17
+  },
+  "Kayle|TOP": {
+   "games": 242,
+   "wins": 129
+  },
+  "Nocturne|JUNGLE": {
+   "games": 474,
+   "wins": 255
+  },
+  "Taliyah|MID": {
+   "games": 176,
+   "wins": 92
+  },
+  "Vayne|ADC": {
+   "games": 384,
+   "wins": 202
+  },
+  "Riven|TOP": {
+   "games": 245,
+   "wins": 120
+  },
+  "Irelia|MID": {
+   "games": 159,
+   "wins": 70
+  },
+  "Ezreal|ADC": {
+   "games": 788,
+   "wins": 365
+  },
+  "Thresh|SUPPORT": {
+   "games": 1036,
+   "wins": 520
+  },
+  "Nasus|TOP": {
+   "games": 370,
+   "wins": 178
+  },
+  "Shyvana|JUNGLE": {
+   "games": 448,
+   "wins": 233
+  },
+  "Sylas|MID": {
+   "games": 457,
+   "wins": 232
+  },
+  "Kaisa|ADC": {
+   "games": 1199,
+   "wins": 587
+  },
+  "Seraphine|SUPPORT": {
+   "games": 610,
+   "wins": 291
+  },
+  "Sion|TOP": {
+   "games": 268,
+   "wins": 127
+  },
+  "Karma|SUPPORT": {
+   "games": 581,
+   "wins": 281
+  },
+  "Zed|TOP": {
+   "games": 51,
+   "wins": 21
+  },
+  "Malzahar|MID": {
+   "games": 411,
+   "wins": 208
+  },
+  "Shen|TOP": {
+   "games": 423,
+   "wins": 222
+  },
+  "Anivia|MID": {
+   "games": 237,
+   "wins": 122
+  },
+  "Caitlyn|ADC": {
+   "games": 1015,
+   "wins": 497
+  },
+  "Ambessa|TOP": {
+   "games": 311,
+   "wins": 158
+  },
+  "Talon|JUNGLE": {
+   "games": 539,
+   "wins": 260
+  },
+  "KogMaw|ADC": {
+   "games": 155,
+   "wins": 87
+  },
+  "MasterYi|JUNGLE": {
+   "games": 391,
+   "wins": 215
+  },
+  "Fizz|MID": {
+   "games": 399,
+   "wins": 221
+  },
+  "Lucian|ADC": {
+   "games": 449,
+   "wins": 224
+  },
+  "Blitzcrank|SUPPORT": {
+   "games": 352,
+   "wins": 174
+  },
+  "Smolder|ADC": {
+   "games": 391,
+   "wins": 201
+  },
+  "Zac|TOP": {
+   "games": 42,
+   "wins": 24
+  },
+  "Galio|MID": {
+   "games": 232,
+   "wins": 114
+  },
+  "Senna|ADC": {
+   "games": 260,
+   "wins": 134
+  },
+  "Bard|SUPPORT": {
+   "games": 557,
+   "wins": 270
+  },
+  "Jax|TOP": {
+   "games": 339,
+   "wins": 151
+  },
+  "Sylas|JUNGLE": {
+   "games": 530,
+   "wins": 253
+  },
+  "Lissandra|MID": {
+   "games": 348,
+   "wins": 188
+  },
+  "Camille|TOP": {
+   "games": 348,
+   "wins": 167
+  },
+  "Amumu|JUNGLE": {
+   "games": 154,
+   "wins": 84
+  },
+  "Akali|MID": {
+   "games": 430,
+   "wins": 213
+  },
+  "MissFortune|ADC": {
+   "games": 480,
+   "wins": 228
+  },
+  "Gnar|TOP": {
+   "games": 325,
+   "wins": 151
+  },
+  "Jayce|TOP": {
+   "games": 278,
+   "wins": 122
+  },
+  "Kayn|JUNGLE": {
+   "games": 432,
+   "wins": 206
+  },
+  "Brand|MID": {
+   "games": 52,
+   "wins": 23
+  },
+  "Alistar|SUPPORT": {
+   "games": 366,
+   "wins": 176
+  },
+  "JarvanIV|JUNGLE": {
+   "games": 508,
+   "wins": 243
+  },
+  "Viego|JUNGLE": {
+   "games": 760,
+   "wins": 379
+  },
+  "Lux|MID": {
+   "games": 289,
+   "wins": 147
+  },
+  "Zilean|SUPPORT": {
+   "games": 299,
+   "wins": 160
+  },
+  "Mordekaiser|TOP": {
+   "games": 367,
+   "wins": 171
+  },
+  "Rammus|JUNGLE": {
+   "games": 119,
+   "wins": 63
+  },
+  "Azir|MID": {
+   "games": 129,
+   "wins": 53
+  },
+  "Swain|SUPPORT": {
+   "games": 149,
+   "wins": 62
+  },
+  "Quinn|TOP": {
+   "games": 68,
+   "wins": 36
+  },
+  "Rengar|JUNGLE": {
+   "games": 347,
+   "wins": 176
+  },
+  "Katarina|MID": {
+   "games": 582,
+   "wins": 300
+  },
+  "Locke|MID": {
+   "games": 452,
+   "wins": 214
+  },
+  "Seraphine|ADC": {
+   "games": 200,
+   "wins": 101
+  },
+  "Aatrox|TOP": {
+   "games": 352,
+   "wins": 172
+  },
+  "Vex|MID": {
+   "games": 223,
+   "wins": 101
+  },
+  "Zyra|SUPPORT": {
+   "games": 181,
+   "wins": 99
+  },
+  "Singed|TOP": {
+   "games": 266,
+   "wins": 150
+  },
+  "Ekko|JUNGLE": {
+   "games": 326,
+   "wins": 160
+  },
+  "Yasuo|MID": {
+   "games": 573,
+   "wins": 293
+  },
+  "Nautilus|SUPPORT": {
+   "games": 796,
+   "wins": 410
+  },
+  "Illaoi|TOP": {
+   "games": 183,
+   "wins": 100
+  },
+  "Jax|JUNGLE": {
+   "games": 136,
+   "wins": 65
+  },
+  "Sivir|ADC": {
+   "games": 371,
+   "wins": 182
+  },
+  "Rell|SUPPORT": {
+   "games": 332,
+   "wins": 147
+  },
+  "Yasuo|TOP": {
+   "games": 222,
+   "wins": 110
+  },
+  "Ryze|MID": {
+   "games": 246,
+   "wins": 108
+  },
+  "Pantheon|SUPPORT": {
+   "games": 220,
+   "wins": 102
+  },
+  "Zaahen|TOP": {
+   "games": 265,
+   "wins": 143
+  },
+  "Chogath|JUNGLE": {
+   "games": 111,
+   "wins": 53
+  },
+  "Neeko|SUPPORT": {
+   "games": 97,
+   "wins": 42
+  },
+  "Udyr|JUNGLE": {
+   "games": 198,
+   "wins": 114
+  },
+  "Zeri|ADC": {
+   "games": 330,
+   "wins": 165
+  },
+  "Ambessa|JUNGLE": {
+   "games": 98,
+   "wins": 34
+  },
+  "Nami|SUPPORT": {
+   "games": 1047,
+   "wins": 527
+  },
+  "Garen|TOP": {
+   "games": 713,
+   "wins": 394
+  },
+  "Riven|MID": {
+   "games": 88,
+   "wins": 53
+  },
+  "Leona|SUPPORT": {
+   "games": 629,
+   "wins": 347
+  },
+  "Akshan|MID": {
+   "games": 293,
+   "wins": 150
+  },
+  "Katarina|ADC": {
+   "games": 90,
+   "wins": 38
+  },
+  "Maokai|SUPPORT": {
+   "games": 115,
+   "wins": 59
+  },
+  "Irelia|TOP": {
+   "games": 302,
+   "wins": 151
+  },
+  "Gangplank|MID": {
+   "games": 40,
+   "wins": 20
+  },
+  "Swain|ADC": {
+   "games": 102,
+   "wins": 58
+  },
+  "Volibear|JUNGLE": {
+   "games": 104,
+   "wins": 48
+  },
+  "Mel|MID": {
+   "games": 151,
+   "wins": 51
+  },
+  "Xerath|SUPPORT": {
+   "games": 131,
+   "wins": 60
+  },
+  "Hecarim|JUNGLE": {
+   "games": 397,
+   "wins": 199
+  },
+  "Renekton|TOP": {
+   "games": 371,
+   "wins": 173
+  },
+  "Graves|JUNGLE": {
+   "games": 678,
+   "wins": 337
+  },
+  "Vladimir|ADC": {
+   "games": 70,
+   "wins": 34
+  },
+  "Shaco|SUPPORT": {
+   "games": 87,
+   "wins": 46
+  },
+  "DrMundo|TOP": {
+   "games": 295,
+   "wins": 147
+  },
+  "Gwen|MID": {
+   "games": 77,
+   "wins": 37
+  },
+  "Annie|MID": {
+   "games": 156,
+   "wins": 94
+  },
+  "Lux|SUPPORT": {
+   "games": 315,
+   "wins": 152
+  },
+  "Elise|JUNGLE": {
+   "games": 190,
+   "wins": 99
+  },
+  "Chogath|MID": {
+   "games": 56,
+   "wins": 28
+  },
+  "Belveth|JUNGLE": {
+   "games": 293,
+   "wins": 148
+  },
+  "Brand|SUPPORT": {
+   "games": 142,
+   "wins": 65
+  },
+  "Evelynn|JUNGLE": {
+   "games": 211,
+   "wins": 92
+  },
+  "Tristana|ADC": {
+   "games": 740,
+   "wins": 386
+  },
+  "Darius|JUNGLE": {
+   "games": 66,
+   "wins": 30
+  },
+  "Ashe|SUPPORT": {
+   "games": 40,
+   "wins": 18
+  },
+  "Vayne|TOP": {
+   "games": 202,
+   "wins": 94
+  },
+  "Cassiopeia|MID": {
+   "games": 158,
+   "wins": 72
+  },
+  "Xayah|ADC": {
+   "games": 361,
+   "wins": 187
+  },
+  "Soraka|SUPPORT": {
+   "games": 403,
+   "wins": 190
+  },
+  "Ekko|MID": {
+   "games": 321,
+   "wins": 166
+  },
+  "Pyke|SUPPORT": {
+   "games": 501,
+   "wins": 239
+  },
+  "Rumble|TOP": {
+   "games": 123,
+   "wins": 59
+  },
+  "Vladimir|MID": {
+   "games": 315,
+   "wins": 172
+  },
+  "Pantheon|TOP": {
+   "games": 153,
+   "wins": 85
+  },
+  "Zac|JUNGLE": {
+   "games": 222,
+   "wins": 114
+  },
+  "Poppy|TOP": {
+   "games": 95,
+   "wins": 44
+  },
+  "TwistedFate|MID": {
+   "games": 292,
+   "wins": 157
+  },
+  "Zilean|TOP": {
+   "games": 45,
+   "wins": 25
+  },
+  "DrMundo|JUNGLE": {
+   "games": 87,
+   "wins": 43
+  },
+  "Vi|JUNGLE": {
+   "games": 339,
+   "wins": 163
+  },
+  "Twitch|ADC": {
+   "games": 495,
+   "wins": 250
+  },
+  "TahmKench|SUPPORT": {
+   "games": 177,
+   "wins": 101
+  },
+  "Zed|JUNGLE": {
+   "games": 171,
+   "wins": 82
+  },
+  "Ivern|JUNGLE": {
+   "games": 120,
+   "wins": 57
+  },
+  "Cassiopeia|TOP": {
+   "games": 61,
+   "wins": 32
+  },
+  "Gwen|JUNGLE": {
+   "games": 77,
+   "wins": 45
+  },
+  "Nasus|MID": {
+   "games": 104,
+   "wins": 55
+  },
+  "Akali|TOP": {
+   "games": 164,
+   "wins": 90
+  },
+  "Janna|SUPPORT": {
+   "games": 509,
+   "wins": 277
+  },
+  "Sejuani|JUNGLE": {
+   "games": 181,
+   "wins": 91
+  },
+  "Veigar|MID": {
+   "games": 286,
+   "wins": 140
+  },
+  "LeeSin|JUNGLE": {
+   "games": 530,
+   "wins": 261
+  },
+  "Rakan|SUPPORT": {
+   "games": 325,
+   "wins": 171
+  },
+  "Taliyah|JUNGLE": {
+   "games": 76,
+   "wins": 34
+  },
+  "Quinn|JUNGLE": {
+   "games": 89,
+   "wins": 45
+  },
+  "Darius|TOP": {
+   "games": 597,
+   "wins": 323
+  },
+  "Warwick|TOP": {
+   "games": 126,
+   "wins": 64
+  },
+  "Kayle|MID": {
+   "games": 63,
+   "wins": 22
+  },
+  "Draven|ADC": {
+   "games": 402,
+   "wins": 207
+  },
+  "Nasus|JUNGLE": {
+   "games": 141,
+   "wins": 70
+  },
+  "Milio|SUPPORT": {
+   "games": 512,
+   "wins": 257
+  },
+  "Yone|MID": {
+   "games": 400,
+   "wins": 195
+  },
+  "Kennen|TOP": {
+   "games": 125,
+   "wins": 57
+  },
+  "Yuumi|SUPPORT": {
+   "games": 310,
+   "wins": 141
+  },
+  "Trundle|TOP": {
+   "games": 123,
+   "wins": 54
+  },
+  "Sett|TOP": {
+   "games": 373,
+   "wins": 186
+  },
+  "Naafiri|JUNGLE": {
+   "games": 286,
+   "wins": 141
+  },
+  "Orianna|MID": {
+   "games": 232,
+   "wins": 118
+  },
+  "TahmKench|TOP": {
+   "games": 134,
+   "wins": 60
+  },
+  "Viktor|MID": {
+   "games": 639,
+   "wins": 350
+  },
+  "Volibear|TOP": {
+   "games": 187,
+   "wins": 86
+  },
+  "Ornn|TOP": {
+   "games": 345,
+   "wins": 176
+  },
+  "Pantheon|JUNGLE": {
+   "games": 67,
+   "wins": 32
+  },
+  "Gangplank|TOP": {
+   "games": 324,
+   "wins": 162
+  },
+  "Shaco|JUNGLE": {
+   "games": 392,
+   "wins": 194
+  },
+  "Zed|MID": {
+   "games": 589,
+   "wins": 319
+  },
+  "Yorick|TOP": {
+   "games": 228,
+   "wins": 112
+  },
+  "Hwei|ADC": {
+   "games": 146,
+   "wins": 82
+  },
+  "Varus|TOP": {
+   "games": 78,
+   "wins": 42
+  },
+  "Senna|SUPPORT": {
+   "games": 543,
+   "wins": 275
+  },
+  "Velkoz|MID": {
+   "games": 121,
+   "wins": 62
+  },
+  "Zaahen|JUNGLE": {
+   "games": 59,
+   "wins": 27
+  },
+  "Yasuo|ADC": {
+   "games": 184,
+   "wins": 94
+  },
+  "Kindred|JUNGLE": {
+   "games": 170,
+   "wins": 93
+  },
+  "XinZhao|JUNGLE": {
+   "games": 228,
+   "wins": 113
+  },
+  "MonkeyKing|JUNGLE": {
+   "games": 447,
+   "wins": 231
+  },
+  "Malphite|TOP": {
+   "games": 451,
+   "wins": 222
+  },
+  "Zoe|MID": {
+   "games": 181,
+   "wins": 81
+  },
+  "Chogath|TOP": {
+   "games": 204,
+   "wins": 111
+  },
+  "Gragas|TOP": {
+   "games": 176,
+   "wins": 94
+  },
+  "Jayce|JUNGLE": {
+   "games": 56,
+   "wins": 21
+  },
+  "Corki|ADC": {
+   "games": 190,
+   "wins": 90
+  },
+  "Leblanc|MID": {
+   "games": 299,
+   "wins": 132
+  },
+  "Talon|MID": {
+   "games": 113,
+   "wins": 64
+  },
+  "MonkeyKing|TOP": {
+   "games": 69,
+   "wins": 30
+  },
+  "KSante|TOP": {
+   "games": 224,
+   "wins": 107
+  },
+  "Yone|TOP": {
+   "games": 448,
+   "wins": 230
+  },
+  "Malphite|JUNGLE": {
+   "games": 77,
+   "wins": 42
+  },
+  "Leblanc|SUPPORT": {
+   "games": 54,
+   "wins": 33
+  },
+  "Shen|SUPPORT": {
+   "games": 112,
+   "wins": 55
+  },
+  "Brand|ADC": {
+   "games": 128,
+   "wins": 57
+  },
+  "AurelionSol|ADC": {
+   "games": 45,
+   "wins": 20
+  },
+  "Aatrox|JUNGLE": {
+   "games": 141,
+   "wins": 73
+  },
+  "Ryze|TOP": {
+   "games": 52,
+   "wins": 30
+  },
+  "Briar|JUNGLE": {
+   "games": 296,
+   "wins": 146
+  },
+  "Fiora|TOP": {
+   "games": 288,
+   "wins": 138
+  },
+  "Sylas|TOP": {
+   "games": 63,
+   "wins": 38
+  },
+  "Urgot|TOP": {
+   "games": 274,
+   "wins": 142
+  },
+  "Warwick|JUNGLE": {
+   "games": 175,
+   "wins": 89
+  },
+  "Malphite|MID": {
+   "games": 58,
+   "wins": 34
+  },
+  "Pantheon|MID": {
+   "games": 77,
+   "wins": 48
+  },
+  "Mel|SUPPORT": {
+   "games": 51,
+   "wins": 24
+  },
+  "Kled|TOP": {
+   "games": 145,
+   "wins": 77
+  },
+  "Varus|ADC": {
+   "games": 214,
+   "wins": 106
+  },
+  "Nidalee|JUNGLE": {
+   "games": 150,
+   "wins": 88
+  },
+  "Xerath|ADC": {
+   "games": 112,
+   "wins": 55
+  },
+  "Mel|ADC": {
+   "games": 166,
+   "wins": 79
+  },
+  "AurelionSol|MID": {
+   "games": 168,
+   "wins": 78
+  },
+  "Vladimir|TOP": {
+   "games": 104,
+   "wins": 49
+  },
+  "Veigar|ADC": {
+   "games": 141,
+   "wins": 81
+  },
+  "Gragas|JUNGLE": {
+   "games": 73,
+   "wins": 40
+  },
+  "Qiyana|JUNGLE": {
+   "games": 305,
+   "wins": 146
+  },
+  "Xerath|MID": {
+   "games": 343,
+   "wins": 168
+  },
+  "Taric|SUPPORT": {
+   "games": 126,
+   "wins": 67
+  },
+  "RekSai|JUNGLE": {
+   "games": 118,
+   "wins": 59
+  },
+  "Kalista|ADC": {
+   "games": 180,
+   "wins": 90
+  },
+  "Viktor|ADC": {
+   "games": 295,
+   "wins": 145
+  },
+  "Maokai|JUNGLE": {
+   "games": 44,
+   "wins": 21
+  },
+  "Galio|SUPPORT": {
+   "games": 80,
+   "wins": 43
+  },
+  "Heimerdinger|TOP": {
+   "games": 82,
+   "wins": 37
+  },
+  "Renata|SUPPORT": {
+   "games": 85,
+   "wins": 48
+  },
+  "Syndra|ADC": {
+   "games": 193,
+   "wins": 101
+  },
+  "Nilah|ADC": {
+   "games": 88,
+   "wins": 40
+  },
+  "Jayce|MID": {
+   "games": 53,
+   "wins": 26
+  },
+  "Sylas|SUPPORT": {
+   "games": 79,
+   "wins": 42
+  },
+  "Diana|MID": {
+   "games": 235,
+   "wins": 112
+  },
+  "Swain|TOP": {
+   "games": 58,
+   "wins": 26
+  },
+  "Trundle|JUNGLE": {
+   "games": 48,
+   "wins": 24
+  },
+  "Karthus|JUNGLE": {
+   "games": 102,
+   "wins": 46
+  },
+  "Naafiri|MID": {
+   "games": 111,
+   "wins": 49
+  },
+  "Velkoz|ADC": {
+   "games": 94,
+   "wins": 49
+  },
+  "Zoe|SUPPORT": {
+   "games": 72,
+   "wins": 26
+  },
+  "Locke|JUNGLE": {
+   "games": 71,
+   "wins": 30
+  },
+  "Elise|SUPPORT": {
+   "games": 62,
+   "wins": 25
+  },
+  "Karthus|ADC": {
+   "games": 74,
+   "wins": 43
+  },
+  "Swain|MID": {
+   "games": 57,
+   "wins": 29
+  },
+  "Ziggs|MID": {
+   "games": 49,
+   "wins": 25
+  },
+  "Fizz|JUNGLE": {
+   "games": 41,
+   "wins": 22
+  },
+  "Camille|SUPPORT": {
+   "games": 213,
+   "wins": 100
+  },
+  "Zyra|JUNGLE": {
+   "games": 106,
+   "wins": 53
+  },
+  "Poppy|JUNGLE": {
+   "games": 50,
+   "wins": 25
+  },
+  "Smolder|MID": {
+   "games": 44,
+   "wins": 23
+  },
+  "Tristana|MID": {
+   "games": 58,
+   "wins": 25
+  },
+  "Skarner|JUNGLE": {
+   "games": 116,
+   "wins": 69
+  },
+  "Lux|ADC": {
+   "games": 86,
+   "wins": 47
+  },
+  "Anivia|TOP": {
+   "games": 66,
+   "wins": 32
+  },
+  "Gragas|MID": {
+   "games": 42,
+   "wins": 20
+  },
+  "Fiddlesticks|SUPPORT": {
+   "games": 49,
+   "wins": 33
+  },
+  "Locke|TOP": {
+   "games": 40,
+   "wins": 13
+  },
+  "MasterYi|TOP": {
+   "games": 48,
+   "wins": 21
+  },
+  "Teemo|JUNGLE": {
+   "games": 82,
+   "wins": 44
+  }
+ },
+ "archetype_duels": {
+  "bruiser_splitpush|bruiser_splitpush|TOP": {
+   "games": 2016,
+   "wins": 961
+  },
+  "jungler_farm|jungler_farm|JUNGLE": {
+   "games": 461,
+   "wins": 246
+  },
+  "mage_control|support_engage|SUPPORT": {
+   "games": 121,
+   "wins": 56
+  },
+  "ranged_bruiser|bruiser_splitpush|TOP": {
+   "games": 336,
+   "wins": 165
+  },
+  "tank_engage|jungler_farm|JUNGLE": {
+   "games": 197,
+   "wins": 89
+  },
+  "adc_hypercarry|adc_lane_bully|ADC": {
+   "games": 1177,
+   "wins": 610
+  },
+  "mage_poke|enchanter|SUPPORT": {
+   "games": 253,
+   "wins": 113
+  },
+  "assassin|jungler_ganker|JUNGLE": {
+   "games": 445,
+   "wins": 210
+  },
+  "assassin|mage_control|MID": {
+   "games": 768,
+   "wins": 387
+  },
+  "enchanter|tank_engage|SUPPORT": {
+   "games": 124,
+   "wins": 55
+  },
+  "bruiser_splitpush|assassin|JUNGLE": {
+   "games": 189,
+   "wins": 91
+  },
+  "mage_control|mage_control|MID": {
+   "games": 1039,
+   "wins": 479
+  },
+  "mage_poke|adc_hypercarry|ADC": {
+   "games": 121,
+   "wins": 63
+  },
+  "jungler_ganker|jungler_farm|JUNGLE": {
+   "games": 499,
+   "wins": 242
+  },
+  "bruiser_splitpush|bruiser_splitpush|MID": {
+   "games": 147,
+   "wins": 77
+  },
+  "adc_lane_bully|adc_hypercarry|ADC": {
+   "games": 1205,
+   "wins": 584
+  },
+  "support_engage|enchanter|SUPPORT": {
+   "games": 940,
+   "wins": 451
+  },
+  "tank_engage|jungler_ganker|JUNGLE": {
+   "games": 185,
+   "wins": 106
+  },
+  "adc_lane_bully|adc_lane_bully|ADC": {
+   "games": 1224,
+   "wins": 563
+  },
+  "tank_engage|bruiser_splitpush|TOP": {
+   "games": 670,
+   "wins": 348
+  },
+  "jungler_farm|assassin|JUNGLE": {
+   "games": 488,
+   "wins": 231
+  },
+  "enchanter|support_engage|SUPPORT": {
+   "games": 988,
+   "wins": 479
+  },
+  "ranged_bruiser|tank_engage|TOP": {
+   "games": 158,
+   "wins": 77
+  },
+  "support_engage|support_engage|SUPPORT": {
+   "games": 754,
+   "wins": 374
+  },
+  "jungler_farm|bruiser_splitpush|JUNGLE": {
+   "games": 210,
+   "wins": 113
+  },
+  "tank_engage|mage_control|MID": {
+   "games": 80,
+   "wins": 38
+  },
+  "adc_hypercarry|adc_hypercarry|ADC": {
+   "games": 1009,
+   "wins": 486
+  },
+  "bruiser_splitpush|ranged_bruiser|TOP": {
+   "games": 398,
+   "wins": 215
+  },
+  "tank_engage|assassin|JUNGLE": {
+   "games": 140,
+   "wins": 70
+  },
+  "assassin|bruiser_splitpush|MID": {
+   "games": 281,
+   "wins": 141
+  },
+  "support_engage|mage_control|SUPPORT": {
+   "games": 94,
+   "wins": 54
+  },
+  "jungler_farm|jungler_ganker|JUNGLE": {
+   "games": 479,
+   "wins": 243
+  },
+  "mage_poke|assassin|MID": {
+   "games": 132,
+   "wins": 54
+  },
+  "jungler_farm|tank_engage|JUNGLE": {
+   "games": 166,
+   "wins": 89
+  },
+  "mage_poke|mage_control|MID": {
+   "games": 212,
+   "wins": 106
+  },
+  "enchanter|enchanter|SUPPORT": {
+   "games": 1243,
+   "wins": 624
+  },
+  "tank_engage|ranged_bruiser|TOP": {
+   "games": 116,
+   "wins": 51
+  },
+  "mage_control|assassin|MID": {
+   "games": 770,
+   "wins": 378
+  },
+  "jungler_ganker|assassin|JUNGLE": {
+   "games": 469,
+   "wins": 231
+  },
+  "enchanter|mage_poke|SUPPORT": {
+   "games": 226,
+   "wins": 108
+  },
+  "battlemage|bruiser_splitpush|TOP": {
+   "games": 135,
+   "wins": 70
+  },
+  "assassin|bruiser_splitpush|JUNGLE": {
+   "games": 189,
+   "wins": 91
+  },
+  "bruiser_splitpush|mage_control|MID": {
+   "games": 424,
+   "wins": 209
+  },
+  "mage_control|bruiser_splitpush|MID": {
+   "games": 404,
+   "wins": 212
+  },
+  "assassin|assassin|MID": {
+   "games": 495,
+   "wins": 238
+  },
+  "bruiser_splitpush|enchanter|SUPPORT": {
+   "games": 117,
+   "wins": 48
+  },
+  "bruiser_splitpush|jungler_farm|JUNGLE": {
+   "games": 206,
+   "wins": 101
+  },
+  "bruiser_splitpush|jungler_ganker|JUNGLE": {
+   "games": 210,
+   "wins": 98
+  },
+  "bruiser_splitpush|tank_engage|TOP": {
+   "games": 688,
+   "wins": 342
+  },
+  "mage_control|adc_hypercarry|ADC": {
+   "games": 221,
+   "wins": 97
+  },
+  "assassin|support_engage|SUPPORT": {
+   "games": 111,
+   "wins": 56
+  },
+  "jungler_ganker|jungler_ganker|JUNGLE": {
+   "games": 434,
+   "wins": 222
+  },
+  "mage_control|tank_engage|MID": {
+   "games": 79,
+   "wins": 44
+  },
+  "mage_poke|support_engage|SUPPORT": {
+   "games": 166,
+   "wins": 78
+  },
+  "assassin|jungler_farm|JUNGLE": {
+   "games": 489,
+   "wins": 232
+  },
+  "adc_lane_bully|mage_control|ADC": {
+   "games": 212,
+   "wins": 101
+  },
+  "tank_engage|support_engage|SUPPORT": {
+   "games": 154,
+   "wins": 77
+  },
+  "assassin|bruiser_splitpush|TOP": {
+   "games": 97,
+   "wins": 51
+  },
+  "mage_control|adc_lane_bully|ADC": {
+   "games": 217,
+   "wins": 121
+  },
+  "assassin|enchanter|SUPPORT": {
+   "games": 121,
+   "wins": 61
+  },
+  "bruiser_splitpush|tank_engage|JUNGLE": {
+   "games": 72,
+   "wins": 37
+  },
+  "assassin|assassin|JUNGLE": {
+   "games": 435,
+   "wins": 223
+  },
+  "bruiser_splitpush|mage_control|TOP": {
+   "games": 143,
+   "wins": 81
+  },
+  "adc_hypercarry|mage_control|ADC": {
+   "games": 174,
+   "wins": 72
+  },
+  "assassin|tank_engage|JUNGLE": {
+   "games": 164,
+   "wins": 73
+  },
+  "assassin|mage_poke|MID": {
+   "games": 128,
+   "wins": 67
+  },
+  "mage_control|mage_poke|MID": {
+   "games": 226,
+   "wins": 114
+  },
+  "tank_engage|tank_engage|TOP": {
+   "games": 192,
+   "wins": 92
+  },
+  "enchanter|bruiser_splitpush|SUPPORT": {
+   "games": 116,
+   "wins": 62
+  },
+  "tank_engage|bruiser_splitpush|JUNGLE": {
+   "games": 60,
+   "wins": 28
+  },
+  "bruiser_splitpush|support_engage|SUPPORT": {
+   "games": 86,
+   "wins": 47
+  },
+  "mage_control|enchanter|SUPPORT": {
+   "games": 104,
+   "wins": 55
+  },
+  "jungler_ganker|tank_engage|JUNGLE": {
+   "games": 187,
+   "wins": 77
+  },
+  "bruiser_splitpush|assassin|MID": {
+   "games": 269,
+   "wins": 148
+  },
+  "support_engage|assassin|SUPPORT": {
+   "games": 134,
+   "wins": 70
+  },
+  "enchanter|mage_control|SUPPORT": {
+   "games": 87,
+   "wins": 46
+  },
+  "bruiser_splitpush|adc_hypercarry|TOP": {
+   "games": 72,
+   "wins": 40
+  },
+  "mage_poke|bruiser_splitpush|MID": {
+   "games": 60,
+   "wins": 29
+  },
+  "adc_lane_bully|mage_poke|ADC": {
+   "games": 125,
+   "wins": 66
+  },
+  "mage_control|bruiser_splitpush|TOP": {
+   "games": 123,
+   "wins": 62
+  },
+  "bruiser_splitpush|battlemage|TOP": {
+   "games": 157,
+   "wins": 73
+  },
+  "ranged_bruiser|ranged_bruiser|TOP": {
+   "games": 72,
+   "wins": 32
+  },
+  "adc_hypercarry|mage_poke|ADC": {
+   "games": 97,
+   "wins": 50
+  },
+  "bruiser_splitpush|mage_poke|MID": {
+   "games": 73,
+   "wins": 36
+  },
+  "support_engage|mage_poke|SUPPORT": {
+   "games": 153,
+   "wins": 71
+  },
+  "tank_engage|enchanter|SUPPORT": {
+   "games": 135,
+   "wins": 60
+  },
+  "support_engage|bruiser_splitpush|SUPPORT": {
+   "games": 70,
+   "wins": 40
+  },
+  "mage_poke|adc_lane_bully|ADC": {
+   "games": 126,
+   "wins": 57
+  },
+  "jungler_ganker|bruiser_splitpush|JUNGLE": {
+   "games": 186,
+   "wins": 97
+  },
+  "enchanter|assassin|SUPPORT": {
+   "games": 116,
+   "wins": 63
+  },
+  "bruiser_splitpush|bruiser_splitpush|JUNGLE": {
+   "games": 67,
+   "wins": 31
+  },
+  "support_engage|tank_engage|SUPPORT": {
+   "games": 126,
+   "wins": 59
+  },
+  "bruiser_splitpush|assassin|TOP": {
+   "games": 91,
+   "wins": 45
+  }
+ },
+ "axes_effet": {
+  "disengage_peel": {
+   "quintile_bas": 0.498,
+   "quintile_haut": 0.504,
+   "ecart": 0.0059,
+   "significatif": false,
+   "ecart_bas": -0.4,
+   "ecart_haut": 0.4,
+   "n": 10112
+  },
+  "dive_resistance": {
+   "quintile_bas": 0.4763,
+   "quintile_haut": 0.5232,
+   "ecart": 0.047,
+   "significatif": true,
+   "ecart_bas": -0.4,
+   "ecart_haut": 0.4,
+   "n": 10112
+  },
+  "engage": {
+   "quintile_bas": 0.4876,
+   "quintile_haut": 0.5138,
+   "ecart": 0.0262,
+   "significatif": false,
+   "ecart_bas": -0.55,
+   "ecart_haut": 0.55,
+   "n": 10112
+  },
+  "frontline": {
+   "quintile_bas": 0.4866,
+   "quintile_haut": 0.5134,
+   "ecart": 0.0267,
+   "significatif": false,
+   "ecart_bas": -0.6,
+   "ecart_haut": 0.6,
+   "n": 10112
+  },
+  "hard_cc": {
+   "quintile_bas": 0.497,
+   "quintile_haut": 0.5015,
+   "ecart": 0.0045,
+   "significatif": false,
+   "ecart_bas": -0.65,
+   "ecart_haut": 0.65,
+   "n": 10112
+  },
+  "mobility": {
+   "quintile_bas": 0.5173,
+   "quintile_haut": 0.4847,
+   "ecart": -0.0326,
+   "significatif": false,
+   "ecart_bas": -0.65,
+   "ecart_haut": 0.65,
+   "n": 10112
+  },
+  "objective_dps": {
+   "quintile_bas": 0.5124,
+   "quintile_haut": 0.4827,
+   "ecart": -0.0297,
+   "significatif": false,
+   "ecart_bas": -0.4,
+   "ecart_haut": 0.4,
+   "n": 10112
+  },
+  "pick_potential": {
+   "quintile_bas": 0.5054,
+   "quintile_haut": 0.4955,
+   "ecart": -0.0099,
+   "significatif": false,
+   "ecart_bas": -0.45,
+   "ecart_haut": 0.45,
+   "n": 10112
+  },
+  "poke_siege": {
+   "quintile_bas": 0.5213,
+   "quintile_haut": 0.4777,
+   "ecart": -0.0435,
+   "significatif": false,
+   "ecart_bas": -0.5,
+   "ecart_haut": 0.5,
+   "n": 10112
+  },
+  "self_peel": {
+   "quintile_bas": 0.5069,
+   "quintile_haut": 0.4921,
+   "ecart": -0.0148,
+   "significatif": false,
+   "ecart_bas": -0.35,
+   "ecart_haut": 0.35,
+   "n": 10112
+  },
+  "soft_cc": {
+   "quintile_bas": 0.4896,
+   "quintile_haut": 0.5153,
+   "ecart": 0.0257,
+   "significatif": false,
+   "ecart_bas": -0.3,
+   "ecart_haut": 0.3,
+   "n": 10112
+  },
+  "splitpush": {
+   "quintile_bas": 0.5025,
+   "quintile_haut": 0.4965,
+   "ecart": -0.0059,
+   "significatif": false,
+   "ecart_bas": -0.45,
+   "ecart_haut": 0.45,
+   "n": 10112
+  },
+  "sustain": {
+   "quintile_bas": 0.4758,
+   "quintile_haut": 0.5252,
+   "ecart": 0.0495,
+   "significatif": true,
+   "ecart_bas": -0.5,
+   "ecart_haut": 0.5,
+   "n": 10112
+  },
+  "waveclear": {
+   "quintile_bas": 0.5223,
+   "quintile_haut": 0.4807,
+   "ecart": -0.0415,
+   "significatif": false,
+   "ecart_bas": -0.3,
+   "ecart_haut": 0.3,
+   "n": 10112
+  }
+ }
+}

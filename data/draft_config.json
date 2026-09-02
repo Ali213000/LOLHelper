@@ -1,138 +1,298 @@
 {
   "schema_version": "1.0",
   "notes": "Parametres de calibration du moteur. Les seuils sont exprimes pour une equipe complete de 5 joueurs : ils representent la somme cible des axes sur l'ensemble de la composition.",
-
   "team_thresholds": {
-    "frontline":       { "target": 1.20, "importance": 1.00, "comment": "1 tank a 0.9 + 1 bruiser a 0.4 suffit. En dessous de 0.6 la comp fond en teamfight." },
-    "engage":          { "target": 1.00, "importance": 1.00, "comment": "Au moins une initiation fiable. Sans engage, l'equipe joue en reaction toute la partie." },
-    "disengage_peel":  { "target": 0.80, "importance": 0.70, "comment": "Monte a 1.2 si l'equipe contient un hypercarry immobile." },
-    "hard_cc":         { "target": 1.50, "importance": 0.80, "comment": "Chaine de CC necessaire pour tuer une cible mobile." },
-    "waveclear":       { "target": 1.50, "importance": 0.60, "comment": "En dessous, impossible de defendre en retard au score." },
-    "objective_dps":   { "target": 1.00, "importance": 0.60, "comment": "Capacite a tuer Baron/Dragon rapidement." },
-    "mobility":        { "target": 1.50, "importance": 0.40, "comment": "Faible importance : seuil indicatif, rarement bloquant." },
-    "sustain":         { "target": 0.80, "importance": 0.35, "comment": "Utile contre le poke, peu determinant sinon." },
-    "splitpush":       { "target": 0.60, "importance": 0.45, "comment": "Une seule source suffit ; au-dela c'est de la redondance." },
-    "pick_potential":  { "target": 0.80, "importance": 0.45, "comment": "Condition de victoire alternative si l'equipe ne peut pas fight a 5." },
-    "poke_siege":      { "target": 0.80, "importance": 0.40, "comment": "Optionnel, sauf si la comp n'a aucun engage." },
-    "soft_cc":         { "target": 1.20, "importance": 0.40 },
-    "self_peel":       { "target": 1.50, "importance": 0.30, "comment": "Individuel plutot que collectif, faible poids d'equipe." },
-    "dive_resistance": { "target": 1.20, "importance": 0.50, "comment": "Importance montee dynamiquement si menace_dive elevee." }
+    "frontline": {
+      "target": 1.2,
+      "importance": 0.35,
+      "comment": "1 tank a 0.9 + 1 bruiser a 0.4 suffit. En dessous de 0.6 la comp fond en teamfight.",
+      "effet_mesure": 0.0267,
+      "z": 1.7,
+      "verdict": "non concluant"
+    },
+    "engage": {
+      "target": 1.0,
+      "importance": 0.35,
+      "comment": "Au moins une initiation fiable. Sans engage, l'equipe joue en reaction toute la partie.",
+      "effet_mesure": 0.0262,
+      "z": 1.67,
+      "verdict": "non concluant"
+    },
+    "disengage_peel": {
+      "target": 0.8,
+      "importance": 0.35,
+      "comment": "Monte a 1.2 si l'equipe contient un hypercarry immobile.",
+      "effet_mesure": 0.0059,
+      "z": 0.38,
+      "verdict": "non concluant"
+    },
+    "hard_cc": {
+      "target": 1.5,
+      "importance": 0.35,
+      "comment": "Chaine de CC necessaire pour tuer une cible mobile.",
+      "effet_mesure": 0.0045,
+      "z": 0.29,
+      "verdict": "non concluant"
+    },
+    "waveclear": {
+      "target": 1.5,
+      "importance": 0.35,
+      "comment": "En dessous, impossible de defendre en retard au score.",
+      "effet_mesure": -0.0415,
+      "z": -2.64,
+      "verdict": "non concluant"
+    },
+    "objective_dps": {
+      "target": 1.0,
+      "importance": 0.35,
+      "comment": "Capacite a tuer Baron/Dragon rapidement.",
+      "effet_mesure": -0.0297,
+      "z": -1.89,
+      "verdict": "non concluant"
+    },
+    "mobility": {
+      "target": 1.5,
+      "importance": 0.35,
+      "comment": "Faible importance : seuil indicatif, rarement bloquant.",
+      "effet_mesure": -0.0326,
+      "z": -2.07,
+      "verdict": "non concluant"
+    },
+    "sustain": {
+      "target": 0.8,
+      "importance": 1.0,
+      "comment": "Utile contre le poke, peu determinant sinon.",
+      "effet_mesure": 0.0495,
+      "z": 3.15,
+      "verdict": "mesure"
+    },
+    "splitpush": {
+      "target": 0.6,
+      "importance": 0.35,
+      "comment": "Une seule source suffit ; au-dela c'est de la redondance.",
+      "effet_mesure": -0.0059,
+      "z": -0.38,
+      "verdict": "non concluant"
+    },
+    "pick_potential": {
+      "target": 0.8,
+      "importance": 0.35,
+      "comment": "Condition de victoire alternative si l'equipe ne peut pas fight a 5.",
+      "effet_mesure": -0.0099,
+      "z": -0.63,
+      "verdict": "non concluant"
+    },
+    "poke_siege": {
+      "target": 0.8,
+      "importance": 0.35,
+      "comment": "Optionnel, sauf si la comp n'a aucun engage.",
+      "effet_mesure": -0.0435,
+      "z": -2.77,
+      "verdict": "non concluant"
+    },
+    "soft_cc": {
+      "target": 1.2,
+      "importance": 0.35,
+      "effet_mesure": 0.0257,
+      "z": 1.63,
+      "verdict": "non concluant"
+    },
+    "self_peel": {
+      "target": 1.5,
+      "importance": 0.35,
+      "comment": "Individuel plutot que collectif, faible poids d'equipe.",
+      "effet_mesure": -0.0148,
+      "z": -0.94,
+      "verdict": "non concluant"
+    },
+    "dive_resistance": {
+      "target": 1.2,
+      "importance": 0.95,
+      "comment": "Importance montee dynamiquement si menace_dive elevee.",
+      "effet_mesure": 0.047,
+      "z": 2.99,
+      "verdict": "mesure"
+    }
   },
-
   "redundancy": {
     "saturation_factor": 1.6,
     "penalty_per_axis": 0.04,
     "comment": "Si somme_allies[axe] > target * 1.6, tout apport supplementaire sur cet axe est penalise."
   },
-
   "damage_mix": {
-    "ideal_ad_ratio": 0.55,
-    "tolerance": 0.20,
-    "slope": 2.5,
-    "hard_penalty_threshold": 0.80,
+    "ideal_ad_ratio": 0.48,
+    "tolerance": 0.2,
+    "slope": 1.2,
+    "hard_penalty_threshold": 0.8,
     "hard_penalty_value": 0.12,
-    "comment": "bonus_mix = 1 - min(1, |0.55 - ratio_projete| * 2.5). Penalite dure si le ratio depasse 0.80 ou passe sous 0.20."
+    "comment": "Mesuré : victoire 48.5 % sous 40 % d'AP, plate ensuite (50.0-50.9 %). Cible au milieu du plateau, pente faible faute d'optimum marqué."
   },
-
   "scaling": {
-    "max_negative_gap": 0.30,
+    "max_negative_gap": 0.3,
     "penalty_value": 0.08,
     "comment": "Compare moyenne(power_curve.late) des deux equipes. Si l'ecart en notre defaveur depasse 0.30, on penalise les champions a scaling tardif et on valorise early/mid."
   },
-
   "threat_matrix": {
     "dive": {
       "formula": "sum(mobility * (damage_profile == 'burst' ? 1.0 : 0.5)) sur les ennemis",
       "normalizer": 2.5,
-      "valorise": { "self_peel": 1.0, "mobility": 0.8, "dive_resistance": 1.0, "frontline": 0.5 },
-      "penalise": { "low_range_low_mobility": 0.8 }
+      "valorise": {
+        "self_peel": 1.0,
+        "mobility": 0.8,
+        "dive_resistance": 1.0,
+        "frontline": 0.5
+      },
+      "penalise": {
+        "low_range_low_mobility": 0.8
+      }
     },
     "engage": {
       "formula": "max(engage_ennemi) + 0.5 * sum(autres engage)",
       "normalizer": 2.0,
-      "valorise": { "disengage_peel": 1.0, "mobility": 0.7, "self_peel": 0.5 },
-      "penalise": { "channeled_ultimate": 0.7, "immobile": 0.6 }
+      "valorise": {
+        "disengage_peel": 1.0,
+        "mobility": 0.7,
+        "self_peel": 0.5
+      },
+      "penalise": {
+        "channeled_ultimate": 0.7,
+        "immobile": 0.6
+      }
     },
     "poke": {
       "formula": "sum(poke_siege) des ennemis avec attack_range > 500",
       "normalizer": 2.5,
-      "valorise": { "engage": 1.0, "sustain": 0.8, "mobility": 0.6, "poke_siege": 0.5 },
-      "penalise": { "static_no_engage": 0.7 }
+      "valorise": {
+        "engage": 1.0,
+        "sustain": 0.8,
+        "mobility": 0.6,
+        "poke_siege": 0.5
+      },
+      "penalise": {
+        "static_no_engage": 0.7
+      }
     },
     "scaling": {
       "formula": "moyenne(power_curve.late ennemis) - moyenne(power_curve.late allies)",
       "normalizer": 0.5,
-      "valorise": { "power_curve.early": 0.8, "power_curve.mid": 1.0, "objective_dps": 0.7, "splitpush": 0.6 },
-      "penalise": { "late_scaling": 0.9 }
+      "valorise": {
+        "power_curve.early": 0.8,
+        "power_curve.mid": 1.0,
+        "objective_dps": 0.7,
+        "splitpush": 0.6
+      },
+      "penalise": {
+        "late_scaling": 0.9
+      }
     },
     "ad_heavy": {
       "formula": "ratio AD de la composition ennemie",
       "trigger_above": 0.75,
       "normalizer": 1.0,
-      "valorise": { "frontline": 1.0 },
+      "valorise": {
+        "frontline": 1.0
+      },
       "penalise": {}
     },
     "ap_heavy": {
       "formula": "ratio AP de la composition ennemie",
       "trigger_above": 0.75,
       "normalizer": 1.0,
-      "valorise": { "frontline": 0.8 },
+      "valorise": {
+        "frontline": 0.8
+      },
       "penalise": {}
     },
     "hard_cc": {
       "formula": "sum(hard_cc) ennemi",
       "normalizer": 3.0,
-      "valorise": { "mobility": 0.8, "self_peel": 0.6 },
-      "penalise": { "channeled_ultimate": 1.0, "immobile": 0.7 }
+      "valorise": {
+        "mobility": 0.8,
+        "self_peel": 0.6
+      },
+      "penalise": {
+        "channeled_ultimate": 1.0,
+        "immobile": 0.7
+      }
     }
   },
-
   "weights_by_slot": {
-    "first_pick":  { "meta": 0.40, "lane": 0.05, "team_fit": 0.30, "counter_comp": 0.25 },
-    "middle":      { "meta": 0.30, "lane": 0.15, "team_fit": 0.30, "counter_comp": 0.25 },
-    "last_pick":   { "meta": 0.20, "lane": 0.25, "team_fit": 0.25, "counter_comp": 0.30 },
-    "blind_pick":  { "meta": 0.50, "lane": 0.00, "team_fit": 0.25, "counter_comp": 0.25 }
+    "first_pick": {
+      "meta": 0.4,
+      "lane": 0.05,
+      "team_fit": 0.3,
+      "counter_comp": 0.25
+    },
+    "middle": {
+      "meta": 0.3,
+      "lane": 0.15,
+      "team_fit": 0.3,
+      "counter_comp": 0.25
+    },
+    "last_pick": {
+      "meta": 0.2,
+      "lane": 0.25,
+      "team_fit": 0.25,
+      "counter_comp": 0.3
+    },
+    "blind_pick": {
+      "meta": 0.5,
+      "lane": 0.0,
+      "team_fit": 0.25,
+      "counter_comp": 0.25
+    }
   },
-
   "first_pick": {
-    "minimax_weight": 0.60,
-    "average_weight": 0.40,
+    "minimax_weight": 0.6,
+    "average_weight": 0.4,
     "counters_considered": 8,
-    "flex_bonus": 0.10
+    "flex_bonus": 0.1
   },
-
   "complexity": {
     "lambda": 0.08,
     "comment": "Penalite = lambda * mechanical_difficulty. Mettre 0 pour un moteur purement objectif, 0.15 si tu veux limiter les propositions exigeantes."
   },
-
   "bayesian_shrinkage": {
     "meta_k": 500,
     "lane_matchup_k": 300,
-    "prior": 0.50,
+    "prior": 0.5,
     "comment": "wr_ajuste = (wins + k * prior) / (games + k). k eleve car les donnees agregees tierces sont volumineuses."
   },
-
   "archetypes": {
     "enum": [
-      "tank_engage", "bruiser_splitpush", "ranged_bruiser", "battlemage",
-      "assassin", "mage_control", "mage_poke",
-      "adc_hypercarry", "adc_lane_bully",
-      "enchanter", "support_engage",
-      "jungler_farm", "jungler_ganker"
+      "tank_engage",
+      "bruiser_splitpush",
+      "ranged_bruiser",
+      "battlemage",
+      "assassin",
+      "mage_control",
+      "mage_poke",
+      "adc_hypercarry",
+      "adc_lane_bully",
+      "enchanter",
+      "support_engage",
+      "jungler_farm",
+      "jungler_ganker"
     ],
     "comment": "Label de regroupement utilise uniquement par le calcul de diversite du top 3. ranged_bruiser couvre les bruisers a distance (Jayce, Gnar, Quinn, Teemo, Kayle, Urgot). battlemage couvre les mages de melee/mi-distance a sustain (Gragas, Rumble, Singed, Swain)."
   },
-
   "diversity": {
     "score_floor_ratio": 0.85,
     "similarity_threshold": 0.75,
-    "similarity_weights": { "same_archetype": 0.50, "axes_cosine": 0.30, "damage_mix": 0.20 },
+    "similarity_weights": {
+      "same_archetype": 0.5,
+      "axes_cosine": 0.3,
+      "damage_mix": 0.2
+    },
     "comment": "Un candidat doit valoir au moins 85% du meilleur score pour entrer dans le top 3, et etre a moins de 0.75 de similarite avec les deja retenus."
   },
-
   "ban_filter": {
-    "empty_ban_values": [-1, 0, null],
+    "empty_ban_values": [
+      -1,
+      0,
+      null
+    ],
     "id_normalization": "championId numerique en interne, championName seulement a l'affichage"
-  }
+  },
+  "team_thresholds_source": "importances calibrées par scripts/calibrate_draft_config.py depuis data/draft_measures.json (écart entre camps, 7810 matchs, Bonferroni)"
 }
