@@ -389,26 +389,10 @@ _QSS_CC_CHAMPIONS: set[str] = {
 }
 
 # Anti-shield items par type de dégâts
-_ANTISHIELD_AD_ITEMS = {"Crochet de serpent"}     # Serpent's Fang
-_ANTISHIELD_AP_ITEMS = {"Flamme-ombre"}           # Shadowflame
 
-# QSS / items Mercuriel (par classe)
-_QSS_ITEMS = {"Voile de mercure", "Ceinture de mercure", "Cimeterre mercuriel"}
 
-# Valeur conditionnelle (partie de l'or perdue si le déclencheur est inactif)
-_CONDITIONAL_SHARES = {
-    "Cimeterre mercuriel": {"trigger": "need_qss", "conditional_share": 0.32},
-    "Aube de Haut-Lac-d'Argent": {"trigger": "need_qss", "conditional_share": 0.32},
-    "Crochet de serpent": {"trigger": "need_antishield", "conditional_share": 0.40},
-    "Rappel mortel": {"trigger": "need_grievous", "conditional_share": 0.22},
-    "Épée dentelée chimico-punk": {"trigger": "need_grievous", "conditional_share": 0.25},
-    "Morellonomicon": {"trigger": "need_grievous", "conditional_share": 0.20},
-    "Cotte épineuse": {"trigger": "need_grievous", "conditional_share": 0.25},
-    "Putrificateur techno-chimique": {"trigger": "need_grievous", "conditional_share": 0.25},
-    # Sa passive réduit les dégâts critiques subis : sans porteur de crit en
-    # face, cette part du prix ne sert à rien.
-    "Présage de Randuin": {"trigger": "need_anticrit", "conditional_share": 0.30},
-}
+# Les valeurs conditionnelles vivent désormais dans data/item_conditions.json,
+# indexées par identifiant d'objet et chargées dans StatAnalyzer._conditions.
 
 # ============================================================
 # 4.5. DYNAMIQUE DES DÉCLENCHEURS BINAIRES (COHEN'S D)
@@ -422,6 +406,7 @@ _TRIGGER_EFFECT = {
     "need_tenacity":   None,
     "need_antishield": None,
     "need_anticrit": None,
+    "need_antiauto": None,
     "can_adapt_defense": None,
     "need_armor": None,
     "need_mr": None,
@@ -741,6 +726,15 @@ class StatAnalyzer:
                         pass
         except Exception as e:
             logger.warning("StatAnalyzer: item_data load error: %s", e)
+
+        # ---- Effets conditionnels (base indexée par identifiant) ----
+        from data import item_conditions as _cond
+        self._conditions = _cond.charger(self._item_id_to_name)
+        self._cond_module = _cond
+        # Ensembles « ai-je déjà cet effet ? », résolus depuis la même base.
+        self._qss_items = _cond.noms_par_declencheur("need_qss", self._item_id_to_name)
+        self._antishield_items = _cond.noms_par_declencheur(
+            "need_antishield", self._item_id_to_name)
 
         # ---- Anti-soin : listes déduites des descriptions DDragon ----
         self._gw_ad, self._gw_ap, self._gw_tank = set(), set(), set()
@@ -1630,6 +1624,17 @@ class StatAnalyzer:
         # étaient notés sur leurs seules stats brutes : Présage de Randuin
         # ressortait à 75 armure + 350 PV pour 2700 or, sans que le moteur voie
         # qu'une part du prix paie une passive inutile face à une équipe sans crit.
+        # Auto-attaquants adverses : conditionne la valeur des effets qui ne
+        # mordent que sur les attaques de base (aura du Cœur gelé, Coques en
+        # acier). Une équipe full sorts les rend inertes.
+        need_antiauto = False
+        for p in enemies:
+            prof = self.affinity.profile(p.champion_name) if self.affinity else {}
+            flags = prof.get("flags") or {}
+            if flags.get("auto_based") or flags.get("on_hit") or flags.get("crit_viable"):
+                need_antiauto = True
+                break
+
         need_anticrit = False
         for p in enemies:
             prof = self.affinity.profile(p.champion_name) if self.affinity else {}
@@ -1693,11 +1698,11 @@ class StatAnalyzer:
             need_gw = False
 
         # QSS items
-        if my_items_set & _QSS_ITEMS:
+        if my_items_set & self._qss_items:
             need_qss = False
             
         # Anti-shield items
-        if my_items_set & (_ANTISHIELD_AD_ITEMS | _ANTISHIELD_AP_ITEMS):
+        if my_items_set & self._antishield_items:
             need_antishield = False
 
         # Armor / Magic Pen items
@@ -1709,6 +1714,7 @@ class StatAnalyzer:
         return {
             "need_grievous":     need_gw,
             "need_anticrit":     need_anticrit,
+            "need_antiauto":     need_antiauto,
             "gw_source":         gw_source_str,
             "need_armor_pen":    need_pen,
             "need_magic_pen":    need_mpen,
@@ -1875,12 +1881,12 @@ class StatAnalyzer:
             trigger_score = get_trigger_bonus("need_tenacity")
             reason = "Seuil binaire — ténacité anti-CC"
 
-        elif triggers.get("need_antishield") and item_name in (_ANTISHIELD_AD_ITEMS | _ANTISHIELD_AP_ITEMS):
+        elif triggers.get("need_antishield") and item_name in self._antishield_items:
             trigger_score = get_trigger_bonus("need_antishield")
             sc = triggers.get("shield_count", 0)
             reason = f"Seuil binaire — anti-bouclier ({sc} champions avec shield)"
 
-        elif triggers.get("need_qss") and item_name in _QSS_ITEMS:
+        elif triggers.get("need_qss") and item_name in self._qss_items:
             trigger_score = get_trigger_bonus("need_qss")
             reason = f"Seuil binaire — QSS anti-CC ({triggers.get('qss_cc_source', '')})"
 
@@ -2046,10 +2052,10 @@ class StatAnalyzer:
         gold_score = min(1.0, gold_eff / 1.4)
 
         # ---- Step 3b: Valeur Conditionnelle (Conditional Share) ----
-        cond = _CONDITIONAL_SHARES.get(item_name)
-        if cond and cond["conditional_share"] > 0:
-            active = triggers.get(cond["trigger"], False)
-            if not active:
+        conds = self._conditions.get(item_name)
+        if conds:
+            ratio_utile, inactifs = self._cond_module.ratio_effectif(conds, triggers)
+            if inactifs:
                 # L'or investi dans l'effet inutilisé est perdu.
                 # On ne pénalise pas si on a déjà engagé l'or (composant possédé) ou si l'objet est déjà possédé (rescoring)
                 components = set(_ITEM_BUILD_PATH_PRIORITY.get(item_name, []))
@@ -2057,11 +2063,11 @@ class StatAnalyzer:
                 is_owned = item_name in already_have
                 
                 if not gold_committed and not is_owned:
-                    effective_gold_ratio = 1.0 - cond["conditional_share"]
-                    gold_score *= effective_gold_ratio
-                    marginal_score *= effective_gold_ratio
-                    
-                    reason_suffix = f" — {int(cond['conditional_share']*100)}% du prix inutilisé"
+                    gold_score *= ratio_utile
+                    marginal_score *= ratio_utile
+
+                    perdu = int(round((1.0 - ratio_utile) * 100))
+                    reason_suffix = f" — {perdu}% du prix inutilisé"
                     if not reason:
                         reason = f"eff-or {gold_eff*100:.0f}%"
                     reason += reason_suffix
@@ -2672,9 +2678,9 @@ class StatAnalyzer:
             fams.add("pen_ap")
         if iname in _GW_AD_ITEMS or iname in _GW_AP_ITEMS or iname in _GW_TANK_ITEM:
             fams.add("gw")
-        if iname in _ANTISHIELD_AD_ITEMS or iname in _ANTISHIELD_AP_ITEMS:
+        if iname in self._antishield_items:
             fams.add("antishield")
-        if iname in _QSS_ITEMS:
+        if iname in self._qss_items:
             fams.add("qss")
         return fams
 

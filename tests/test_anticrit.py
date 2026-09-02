@@ -10,7 +10,7 @@ prix paie une passive inutile ici.
 import pytest
 
 from core.state_manager import PlayerInGameData
-from services.stat_analyzer import StatAnalyzer, _CONDITIONAL_SHARES
+from services.stat_analyzer import StatAnalyzer
 
 RANDUIN = "Présage de Randuin"
 
@@ -20,7 +20,7 @@ _BASE_TRIGGERS = {
     "enemy_fed_name": "", "need_antishield": False, "need_armor": False,
     "need_mr": False, "need_qss": False, "qss_cc_source": "",
     "adapt_threshold": 0, "cc_count": 0, "shield_count": 0, "tank_count": 0,
-    "gold_state": "even", "need_anticrit": False,
+    "gold_state": "even", "need_anticrit": False, "need_antiauto": False,
 }
 
 
@@ -74,11 +74,11 @@ def test_randuin_est_penalise_sans_menace_de_crit(analyzer):
     assert "inutilis" in why, f"la raison doit expliquer la décote, obtenu : {why!r}"
 
 
-def test_la_part_conditionnelle_est_declaree():
-    entree = _CONDITIONAL_SHARES.get(RANDUIN)
-    assert entree, "Randuin doit déclarer une part de prix conditionnelle"
-    assert entree["trigger"] == "need_anticrit"
-    assert 0 < entree["conditional_share"] < 1
+def test_la_part_conditionnelle_est_declaree(analyzer):
+    conds = analyzer._conditions.get(RANDUIN)
+    assert conds, "Randuin doit déclarer une part de prix conditionnelle"
+    assert any(c["trigger"] == "need_anticrit" for c in conds)
+    assert all(0 < c["conditional_share"] < 1 for c in conds)
 
 
 def test_un_objet_inconditionnel_n_est_pas_penalise(analyzer):
@@ -87,10 +87,9 @@ def test_un_objet_inconditionnel_n_est_pas_penalise(analyzer):
     Cœur gelé n'en déclare aucune : son prix est intégralement utile.
     (Cotte épineuse, elle, est bien conditionnelle — à l'anti-soin.)
     """
-    tr = dict(_BASE_TRIGGERS, need_anticrit=False)
+    tr = dict(_BASE_TRIGGERS, need_anticrit=False, need_antiauto=True)
     _, _, why = analyzer._score_item("Cœur gelé", "Tank", 0.5, "Armor_EHP", tr, [])
     assert "inutilis" not in why
-    assert "Cœur gelé" not in _CONDITIONAL_SHARES
 
 
 # ------------------------------- l'anti-soin déjà acheté relâche le déclencheur

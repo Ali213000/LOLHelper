@@ -1,0 +1,119 @@
+{
+  "_lisez_moi": [
+    "Base des effets d'objets dont la valeur DÉPEND de la composition adverse.",
+    "",
+    "Quand le déclencheur n'est pas actif, la part indiquée du prix ne sert à rien :",
+    "le score de l'objet est décoté d'autant. C'est ce qui empêche le moteur de",
+    "conseiller un Présage de Randuin (anti-critique) face à une équipe sans crit,",
+    "ou un anti-soin face à une équipe qui ne se soigne pas.",
+    "",
+    "INDEXÉE PAR IDENTIFIANT, jamais par nom : les listes écrites à la main ont",
+    "dérivé trois fois (\"Plaques de l'épineux\", \"Chaîne de Chempunk\",",
+    "\"Voile de mercure\" n'existaient plus), et l'échec était silencieux.",
+    "Un identifiant introuvable est signalé au chargement, pas ignoré.",
+    "",
+    "'part' = fraction du prix imputable à l'effet conditionnel (0 à 1).",
+    "Un objet peut porter plusieurs conditions : elles se cumulent."
+  ],
+
+  "objets": [
+    {
+      "id": 3076, "nom_indicatif": "Armure roncière (Bramble Vest)",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.25}],
+      "note": "Composant anti-soin à 800 or : l'Hémorragie est sa raison d'être."
+    },
+    {
+      "id": 3075, "nom_indicatif": "Cotte épineuse (Thornmail)",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.25}],
+      "note": "L'armure reste utile sans soigneur en face, pas l'Hémorragie."
+    },
+    {
+      "id": 3123, "nom_indicatif": "Marque du bourreau (Executioner's Calling)",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.30}],
+      "note": "Composant à 800 or presque entièrement dédié à l'anti-soin."
+    },
+    {
+      "id": 3916, "nom_indicatif": "Orbe de l'oubli (Oblivion Orb)",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.25}]
+    },
+    {
+      "id": 3165, "nom_indicatif": "Morellonomicon",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.20}]
+    },
+    {
+      "id": 6609, "nom_indicatif": "Épée dentelée chimico-punk (Chempunk Chainsword)",
+      "conditions": [{"declencheur": "need_grievous", "part": 0.25}]
+    },
+    {
+      "id": 3033, "nom_indicatif": "Rappel mortel (Mortal Reminder)",
+      "conditions": [
+        {"declencheur": "need_grievous", "part": 0.22},
+        {"declencheur": "need_armor_pen", "part": 0.25}
+      ],
+      "note": "Deux effets conditionnels : anti-soin ET pénétration d'armure en %."
+    },
+
+    {
+      "id": 3143, "nom_indicatif": "Présage de Randuin",
+      "conditions": [{"declencheur": "need_anticrit", "part": 0.30}],
+      "note": "Vigueur : -30% de dégâts critiques subis. Sans porteur de crit en face, cette part du prix est perdue."
+    },
+
+    {
+      "id": 3110, "nom_indicatif": "Cœur gelé (Frozen Heart)",
+      "conditions": [{"declencheur": "need_antiauto", "part": 0.25}],
+      "note": "Aura de -20% de vitesse d'attaque : sans auto-attaquant adverse, elle ne mord sur rien."
+    },
+    {
+      "id": 3047, "nom_indicatif": "Coques en acier (Plated Steelcaps)",
+      "conditions": [{"declencheur": "need_antiauto", "part": 0.35}],
+      "note": "Ne réduit QUE les dégâts d'attaques de base."
+    },
+
+    {
+      "id": 3111, "nom_indicatif": "Sandales de Mercure (Mercury's Treads)",
+      "conditions": [{"declencheur": "need_tenacity", "part": 0.30}],
+      "note": "La ténacité ne réduit que le CC dur, pas les ralentissements."
+    },
+
+    {
+      "id": 3140, "nom_indicatif": "Ceinture de mercure (Quicksilver Sash)",
+      "conditions": [{"declencheur": "need_qss", "part": 0.40}],
+      "note": "Objet monofonction : sans CC à purger, il ne reste que 30 de résistance magique."
+    },
+    {
+      "id": 3139, "nom_indicatif": "Cimeterre mercuriel (Mercurial Scimitar)",
+      "conditions": [{"declencheur": "need_qss", "part": 0.32}]
+    },
+    {
+      "id": 6035, "nom_indicatif": "Aube de Haut-Lac-d'Argent (Silvermere Dawn)",
+      "conditions": [{"declencheur": "need_qss", "part": 0.32}]
+    },
+
+    {
+      "id": 6695, "nom_indicatif": "Crochet de serpent (Serpent's Fang)",
+      "conditions": [{"declencheur": "need_antishield", "part": 0.40}],
+      "note": "Toute sa passive vise les boucliers."
+    },
+    {
+      "id": 4645, "nom_indicatif": "Flamme-ombre (Shadowflame)",
+      "conditions": [{"declencheur": "need_antishield", "part": 0.20}],
+      "note": "Le bonus ne s'applique qu'aux cibles affaiblies ou sous bouclier."
+    },
+
+    {
+      "id": 3036, "nom_indicatif": "Salutations de Dominik (Lord Dominik's Regards)",
+      "conditions": [{"declencheur": "need_armor_pen", "part": 0.30}],
+      "note": "Pénétration en % et Tueur de géants : les deux se paient sur les PV et l'armure adverses."
+    },
+    {
+      "id": 3135, "nom_indicatif": "Bâton du vide (Void Staff)",
+      "conditions": [{"declencheur": "need_magic_pen", "part": 0.30}],
+      "note": "40% de pénétration magique : sans résistance magique en face, autant prendre de la puissance brute."
+    },
+    {
+      "id": 3137, "nom_indicatif": "Fleur de crypte (Cryptbloom)",
+      "conditions": [{"declencheur": "need_magic_pen", "part": 0.25}]
+    }
+  ]
+}
