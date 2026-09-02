@@ -1,14 +1,26 @@
 {
   "schema_version": "1.0",
   "notes": "Multiplicateurs appliques aux gains marginaux par statistique, plus contraintes dures. Structure en deux couches : defaut par archetype (couvre tout le roster) puis surcharge par champion (uniquement les ecarts). Un champion absent des overrides herite du defaut de son archetype, donc les nouveaux champions fonctionnent sans intervention.",
-
   "stat_keys": [
-    "ad", "ap", "attack_speed", "crit", "on_hit",
-    "lethality", "armor_pen_pct", "magic_pen_flat", "magic_pen_pct",
-    "ability_haste", "mana", "health", "armor", "mr",
-    "lifesteal", "omnivamp", "heal_shield_power", "movespeed"
+    "ad",
+    "ap",
+    "attack_speed",
+    "crit",
+    "on_hit",
+    "lethality",
+    "armor_pen_pct",
+    "magic_pen_flat",
+    "magic_pen_pct",
+    "ability_haste",
+    "mana",
+    "health",
+    "armor",
+    "mr",
+    "lifesteal",
+    "omnivamp",
+    "heal_shield_power",
+    "movespeed"
   ],
-
   "flags": {
     "crit_viable": "l'achat de coup critique a du sens sur ce champion",
     "on_hit": "les effets a l'impact se declenchent utilement",
@@ -16,240 +28,1323 @@
     "auto_based": "degats majoritairement par attaques de base",
     "stacks_hp": "profite anormalement des PV (ratios PV, Sterak, Coeur gele)"
   },
-
   "archetype_defaults": {
     "adc_hypercarry": {
-      "affinity": { "ad": 1.15, "attack_speed": 1.35, "crit": 1.30, "on_hit": 1.10,
-                    "lethality": 0.35, "armor_pen_pct": 1.15, "ability_haste": 0.55,
-                    "lifesteal": 1.15, "health": 0.75, "armor": 0.70, "mr": 0.70,
-                    "movespeed": 1.05 },
-      "flags": { "crit_viable": true, "on_hit": false, "uses_mana": true, "auto_based": true, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.15,
+        "attack_speed": 1.35,
+        "crit": 1.3,
+        "on_hit": 1.1,
+        "lethality": 0.35,
+        "armor_pen_pct": 1.15,
+        "ability_haste": 0.55,
+        "lifesteal": 1.15,
+        "health": 0.75,
+        "armor": 0.7,
+        "mr": 0.7,
+        "movespeed": 1.05
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": true,
+        "stacks_hp": false
+      }
     },
     "adc_lane_bully": {
-      "affinity": { "ad": 1.20, "attack_speed": 1.20, "crit": 1.25, "on_hit": 0.80,
-                    "lethality": 0.55, "armor_pen_pct": 1.05, "ability_haste": 0.70,
-                    "lifesteal": 1.10, "health": 0.80, "movespeed": 1.05 },
-      "flags": { "crit_viable": true, "on_hit": false, "uses_mana": true, "auto_based": true, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.2,
+        "attack_speed": 1.2,
+        "crit": 1.25,
+        "on_hit": 0.8,
+        "lethality": 0.55,
+        "armor_pen_pct": 1.05,
+        "ability_haste": 0.7,
+        "lifesteal": 1.1,
+        "health": 0.8,
+        "movespeed": 1.05
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": true,
+        "stacks_hp": false
+      }
     },
     "assassin": {
-      "affinity": { "ad": 1.20, "ap": 1.20, "attack_speed": 0.45, "crit": 0.20, "on_hit": 0.15,
-                    "lethality": 1.40, "armor_pen_pct": 0.55, "magic_pen_flat": 1.35,
-                    "magic_pen_pct": 0.70, "ability_haste": 1.20, "health": 0.85,
-                    "omnivamp": 1.05, "movespeed": 1.15 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.2,
+        "ap": 1.2,
+        "attack_speed": 0.45,
+        "crit": 0.2,
+        "on_hit": 0.15,
+        "lethality": 1.4,
+        "armor_pen_pct": 0.55,
+        "magic_pen_flat": 1.35,
+        "magic_pen_pct": 0.7,
+        "ability_haste": 1.2,
+        "health": 0.85,
+        "omnivamp": 1.05,
+        "movespeed": 1.15
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "mage_control": {
-      "affinity": { "ap": 1.30, "ad": 0.10, "attack_speed": 0.10, "crit": 0.05, "on_hit": 0.05,
-                    "lethality": 0.05, "magic_pen_flat": 1.15, "magic_pen_pct": 1.30,
-                    "ability_haste": 1.30, "mana": 1.20, "health": 0.90, "armor": 0.80, "mr": 0.85 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ap": 1.3,
+        "ad": 0.1,
+        "attack_speed": 0.1,
+        "crit": 0.05,
+        "on_hit": 0.05,
+        "lethality": 0.05,
+        "magic_pen_flat": 1.15,
+        "magic_pen_pct": 1.3,
+        "ability_haste": 1.3,
+        "mana": 1.2,
+        "health": 0.9,
+        "armor": 0.8,
+        "mr": 0.85
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "mage_poke": {
-      "affinity": { "ap": 1.30, "ad": 0.10, "attack_speed": 0.10, "crit": 0.05, "on_hit": 0.05,
-                    "magic_pen_flat": 1.25, "magic_pen_pct": 1.20, "ability_haste": 1.35,
-                    "mana": 1.25, "health": 0.85, "movespeed": 1.05 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ap": 1.3,
+        "ad": 0.1,
+        "attack_speed": 0.1,
+        "crit": 0.05,
+        "on_hit": 0.05,
+        "magic_pen_flat": 1.25,
+        "magic_pen_pct": 1.2,
+        "ability_haste": 1.35,
+        "mana": 1.25,
+        "health": 0.85,
+        "movespeed": 1.05
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "battlemage": {
-      "affinity": { "ap": 1.25, "ability_haste": 1.25, "magic_pen_flat": 1.10, "magic_pen_pct": 1.15,
-                    "health": 1.25, "armor": 1.05, "mr": 1.05, "mana": 1.05,
-                    "attack_speed": 0.15, "crit": 0.05, "on_hit": 0.10, "lethality": 0.05 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": true }
+      "affinity": {
+        "ap": 1.25,
+        "ability_haste": 1.25,
+        "magic_pen_flat": 1.1,
+        "magic_pen_pct": 1.15,
+        "health": 1.25,
+        "armor": 1.05,
+        "mr": 1.05,
+        "mana": 1.05,
+        "attack_speed": 0.15,
+        "crit": 0.05,
+        "on_hit": 0.1,
+        "lethality": 0.05
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": true
+      }
     },
     "bruiser_splitpush": {
-      "affinity": { "ad": 1.20, "attack_speed": 1.00, "crit": 0.35, "on_hit": 0.70,
-                    "lethality": 0.55, "armor_pen_pct": 1.05, "ability_haste": 1.20,
-                    "health": 1.30, "armor": 1.15, "mr": 1.15, "omnivamp": 1.20,
-                    "lifesteal": 0.90, "movespeed": 1.05 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": true }
+      "affinity": {
+        "ad": 1.2,
+        "attack_speed": 1.0,
+        "crit": 0.35,
+        "on_hit": 0.7,
+        "lethality": 0.55,
+        "armor_pen_pct": 1.05,
+        "ability_haste": 1.2,
+        "health": 1.3,
+        "armor": 1.15,
+        "mr": 1.15,
+        "omnivamp": 1.2,
+        "lifesteal": 0.9,
+        "movespeed": 1.05
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": true
+      }
     },
     "ranged_bruiser": {
-      "affinity": { "ad": 1.15, "ap": 0.60, "attack_speed": 1.05, "crit": 0.45, "on_hit": 0.85,
-                    "lethality": 0.90, "armor_pen_pct": 1.00, "ability_haste": 1.15,
-                    "health": 1.05, "movespeed": 1.10 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.15,
+        "ap": 0.6,
+        "attack_speed": 1.05,
+        "crit": 0.45,
+        "on_hit": 0.85,
+        "lethality": 0.9,
+        "armor_pen_pct": 1.0,
+        "ability_haste": 1.15,
+        "health": 1.05,
+        "movespeed": 1.1
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "tank_engage": {
-      "affinity": { "ad": 0.35, "ap": 0.35, "attack_speed": 0.25, "crit": 0.05, "on_hit": 0.30,
-                    "lethality": 0.05, "ability_haste": 1.30, "health": 1.45,
-                    "armor": 1.40, "mr": 1.40, "mana": 0.90, "movespeed": 1.15 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": true }
+      "affinity": {
+        "ad": 0.35,
+        "ap": 0.35,
+        "attack_speed": 0.25,
+        "crit": 0.05,
+        "on_hit": 0.3,
+        "lethality": 0.05,
+        "ability_haste": 1.3,
+        "health": 1.45,
+        "armor": 1.4,
+        "mr": 1.4,
+        "mana": 0.9,
+        "movespeed": 1.15
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": true
+      }
     },
     "enchanter": {
-      "affinity": { "ap": 1.00, "ability_haste": 1.40, "heal_shield_power": 1.45,
-                    "mana": 1.30, "health": 1.05, "armor": 0.95, "mr": 0.95,
-                    "movespeed": 1.25, "attack_speed": 0.10, "crit": 0.05,
-                    "lethality": 0.05, "magic_pen_flat": 0.40, "magic_pen_pct": 0.35 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ap": 1.0,
+        "ability_haste": 1.4,
+        "heal_shield_power": 1.45,
+        "mana": 1.3,
+        "health": 1.05,
+        "armor": 0.95,
+        "mr": 0.95,
+        "movespeed": 1.25,
+        "attack_speed": 0.1,
+        "crit": 0.05,
+        "lethality": 0.05,
+        "magic_pen_flat": 0.4,
+        "magic_pen_pct": 0.35
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "support_engage": {
-      "affinity": { "health": 1.40, "armor": 1.35, "mr": 1.35, "ability_haste": 1.35,
-                    "movespeed": 1.20, "ap": 0.55, "ad": 0.30, "attack_speed": 0.20,
-                    "crit": 0.05, "lethality": 0.15, "heal_shield_power": 0.80 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": true }
+      "affinity": {
+        "health": 1.4,
+        "armor": 1.35,
+        "mr": 1.35,
+        "ability_haste": 1.35,
+        "movespeed": 1.2,
+        "ap": 0.55,
+        "ad": 0.3,
+        "attack_speed": 0.2,
+        "crit": 0.05,
+        "lethality": 0.15,
+        "heal_shield_power": 0.8
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": true
+      }
     },
     "jungler_farm": {
-      "affinity": { "ad": 1.10, "ap": 1.10, "attack_speed": 1.05, "crit": 0.40, "on_hit": 0.70,
-                    "lethality": 0.70, "armor_pen_pct": 1.00, "ability_haste": 1.20,
-                    "health": 1.15, "armor": 1.05, "mr": 1.05, "omnivamp": 1.10 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.1,
+        "ap": 1.1,
+        "attack_speed": 1.05,
+        "crit": 0.4,
+        "on_hit": 0.7,
+        "lethality": 0.7,
+        "armor_pen_pct": 1.0,
+        "ability_haste": 1.2,
+        "health": 1.15,
+        "armor": 1.05,
+        "mr": 1.05,
+        "omnivamp": 1.1
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     },
     "jungler_ganker": {
-      "affinity": { "ad": 1.15, "ap": 1.15, "attack_speed": 0.70, "crit": 0.25, "on_hit": 0.45,
-                    "lethality": 1.10, "armor_pen_pct": 0.75, "magic_pen_flat": 1.15,
-                    "ability_haste": 1.25, "health": 1.15, "movespeed": 1.15 },
-      "flags": { "crit_viable": false, "on_hit": false, "uses_mana": true, "auto_based": false, "stacks_hp": false }
+      "affinity": {
+        "ad": 1.15,
+        "ap": 1.15,
+        "attack_speed": 0.7,
+        "crit": 0.25,
+        "on_hit": 0.45,
+        "lethality": 1.1,
+        "armor_pen_pct": 0.75,
+        "magic_pen_flat": 1.15,
+        "ability_haste": 1.25,
+        "health": 1.15,
+        "movespeed": 1.15
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false,
+        "uses_mana": true,
+        "auto_based": false,
+        "stacks_hp": false
+      }
     }
   },
-
   "champion_overrides": {
-    "Vayne":      { "affinity": { "attack_speed": 1.50, "on_hit": 1.45, "crit": 1.10, "lethality": 0.15, "armor_pen_pct": 0.60 },
-                    "flags": { "crit_viable": true, "on_hit": true } },
-    "KogMaw":     { "affinity": { "attack_speed": 1.55, "on_hit": 1.60, "crit": 0.35, "ap": 0.80, "armor_pen_pct": 0.70 },
-                    "flags": { "crit_viable": false, "on_hit": true } },
-    "Kaisa":      { "affinity": { "attack_speed": 1.40, "on_hit": 1.35, "crit": 0.55, "ap": 1.10, "ability_haste": 0.70 },
-                    "flags": { "crit_viable": false, "on_hit": true } },
-    "Twitch":     { "affinity": { "attack_speed": 1.35, "on_hit": 1.25, "crit": 1.25 },
-                    "flags": { "crit_viable": true, "on_hit": true } },
-    "Varus":      { "affinity": { "attack_speed": 1.10, "on_hit": 1.20, "crit": 0.60, "lethality": 1.05, "ability_haste": 1.05 },
-                    "flags": { "crit_viable": false, "on_hit": true } },
-    "Jhin":       { "affinity": { "attack_speed": 0.15, "crit": 1.45, "ad": 1.35, "lethality": 0.85, "movespeed": 1.25 },
-                    "flags": { "crit_viable": true, "on_hit": false },
-                    "note": "vitesse d'attaque convertie en AD : ne jamais recommander d'AS" },
-    "Ezreal":     { "affinity": { "attack_speed": 0.45, "crit": 0.15, "ability_haste": 1.45, "lethality": 0.90, "ad": 1.20, "ap": 0.70, "mana": 1.15 },
-                    "flags": { "crit_viable": false, "on_hit": false } },
-    "Senna":      { "affinity": { "crit": 1.20, "lifesteal": 1.25, "attack_speed": 0.40, "ad": 1.30, "heal_shield_power": 1.10 },
-                    "flags": { "crit_viable": true, "on_hit": false } },
-    "Smolder":    { "affinity": { "ad": 1.25, "ap": 0.80, "ability_haste": 1.20, "attack_speed": 0.60, "crit": 0.25 },
-                    "flags": { "crit_viable": false, "on_hit": false } },
-    "Corki":      { "affinity": { "ad": 1.15, "ap": 1.00, "ability_haste": 1.25, "crit": 0.25, "attack_speed": 0.60, "magic_pen_flat": 0.90 },
-                    "flags": { "crit_viable": false, "on_hit": false } },
-    "Aphelios":   { "affinity": { "crit": 1.35, "attack_speed": 1.15, "lifesteal": 1.20 },
-                    "flags": { "crit_viable": true, "on_hit": false } },
-    "Zeri":       { "affinity": { "attack_speed": 1.25, "crit": 1.30, "ad": 1.20, "movespeed": 1.20, "on_hit": 0.45 },
-                    "flags": { "crit_viable": true, "on_hit": false } },
-    "Nilah":      { "affinity": { "crit": 1.40, "lifesteal": 1.35, "omnivamp": 1.30, "attack_speed": 1.15 },
-                    "flags": { "crit_viable": true } },
-    "Draven":     { "affinity": { "crit": 1.45, "ad": 1.30, "attack_speed": 1.05, "lethality": 0.50 },
-                    "flags": { "crit_viable": true } },
-
-    "Yasuo":      { "affinity": { "crit": 1.50, "attack_speed": 1.25, "ad": 1.15, "lethality": 0.20, "ability_haste": 0.70 },
-                    "flags": { "crit_viable": true, "uses_mana": false } },
-    "Yone":       { "affinity": { "crit": 1.50, "attack_speed": 1.20, "ad": 1.15, "lethality": 0.25, "ability_haste": 0.75 },
-                    "flags": { "crit_viable": true, "uses_mana": false } },
-    "Tryndamere": { "affinity": { "crit": 1.45, "attack_speed": 1.25, "ad": 1.20, "lifesteal": 1.20, "ability_haste": 0.50 },
-                    "flags": { "crit_viable": true, "uses_mana": false } },
-    "MasterYi":   { "affinity": { "attack_speed": 1.45, "crit": 1.35, "on_hit": 1.20, "lifesteal": 1.20 },
-                    "flags": { "crit_viable": true, "on_hit": true, "uses_mana": true } },
-    "Jax":        { "affinity": { "attack_speed": 1.30, "on_hit": 1.25, "health": 1.30, "armor": 1.20, "mr": 1.20, "crit": 0.20 },
-                    "flags": { "on_hit": true } },
-    "XinZhao":    { "affinity": { "attack_speed": 1.25, "on_hit": 1.15, "crit": 0.45, "health": 1.20 } },
-    "Nasus":      { "affinity": { "ability_haste": 1.45, "health": 1.35, "armor": 1.25, "mr": 1.25, "attack_speed": 1.10, "crit": 0.15, "ad": 0.55 },
-                    "note": "les degats viennent des stacks Q, pas de l'AD achetee" },
-    "Fiora":      { "affinity": { "attack_speed": 1.20, "on_hit": 0.90, "crit": 0.60, "ad": 1.25, "armor_pen_pct": 1.15, "health": 1.15 } },
-    "Irelia":     { "affinity": { "attack_speed": 1.25, "on_hit": 1.05, "ad": 1.20, "crit": 0.30, "health": 1.20 } },
-    "Camille":    { "affinity": { "ad": 1.25, "attack_speed": 1.10, "armor_pen_pct": 1.20, "health": 1.20, "crit": 0.20, "lethality": 0.60 } },
-    "Darius":     { "affinity": { "ad": 1.30, "health": 1.35, "ability_haste": 1.25, "crit": 0.15, "attack_speed": 0.55, "armor_pen_pct": 1.10 } },
-    "Garen":      { "affinity": { "ad": 1.25, "health": 1.35, "armor": 1.20, "mr": 1.20, "crit": 0.90, "attack_speed": 0.30, "ability_haste": 0.60 },
-                    "flags": { "uses_mana": false } },
-    "Riven":      { "affinity": { "ad": 1.30, "ability_haste": 1.30, "lethality": 0.85, "crit": 0.20, "attack_speed": 0.40, "health": 1.15 },
-                    "flags": { "uses_mana": false } },
-    "Aatrox":     { "affinity": { "ad": 1.30, "ability_haste": 1.30, "omnivamp": 1.35, "health": 1.25, "crit": 0.15, "attack_speed": 0.45 },
-                    "flags": { "uses_mana": false } },
-    "Renekton":   { "affinity": { "ad": 1.25, "ability_haste": 1.30, "health": 1.30, "crit": 0.15, "attack_speed": 0.40 },
-                    "flags": { "uses_mana": false } },
-    "Sett":       { "affinity": { "health": 1.45, "ad": 1.20, "ability_haste": 1.15, "crit": 0.10, "attack_speed": 0.40 },
-                    "flags": { "uses_mana": false, "stacks_hp": true } },
-    "Mordekaiser":{ "affinity": { "ap": 1.25, "health": 1.35, "ability_haste": 1.25, "omnivamp": 1.25, "magic_pen_pct": 1.20 },
-                    "flags": { "uses_mana": false, "stacks_hp": true } },
-    "Vladimir":   { "affinity": { "ap": 1.30, "health": 1.40, "ability_haste": 1.20, "magic_pen_pct": 1.15, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "stacks_hp": true },
-                    "note": "cout en PV : le mana est strictement inutile" },
-    "DrMundo":    { "affinity": { "health": 1.55, "armor": 1.30, "mr": 1.30, "ability_haste": 1.10, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "stacks_hp": true } },
-    "Zac":        { "affinity": { "health": 1.50, "armor": 1.30, "mr": 1.30, "ability_haste": 1.30, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "stacks_hp": true } },
-    "Rumble":     { "affinity": { "ap": 1.30, "health": 1.25, "ability_haste": 1.25, "magic_pen_flat": 1.15, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Gnar":       { "affinity": { "attack_speed": 1.15, "health": 1.30, "ad": 1.15, "crit": 0.30, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Shyvana":    { "affinity": { "ap": 1.15, "ad": 1.05, "attack_speed": 1.20, "health": 1.25, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "RekSai":     { "affinity": { "ad": 1.20, "health": 1.30, "lethality": 0.95, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Kled":       { "affinity": { "ad": 1.25, "attack_speed": 1.10, "health": 1.20, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Belveth":    { "affinity": { "attack_speed": 1.50, "on_hit": 1.20, "ad": 1.15, "crit": 0.20, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "on_hit": true } },
-    "Viego":      { "affinity": { "ad": 1.25, "attack_speed": 1.25, "crit": 1.20, "on_hit": 0.85, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "crit_viable": true } },
-
-    "Zed":        { "affinity": { "lethality": 1.45, "ad": 1.25, "ability_haste": 1.15, "crit": 0.15, "attack_speed": 0.30, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Akali":      { "affinity": { "ap": 1.30, "magic_pen_flat": 1.35, "ability_haste": 1.25, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Kennen":     { "affinity": { "ap": 1.25, "attack_speed": 0.75, "magic_pen_flat": 1.20, "ability_haste": 1.20, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "LeeSin":     { "affinity": { "ad": 1.25, "ability_haste": 1.30, "lethality": 1.00, "health": 1.20, "mana": 0.0 },
-                    "flags": { "uses_mana": false } },
-    "Shen":       { "affinity": { "health": 1.45, "armor": 1.35, "mr": 1.35, "ability_haste": 1.30, "mana": 0.0 },
-                    "flags": { "uses_mana": false, "stacks_hp": true } },
-    "Katarina":   { "affinity": { "ap": 1.30, "magic_pen_flat": 1.25, "ability_haste": 1.20, "omnivamp": 1.20, "mana": 0.0 },
-                    "flags": { "uses_mana": false },
-                    "note": "sans ressource : tout objet de mana est du gaspillage pur" },
-
-    "Kassadin":   { "affinity": { "ap": 1.30, "ability_haste": 1.35, "mana": 1.35, "magic_pen_pct": 1.15, "health": 1.10 } },
-    "Ryze":       { "affinity": { "ap": 1.25, "mana": 1.45, "ability_haste": 1.40, "health": 1.15 },
-                    "note": "ratio de degats sur le mana maximum" },
-    "Veigar":     { "affinity": { "ap": 1.35, "ability_haste": 1.30, "magic_pen_pct": 1.20, "mana": 1.15 } },
-    "Cassiopeia": { "affinity": { "ap": 1.30, "ability_haste": 1.15, "magic_pen_pct": 1.25, "mana": 1.30, "movespeed": 1.15 } },
-    "Anivia":     { "affinity": { "ap": 1.30, "mana": 1.35, "ability_haste": 1.25, "magic_pen_pct": 1.20 } },
-    "Azir":       { "affinity": { "ap": 1.25, "attack_speed": 1.30, "ability_haste": 1.20, "magic_pen_pct": 1.15 },
-                    "note": "la vitesse d'attaque augmente le rythme des soldats" },
-    "Malzahar":   { "affinity": { "ap": 1.30, "magic_pen_pct": 1.25, "ability_haste": 1.20, "mana": 1.15, "health": 1.05 } },
-    "Swain":      { "affinity": { "ap": 1.25, "health": 1.35, "ability_haste": 1.25, "heal_shield_power": 1.10 },
-                    "flags": { "stacks_hp": true } },
-    "Singed":     { "affinity": { "ap": 1.20, "health": 1.45, "movespeed": 1.35, "ability_haste": 1.15, "mana": 1.20 },
-                    "flags": { "stacks_hp": true } },
-    "Teemo":      { "affinity": { "ap": 1.25, "attack_speed": 1.30, "on_hit": 1.35, "magic_pen_flat": 1.10 },
-                    "flags": { "on_hit": true } },
-    "Kayle":      { "affinity": { "attack_speed": 1.40, "ap": 1.20, "ad": 1.05, "crit": 0.85, "on_hit": 1.05 },
-                    "flags": { "crit_viable": true, "on_hit": true } },
-    "Jayce":      { "affinity": { "ad": 1.25, "lethality": 1.20, "ability_haste": 1.20, "crit": 0.35, "attack_speed": 0.65 } },
-    "Urgot":      { "affinity": { "ad": 1.20, "attack_speed": 1.25, "health": 1.30, "armor_pen_pct": 1.10, "crit": 0.20 } },
-    "Quinn":      { "affinity": { "ad": 1.25, "lethality": 1.15, "attack_speed": 1.05, "crit": 0.55, "movespeed": 1.20 } },
-    "Yorick":     { "affinity": { "ad": 1.25, "health": 1.30, "attack_speed": 1.10, "ability_haste": 1.15, "crit": 0.15 } },
-    "Illaoi":     { "affinity": { "ad": 1.30, "health": 1.35, "ability_haste": 1.30, "crit": 0.10, "attack_speed": 0.35 } },
-    "Gwen":       { "affinity": { "ap": 1.25, "attack_speed": 1.15, "on_hit": 0.90, "health": 1.20, "magic_pen_flat": 1.10 } },
-    "Sylas":      { "affinity": { "ap": 1.25, "ability_haste": 1.35, "health": 1.20, "omnivamp": 1.20 } },
-    "Ekko":       { "affinity": { "ap": 1.25, "ability_haste": 1.25, "magic_pen_flat": 1.20, "health": 1.15 } },
-    "Diana":      { "affinity": { "ap": 1.25, "ability_haste": 1.25, "health": 1.20, "omnivamp": 1.15, "magic_pen_flat": 1.15 } },
-    "Fizz":       { "affinity": { "ap": 1.30, "ability_haste": 1.20, "magic_pen_flat": 1.30, "health": 1.10 } },
-    "Nunu":       { "affinity": { "ap": 1.10, "health": 1.45, "ability_haste": 1.30, "armor": 1.25, "mr": 1.25 },
-                    "flags": { "stacks_hp": true } },
-    "Ornn":       { "affinity": { "health": 1.50, "armor": 1.40, "mr": 1.40, "ability_haste": 1.25 },
-                    "flags": { "stacks_hp": true } },
-    "Sion":       { "affinity": { "health": 1.55, "armor": 1.35, "mr": 1.35, "ability_haste": 1.20 },
-                    "flags": { "stacks_hp": true } },
-    "Malphite":   { "affinity": { "armor": 1.50, "health": 1.35, "mr": 1.25, "ap": 0.85, "ability_haste": 1.25 },
-                    "note": "ratio de degats sur l'armure : l'armure est offensive sur ce champion" },
-    "Rammus":     { "affinity": { "armor": 1.60, "health": 1.30, "mr": 1.25, "ability_haste": 1.20 },
-                    "note": "ratio de degats sur l'armure" },
-    "TahmKench":  { "affinity": { "health": 1.55, "armor": 1.30, "mr": 1.30, "ability_haste": 1.15 },
-                    "flags": { "stacks_hp": true } },
-    "Chogath":    { "affinity": { "health": 1.50, "ap": 0.90, "armor": 1.30, "mr": 1.30, "ability_haste": 1.20 },
-                    "flags": { "stacks_hp": true } },
-
-    "Soraka":     { "affinity": { "heal_shield_power": 1.50, "ability_haste": 1.40, "mana": 1.35, "ap": 0.85, "movespeed": 1.20 } },
-    "Lulu":       { "affinity": { "heal_shield_power": 1.45, "ability_haste": 1.40, "ap": 1.00, "mana": 1.25, "movespeed": 1.25 } },
-    "Janna":      { "affinity": { "heal_shield_power": 1.45, "ability_haste": 1.40, "movespeed": 1.30, "ap": 0.90 } },
-    "Milio":      { "affinity": { "heal_shield_power": 1.50, "ability_haste": 1.40, "mana": 1.30, "ap": 0.85 } },
-    "Nami":       { "affinity": { "heal_shield_power": 1.40, "ability_haste": 1.35, "ap": 1.05, "mana": 1.25 } },
-    "Yuumi":      { "affinity": { "heal_shield_power": 1.40, "ability_haste": 1.35, "ap": 1.10, "mana": 1.25 } },
-    "Thresh":     { "affinity": { "health": 1.35, "ability_haste": 1.40, "armor": 1.25, "mr": 1.25, "ap": 0.60 } },
-    "Pyke":       { "affinity": { "lethality": 1.40, "ability_haste": 1.30, "health": 1.35, "ad": 1.15, "crit": 0.10, "attack_speed": 0.25 },
-                    "note": "PV convertis en AD par le passif : les PV sont offensifs" },
-    "Taric":      { "affinity": { "armor": 1.45, "heal_shield_power": 1.30, "ability_haste": 1.35, "health": 1.25, "ap": 0.55 },
-                    "note": "ratio de soin sur l'armure" }
+    "Vayne": {
+      "affinity": {
+        "attack_speed": 1.5,
+        "on_hit": 1.45,
+        "crit": 1.1,
+        "lethality": 0.15,
+        "armor_pen_pct": 0.6
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": true
+      }
+    },
+    "KogMaw": {
+      "affinity": {
+        "attack_speed": 1.55,
+        "on_hit": 1.6,
+        "crit": 0.35,
+        "ap": 0.8,
+        "armor_pen_pct": 0.7
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": true
+      }
+    },
+    "Kaisa": {
+      "affinity": {
+        "attack_speed": 1.4,
+        "on_hit": 1.35,
+        "crit": 0.55,
+        "ap": 1.1,
+        "ability_haste": 0.7
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": true
+      }
+    },
+    "Twitch": {
+      "affinity": {
+        "attack_speed": 1.35,
+        "on_hit": 1.25,
+        "crit": 1.25
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": true
+      }
+    },
+    "Varus": {
+      "affinity": {
+        "attack_speed": 1.1,
+        "on_hit": 1.2,
+        "crit": 0.6,
+        "lethality": 1.05,
+        "ability_haste": 1.05
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": true
+      }
+    },
+    "Jhin": {
+      "affinity": {
+        "attack_speed": 0.15,
+        "crit": 1.45,
+        "ad": 1.35,
+        "lethality": 0.85,
+        "movespeed": 1.25
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false
+      },
+      "note": "vitesse d'attaque convertie en AD : ne jamais recommander d'AS"
+    },
+    "Ezreal": {
+      "affinity": {
+        "attack_speed": 0.45,
+        "crit": 0.15,
+        "ability_haste": 1.45,
+        "lethality": 0.9,
+        "ad": 1.2,
+        "ap": 0.7,
+        "mana": 1.15
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      }
+    },
+    "Senna": {
+      "affinity": {
+        "crit": 1.2,
+        "lifesteal": 1.25,
+        "attack_speed": 0.4,
+        "ad": 1.3,
+        "heal_shield_power": 1.1
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false
+      }
+    },
+    "Smolder": {
+      "affinity": {
+        "ad": 1.25,
+        "ap": 0.8,
+        "ability_haste": 1.2,
+        "attack_speed": 0.6,
+        "crit": 0.25
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      }
+    },
+    "Corki": {
+      "affinity": {
+        "ad": 1.15,
+        "ap": 1.0,
+        "ability_haste": 1.25,
+        "crit": 0.25,
+        "attack_speed": 0.6,
+        "magic_pen_flat": 0.9
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      }
+    },
+    "Aphelios": {
+      "affinity": {
+        "crit": 1.35,
+        "attack_speed": 1.15,
+        "lifesteal": 1.2
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false
+      }
+    },
+    "Zeri": {
+      "affinity": {
+        "attack_speed": 1.25,
+        "crit": 1.3,
+        "ad": 1.2,
+        "movespeed": 1.2,
+        "on_hit": 0.45
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": false
+      }
+    },
+    "Nilah": {
+      "affinity": {
+        "crit": 1.4,
+        "lifesteal": 1.35,
+        "omnivamp": 1.3,
+        "attack_speed": 1.15
+      },
+      "flags": {
+        "crit_viable": true
+      }
+    },
+    "Draven": {
+      "affinity": {
+        "crit": 1.45,
+        "ad": 1.3,
+        "attack_speed": 1.05,
+        "lethality": 0.5
+      },
+      "flags": {
+        "crit_viable": true
+      }
+    },
+    "Yasuo": {
+      "affinity": {
+        "crit": 1.5,
+        "attack_speed": 1.25,
+        "ad": 1.15,
+        "lethality": 0.2,
+        "ability_haste": 0.7
+      },
+      "flags": {
+        "crit_viable": true,
+        "uses_mana": false
+      }
+    },
+    "Yone": {
+      "affinity": {
+        "crit": 1.5,
+        "attack_speed": 1.2,
+        "ad": 1.15,
+        "lethality": 0.25,
+        "ability_haste": 0.75
+      },
+      "flags": {
+        "crit_viable": true,
+        "uses_mana": false
+      }
+    },
+    "Tryndamere": {
+      "affinity": {
+        "crit": 1.45,
+        "attack_speed": 1.25,
+        "ad": 1.2,
+        "lifesteal": 1.2,
+        "ability_haste": 0.5
+      },
+      "flags": {
+        "crit_viable": true,
+        "uses_mana": false
+      }
+    },
+    "MasterYi": {
+      "affinity": {
+        "attack_speed": 1.45,
+        "crit": 1.35,
+        "on_hit": 1.2,
+        "lifesteal": 1.2
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": true,
+        "uses_mana": true
+      }
+    },
+    "Jax": {
+      "affinity": {
+        "attack_speed": 1.3,
+        "on_hit": 1.25,
+        "health": 1.3,
+        "armor": 1.2,
+        "mr": 1.2,
+        "crit": 0.2
+      },
+      "flags": {
+        "on_hit": true
+      }
+    },
+    "XinZhao": {
+      "affinity": {
+        "attack_speed": 1.25,
+        "on_hit": 1.15,
+        "crit": 0.45,
+        "health": 1.2
+      }
+    },
+    "Nasus": {
+      "affinity": {
+        "ability_haste": 1.45,
+        "health": 1.35,
+        "armor": 1.25,
+        "mr": 1.25,
+        "attack_speed": 1.1,
+        "crit": 0.15,
+        "ad": 0.55
+      },
+      "note": "les degats viennent des stacks Q, pas de l'AD achetee"
+    },
+    "Fiora": {
+      "affinity": {
+        "attack_speed": 1.2,
+        "on_hit": 0.9,
+        "crit": 0.6,
+        "ad": 1.25,
+        "armor_pen_pct": 1.15,
+        "health": 1.15
+      }
+    },
+    "Irelia": {
+      "affinity": {
+        "attack_speed": 1.25,
+        "on_hit": 1.05,
+        "ad": 1.2,
+        "crit": 0.3,
+        "health": 1.2
+      }
+    },
+    "Camille": {
+      "affinity": {
+        "ad": 1.25,
+        "attack_speed": 1.1,
+        "armor_pen_pct": 1.2,
+        "health": 1.2,
+        "crit": 0.2,
+        "lethality": 0.6
+      }
+    },
+    "Darius": {
+      "affinity": {
+        "ad": 1.3,
+        "health": 1.35,
+        "ability_haste": 1.25,
+        "crit": 0.15,
+        "attack_speed": 0.55,
+        "armor_pen_pct": 1.1
+      }
+    },
+    "Garen": {
+      "affinity": {
+        "ad": 1.25,
+        "health": 1.35,
+        "armor": 1.2,
+        "mr": 1.2,
+        "crit": 0.9,
+        "attack_speed": 0.3,
+        "ability_haste": 0.6
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Riven": {
+      "affinity": {
+        "ad": 1.3,
+        "ability_haste": 1.3,
+        "lethality": 0.85,
+        "crit": 0.2,
+        "attack_speed": 0.4,
+        "health": 1.15
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Aatrox": {
+      "affinity": {
+        "ad": 1.3,
+        "ability_haste": 1.3,
+        "omnivamp": 1.35,
+        "health": 1.25,
+        "crit": 0.15,
+        "attack_speed": 0.45
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Renekton": {
+      "affinity": {
+        "ad": 1.25,
+        "ability_haste": 1.3,
+        "health": 1.3,
+        "crit": 0.15,
+        "attack_speed": 0.4
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Sett": {
+      "affinity": {
+        "health": 1.45,
+        "ad": 1.2,
+        "ability_haste": 1.15,
+        "crit": 0.1,
+        "attack_speed": 0.4
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      }
+    },
+    "Mordekaiser": {
+      "affinity": {
+        "ap": 1.25,
+        "health": 1.35,
+        "ability_haste": 1.25,
+        "omnivamp": 1.25,
+        "magic_pen_pct": 1.2
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      }
+    },
+    "Vladimir": {
+      "affinity": {
+        "ap": 1.3,
+        "health": 1.4,
+        "ability_haste": 1.2,
+        "magic_pen_pct": 1.15,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      },
+      "note": "cout en PV : le mana est strictement inutile"
+    },
+    "DrMundo": {
+      "affinity": {
+        "health": 1.55,
+        "armor": 1.3,
+        "mr": 1.3,
+        "ability_haste": 1.1,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      }
+    },
+    "Zac": {
+      "affinity": {
+        "health": 1.5,
+        "armor": 1.3,
+        "mr": 1.3,
+        "ability_haste": 1.3,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      }
+    },
+    "Rumble": {
+      "affinity": {
+        "ap": 1.3,
+        "health": 1.25,
+        "ability_haste": 1.25,
+        "magic_pen_flat": 1.15,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Gnar": {
+      "affinity": {
+        "attack_speed": 1.15,
+        "health": 1.3,
+        "ad": 1.15,
+        "crit": 0.3,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Shyvana": {
+      "affinity": {
+        "ap": 1.15,
+        "ad": 1.05,
+        "attack_speed": 1.2,
+        "health": 1.25,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "RekSai": {
+      "affinity": {
+        "ad": 1.2,
+        "health": 1.3,
+        "lethality": 0.95,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Kled": {
+      "affinity": {
+        "ad": 1.25,
+        "attack_speed": 1.1,
+        "health": 1.2,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Belveth": {
+      "affinity": {
+        "attack_speed": 1.5,
+        "on_hit": 1.2,
+        "ad": 1.15,
+        "crit": 0.2,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "on_hit": true
+      }
+    },
+    "Viego": {
+      "affinity": {
+        "ad": 1.25,
+        "attack_speed": 1.25,
+        "crit": 1.2,
+        "on_hit": 0.85,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "crit_viable": true
+      }
+    },
+    "Zed": {
+      "affinity": {
+        "lethality": 1.45,
+        "ad": 1.25,
+        "ability_haste": 1.15,
+        "crit": 0.15,
+        "attack_speed": 0.3,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Akali": {
+      "affinity": {
+        "ap": 1.3,
+        "magic_pen_flat": 1.35,
+        "ability_haste": 1.25,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Kennen": {
+      "affinity": {
+        "ap": 1.25,
+        "attack_speed": 0.75,
+        "magic_pen_flat": 1.2,
+        "ability_haste": 1.2,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "LeeSin": {
+      "affinity": {
+        "ad": 1.25,
+        "ability_haste": 1.3,
+        "lethality": 1.0,
+        "health": 1.2,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      }
+    },
+    "Shen": {
+      "affinity": {
+        "health": 1.45,
+        "armor": 1.35,
+        "mr": 1.35,
+        "ability_haste": 1.3,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false,
+        "stacks_hp": true
+      }
+    },
+    "Katarina": {
+      "affinity": {
+        "ap": 1.3,
+        "magic_pen_flat": 1.25,
+        "ability_haste": 1.2,
+        "omnivamp": 1.2,
+        "mana": 0.0
+      },
+      "flags": {
+        "uses_mana": false
+      },
+      "note": "sans ressource : tout objet de mana est du gaspillage pur"
+    },
+    "Kassadin": {
+      "affinity": {
+        "ap": 1.3,
+        "ability_haste": 1.35,
+        "mana": 1.35,
+        "magic_pen_pct": 1.15,
+        "health": 1.1
+      }
+    },
+    "Ryze": {
+      "affinity": {
+        "ap": 1.25,
+        "mana": 1.45,
+        "ability_haste": 1.4,
+        "health": 1.15
+      },
+      "note": "ratio de degats sur le mana maximum"
+    },
+    "Veigar": {
+      "affinity": {
+        "ap": 1.35,
+        "ability_haste": 1.3,
+        "magic_pen_pct": 1.2,
+        "mana": 1.15
+      }
+    },
+    "Cassiopeia": {
+      "affinity": {
+        "ap": 1.3,
+        "ability_haste": 1.15,
+        "magic_pen_pct": 1.25,
+        "mana": 1.3,
+        "movespeed": 1.15
+      }
+    },
+    "Anivia": {
+      "affinity": {
+        "ap": 1.3,
+        "mana": 1.35,
+        "ability_haste": 1.25,
+        "magic_pen_pct": 1.2
+      }
+    },
+    "Azir": {
+      "affinity": {
+        "ap": 1.25,
+        "attack_speed": 1.3,
+        "ability_haste": 1.2,
+        "magic_pen_pct": 1.15
+      },
+      "note": "la vitesse d'attaque augmente le rythme des soldats"
+    },
+    "Malzahar": {
+      "affinity": {
+        "ap": 1.3,
+        "magic_pen_pct": 1.25,
+        "ability_haste": 1.2,
+        "mana": 1.15,
+        "health": 1.05
+      }
+    },
+    "Swain": {
+      "affinity": {
+        "ap": 1.25,
+        "health": 1.35,
+        "ability_haste": 1.25,
+        "heal_shield_power": 1.1
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Singed": {
+      "affinity": {
+        "ap": 1.2,
+        "health": 1.45,
+        "movespeed": 1.35,
+        "ability_haste": 1.15,
+        "mana": 1.2
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Teemo": {
+      "affinity": {
+        "ap": 1.25,
+        "attack_speed": 1.3,
+        "on_hit": 1.35,
+        "magic_pen_flat": 1.1
+      },
+      "flags": {
+        "on_hit": true
+      }
+    },
+    "Kayle": {
+      "affinity": {
+        "attack_speed": 1.4,
+        "ap": 1.2,
+        "ad": 1.05,
+        "crit": 0.85,
+        "on_hit": 1.05
+      },
+      "flags": {
+        "crit_viable": true,
+        "on_hit": true
+      }
+    },
+    "Jayce": {
+      "affinity": {
+        "ad": 1.25,
+        "lethality": 1.2,
+        "ability_haste": 1.2,
+        "crit": 0.35,
+        "attack_speed": 0.65
+      }
+    },
+    "Urgot": {
+      "affinity": {
+        "ad": 1.2,
+        "attack_speed": 1.25,
+        "health": 1.3,
+        "armor_pen_pct": 1.1,
+        "crit": 0.2
+      }
+    },
+    "Quinn": {
+      "affinity": {
+        "ad": 1.25,
+        "lethality": 1.15,
+        "attack_speed": 1.05,
+        "crit": 0.55,
+        "movespeed": 1.2
+      }
+    },
+    "Yorick": {
+      "affinity": {
+        "ad": 1.25,
+        "health": 1.3,
+        "attack_speed": 1.1,
+        "ability_haste": 1.15,
+        "crit": 0.15
+      }
+    },
+    "Illaoi": {
+      "affinity": {
+        "ad": 1.3,
+        "health": 1.35,
+        "ability_haste": 1.3,
+        "crit": 0.1,
+        "attack_speed": 0.35
+      }
+    },
+    "Gwen": {
+      "affinity": {
+        "ap": 1.25,
+        "attack_speed": 1.15,
+        "on_hit": 0.9,
+        "health": 1.2,
+        "magic_pen_flat": 1.1
+      }
+    },
+    "Sylas": {
+      "affinity": {
+        "ap": 1.25,
+        "ability_haste": 1.35,
+        "health": 1.2,
+        "omnivamp": 1.2
+      }
+    },
+    "Ekko": {
+      "affinity": {
+        "ap": 1.25,
+        "ability_haste": 1.25,
+        "magic_pen_flat": 1.2,
+        "health": 1.15
+      }
+    },
+    "Diana": {
+      "affinity": {
+        "ap": 1.25,
+        "ability_haste": 1.25,
+        "health": 1.2,
+        "omnivamp": 1.15,
+        "magic_pen_flat": 1.15
+      }
+    },
+    "Fizz": {
+      "affinity": {
+        "ap": 1.3,
+        "ability_haste": 1.2,
+        "magic_pen_flat": 1.3,
+        "health": 1.1
+      }
+    },
+    "Nunu": {
+      "affinity": {
+        "ap": 1.1,
+        "health": 1.45,
+        "ability_haste": 1.3,
+        "armor": 1.25,
+        "mr": 1.25
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Ornn": {
+      "affinity": {
+        "health": 1.5,
+        "armor": 1.4,
+        "mr": 1.4,
+        "ability_haste": 1.25
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Sion": {
+      "affinity": {
+        "health": 1.55,
+        "armor": 1.35,
+        "mr": 1.35,
+        "ability_haste": 1.2
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Malphite": {
+      "affinity": {
+        "armor": 1.5,
+        "health": 1.35,
+        "mr": 1.25,
+        "ap": 0.85,
+        "ability_haste": 1.25
+      },
+      "note": "ratio de degats sur l'armure : l'armure est offensive sur ce champion"
+    },
+    "Rammus": {
+      "affinity": {
+        "armor": 1.6,
+        "health": 1.3,
+        "mr": 1.25,
+        "ability_haste": 1.2
+      },
+      "note": "ratio de degats sur l'armure"
+    },
+    "TahmKench": {
+      "affinity": {
+        "health": 1.55,
+        "armor": 1.3,
+        "mr": 1.3,
+        "ability_haste": 1.15
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Chogath": {
+      "affinity": {
+        "health": 1.5,
+        "ap": 0.9,
+        "armor": 1.3,
+        "mr": 1.3,
+        "ability_haste": 1.2
+      },
+      "flags": {
+        "stacks_hp": true
+      }
+    },
+    "Soraka": {
+      "affinity": {
+        "heal_shield_power": 1.5,
+        "ability_haste": 1.4,
+        "mana": 1.35,
+        "ap": 0.85,
+        "movespeed": 1.2
+      }
+    },
+    "Lulu": {
+      "affinity": {
+        "heal_shield_power": 1.45,
+        "ability_haste": 1.4,
+        "ap": 1.0,
+        "mana": 1.25,
+        "movespeed": 1.25
+      }
+    },
+    "Janna": {
+      "affinity": {
+        "heal_shield_power": 1.45,
+        "ability_haste": 1.4,
+        "movespeed": 1.3,
+        "ap": 0.9
+      }
+    },
+    "Milio": {
+      "affinity": {
+        "heal_shield_power": 1.5,
+        "ability_haste": 1.4,
+        "mana": 1.3,
+        "ap": 0.85
+      }
+    },
+    "Nami": {
+      "affinity": {
+        "heal_shield_power": 1.4,
+        "ability_haste": 1.35,
+        "ap": 1.05,
+        "mana": 1.25
+      }
+    },
+    "Yuumi": {
+      "affinity": {
+        "heal_shield_power": 1.4,
+        "ability_haste": 1.35,
+        "ap": 1.1,
+        "mana": 1.25
+      }
+    },
+    "Thresh": {
+      "affinity": {
+        "health": 1.35,
+        "ability_haste": 1.4,
+        "armor": 1.25,
+        "mr": 1.25,
+        "ap": 0.6
+      }
+    },
+    "Pyke": {
+      "affinity": {
+        "lethality": 1.4,
+        "ability_haste": 1.3,
+        "health": 1.35,
+        "ad": 1.15,
+        "crit": 0.1,
+        "attack_speed": 0.25
+      },
+      "note": "PV convertis en AD par le passif : les PV sont offensifs"
+    },
+    "Taric": {
+      "affinity": {
+        "armor": 1.45,
+        "heal_shield_power": 1.3,
+        "ability_haste": 1.35,
+        "health": 1.25,
+        "ap": 0.55
+      },
+      "note": "ratio de soin sur l'armure"
+    },
+    "Lillia": {
+      "affinity": {
+        "ap": 1.25,
+        "ad": 0.1,
+        "health": 1.25,
+        "armor": 0.9,
+        "mr": 0.9,
+        "ability_haste": 1.25,
+        "lethality": 0.15,
+        "crit": 0.1,
+        "on_hit": 0.2
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Jungleur AP — Liandry 97 %, Riftmaker 71 %, Zhonya 60 %, Rylai 33 % sur 221 parties"
+    },
+    "Karthus": {
+      "affinity": {
+        "ap": 1.25,
+        "ad": 0.1,
+        "health": 1.25,
+        "armor": 0.9,
+        "mr": 0.9,
+        "ability_haste": 1.25,
+        "lethality": 0.15,
+        "crit": 0.1,
+        "on_hit": 0.2
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Jungleur AP — profil de degats 100 % AP"
+    },
+    "Elise": {
+      "affinity": {
+        "ap": 1.25,
+        "ad": 0.1,
+        "health": 1.25,
+        "armor": 0.9,
+        "mr": 0.9,
+        "ability_haste": 1.25,
+        "lethality": 0.15,
+        "crit": 0.1,
+        "on_hit": 0.2
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Jungleur AP — profil de degats 100 % AP"
+    },
+    "Nidalee": {
+      "affinity": {
+        "ap": 1.25,
+        "ad": 0.1,
+        "health": 1.25,
+        "armor": 0.9,
+        "mr": 0.9,
+        "ability_haste": 1.25,
+        "lethality": 0.15,
+        "crit": 0.1,
+        "on_hit": 0.2
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Jungleur AP — Fleau de liche 91 %, Chaussures de sorcier 85 % sur 150 parties"
+    },
+    "Fiddlesticks": {
+      "affinity": {
+        "ap": 1.25,
+        "ad": 0.1,
+        "health": 1.25,
+        "armor": 0.9,
+        "mr": 0.9,
+        "ability_haste": 1.25,
+        "lethality": 0.15,
+        "crit": 0.1,
+        "on_hit": 0.2
+      },
+      "flags": {
+        "crit_viable": false,
+        "on_hit": false
+      },
+      "note": "Jungleur AP — Zhonya 64 %, Malfaisance 53 %, Rocketbelt 51 % sur 192 parties"
+    }
   }
 }
