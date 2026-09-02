@@ -8,11 +8,11 @@ Layout:
   │  PICK PHASE  [1][2][3][4][5]   [1][2][3][4][5]        │
   │  (my slot = gold border)                                │
   ├─────────────────────────────────────────────────────────┤
-  │  AI SUGGESTIONS   [◀]  1/3  [▶]   [🔄 Régénérer]      │
+  │  AI SUGGESTIONS   [◀]  1/3  [▶]   [↻ Régénérer]      │
   │  [Icon 80px] NOM DU CHAMPION                            │
   │              Raison courte                              │
   ├─────────────────────────────────────────────────────────┤
-  │  ⚡ AI COACHING ADVICE  (texte streaming)               │
+  │  ⚡ CONSEIL DE DRAFT  (texte streaming)               │
   └─────────────────────────────────────────────────────────┘
 """
 from __future__ import annotations
@@ -50,8 +50,14 @@ class ChampSelectPanel(ctk.CTkFrame):
     # =========================================================================
 
     def _build(self) -> None:
+        # Corps défilant : l'empilement des cartes dépasse la hauteur utile,
+        # la dernière se retrouvait coupée sur une fenêtre standard.
+        body = ctk.CTkScrollableFrame(self, fg_color="transparent")
+        body.pack(fill="both", expand=True)
+        self._body = body
+
         # ── Ban phase card ────────────────────────────────────────────────
-        ban_card = T.make_card(self, height=68)
+        ban_card = T.make_card(body, height=68)
         ban_card.pack(fill="x", padx=T.PADX_CARD, pady=(T.PADY_CARD_TOP, 4))
         ban_card.pack_propagate(False)
 
@@ -79,11 +85,11 @@ class ChampSelectPanel(ctk.CTkFrame):
             self._enemy_ban_slots.append(lbl)
 
         # ── Ban Suggestions Widget ─────────────────────────────────────────
-        self._ban_sug_widget = BanSuggestionsWidget(self)
+        self._ban_sug_widget = BanSuggestionsWidget(body)
         self._ban_sug_widget.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
 
         # ── Pick phase card ───────────────────────────────────────────────
-        pick_card = T.make_card(self, height=100)
+        pick_card = T.make_card(body, height=100)
         pick_card.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
         pick_card.pack_propagate(False)
 
@@ -93,8 +99,8 @@ class ChampSelectPanel(ctk.CTkFrame):
         # Ally picks
         ally_pick_col = ctk.CTkFrame(pick_inner, fg_color="transparent")
         ally_pick_col.pack(side="left", fill="both", expand=True)
-        T.make_caps_label(ally_pick_col, "ALLIES", _ALLY_COLOR).pack(anchor="w", pady=(0, 4))
-        ally_slots_row = ctk.CTkFrame(ally_pick_col, fg_color="transparent")
+        T.make_caps_label(ally_pick_col, "ALLIÉS", _ALLY_COLOR).pack(anchor="w", pady=(0, 4))
+        ally_slots_row = ctk.CTkFrame(ally_pick_col, width=1, height=1, fg_color="transparent")
         ally_slots_row.pack(anchor="w")
 
         self._ally_pick_slots:  list[ctk.CTkLabel] = []
@@ -115,8 +121,8 @@ class ChampSelectPanel(ctk.CTkFrame):
         # Enemy picks
         enemy_pick_col = ctk.CTkFrame(pick_inner, fg_color="transparent")
         enemy_pick_col.pack(side="left", fill="both", expand=True)
-        T.make_caps_label(enemy_pick_col, "ENEMIES", _ENEMY_COLOR).pack(anchor="w", pady=(0, 4))
-        enemy_slots_row = ctk.CTkFrame(enemy_pick_col, fg_color="transparent")
+        T.make_caps_label(enemy_pick_col, "ENNEMIS", _ENEMY_COLOR).pack(anchor="w", pady=(0, 4))
+        enemy_slots_row = ctk.CTkFrame(enemy_pick_col, width=1, height=1, fg_color="transparent")
         enemy_slots_row.pack(anchor="w")
 
         self._enemy_pick_slots:  list[ctk.CTkLabel] = []
@@ -133,7 +139,7 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         # ── Suggestion card ───────────────────────────────────────────────
         self._sug_card = GlowBorderFrame(
-            self,
+            body,
             animate=True,
             glow_color=T.GOLD_ACCENT,
             dim_color=T.BORDER_DEFAULT,
@@ -147,7 +153,7 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         ctk.CTkLabel(
             sug_hdr,
-            text="💡  SUGGESTIONS IA",
+            text="✦  CHAMPIONS CONSEILLÉS",
             font=T.font_title(),
             text_color=T.GOLD_ACCENT,
         ).pack(side="left")
@@ -158,7 +164,7 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         self._regen_btn = ctk.CTkButton(
             nav_frame,
-            text="🔄",
+            text="↻",
             width=32, height=28,
             fg_color="transparent",
             hover_color=T.BG_HOVER,
@@ -225,7 +231,7 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         self._sug_reason = ctk.CTkLabel(
             sug_text_col,
-            text="Les suggestions IA arrivent dès le début de la phase de draft.",
+            text="Les suggestions arrivent dès le début de la phase de draft.",
             font=T.font_sm(),
             text_color=T.TEXT_SECONDARY,
             wraplength=300,
@@ -235,14 +241,14 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         # ── Advice card ───────────────────────────────────────────────────
         self._advice_card = GlowBorderFrame(
-            self,
+            body,
             animate=True,
             glow_color=T.PURPLE_PRIMARY,
             dim_color=T.BORDER_DEFAULT,
             border_width=1,
         )
         self._advice_card.pack(
-            fill="both", expand=True,
+            fill="x",
             padx=T.PADX_CARD, pady=(0, T.PADY_CARD_TOP),
         )
 
@@ -251,7 +257,7 @@ class ChampSelectPanel(ctk.CTkFrame):
 
         ctk.CTkLabel(
             advice_hdr,
-            text="⚡  AI COACHING ADVICE",
+            text="⚡  CONSEIL DE DRAFT",
             font=T.font_title(),
             text_color=T.PURPLE_PRIMARY,
         ).pack(side="left")
@@ -270,7 +276,21 @@ class ChampSelectPanel(ctk.CTkFrame):
             wrap="word",
             state="disabled",
         )
-        self._advice_box.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+        self._advice_box.pack(fill="x", padx=10, pady=(0, 10))
+        self._advice_box.configure(height=96)
+
+        # Ce panneau est alimenté par le chemin LLM, actuellement non branché
+        # (voir « État du LLM » dans le README). Sans message explicite, la carte
+        # reste un rectangle vide en permanence.
+        self._advice_box.configure(state="normal")
+        self._advice_box.insert(
+            "1.0",
+            "Le conseil de draft rédigé par IA n'est pas activé."
+            "\n\n"
+            "Les recommandations de champion et d'objets viennent du moteur "
+            "statistique, sans appel à un modèle de langage.",
+        )
+        self._advice_box.configure(state="disabled", text_color=T.TEXT_FAINT)
 
     # =========================================================================
     # Slot factories
@@ -511,7 +531,7 @@ class ChampSelectPanel(ctk.CTkFrame):
             self._regen_callback()
 
     def set_regen_callback(self, cb) -> None:
-        """Register a callback to fire when the 🔄 button is pressed."""
+        """Register a callback to fire when the ↻ button is pressed."""
         self._regen_callback = cb
 
     # Initialize with a no-op
@@ -565,7 +585,7 @@ class BanSuggestionsWidget(ctk.CTkFrame):
         hdr = ctk.CTkFrame(self._card, fg_color="transparent")
         hdr.pack(fill="x", padx=14, pady=(10, 0))
         ctk.CTkLabel(
-            hdr, text="🚫  BAN SUGGESTIONS", font=T.font_title(), text_color=T.RED_DANGER
+            hdr, text="◎  BANS CONSEILLÉS", font=T.font_title(), text_color=T.RED_DANGER
         ).pack(side="left")
         
         T.make_divider(self._card).pack(fill="x", padx=14, pady=(8, 8))

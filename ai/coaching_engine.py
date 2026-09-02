@@ -19,6 +19,7 @@ from services.image_cache import ImageCache
 from services.stat_analyzer import StatAnalyzer
 from data.champion_affinity import ChampionAffinity
 from ai.boot_optimizer import BootOptimizer
+from models.build_plan import BuildPlan, Slot, SlotState
 
 logger = logging.getLogger(__name__)
 
@@ -436,11 +437,12 @@ class CoachingEngine:
     ) -> None:
         """Calcule le plan d'objets et l'émet sur le bus. Tourne hors thread de polling."""
         try:
-            self._compute_plan(game_state, my_position)
+            self._compute_plan(game_state, my_position, trigger)
         except Exception:
             logger.exception("Échec du calcul du plan d'objets (trigger=%s).", trigger)
 
-    def _compute_plan(self, game_state: InGameState, my_position: str) -> None:
+    def _compute_plan(self, game_state: InGameState, my_position: str,
+                      trigger: str = "") -> None:
         local = game_state.local_player
         if local is None:
             return
@@ -481,7 +483,6 @@ class CoachingEngine:
         raw_plan = analyzer.plan_with_confidence(game_state, lane_opp, candidate_items, n_slots=target_capacity, prev_plan_items=prev_items)
         
         # --- Create BuildPlan Object ---
-        from models.build_plan import BuildPlan, Slot, SlotState
         
         # Bottes : détectées par tag DDragon 'Boots' sur l'ID de l'objet.
         # L'ancien matching par sous-chaîne française ratait "Coques en acier"
@@ -577,11 +578,17 @@ class CoachingEngine:
         # Save plan
         self._last_build_plan = plan
         
-        advice_str = "Nouveau plan généré."
-        
+        planned = sum(1 for s in plan.legendary_slots if s.state == SlotState.PLANNED)
+        owned = sum(
+            1 for s in plan.legendary_slots
+            if s.state in (SlotState.OWNED_ON_PLAN, SlotState.OWNED_OFF_PLAN)
+        )
+        advice_str = f"{owned} objet(s) en inventaire · {planned} prévu(s)"
+
         bus.emit(EventBus.ITEM_ADVICE_READY, {
             "advice": advice_str,
             "champion": lane_opp_name,
+            "trigger": trigger,
             "streaming": False,
             "plan": plan,
             "is_adc": is_adc

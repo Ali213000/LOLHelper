@@ -12,7 +12,7 @@ A **real-time League of Legends coaching assistant and analytical engine** that 
 | **Champ Select Advisor** | Polls the LCU API every 2s (lecture seule) and produit des suggestions de champion via le scorer algorithmique (`ai/champion_scorer.py`). |
 | **Fed Enemy Item Recommender** | Monitors the Live Client API + OCR scoreboard; if an enemy goes 5/0 or KDA ≥ 3.0, triggers a targeted item recommendation based on empirical engine weights. **100 % algorithmique** — aucun appel LLM. |
 | **GPU-Accelerated OCR** | EasyOCR on your RTX 5070 Ti scans the scoreboard when you press TAB or every 15s |
-| **Streaming Overlay** | Transparent, always-on-top overlay shows advice as it's typed — click-through enabled |
+| **Overlay en jeu** | Fenêtre transparente toujours au premier plan affichant le plan d'objets : icônes, état de chaque slot (acheté / prévu / hors plan) et niveau de confiance. Click-through actif — la souris du jeu n'est jamais interceptée. Activable/désactivable depuis les Réglages ou l'icône ◉ de la barre de titre. |
 | **Text-to-Speech** | Microsoft Neural voices (edge-tts) read advice aloud |
 | **System Tray** | Minimize to tray while gaming, restore with one click |
 
@@ -61,6 +61,18 @@ aucun LLM** dans son fonctionnement courant.
 Le câblage LLM (`ai/llm_client.py`, `ai/prompt_templates.py`,
 `CoachingEngine.request_champ_select_advice`) est conservé mais **non branché** :
 aucun appelant. Il n'y a donc pas besoin de clé API pour utiliser l'app.
+
+### Overlay en jeu
+
+L'overlay se déclenche sur les événements de partie (mort, retour en base,
+rafraîchissement manuel) et se masque tout seul après `OVERLAY_AUTO_HIDE_SECONDS`.
+
+* **Activer / désactiver** : interrupteur dans Réglages → « Overlay en jeu », ou
+  icône ◉ dans la barre de titre. Le changement s'applique immédiatement.
+* **Aperçu** : bouton « Aperçu » dans les Réglages, sans avoir à lancer une partie.
+* **Click-through** : la fenêtre pose `WS_EX_TRANSPARENT`, donc elle ne capte
+  aucun clic. `tests/test_overlay.py` vérifie que l'appel est bien effectué —
+  il avait été oublié pendant un temps, et l'overlay bloquait alors la souris.
 
 ### ⚠️ Locale des assets Data Dragon
 
@@ -144,6 +156,7 @@ All settings are stored in `.env` (auto-created on first run). Edit via the **Se
 | `GEMINI_MODEL` | `gemini-2.5-flash` | Model to use |
 | `OCR_USE_GPU` | `true` | Set `false` if no NVIDIA GPU |
 | `OCR_SCAN_INTERVAL_SECONDS` | `15` | Auto-scan interval in seconds |
+| `OVERLAY_ENABLED` | `true` | Affiche l'overlay en jeu (bascule aussi depuis la barre de titre) |
 | `OVERLAY_OPACITY` | `0.88` | 0.0–1.0 |
 | `OVERLAY_AUTO_HIDE_SECONDS` | `12` | Seconds before overlay hides |
 | `TTS_ENABLED` | `true` | Enable voice coaching |

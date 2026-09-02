@@ -56,14 +56,19 @@ class MainWindow(ctk.CTk):
         except Exception:
             pass
 
-        # ---- Build UI ----
+        # ---- Construction de l'UI ----
+        # ORDRE IMPORTANT : en pack Tk, chaque widget rogne la cavité restante.
+        # Les barres horizontales (haut/bas) doivent être placées AVANT les
+        # colonnes (gauche/droite), sinon la barre de statut ne reçoit qu'une
+        # cavité résiduelle à droite et ampute le contenu de sa largeur.
         self._build_titlebar()
+        self._build_statusbar()
         self._build_sidebar()
         self._build_content()
-        self._build_statusbar()
 
-        # Overlay window (separate toplevel)
+        # Overlay (toplevel séparé)
         self._overlay = OverlayWindow(self)
+        self._sync_overlay_button()
 
         # ---- Subscribe to events ----
         self._subscribe_events()
@@ -127,6 +132,16 @@ class MainWindow(ctk.CTk):
         _icon_btn("↺", self._restart).pack(side="right", padx=(0, 6), pady=12)
         _icon_btn("—", self._minimize_to_tray).pack(side="right", padx=4, pady=12)
 
+        # Bascule rapide de l'overlay (état reflété par l'icône)
+        self._overlay_btn = _icon_btn("◉", self._toggle_overlay)
+        self._overlay_btn.pack(side="right", padx=4, pady=12)
+        T.attach_tooltip(self._overlay_btn, "Activer / désactiver l'overlay en jeu")
+
+        # Séparateur vertical avant les boutons fenêtre
+        ctk.CTkFrame(bar, width=1, height=20, fg_color=T.BORDER_DEFAULT).pack(
+            side="right", padx=T.SP_2, pady=18
+        )
+
         # Gold separator line at the bottom of the titlebar
         ctk.CTkFrame(self, height=1, fg_color=T.PURPLE_PRIMARY, corner_radius=0).pack(
             fill="x", side="top"
@@ -147,19 +162,24 @@ class MainWindow(ctk.CTk):
         self._nav_active_bars: dict[str, ctk.CTkFrame] = {}
 
         nav_items = [
-            ("⚔   Champ Select", "champ_select"),
-            ("🎮   In-Game",      "ingame"),
-            ("⚙   Settings",     "settings"),
+            ("⚔   Draft", "champ_select"),
+            ("▶   En jeu",      "ingame"),
+            ("⚙   Réglages",     "settings"),
         ]
 
         for label, key in nav_items:
             # Outer row to hold the active bar + button
-            row = ctk.CTkFrame(self._sidebar, fg_color="transparent")
+            row = ctk.CTkFrame(self._sidebar, height=T.NAV_BTN_H, fg_color="transparent")
             row.pack(fill="x", padx=8, pady=2)
+            row.pack_propagate(False)
 
-            # Active indicator bar (3px on left)
+            # Barre d'état active (3 px à gauche).
+            # height est OBLIGATOIRE : un CTkFrame vaut 200 px par défaut, et
+            # pack_propagate(False) figeait cette valeur — chaque ligne de nav
+            # faisait donc 200 px de haut, chassant le reste de la barre latérale.
             active_bar = ctk.CTkFrame(
-                row, width=3, fg_color="transparent", corner_radius=2
+                row, width=3, height=T.NAV_BTN_H,
+                fg_color="transparent", corner_radius=2,
             )
             active_bar.pack(side="left", fill="y", padx=(0, 4))
             active_bar.pack_propagate(False)
@@ -187,14 +207,14 @@ class MainWindow(ctk.CTk):
         # ── Connection indicators ──
         ctk.CTkLabel(
             self._sidebar,
-            text="CONNECTIONS",
+            text="CONNEXIONS",
             font=T.font_caps(),
             text_color=T.TEXT_FAINT,
         ).pack(anchor="w", padx=16, pady=(0, 6))
 
-        self._lcu_indicator    = self._connection_dot(self._sidebar, "LCU Client")
-        self._ingame_indicator = self._connection_dot(self._sidebar, "Game Active")
-        self._ocr_indicator    = self._connection_dot(self._sidebar, "OCR Ready")
+        self._lcu_indicator    = self._connection_dot(self._sidebar, "Client LoL")
+        self._ingame_indicator = self._connection_dot(self._sidebar, "Partie en cours")
+        self._ocr_indicator    = self._connection_dot(self._sidebar, "OCR prêt")
 
         # ── Footer: clock ──────────────────────────────────────────────────
         # Spacer pushes clock to the bottom
@@ -229,7 +249,9 @@ class MainWindow(ctk.CTk):
             "champ_select": ChampSelectPanel(self._content),
             "ingame":       InGamePanel(self._content),
             "settings":     SettingsPanel(
-                self._content, on_settings_changed=self._on_settings_changed
+                self._content,
+                on_settings_changed=self._on_settings_changed,
+                on_overlay_preview=self._preview_overlay,
             ),
         }
 
@@ -253,7 +275,7 @@ class MainWindow(ctk.CTk):
 
         self._status_label = ctk.CTkLabel(
             bar,
-            text="Waiting for League client…",
+            text="En attente du client League…",
             font=T.font_xs(),
             text_color=T.TEXT_MUTED,
         )
@@ -269,7 +291,7 @@ class MainWindow(ctk.CTk):
 
         self._phase_label = ctk.CTkLabel(
             self._phase_badge,
-            text="  IDLE  ",
+            text="  REPOS  ",
             font=T.font_caps(),
             text_color=T.TEXT_FAINT,
         )
@@ -325,19 +347,19 @@ class MainWindow(ctk.CTk):
     def _on_lcu_connected(self) -> None:
         self.after(0, lambda: (
             self._lcu_indicator.configure(text_color=T.TEAL_ACCENT),
-            self._set_status("League client connected."),
+            self._set_status("Client League connecté."),
         ))
         self.after(0, lambda: ToastNotification(
-            self, "League client connected", style="success"
+            self, "Client League connecté", style="success"
         ))
 
     def _on_lcu_disconnected(self) -> None:
         self.after(0, lambda: (
             self._lcu_indicator.configure(text_color=T.TEXT_INVISIBLE),
-            self._set_status("League client disconnected."),
+            self._set_status("Client League déconnecté."),
         ))
         self.after(0, lambda: ToastNotification(
-            self, "League client disconnected", style="danger"
+            self, "Client League déconnecté", style="danger"
         ))
 
     def _on_live_connected(self) -> None:
@@ -355,30 +377,30 @@ class MainWindow(ctk.CTk):
     def _on_champ_select_started(self) -> None:
         self.after(0, lambda: (
             self._switch_tab("champ_select"),
-            self._set_phase("CHAMP SELECT", T.PURPLE_PRIMARY, T.PURPLE_DIM),
+            self._set_phase("DRAFT", T.PURPLE_PRIMARY, T.PURPLE_DIM),
         ))
 
     def _on_champ_select_ended(self) -> None:
-        self.after(0, lambda: self._set_phase("IDLE", T.TEXT_FAINT, T.TEXT_INVISIBLE))
+        self.after(0, lambda: self._set_phase("REPOS", T.TEXT_FAINT, T.TEXT_INVISIBLE))
 
     def _on_game_started(self) -> None:
         self.after(0, lambda: (
             self._switch_tab("ingame"),
             self._ingame_indicator.configure(text_color=T.TEAL_ACCENT),
-            self._set_phase("IN GAME", T.TEAL_ACCENT, T.TEAL_DIM),
+            self._set_phase("EN JEU", T.TEAL_ACCENT, T.TEAL_DIM),
         ))
         self.after(0, lambda: ToastNotification(
-            self, "Game started — switching to In-Game", style="info"
+            self, "Partie démarrée — passage à l'onglet En jeu", style="info"
         ))
 
     def _on_game_ended(self) -> None:
         self.after(0, lambda: (
             self._ingame_indicator.configure(text_color=T.TEXT_INVISIBLE),
-            self._set_phase("POST GAME", T.GOLD_ACCENT, T.GOLD_DIM),
+            self._set_phase("APRÈS-PARTIE", T.GOLD_ACCENT, T.GOLD_DIM),
             self._panels["ingame"].set_no_game(),
         ))
         self.after(0, lambda: ToastNotification(
-            self, "Game ended", style="warning"
+            self, "Partie terminée", style="warning"
         ))
 
     # ---- Data update events ----
@@ -474,6 +496,8 @@ class MainWindow(ctk.CTk):
         plan      = payload.get("plan")
         streaming = payload.get("streaming", False)
         is_adc    = payload.get("is_adc", False)
+        trigger   = payload.get("trigger", "")
+        champion  = payload.get("champion", "")
 
         def _update():
             panel: InGamePanel = self._panels["ingame"]
@@ -488,7 +512,12 @@ class MainWindow(ctk.CTk):
                     panel.clear_build_slots()
                     panel.set_status_text(advice)
 
-                self._overlay.show_advice(advice)
+                # L'overlay affiche le plan lui-même (icônes + états), pas un
+                # simple résumé texte.
+                if plan:
+                    self._overlay.show_plan(plan, trigger=trigger, champion=champion)
+                else:
+                    self._overlay.show_advice(advice)
                 self._tts.speak(advice)
 
         self.after(0, _update)
@@ -508,10 +537,46 @@ class MainWindow(ctk.CTk):
         )
 
     def _on_settings_changed(self, settings: dict) -> None:
-        """Called when Settings panel saves. Hot-reload relevant services."""
-        tts_enabled = settings.get("TTS_ENABLED", "true").lower() == "true"
-        self._tts.set_enabled(tts_enabled)
-        self._set_status("Settings saved.")
+        """Appelé quand les réglages changent. Recharge les services concernés."""
+        if "TTS_ENABLED" in settings:
+            self._tts.set_enabled(settings["TTS_ENABLED"].lower() == "true")
+
+        if "OVERLAY_ENABLED" in settings:
+            enabled = settings["OVERLAY_ENABLED"].lower() == "true"
+            self._overlay.set_enabled(enabled)
+            self._sync_overlay_button()
+
+        self._overlay.apply_settings()
+        self._sync_overlay_button()
+        self._set_status("Réglages enregistrés.")
+
+    def _preview_overlay(self) -> None:
+        """Bouton « Aperçu » du panneau Réglages."""
+        self._overlay.preview()
+
+    def _toggle_overlay(self) -> None:
+        """Bascule rapide depuis la barre de titre."""
+        new_state = not self._overlay.is_enabled()
+        config.save_setting("OVERLAY_ENABLED", "true" if new_state else "false")
+        config.reload()
+        self._overlay.set_enabled(new_state)
+        self._sync_overlay_button()
+        ToastNotification(
+            self,
+            f"Overlay {'activé' if new_state else 'désactivé'}",
+            style="success" if new_state else "warning",
+        )
+
+    def _sync_overlay_button(self) -> None:
+        """Aligne l'icône de la barre de titre sur l'état réel de l'overlay."""
+        btn = getattr(self, "_overlay_btn", None)
+        if btn is None:
+            return
+        on = self._overlay.is_enabled()
+        btn.configure(
+            text="◉" if on else "◎",
+            text_color=T.PURPLE_PRIMARY if on else T.TEXT_FAINT,
+        )
 
     def mark_ocr_ready(self) -> None:
         """Called from main.py after EasyOCR warm-up completes."""

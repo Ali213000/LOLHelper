@@ -40,14 +40,19 @@ class InGamePanel(ctk.CTkFrame):
         # ================================================================
         stats_outer = ctk.CTkFrame(self, fg_color="transparent")
         stats_outer.pack(fill="x", padx=T.PADX_CARD, pady=(T.PADY_CARD_TOP, 8))
+        for _col in range(5):
+            stats_outer.grid_columnconfigure(_col, weight=1, uniform="stat")
+        self._stat_col = 0
 
         def stat_card(icon: str, label: str, value: str = "—",
                       value_color: str = T.TEXT_PRIMARY,
                       animated: bool = False):
             """Create a fixed-size stat mini-card. Returns (card, value_label)."""
-            card = T.make_card(stats_outer, height=90)
-            card.pack(side="left", fill="x", expand=True, padx=(0, 6))
-            card.pack_propagate(False)
+            card = T.make_card(stats_outer, width=1, height=90)
+            card.grid(row=0, column=self._stat_col, sticky="nsew",
+                      padx=(0, 6) if self._stat_col < 4 else 0)
+            card.grid_propagate(False)
+            self._stat_col += 1
 
             inner = ctk.CTkFrame(card, fg_color="transparent")
             inner.pack(fill="both", expand=True, padx=12, pady=10)
@@ -84,9 +89,9 @@ class InGamePanel(ctk.CTkFrame):
         _, self._champ_lbl  = stat_card("⚔", "CHAMPION", "—",    T.PURPLE_PRIMARY)
         self._champ_lbl.configure(compound="left", padx=4)
         _, self._kda_lbl    = stat_card("☠", "KDA",      "0/0/0", T.TEXT_PRIMARY)
-        _, self._level_lbl  = stat_card("★", "LEVEL",    "1",     T.GOLD_ACCENT)
-        _, self._gold_lbl   = stat_card("◈", "GOLD",     "0",     T.GOLD_ACCENT, animated=True)
-        self._time_card, self._time_lbl = stat_card("⏱", "TIME", "0:00", T.TEAL_ACCENT)
+        _, self._level_lbl  = stat_card("★", "NIVEAU",    "1",     T.GOLD_ACCENT)
+        _, self._gold_lbl   = stat_card("◈", "OR",     "0",     T.GOLD_ACCENT, animated=True)
+        self._time_card, self._time_lbl = stat_card("⏱", "TEMPS", "0:00", T.TEAL_ACCENT)
 
         # ================================================================
         # Current build row
@@ -96,11 +101,21 @@ class InGamePanel(ctk.CTkFrame):
 
         hdr = ctk.CTkFrame(build_card, fg_color="transparent")
         hdr.pack(fill="x", padx=14, pady=(10, 4))
-        T.make_caps_label(hdr, "⬡  CURRENT BUILD", T.TEXT_MUTED).pack(side="left")
+        T.make_caps_label(hdr, "⬡  BUILD ACTUEL", T.TEXT_MUTED).pack(side="left")
 
-        self._items_container = ctk.CTkFrame(build_card, fg_color="transparent")
+        self._items_container = ctk.CTkFrame(build_card, width=1, height=1, fg_color="transparent")
         self._items_container.pack(anchor="w", padx=14, pady=(0, 10))
         self._item_labels: list[ctk.CTkLabel] = []
+
+        # État vide : sans partie en cours, la carte restait un grand vide.
+        self._build_empty = ctk.CTkLabel(
+            build_card,
+            text="Aucune partie en cours — lance une partie pour voir ton inventaire.",
+            font=T.font_sm(),
+            text_color=T.TEXT_FAINT,
+            justify="left",
+        )
+        self._build_empty.pack(anchor="w", padx=14, pady=(0, 12))
 
         # ================================================================
         # Advantage / Gold Diff Row (inside build_card)
@@ -109,7 +124,7 @@ class InGamePanel(ctk.CTkFrame):
         
         adv_hdr = ctk.CTkFrame(build_card, fg_color="transparent")
         adv_hdr.pack(fill="x", padx=14, pady=(4, 0))
-        T.make_caps_label(adv_hdr, "⚖  GOLD ADVANTAGE (ITEMS)", T.TEXT_MUTED).pack(side="left")
+        T.make_caps_label(adv_hdr, "⚖  AVANTAGE OR (OBJETS)", T.TEXT_MUTED).pack(side="left")
 
         self._ally_selector = ctk.CTkOptionMenu(
             adv_hdr,
@@ -161,7 +176,7 @@ class InGamePanel(ctk.CTkFrame):
 
         ctk.CTkLabel(
             alert_hdr,
-            text="⚠  FED ENEMY DETECTED",
+            text="⚠  ENNEMI EN FEU",
             font=T.font_title(),
             text_color=T.RED_DANGER,
         ).pack(side="left")
@@ -197,7 +212,7 @@ class InGamePanel(ctk.CTkFrame):
 
         ctk.CTkLabel(
             rec_hdr,
-            text="🛡  ITEM RECOMMENDATION",
+            text="⬡  PLAN D'OBJETS",
             font=T.font_title(),
             text_color=T.PURPLE_PRIMARY,
         ).pack(side="left")
@@ -222,27 +237,27 @@ class InGamePanel(ctk.CTkFrame):
         T.make_divider(self._rec_card).pack(fill="x", padx=14, pady=(8, 10))
 
         # Dynamic Build Plan UI Container
-        self._plan_container = ctk.CTkFrame(self._rec_card, fg_color="transparent")
+        self._plan_container = ctk.CTkFrame(self._rec_card, width=1, height=1, fg_color="transparent")
         self._plan_container.pack(fill="x", padx=14, pady=(0, 8))
 
         # Legendary items (left side)
-        self._legendary_frame = ctk.CTkFrame(self._plan_container, fg_color="transparent")
+        self._legendary_frame = ctk.CTkFrame(self._plan_container, width=1, height=1, fg_color="transparent")
         self._legendary_frame.pack(side="left", fill="x", expand=True, padx=(0, 10))
 
         # Boots (right side)
-        self._boots_frame = ctk.CTkFrame(self._plan_container, fg_color="transparent")
+        self._boots_frame = ctk.CTkFrame(self._plan_container, width=1, height=1, fg_color="transparent")
         self._boots_frame.pack(side="right")
         
         # We will keep references to the widgets to destroy/recreate them dynamically
         self._legendary_widgets = []
         self._boots_widget = None
 
-        self._verdicts_frame = ctk.CTkFrame(self._rec_card, fg_color="transparent")
+        self._verdicts_frame = ctk.CTkFrame(self._rec_card, width=1, height=1, fg_color="transparent")
 
         # Status / streaming text below slots
         self._status_lbl = ctk.CTkLabel(
             self._rec_card,
-            text="Waiting for a game…",
+            text="En attente d'une partie…",
             font=T.font_sm(),
             text_color=T.TEXT_FAINT,
             wraplength=480,
@@ -269,7 +284,11 @@ class InGamePanel(ctk.CTkFrame):
     ) -> None:
         if enemy_gold_diffs is None:
             enemy_gold_diffs = []
-            
+
+        # Une partie tourne : on retire le message d'état vide.
+        if self._build_empty is not None and self._build_empty.winfo_manager():
+            self._build_empty.pack_forget()
+
         cache = ImageCache()
 
         # Champion
@@ -305,7 +324,7 @@ class InGamePanel(ctk.CTkFrame):
         if not items:
             lbl = ctk.CTkLabel(
                 self._items_container,
-                text="No items",
+                text="Aucun objet",
                 font=T.font_sm(),
                 text_color=T.TEXT_MUTED,
             )
@@ -558,6 +577,8 @@ class InGamePanel(ctk.CTkFrame):
             self._item_badge.set_idle()
 
     def set_no_game(self) -> None:
+        if self._build_empty is not None and not self._build_empty.winfo_manager():
+            self._build_empty.pack(anchor="w", padx=14, pady=(0, 12))
         self._champ_lbl.configure(text="—", image=None)
         self._kda_lbl.configure(text="0/0/0", text_color=T.TEXT_PRIMARY)
         self._level_lbl.configure(text="1")
@@ -572,7 +593,7 @@ class InGamePanel(ctk.CTkFrame):
         self._item_labels.clear()
         ctk.CTkLabel(
             self._items_container,
-            text="No items",
+            text="Aucun objet",
             font=T.font_sm(),
             text_color=T.TEXT_MUTED,
         ).pack(side="left")

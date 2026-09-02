@@ -73,6 +73,9 @@ SCOREBOARD_TOP_FRACTION: float = float(os.getenv("SCOREBOARD_TOP_FRACTION", "0.2
 # ---------------------------------------------------------------------------
 # Overlay
 # ---------------------------------------------------------------------------
+# Affiche ou non l'overlay en jeu (désactivable depuis l'onglet Réglages)
+OVERLAY_ENABLED: bool = os.getenv("OVERLAY_ENABLED", "true").lower() == "true"
+
 OVERLAY_OPACITY: float = float(os.getenv("OVERLAY_OPACITY", "0.88"))
 OVERLAY_AUTO_HIDE_SECONDS: int = int(os.getenv("OVERLAY_AUTO_HIDE_SECONDS", "12"))
 # Corner: "top-right" | "top-left" | "bottom-right" | "bottom-left"
@@ -100,3 +103,23 @@ def save_setting(key: str, value: str) -> None:
     """Persist a key=value pair to the .env file and update the live env."""
     set_key(str(ENV_FILE), key, value)
     os.environ[key] = value
+
+
+def reload() -> None:
+    """Relit .env et rafraîchit les constantes modifiables à chaud.
+
+    Le panneau Réglages écrit dans .env puis appelle cette fonction : sans elle,
+    les modules qui lisent config.X gardent les valeurs du démarrage.
+    """
+    global OVERLAY_ENABLED, OVERLAY_OPACITY, OVERLAY_AUTO_HIDE_SECONDS
+    global OVERLAY_POSITION, TTS_ENABLED, TTS_VOICE, TTS_RATE, LLM_PROVIDER
+
+    load_dotenv(ENV_FILE, override=True)
+    OVERLAY_ENABLED = os.getenv("OVERLAY_ENABLED", "true").lower() == "true"
+    OVERLAY_OPACITY = float(os.getenv("OVERLAY_OPACITY", "0.88"))
+    OVERLAY_AUTO_HIDE_SECONDS = int(os.getenv("OVERLAY_AUTO_HIDE_SECONDS", "12"))
+    OVERLAY_POSITION = os.getenv("OVERLAY_POSITION", "top-right")
+    TTS_ENABLED = os.getenv("TTS_ENABLED", "true").lower() == "true"
+    TTS_VOICE = os.getenv("TTS_VOICE", "en-US-GuyNeural")
+    TTS_RATE = os.getenv("TTS_RATE", "+0%")
+    LLM_PROVIDER = os.getenv("LLM_PROVIDER", "gemini")
