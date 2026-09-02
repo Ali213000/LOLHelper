@@ -42,55 +42,70 @@ class ChampSelectPanel(ctk.CTkFrame):
         super().__init__(master, fg_color="transparent", **kwargs)
         self._suggestions: list[str] = []
         self._reasons:     list[str] = []
-        self._sug_index: int = 0
+        self._sug_images: list = []
+        self._en_draft = False
         self._build()
+        self.afficher_attente()
 
     # =========================================================================
     # Layout construction
     # =========================================================================
 
+    def _construire_attente(self) -> ctk.CTkFrame:
+        """Écran affiché tant qu'aucune sélection de champions n'est en cours."""
+        # Fond opaque : ce cadre recouvre le tableau de draft.
+        cadre = ctk.CTkFrame(self, fg_color=T.BG_ROOT)
+        centre = ctk.CTkFrame(cadre, fg_color="transparent")
+        centre.place(relx=0.5, rely=0.45, anchor="center")
+
+        ctk.CTkLabel(
+            centre, text="⚔", font=ctk.CTkFont("Segoe UI", 46),
+            text_color=T.BORDER_DEFAULT,
+        ).pack(pady=(0, T.SP_3))
+        ctk.CTkLabel(
+            centre, text="EN ATTENTE D'UNE SÉLECTION", font=T.font_title(),
+            text_color=T.TEXT_MUTED,
+        ).pack()
+        self._attente_detail = ctk.CTkLabel(
+            centre,
+            text="Les conseils apparaîtront dès l'entrée en phase de draft.",
+            font=T.font_sm(), text_color=T.TEXT_FAINT,
+        )
+        self._attente_detail.pack(pady=(T.SP_2, 0))
+        return cadre
+
+    def afficher_attente(self, detail: str = "") -> None:
+        """Recouvre le tableau de draft par l'écran d'attente."""
+        if detail:
+            self._attente_detail.configure(text=detail)
+        # Surcouche plutôt que bascule de pack : CTkScrollableFrame place son
+        # conteneur interne lui-même, pack_forget() ne l'atteint pas.
+        self._attente.place(relx=0, rely=0, relwidth=1, relheight=1)
+        self._attente.tkraise()
+        self._en_draft = False
+
+    def afficher_draft(self) -> None:
+        """Retire la surcouche et laisse voir le tableau de draft."""
+        self._attente.place_forget()
+        self._en_draft = True
+
+    def en_attente(self) -> bool:
+        return not self._en_draft
+
     def _build(self) -> None:
+        # Deux états exclusifs, comme l'onglet En jeu : hors draft, les
+        # emplacements vides et les conseils périmés n'apprennent rien.
+        self._attente = self._construire_attente()
+
         # Corps défilant : l'empilement des cartes dépasse la hauteur utile,
         # la dernière se retrouvait coupée sur une fenêtre standard.
         body = ctk.CTkScrollableFrame(self, fg_color="transparent")
         body.pack(fill="both", expand=True)
         self._body = body
 
-        # ── Ban phase card ────────────────────────────────────────────────
-        ban_card = T.make_card(body, height=68)
-        ban_card.pack(fill="x", padx=T.PADX_CARD, pady=(T.PADY_CARD_TOP, 4))
-        ban_card.pack_propagate(False)
-
-        ban_inner = ctk.CTkFrame(ban_card, fg_color="transparent")
-        ban_inner.pack(fill="both", expand=True, padx=12, pady=8)
-
-        T.make_caps_label(ban_inner, "BANS", T.TEXT_FAINT).pack(side="left", padx=(0, 8))
-
-        ally_ban_row = ctk.CTkFrame(ban_inner, fg_color="transparent")
-        ally_ban_row.pack(side="left")
-        self._ally_ban_slots: list[ctk.CTkLabel] = []
-        for _ in range(_BAN_COUNT):
-            lbl = self._make_ban_slot(ally_ban_row, is_enemy=False)
-            lbl.pack(side="left", padx=2)
-            self._ally_ban_slots.append(lbl)
-
-        T.make_divider(ban_inner, vertical=True).pack(side="left", fill="y", padx=10)
-
-        enemy_ban_row = ctk.CTkFrame(ban_inner, fg_color="transparent")
-        enemy_ban_row.pack(side="left")
-        self._enemy_ban_slots: list[ctk.CTkLabel] = []
-        for _ in range(_BAN_COUNT):
-            lbl = self._make_ban_slot(enemy_ban_row, is_enemy=True)
-            lbl.pack(side="left", padx=2)
-            self._enemy_ban_slots.append(lbl)
-
-        # ── Ban Suggestions Widget ─────────────────────────────────────────
-        self._ban_sug_widget = BanSuggestionsWidget(body)
-        self._ban_sug_widget.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
-
         # ── Pick phase card ───────────────────────────────────────────────
         pick_card = T.make_card(body, height=100)
-        pick_card.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
+        pick_card.pack(fill="x", padx=T.PADX_CARD, pady=(T.PADY_CARD_TOP, 4))
         pick_card.pack_propagate(False)
 
         pick_inner = ctk.CTkFrame(pick_card, fg_color="transparent")
@@ -137,6 +152,38 @@ class ChampSelectPanel(ctk.CTkFrame):
             self._enemy_pick_slots.append(icon_lbl)
             self._enemy_name_labels.append(name_lbl)
 
+        # ── Ban phase card ────────────────────────────────────────────────
+        ban_card = T.make_card(body, height=68)
+        ban_card.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
+        ban_card.pack_propagate(False)
+
+        ban_inner = ctk.CTkFrame(ban_card, fg_color="transparent")
+        ban_inner.pack(fill="both", expand=True, padx=12, pady=8)
+
+        T.make_caps_label(ban_inner, "BANS", T.TEXT_FAINT).pack(side="left", padx=(0, 8))
+
+        ally_ban_row = ctk.CTkFrame(ban_inner, fg_color="transparent")
+        ally_ban_row.pack(side="left")
+        self._ally_ban_slots: list[ctk.CTkLabel] = []
+        for _ in range(_BAN_COUNT):
+            lbl = self._make_ban_slot(ally_ban_row, is_enemy=False)
+            lbl.pack(side="left", padx=2)
+            self._ally_ban_slots.append(lbl)
+
+        T.make_divider(ban_inner, vertical=True).pack(side="left", fill="y", padx=10)
+
+        enemy_ban_row = ctk.CTkFrame(ban_inner, fg_color="transparent")
+        enemy_ban_row.pack(side="left")
+        self._enemy_ban_slots: list[ctk.CTkLabel] = []
+        for _ in range(_BAN_COUNT):
+            lbl = self._make_ban_slot(enemy_ban_row, is_enemy=True)
+            lbl.pack(side="left", padx=2)
+            self._enemy_ban_slots.append(lbl)
+
+        # ── Ban Suggestions Widget ─────────────────────────────────────────
+        self._ban_sug_widget = BanSuggestionsWidget(body)
+        self._ban_sug_widget.pack(fill="x", padx=T.PADX_CARD, pady=(0, 4))
+
         # ── Suggestion card ───────────────────────────────────────────────
         self._sug_card = GlowBorderFrame(
             body,
@@ -158,12 +205,10 @@ class ChampSelectPanel(ctk.CTkFrame):
             text_color=T.GOLD_ACCENT,
         ).pack(side="left")
 
-        # Nav controls (right)
-        nav_frame = ctk.CTkFrame(sug_hdr, fg_color="transparent")
-        nav_frame.pack(side="right")
-
+        # Un seul bouton : les trois suggestions sont affichées ensemble,
+        # il n'y a plus rien à faire défiler.
         self._regen_btn = ctk.CTkButton(
-            nav_frame,
+            sug_hdr,
             text="↻",
             width=32, height=28,
             fg_color="transparent",
@@ -173,71 +218,42 @@ class ChampSelectPanel(ctk.CTkFrame):
             corner_radius=T.INNER_RADIUS,
             command=self._on_regen,
         )
-        self._regen_btn.pack(side="right", padx=(4, 0))
-
-        self._next_btn = ctk.CTkButton(
-            nav_frame,
-            text="▶",
-            width=28, height=28,
-            fg_color=T.BG_CARD_INNER,
-            hover_color=T.BG_HOVER,
-            text_color=T.TEXT_PRIMARY,
-            font=ctk.CTkFont("Segoe UI", 12),
-            corner_radius=T.INNER_RADIUS,
-            command=self._next_suggestion,
-        )
-        self._next_btn.pack(side="right", padx=2)
-
-        self._sug_badge = ctk.CTkLabel(
-            nav_frame,
-            text="—/3",
-            font=T.font_xs(),
-            text_color=T.TEXT_FAINT,
-        )
-        self._sug_badge.pack(side="right", padx=4)
-
-        self._prev_btn = ctk.CTkButton(
-            nav_frame,
-            text="◀",
-            width=28, height=28,
-            fg_color=T.BG_CARD_INNER,
-            hover_color=T.BG_HOVER,
-            text_color=T.TEXT_PRIMARY,
-            font=ctk.CTkFont("Segoe UI", 12),
-            corner_radius=T.INNER_RADIUS,
-            command=self._prev_suggestion,
-        )
-        self._prev_btn.pack(side="right", padx=2)
+        self._regen_btn.pack(side="right")
+        T.attach_tooltip(self._regen_btn, "Régénérer les suggestions")
 
         T.make_divider(self._sug_card).pack(fill="x", padx=14, pady=(8, 8))
 
-        # Content row: icon + name/reason
-        sug_content = ctk.CTkFrame(self._sug_card, fg_color="transparent")
-        sug_content.pack(fill="x", padx=14, pady=(0, 12))
+        # Trois emplacements simultanés, alignés sur les bans conseillés.
+        self._sug_slots_frame = ctk.CTkFrame(self._sug_card, fg_color="transparent")
+        self._sug_slots_frame.pack(fill="x", padx=14, pady=(0, 12))
 
-        self._sug_icon = ctk.CTkLabel(sug_content, text="", fg_color="transparent")
-        self._sug_icon.pack(side="left", padx=(0, 14))
+        self._sug_slots = []
+        for _ in range(3):
+            col = ctk.CTkFrame(self._sug_slots_frame, fg_color="transparent")
+            col.pack(side="left", expand=True, fill="both", padx=4)
+            icone = ctk.CTkLabel(
+                col, text="?", font=T.font_md(), text_color=T.TEXT_FAINT,
+                width=72, height=72, fg_color=T.BG_INPUT, corner_radius=8,
+            )
+            icone.pack(anchor="center")
+            nom = ctk.CTkLabel(
+                col, text="—", font=ctk.CTkFont("Segoe UI", 13, "bold"),
+                text_color=T.GOLD_ACCENT,
+            )
+            nom.pack(anchor="center", pady=(4, 0))
+            raison = ctk.CTkLabel(
+                col, text="", font=T.font_sm(), text_color=T.TEXT_SECONDARY,
+                wraplength=140, justify="center",
+            )
+            raison.pack(anchor="center")
+            self._sug_slots.append((icone, nom, raison))
 
-        sug_text_col = ctk.CTkFrame(sug_content, fg_color="transparent")
-        sug_text_col.pack(side="left", fill="both", expand=True)
-
-        self._sug_name = ctk.CTkLabel(
-            sug_text_col,
-            text="En attente…",
-            font=ctk.CTkFont("Segoe UI", 22, "bold"),
-            text_color=T.GOLD_ACCENT,
-        )
-        self._sug_name.pack(anchor="w")
-
-        self._sug_reason = ctk.CTkLabel(
-            sug_text_col,
+        self._sug_vide = ctk.CTkLabel(
+            self._sug_card,
             text="Les suggestions arrivent dès le début de la phase de draft.",
-            font=T.font_sm(),
-            text_color=T.TEXT_SECONDARY,
-            wraplength=300,
-            justify="left",
+            font=T.font_sm(), text_color=T.TEXT_FAINT,
         )
-        self._sug_reason.pack(anchor="w", pady=(4, 0))
+        self._sug_vide.pack(padx=14, pady=(0, 12))
 
         # ── Advice card ───────────────────────────────────────────────────
         self._advice_card = GlowBorderFrame(
@@ -384,6 +400,13 @@ class ChampSelectPanel(ctk.CTkFrame):
             if action.is_ally:
                 ally_picks.append((action.champion_name, action.is_my_action))
 
+        # Repli : les ennemis sont lus depuis enemy_champion_names, les alliés
+        # depuis draft_actions. Si ces actions manquent — début de sélection,
+        # reconnexion, changement de format côté LCU — la colonne alliée se
+        # vidait alors que ally_champion_names était renseigné.
+        if not any(nom for nom, _ in ally_picks):
+            ally_picks = [(nom, False) for nom in state.ally_champion_names if nom]
+
         # Pad to 5
         while len(ally_picks)  < _PICK_COUNT:
             ally_picks.append(("", False))
@@ -483,49 +506,47 @@ class ChampSelectPanel(ctk.CTkFrame):
         self._ban_sug_widget.enqueue(payload)
 
     def set_suggestions(self, suggestions: list[str], reasons: list[str]) -> None:
-        """Called from main_window when CHAMP_SUGGESTIONS_READY fires."""
+        """Appelé depuis main_window quand CHAMP_SUGGESTIONS_READY est émis."""
         self._suggestions = suggestions
         self._reasons     = reasons
-        self._sug_index   = 0
         self._render_suggestion()
 
     def _render_suggestion(self) -> None:
+        """Affiche les trois suggestions d'un coup, comme les bans conseillés."""
+        cache = ImageCache()
+        self._sug_images = []          # garde les références, sinon Tk les libère
+
         if not self._suggestions:
-            self._sug_name.configure(text="En attente…", text_color=T.TEXT_MUTED)
-            self._sug_reason.configure(text="Génération des suggestions en cours…")
-            self._sug_icon.configure(image=None)
-            self._sug_badge.configure(text="—/3")
+            self._sug_slots_frame.pack_forget()
+            if not self._sug_vide.winfo_manager():
+                self._sug_vide.pack(padx=14, pady=(0, 12))
             return
 
-        idx = self._sug_index
-        name   = self._suggestions[idx] if idx < len(self._suggestions) else ""
-        reason = self._reasons[idx]     if idx < len(self._reasons)     else ""
+        self._sug_vide.pack_forget()
+        if not self._sug_slots_frame.winfo_manager():
+            self._sug_slots_frame.pack(fill="x", padx=14, pady=(0, 12))
 
-        cache = ImageCache()
-        img = cache.get_champion_icon_round(name, size=80, glow=True)
-
-        self._sug_icon.configure(image=img if img else None)
-        self._sug_name.configure(text=name or "—", text_color=T.GOLD_ACCENT)
-        self._sug_reason.configure(text=reason or "")
-        self._sug_badge.configure(text=f"{idx + 1}/{len(self._suggestions)}")
-
-    def _next_suggestion(self) -> None:
-        if self._suggestions:
-            self._sug_index = (self._sug_index + 1) % len(self._suggestions)
-            self._render_suggestion()
-
-    def _prev_suggestion(self) -> None:
-        if self._suggestions:
-            self._sug_index = (self._sug_index - 1) % len(self._suggestions)
-            self._render_suggestion()
+        for i, (icone, nom, raison) in enumerate(self._sug_slots):
+            if i < len(self._suggestions):
+                champ = self._suggestions[i]
+                img = cache.get_champion_icon_round(champ, size=72, glow=(i == 0))
+                if img:
+                    self._sug_images.append(img)
+                icone.configure(image=img if img else None, text="" if img else "?")
+                nom.configure(text=champ, text_color=T.GOLD_ACCENT)
+                raison.configure(
+                    text=self._reasons[i] if i < len(self._reasons) else "")
+            else:
+                icone.configure(image=None, text="?")
+                nom.configure(text="—", text_color=T.TEXT_FAINT)
+                raison.configure(text="")
 
     def _on_regen(self) -> None:
         """Signal the main window to request new suggestions."""
-        self._sug_name.configure(text="Génération…", text_color=T.TEXT_MUTED)
-        self._sug_reason.configure(text="Nouvelle tier list en cours…")
-        self._sug_badge.configure(text="…/3")
         self._suggestions = []
         self._reasons = []
+        self._render_suggestion()
+        self._sug_vide.configure(text="Nouvelle sélection en cours…")
         # Fire the regenerate callback if one was registered
         if callable(self._regen_callback):
             self._regen_callback()

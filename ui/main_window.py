@@ -348,6 +348,9 @@ class MainWindow(ctk.CTk):
         self.after(0, lambda: (
             self._lcu_indicator.configure(text_color=T.TEAL_ACCENT),
             self._set_status("Client League connecté."),
+            self._panels["champ_select"].afficher_attente(
+                "Client connecté — les conseils démarreront à la sélection."
+            ),
             self._panels["ingame"].afficher_attente(
                 "Client connecté — lance une partie depuis le client League."
             ),
@@ -381,13 +384,17 @@ class MainWindow(ctk.CTk):
         self.after(0, lambda: (
             self._switch_tab("champ_select"),
             self._set_phase("DRAFT", T.PURPLE_PRIMARY, T.PURPLE_DIM),
+            self._panels["champ_select"].afficher_draft(),
             self._panels["ingame"].afficher_attente(
                 "Draft en cours — le plan arrivera au début de la partie."
             ),
         ))
 
     def _on_champ_select_ended(self) -> None:
-        self.after(0, lambda: self._set_phase("REPOS", T.TEXT_FAINT, T.TEXT_INVISIBLE))
+        self.after(0, lambda: (
+            self._set_phase("REPOS", T.TEXT_FAINT, T.TEXT_INVISIBLE),
+            self._panels["champ_select"].afficher_attente(),
+        ))
 
     def _on_game_started(self) -> None:
         self.after(0, lambda: (
