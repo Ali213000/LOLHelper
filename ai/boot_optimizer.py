@@ -1,6 +1,7 @@
 from typing import Optional
 from core.state_manager import InGameState
 from data.champion_affinity import ChampionAffinity
+from data.hard_cc import HARD_CC_CHAMPIONS as _CC_CHAMPIONS
 
 # Constants for common boots (using the exact French names from ImageCache)
 BOOTS_TABI = "Coques en acier"
@@ -10,14 +11,6 @@ BOOTS_LUCIDITY = "Bottes de lucidité"
 BOOTS_ZERKER = "Jambières du berzerker"
 BOOTS_SWIFT = "Bottes de célérité"
 
-# Liste de champions avec du CC dur (reprise de stat_analyzer)
-_CC_CHAMPIONS = {
-    "Leona", "Nautilus", "Amumu", "Malphite", "Annie", "Ashe", "Zac",
-    "Alistar", "Thresh", "Blitzcrank", "Morgana", "Lissandra", "Rammus",
-    "Galio", "Vi", "Jarvan IV", "Cho'Gath", "Ornn", "Sion", "Veigar",
-    "Twisted Fate", "Poppy", "Rell", "Sejuani", "Fiddlesticks", "Volibear",
-    "Urgot", "Nunu et Willump", "Wukong", "Kennen", "Ryze",
-}
 
 class BootOptimizer:
     def __init__(self, affinity: ChampionAffinity):

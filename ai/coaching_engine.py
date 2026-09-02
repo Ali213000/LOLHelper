@@ -470,8 +470,11 @@ class CoachingEngine:
         analyzer       = StatAnalyzer()
         
         is_adc = my_position.upper() == "ADC"
-        # The user requested 6 legendary slots always. The UI boots slot handles boots.
-        target_capacity = 6
+        # L'inventaire compte 6 emplacements. Pour un non-ADC les bottes en
+        # occupent un, donc 5 légendaires : en générer 6 revenait à en faire
+        # calculer un que l'UI jetait silencieusement. Un ADC revend souvent ses
+        # bottes en fin de partie, d'où 6 légendaires + un emplacement bottes.
+        target_capacity = 6 if is_adc else 5
         
         # Load previous plan for hysteresis
         prev_plan = self._last_build_plan
@@ -513,8 +516,12 @@ class CoachingEngine:
         # Populate legendary slots
         legendary_slots = []
         for i, (item_name, conf, margin) in enumerate(raw_plan):
+            # Le PROCHAIN objet est toujours révélé : c'est la seule information
+            # dont le joueur a besoin devant la boutique. Le masquer parce que la
+            # confiance est basse laissait un « ? » et aucune décision possible.
+            # L'incertitude est communiquée par le score, pas par l'absence.
             state = SlotState.PLANNED
-            if conf < 0.45:
+            if i > 0 and conf < 0.45:
                 state = SlotState.UNDETERMINED
                 
             slot = Slot(
@@ -532,10 +539,17 @@ class CoachingEngine:
         completed_owned = [name for name in my_item_names if name in candidate_items]
         
         if len(completed_owned) < 2:
-            key = f"{local.champion_name}|{my_position.upper()}"
+            # La table est indexée sur l'identifiant Riot ("DrMundo"), pas sur le
+            # nom d'affichage de la Live Client API ("Dr. Mundo"). Sans
+            # normalisation, la prescription était silencieusement introuvable
+            # pour tous les champions dont les deux formes diffèrent
+            # (Dr. Mundo, Kai'Sa, Cho'Gath, Lee Sin, Miss Fortune, Wukong…).
+            from ai.champion_scorer import norm_name
+            champ_key = norm_name(local.champion_name)
+            key = f"{champ_key}|{my_position.upper()}"
             prescription_data = self._core_prescriptions.get(key)
             if not prescription_data:
-                possible_keys = [k for k in self._core_prescriptions.keys() if k.startswith(f"{local.champion_name}|")]
+                possible_keys = [k for k in self._core_prescriptions.keys() if k.startswith(f"{champ_key}|")]
                 if possible_keys:
                     best_key = max(possible_keys, key=lambda k: self._core_prescriptions[k].get("global", {}).get("samples", 0))
                     prescription_data = self._core_prescriptions[best_key]
@@ -557,12 +571,26 @@ class CoachingEngine:
                     p_conf = best_stratum.get("confidence", 0)
                     if p_conf > 0.35:
                         core_items = best_stratum.get("items", [])
-                        # Override slots
                         for idx, c_id in enumerate(core_items):
                             if idx < len(plan.legendary_slots):
-                                plan.legendary_slots[idx].item_id = c_id
-                                plan.legendary_slots[idx].state = SlotState.PLANNED
-                                plan.legendary_slots[idx].reason = "prescrit"
+                                slot = plan.legendary_slots[idx]
+                                slot.item_id = c_id
+                                slot.state = SlotState.PLANNED
+                                slot.reason = "prescrit"
+                                # La confiance affichée doit être celle de la
+                                # prescription empirique, pas celle du score
+                                # mathématique qu'elle vient de remplacer.
+                                slot.confidence = p_conf
+
+                        # Le plan mathématique proposait parfois déjà l'un de ces
+                        # objets plus loin : sans ce filtre, il apparaissait deux
+                        # fois dans la grille.
+                        prescrits = set(core_items)
+                        for later in plan.legendary_slots[len(core_items):]:
+                            if later.item_id in prescrits:
+                                later.item_id = None
+                                later.state = SlotState.UNDETERMINED
+                                later.confidence = 0.0
         
         # Lock owned items
         for item_name in completed_owned:
