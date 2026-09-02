@@ -35,14 +35,34 @@ def _enemies():
 
 # ------------------------------------------------- 1. les soigneurs manquants
 
-def test_fiddlesticks_est_reconnu_comme_soigneur():
-    """Le drain du W est un levier majeur : son absence tuait le déclencheur."""
-    assert _HEALING_CHAMPION_WEIGHTS.get("Fiddlesticks", 0) >= 0.7
+@pytest.mark.parametrize("champ,mini", [
+    ("Zac", 0.95), ("Vladimir", 0.95), ("Soraka", 0.95),
+    ("Briar", 0.80), ("Sona", 0.70), ("Nami", 0.60),
+    ("Tryndamere", 0.60), ("Nasus", 0.60), ("Aatrox", 0.50),
+])
+def test_les_soigneurs_mesures_pesent_leur_poids(champ, mini):
+    """Poids issus de 75 900 participants, plus d'une estimation."""
+    assert _HEALING_CHAMPION_WEIGHTS.get(champ, 0) >= mini
 
 
-@pytest.mark.parametrize("champ", ["Viego", "Master Yi", "Kayn", "Gwen", "Ekko", "Udyr"])
-def test_les_autres_oublis_sont_couverts(champ):
-    assert champ in _HEALING_CHAMPION_WEIGHTS
+@pytest.mark.parametrize("champ", ["Darius", "Zed", "Riven", "Master Yi", "Viego"])
+def test_les_faux_soigneurs_ont_ete_ecartes(champ):
+    """
+    Ces champions figuraient dans la table estimée à 0.55–0.80. La mesure les
+    situe au niveau de la médiane de leur poste, voire en dessous : Master Yi
+    soigne 66 PV/min de MOINS que le jungleur médian, Darius dépasse la médiane
+    top de 10 PV/min. Aucun ne justifie de l'anti-soin par sa seule présence.
+    """
+    assert _HEALING_CHAMPION_WEIGHTS.get(champ, 0) == 0
+
+
+def test_fiddlesticks_reste_non_mesure():
+    """
+    Moins de 30 parties sur 7 810 : aucune mesure possible. Il est donc absent
+    de la table plutôt que porté par un jugement. Le conseil d'anti-soin qu'il
+    avait motivé reposait sur une valeur que rien n'appuie.
+    """
+    assert "Fiddlesticks" not in _HEALING_CHAMPION_WEIGHTS
 
 
 # --------------------------------------- 2. les objets anti-soin sont réels
@@ -88,24 +108,42 @@ def test_la_version_faille_de_l_invocateur_gagne(analyzer):
 
 # --------------------------------------------- 4. le déclencheur se déclenche
 
+def _soigneurs():
+    """Composition qui soigne réellement, d'après les mesures."""
+    return [
+        PlayerInGameData(champion_name="Aatrox", team="CHAOS", position="TOP", level=15),
+        PlayerInGameData(champion_name="Nasus", team="CHAOS", position="JUNGLE", level=14),
+        PlayerInGameData(champion_name="Sona", team="CHAOS", position="UTILITY", level=13),
+        PlayerInGameData(champion_name="Ezreal", team="CHAOS", position="ADC", level=14),
+        PlayerInGameData(champion_name="Anivia", team="CHAOS", position="MID", level=15),
+    ]
+
+
 def test_le_vis_a_vis_de_lane_pese_plus_lourd(analyzer):
-    sans = analyzer._check_triggers(_enemies(), "Tank", 0.5, "hp", [])
+    """Le champion qu'on affronte en boucle décide des échanges."""
+    sans = analyzer._check_triggers(_soigneurs(), "Tank", 0.5, "hp", [])
     avec = analyzer._check_triggers(
-        _enemies(), "Tank", 0.5, "hp", [], lane_opponent_name="Fiddlesticks"
+        _soigneurs(), "Tank", 0.5, "hp", [], lane_opponent_name="Aatrox"
     )
     assert not sans["need_grievous"]
     assert avec["need_grievous"], (
-        "Fiddlesticks (0.75) + Darius (0.60) = 1.35 < 1.50 ; le bonus de "
-        "vis-à-vis doit faire passer le seuil"
+        "Aatrox 0.58 + Nasus 0.64 + Sona 0.77 = 1.99, sous le seuil de 2.00 ; "
+        "le bonus de vis-à-vis doit faire basculer"
     )
 
 
-def test_le_cas_reel_du_joueur(analyzer):
+def test_la_partie_du_joueur_ne_declenche_plus(analyzer):
+    """
+    Documente un revirement. Le conseil d'anti-soin donné sur cette partie
+    reposait sur Fiddlesticks 0.75 et Darius 0.60, deux valeurs estimées. La
+    mesure ne retient ni l'un ni l'autre : Fiddlesticks manque de données,
+    Darius ne dépasse pas sa médiane de poste. La composition ne justifie donc
+    pas d'anti-soin.
+    """
     t = analyzer._check_triggers(
         _enemies(), "Tank", 0.5, "hp", [], lane_opponent_name="Fiddlesticks"
     )
-    assert t["need_grievous"]
-    assert "Fiddlesticks" in t["gw_source"] and "Darius" in t["gw_source"]
+    assert t["need_grievous"] is False
 
 
 # Le comportement « l'anti-soin résiste à la prescription et aux achats » est

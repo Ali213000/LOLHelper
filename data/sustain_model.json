@@ -1,0 +1,502 @@
+{
+  "_lisez_moi": [
+    "Modèle de soin dynamique, mesuré sur les matchs collectés.",
+    "poids = racine((excès_champion x mult_KDA + Σ apports_objets) / 750)",
+    "Objets indexés par IDENTIFIANT : les noms dérivent à chaque patch."
+  ],
+  "reference": 750.0,
+  "participants": 75900,
+  "references_par_poste": {
+    "BOTTOM": {
+      "n": 15180,
+      "mediane": 155.3,
+      "p90": 330.3
+    },
+    "JUNGLE": {
+      "n": 15180,
+      "mediane": 428.8,
+      "p90": 760.0
+    },
+    "MIDDLE": {
+      "n": 15180,
+      "mediane": 150.7,
+      "p90": 392.1
+    },
+    "TOP": {
+      "n": 15180,
+      "mediane": 251.6,
+      "p90": 581.6
+    },
+    "UTILITY": {
+      "n": 15179,
+      "mediane": 188.0,
+      "p90": 568.1
+    }
+  },
+  "domination": {
+    "bornes_or": [
+      0.85,
+      1.15
+    ],
+    "bornes_kda": [
+      1.5,
+      3.0
+    ],
+    "grille": [
+      [
+        0.62,
+        0.87,
+        1.05
+      ],
+      [
+        0.75,
+        1.0,
+        1.19
+      ],
+      [
+        0.83,
+        1.1,
+        1.31
+      ]
+    ]
+  },
+  "champions": {
+    "Zac": {
+      "exces_par_min": 1432.9,
+      "poste": "JUNGLE",
+      "n": 222
+    },
+    "Vladimir": {
+      "exces_par_min": 938.3,
+      "poste": "MIDDLE",
+      "n": 317
+    },
+    "Soraka": {
+      "exces_par_min": 758.4,
+      "poste": "UTILITY",
+      "n": 407
+    },
+    "Briar": {
+      "exces_par_min": 539.5,
+      "poste": "JUNGLE",
+      "n": 297
+    },
+    "Sona": {
+      "exces_par_min": 441.8,
+      "poste": "UTILITY",
+      "n": 290
+    },
+    "Nami": {
+      "exces_par_min": 358.0,
+      "poste": "UTILITY",
+      "n": 1055
+    },
+    "Trundle": {
+      "exces_par_min": 354.1,
+      "poste": "TOP",
+      "n": 124
+    },
+    "Tryndamere": {
+      "exces_par_min": 334.5,
+      "poste": "TOP",
+      "n": 268
+    },
+    "Fiora": {
+      "exces_par_min": 333.4,
+      "poste": "TOP",
+      "n": 289
+    },
+    "Taric": {
+      "exces_par_min": 321.8,
+      "poste": "UTILITY",
+      "n": 126
+    },
+    "Nasus": {
+      "exces_par_min": 308.5,
+      "poste": "TOP",
+      "n": 373
+    },
+    "Rek'Sai": {
+      "exces_par_min": 307.3,
+      "poste": "JUNGLE",
+      "n": 118
+    },
+    "Olaf": {
+      "exces_par_min": 274.5,
+      "poste": "TOP",
+      "n": 249
+    },
+    "Xin Zhao": {
+      "exces_par_min": 268.4,
+      "poste": "JUNGLE",
+      "n": 230
+    },
+    "Aatrox": {
+      "exces_par_min": 255.8,
+      "poste": "TOP",
+      "n": 357
+    },
+    "Dr. Mundo": {
+      "exces_par_min": 254.7,
+      "poste": "TOP",
+      "n": 295
+    },
+    "Nidalee": {
+      "exces_par_min": 253.3,
+      "poste": "JUNGLE",
+      "n": 153
+    },
+    "Lillia": {
+      "exces_par_min": 244.0,
+      "poste": "JUNGLE",
+      "n": 221
+    },
+    "Senna": {
+      "exces_par_min": 242.4,
+      "poste": "UTILITY",
+      "n": 543
+    },
+    "Locke": {
+      "exces_par_min": 241.4,
+      "poste": "MIDDLE",
+      "n": 453
+    },
+    "Warwick": {
+      "exces_par_min": 238.0,
+      "poste": "JUNGLE",
+      "n": 175
+    },
+    "Hecarim": {
+      "exces_par_min": 236.2,
+      "poste": "JUNGLE",
+      "n": 398
+    },
+    "Nunu & Willump": {
+      "exces_par_min": 227.8,
+      "poste": "JUNGLE",
+      "n": 160
+    },
+    "Tahm Kench": {
+      "exces_par_min": 212.3,
+      "poste": "UTILITY",
+      "n": 178
+    },
+    "Milio": {
+      "exces_par_min": 199.5,
+      "poste": "UTILITY",
+      "n": 517
+    },
+    "Zaahen": {
+      "exces_par_min": 197.8,
+      "poste": "TOP",
+      "n": 266
+    },
+    "Alistar": {
+      "exces_par_min": 193.8,
+      "poste": "UTILITY",
+      "n": 370
+    },
+    "Irelia": {
+      "exces_par_min": 158.8,
+      "poste": "TOP",
+      "n": 305
+    },
+    "Gragas": {
+      "exces_par_min": 157.3,
+      "poste": "TOP",
+      "n": 176
+    },
+    "Janna": {
+      "exces_par_min": 145.5,
+      "poste": "UTILITY",
+      "n": 515
+    },
+    "Illaoi": {
+      "exces_par_min": 145.2,
+      "poste": "TOP",
+      "n": 183
+    },
+    "Swain": {
+      "exces_par_min": 144.9,
+      "poste": "UTILITY",
+      "n": 149
+    },
+    "Sylas": {
+      "exces_par_min": 127.7,
+      "poste": "JUNGLE",
+      "n": 533
+    },
+    "Samira": {
+      "exces_par_min": 118.4,
+      "poste": "BOTTOM",
+      "n": 368
+    },
+    "Cassiopeia": {
+      "exces_par_min": 106.7,
+      "poste": "MIDDLE",
+      "n": 158
+    },
+    "Yuumi": {
+      "exces_par_min": 106.1,
+      "poste": "UTILITY",
+      "n": 311
+    },
+    "Seraphine": {
+      "exces_par_min": 104.6,
+      "poste": "UTILITY",
+      "n": 616
+    },
+    "Nilah": {
+      "exces_par_min": 100.6,
+      "poste": "BOTTOM",
+      "n": 88
+    },
+    "Rakan": {
+      "exces_par_min": 92.9,
+      "poste": "UTILITY",
+      "n": 326
+    },
+    "Renekton": {
+      "exces_par_min": 92.0,
+      "poste": "TOP",
+      "n": 374
+    },
+    "Yasuo": {
+      "exces_par_min": 90.7,
+      "poste": "MIDDLE",
+      "n": 576
+    },
+    "Yorick": {
+      "exces_par_min": 88.9,
+      "poste": "TOP",
+      "n": 230
+    },
+    "Kayn": {
+      "exces_par_min": 80.7,
+      "poste": "JUNGLE",
+      "n": 433
+    },
+    "FiddleSticks": {
+      "exces_par_min": 80.0,
+      "poste": "JUNGLE",
+      "n": 192
+    },
+    "Zilean": {
+      "exces_par_min": 79.5,
+      "poste": "UTILITY",
+      "n": 300
+    },
+    "Cho'Gath": {
+      "exces_par_min": 77.5,
+      "poste": "TOP",
+      "n": 204
+    },
+    "Kassadin": {
+      "exces_par_min": 76.4,
+      "poste": "MIDDLE",
+      "n": 276
+    },
+    "Sion": {
+      "exces_par_min": 76.0,
+      "poste": "TOP",
+      "n": 268
+    },
+    "Bel'Veth": {
+      "exces_par_min": 74.0,
+      "poste": "JUNGLE",
+      "n": 293
+    },
+    "Mordekaiser": {
+      "exces_par_min": 73.5,
+      "poste": "TOP",
+      "n": 367
+    },
+    "Kindred": {
+      "exces_par_min": 70.1,
+      "poste": "JUNGLE",
+      "n": 170
+    },
+    "Ekko": {
+      "exces_par_min": 70.0,
+      "poste": "JUNGLE",
+      "n": 328
+    },
+    "Ahri": {
+      "exces_par_min": 59.5,
+      "poste": "MIDDLE",
+      "n": 830
+    },
+    "Rengar": {
+      "exces_par_min": 55.4,
+      "poste": "JUNGLE",
+      "n": 350
+    },
+    "Anivia": {
+      "exces_par_min": 52.5,
+      "poste": "MIDDLE",
+      "n": 237
+    },
+    "Ryze": {
+      "exces_par_min": 50.5,
+      "poste": "MIDDLE",
+      "n": 246
+    },
+    "Maokai": {
+      "exces_par_min": 49.6,
+      "poste": "UTILITY",
+      "n": 118
+    },
+    "Ezreal": {
+      "exces_par_min": 49.2,
+      "poste": "BOTTOM",
+      "n": 792
+    },
+    "Kayle": {
+      "exces_par_min": 47.1,
+      "poste": "TOP",
+      "n": 245
+    },
+    "Aphelios": {
+      "exces_par_min": 46.4,
+      "poste": "BOTTOM",
+      "n": 374
+    },
+    "Akali": {
+      "exces_par_min": 46.1,
+      "poste": "MIDDLE",
+      "n": 435
+    },
+    "Draven": {
+      "exces_par_min": 44.8,
+      "poste": "BOTTOM",
+      "n": 406
+    },
+    "Gwen": {
+      "exces_par_min": 44.4,
+      "poste": "TOP",
+      "n": 281
+    },
+    "Nocturne": {
+      "exces_par_min": 43.6,
+      "poste": "JUNGLE",
+      "n": 477
+    },
+    "Kalista": {
+      "exces_par_min": 42.0,
+      "poste": "BOTTOM",
+      "n": 181
+    },
+    "Karma": {
+      "exces_par_min": 41.4,
+      "poste": "UTILITY",
+      "n": 582
+    }
+  },
+  "objets": {
+    "3074": {
+      "nom": "Hydre vorace",
+      "apport_par_min": 162.8,
+      "champions_mesures": 4
+    },
+    "2530": {
+      "nom": "Diadème musical",
+      "apport_par_min": 140.8,
+      "champions_mesures": 6
+    },
+    "6621": {
+      "nom": "Cœur de l'aube",
+      "apport_par_min": 133.8,
+      "champions_mesures": 6
+    },
+    "6617": {
+      "nom": "Régénérateur de pierre de lune",
+      "apport_par_min": 127.3,
+      "champions_mesures": 11
+    },
+    "3065": {
+      "nom": "Visage spirituel",
+      "apport_par_min": 126.8,
+      "champions_mesures": 20
+    },
+    "2517": {
+      "nom": "Faim insatiable",
+      "apport_par_min": 123.2,
+      "champions_mesures": 12
+    },
+    "6620": {
+      "nom": "Échos d'Helia",
+      "apport_par_min": 121.5,
+      "champions_mesures": 8
+    },
+    "2502": {
+      "nom": "Désespoir infini",
+      "apport_par_min": 115.9,
+      "champions_mesures": 11
+    },
+    "3146": {
+      "nom": "Pistolame Hextech",
+      "apport_par_min": 104.8,
+      "champions_mesures": 4
+    },
+    "3107": {
+      "nom": "Rédemption",
+      "apport_par_min": 101.4,
+      "champions_mesures": 13
+    },
+    "6333": {
+      "nom": "Danse de la mort",
+      "apport_par_min": 98.7,
+      "champions_mesures": 36
+    },
+    "3072": {
+      "nom": "Soif-de-sang",
+      "apport_par_min": 93.9,
+      "champions_mesures": 17
+    },
+    "6610": {
+      "nom": "Ciel éventré",
+      "apport_par_min": 92.7,
+      "champions_mesures": 16
+    },
+    "3008": {
+      "nom": "Jambières gloutonnes",
+      "apport_par_min": 85.9,
+      "champions_mesures": 12
+    },
+    "3153": {
+      "nom": "Lame du roi déchu",
+      "apport_par_min": 81.6,
+      "champions_mesures": 16
+    },
+    "2525": {
+      "nom": "Harnais protoplasmique",
+      "apport_par_min": 75.5,
+      "champions_mesures": 14
+    },
+    "4633": {
+      "nom": "Créateur de failles",
+      "apport_par_min": 74.8,
+      "champions_mesures": 12
+    },
+    "3156": {
+      "nom": "Gueule de Malmortius",
+      "apport_par_min": 72.3,
+      "champions_mesures": 20
+    },
+    "2510": {
+      "nom": "Aube et crépuscule",
+      "apport_par_min": 58.5,
+      "champions_mesures": 17
+    },
+    "3168": {
+      "nom": "Voie immortelle",
+      "apport_par_min": 53.3,
+      "champions_mesures": 6
+    },
+    "3222": {
+      "nom": "Bénédiction de Mikael",
+      "apport_par_min": 51.9,
+      "champions_mesures": 11
+    }
+  }
+}

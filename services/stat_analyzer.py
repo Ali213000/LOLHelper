@@ -84,28 +84,37 @@ _BASE_AS_BY_CLASS: dict[str, float] = {
 # Champions with strong healing — weighted by heal impact (1.0 = critical, 0.3 = marginal).
 # Trigger requires total weight >= 1.5 OR a single champion with weight >= 0.9.
 # Removed marginal healers: Garen, Nasus, Jax, Taric, Milio, Kayn, Ekko, Hecarim.
+# Poids de repli, MESURÉS sur 75 900 participants : soin médian du champion
+# moins la médiane de son POSTE, ramené dans [0,1] par racine(excès / 750).
+# Sans la correction par poste, tous les jungleurs ressortaient en tête — la
+# sustain de camps place la médiane jungle à 429 PV/min contre 151 en mid.
+#
+# Ce sont les valeurs à l'état MOYEN et sans objet de soin. Le moteur utilise
+# normalement le modèle dynamique (data/sustain.py), qui ajoute l'effet du
+# build et de la domination ; cette table ne sert que de repli.
+#
+# Les estimations précédentes étaient nettement à côté : Aatrox valait 1.00
+# pour 0.58 mesuré, Warwick 0.90 pour 0.56, Zac 0.50 pour 1.00, et Darius
+# 0.60 alors qu'il ne dépasse pas sa médiane de poste.
 _HEALING_CHAMPION_WEIGHTS: dict[str, float] = {
-    # Critical — sustain is core mechanic
-    "Aatrox":      1.0,  "Vladimir":    1.0,  "Warwick":     0.9,
-    "Soraka":      1.0,  "Yuumi":        1.0,  "Nami":        0.8,
-    "Dr. Mundo":   0.9,  "Sona":         0.8,  "Seraphine":   0.7,
-    "Swain":       0.8,  "Mordekaiser": 0.8,  "Sylas":       0.8,
-    "Fiora":       0.85, "Illaoi":       0.8,  "Briar":       0.8,
-    "Olaf":        0.75, "Trundle":      0.75, "Nilah":       0.7,
-    # Significant — meaningful sustain
-    "Darius":      0.6,  "Volibear":     0.6,  "Irelia":      0.6,
-    "Yone":        0.55, "Riven":        0.55, "Cassiopeia":  0.6,
-    "Maokai":      0.55, "Gragas":       0.5,  "Lulu":        0.5,
-    "Janna":       0.5,  "Xin Zhao":     0.5,  "Zac":         0.5,
-    "Samira":      0.6,  "Renekton":     0.5,
-    # Absents de la table jusqu'ici, alors que leur soin est un vrai levier.
-    # Fiddlesticks (drain du W) était l'oubli le plus coûteux : c'est une cible
-    # classique d'anti-soin en top comme en jungle.
-    "Fiddlesticks": 0.75, "Viego":       0.8,  "Kayn":        0.7,
-    "Master Yi":    0.7,  "Udyr":        0.7,  "Gwen":        0.65,
-    "Ekko":         0.65, "Taric":       0.65, "Hecarim":     0.6,
-    "Tahm Kench":   0.6,  "Senna":       0.55, "Kayle":       0.55,
-    "Nunu & Willump": 0.55, "Aphelios":  0.55, "Garen":       0.5,
+    "Zac": 1.00,                "Vladimir": 1.00,           "Soraka": 1.00,
+    "Briar": 0.85,              "Sona": 0.77,               "Nami": 0.69,
+    "Trundle": 0.69,            "Tryndamere": 0.67,         "Fiora": 0.67,
+    "Taric": 0.66,              "Nasus": 0.64,              "Rek'Sai": 0.64,
+    "Olaf": 0.60,               "Xin Zhao": 0.60,           "Aatrox": 0.58,
+    "Dr. Mundo": 0.58,          "Nidalee": 0.58,            "Lillia": 0.57,
+    "Senna": 0.57,              "Locke": 0.57,              "Warwick": 0.56,
+    "Hecarim": 0.56,            "Nunu & Willump": 0.55,     "Tahm Kench": 0.53,
+    "Milio": 0.52,              "Zaahen": 0.51,             "Alistar": 0.51,
+    "Irelia": 0.46,             "Gragas": 0.46,             "Janna": 0.44,
+    "Illaoi": 0.44,             "Swain": 0.44,              "Sylas": 0.41,
+    "Samira": 0.40,             "Cassiopeia": 0.38,         "Yuumi": 0.38,
+    "Seraphine": 0.37,          "Nilah": 0.37,              "Rakan": 0.35,
+    "Renekton": 0.35,           "Yasuo": 0.35,              "Yorick": 0.34,
+    "Kayn": 0.33,               "FiddleSticks": 0.33,       "Zilean": 0.33,
+    "Cho'Gath": 0.32,           "Kassadin": 0.32,           "Sion": 0.32,
+    "Bel'Veth": 0.31,           "Mordekaiser": 0.31,        "Kindred": 0.31,
+    "Ekko": 0.31,
 }
 # Pre-computed set of champion names for fast membership tests
 _HEALING_CHAMPIONS: set[str] = set(_HEALING_CHAMPION_WEIGHTS.keys())
@@ -1592,6 +1601,43 @@ class StatAnalyzer:
             return "léger retard"
         return "équilibré"
 
+    def _poids_soin_dynamiques(self, game_state, enemies) -> dict[str, float] | None:
+        """
+        Poids d'anti-soin mesurés, tenant compte du build et de l'état de partie.
+
+        Renvoie None si le modèle n'est pas disponible : le moteur retombe alors
+        sur la table de poids fixes.
+        """
+        try:
+            from data import sustain
+            if not sustain.disponible():
+                return None
+            from services.image_cache import ImageCache
+            cache = ImageCache()
+
+            # Or investi rapporté à la médiane de la partie — l'app calcule déjà
+            # cet écart pour l'affichage « avantage or (objets) ».
+            tous = list(getattr(game_state, "all_players", None) or enemies)
+            ors = [
+                sum(cache.get_item_gold_value(i) for i in (p.items or []))
+                for p in tous
+            ]
+            ors_positifs = [o for o in ors if o > 0]
+            mediane = (sorted(ors_positifs)[len(ors_positifs) // 2]
+                       if ors_positifs else 0)
+
+            resultat: dict[str, float] = {}
+            for p in enemies:
+                invest = sum(cache.get_item_gold_value(i) for i in (p.items or []))
+                ratio = (invest / mediane) if mediane else 1.0
+                kda = (p.kills + p.assists) / max(1, p.deaths)
+                resultat[p.champion_name] = sustain.poids(
+                    p.champion_name, p.items, kda=kda, ratio_or=ratio)
+            return resultat
+        except Exception:
+            logger.debug("Modèle de soin dynamique indisponible.", exc_info=True)
+            return None
+
     def _check_triggers(
         self,
         enemies,
@@ -1606,6 +1652,7 @@ class StatAnalyzer:
         player_deaths: int = 0,
         lane_opponent_name: str = "",
         my_champion_name: str = "",
+        poids_soin: dict[str, float] | None = None,
     ) -> dict:
         enemy_names = {p.champion_name for p in enemies}
         tank_count  = self._count_tanks(enemies)
@@ -1613,10 +1660,21 @@ class StatAnalyzer:
 
         enemy_items = {item for p in enemies for item in p.items}
 
-        # P0 — Weighted GW trigger: marginal healers no longer saturate the trigger.
-        # Threshold: cumulative weight >= 1.5, OR a single champion with weight >= 0.9.
-        heal_champs = sorted(enemy_names & _HEALING_CHAMPIONS)   # deterministic
-        gw_weight   = sum(_HEALING_CHAMPION_WEIGHTS.get(c, 0.0) for c in heal_champs)
+        # Seuils calibrés sur la distribution mesurée (15 180 équipes) :
+        # le cumul médian d'une équipe vaut 1.19 et le 90e centile 2.01.
+        # 2.00 vise donc le dixième d'équipes les plus soignantes ; l'ancien
+        # 1.50 aurait déclenché dans 31.7 % des parties, soit un conseil
+        # permanent donc sans valeur. Avec le spécialiste à 0.80 — le bruiser
+        # nourri qui a pris un objet de soin — on couvre 24.3 % des parties.
+        # Poids mesurés si le modèle dynamique les a fournis (ils tiennent compte
+        # du build et de l'état de la partie), sinon repli sur la table estimée.
+        if poids_soin:
+            heal_champs = sorted(c for c, w in poids_soin.items() if w > 0)
+            _poids = lambda c: poids_soin.get(c, 0.0)
+        else:
+            heal_champs = sorted(enemy_names & _HEALING_CHAMPIONS)
+            _poids = lambda c: _HEALING_CHAMPION_WEIGHTS.get(c, 0.0)
+        gw_weight   = sum(_poids(c) for c in heal_champs)
         heal_items  = sorted(enemy_items & _HEALING_ITEMS)        # deterministic
         # Each heal item contributes 0.6 weight
         gw_weight  += len(heal_items) * 0.6
@@ -1626,12 +1684,13 @@ class StatAnalyzer:
         # soin décide de l'échange. Un soigneur support croisé en teamfight n'a
         # pas le même poids qu'un Fiddlesticks qui régénère à chaque trade.
         _LANE_OPP_BONUS = 0.5
-        lane_heal = _HEALING_CHAMPION_WEIGHTS.get(lane_opponent_name, 0.0)
+        lane_heal = _poids(lane_opponent_name)
         if lane_heal:
             gw_weight += lane_heal * _LANE_OPP_BONUS
 
-        max_single  = max((_HEALING_CHAMPION_WEIGHTS.get(c, 0.0) for c in heal_champs), default=0.0)
-        need_gw     = gw_weight >= 1.5 or max_single >= 0.9
+        max_single  = max((_poids(c) for c in heal_champs), default=0.0)
+        SEUIL_CUMUL_SOIN, SEUIL_SOIGNEUR_SEUL = 2.00, 0.80
+        need_gw     = gw_weight >= SEUIL_CUMUL_SOIN or max_single >= SEUIL_SOIGNEUR_SEUL
         gw_source_str = ", ".join(gw_sources) if gw_sources else ""
         # ---- Pénétration : on lit les RÉSISTANCES, pas les étiquettes ----
         # L'ancienne règle armure comptait les champions taggés Tank/Fighter et
@@ -2388,8 +2447,10 @@ class StatAnalyzer:
         death_cost = min(1.0, game_state.game_time_seconds / 1800)
 
         # ---- Axis 3: Situational Triggers (gold-based) ----
+        poids_soin = self._poids_soin_dynamiques(game_state, enemies)
         triggers = self._check_triggers(
             enemies, player_class, win_ratio, win_type, my_items,
+            poids_soin=poids_soin,
             lane_gold_diff=lane_gold_diff,
             team_gold_diff=team_gold_diff,
             ad_pct=ad_pct,
@@ -2617,6 +2678,7 @@ class StatAnalyzer:
             triggers2 = self._check_triggers(
                 enemies, player_class, win_ratio, win_type,
                 my_items + [first_name],
+                poids_soin=poids_soin,
                 lane_gold_diff=lane_gold_diff,
                 team_gold_diff=team_gold_diff,
                 ad_pct=ad_pct,

@@ -1,0 +1,4979 @@
+{
+  "participants": 75900,
+  "effet_objet": {
+    "3074": {
+      "nom": "Hydre vorace",
+      "delta_median_par_min": 162.8,
+      "champions_mesures": 4,
+      "occurrences": 743,
+      "exemples": [
+        [
+          "Tryndamere",
+          184.8,
+          183
+        ],
+        [
+          "Olaf",
+          173.6,
+          137
+        ],
+        [
+          "Camille",
+          152.1,
+          314
+        ],
+        [
+          "Trundle",
+          109.0,
+          109
+        ]
+      ]
+    },
+    "2530": {
+      "nom": "Diadème musical",
+      "delta_median_par_min": 140.8,
+      "champions_mesures": 6,
+      "occurrences": 543,
+      "exemples": [
+        [
+          "Seraphine",
+          262.3,
+          251
+        ],
+        [
+          "Yuumi",
+          228.3,
+          56
+        ],
+        [
+          "Sona",
+          153.5,
+          116
+        ],
+        [
+          "Milio",
+          128.2,
+          51
+        ]
+      ]
+    },
+    "6621": {
+      "nom": "Cœur de l'aube",
+      "delta_median_par_min": 133.8,
+      "champions_mesures": 6,
+      "occurrences": 253,
+      "exemples": [
+        [
+          "Nami",
+          265.9,
+          28
+        ],
+        [
+          "Soraka",
+          187.4,
+          97
+        ],
+        [
+          "Janna",
+          141.9,
+          40
+        ],
+        [
+          "Yuumi",
+          125.6,
+          26
+        ]
+      ]
+    },
+    "6617": {
+      "nom": "Régénérateur de pierre de lune",
+      "delta_median_par_min": 127.3,
+      "champions_mesures": 11,
+      "occurrences": 2983,
+      "exemples": [
+        [
+          "Senna",
+          509.2,
+          25
+        ],
+        [
+          "Soraka",
+          313.4,
+          379
+        ],
+        [
+          "Seraphine",
+          258.0,
+          194
+        ],
+        [
+          "Sona",
+          211.5,
+          102
+        ]
+      ]
+    },
+    "3065": {
+      "nom": "Visage spirituel",
+      "delta_median_par_min": 126.8,
+      "champions_mesures": 20,
+      "occurrences": 1520,
+      "exemples": [
+        [
+          "Zac",
+          575.5,
+          190
+        ],
+        [
+          "Briar",
+          257.4,
+          38
+        ],
+        [
+          "DrMundo",
+          236.7,
+          133
+        ],
+        [
+          "Trundle",
+          204.7,
+          47
+        ]
+      ]
+    },
+    "2517": {
+      "nom": "Faim insatiable",
+      "delta_median_par_min": 123.2,
+      "champions_mesures": 12,
+      "occurrences": 1145,
+      "exemples": [
+        [
+          "Fiora",
+          229.5,
+          40
+        ],
+        [
+          "Kayn",
+          204.5,
+          36
+        ],
+        [
+          "Irelia",
+          184.3,
+          26
+        ],
+        [
+          "Zaahen",
+          166.8,
+          39
+        ]
+      ]
+    },
+    "6620": {
+      "nom": "Échos d'Helia",
+      "delta_median_par_min": 121.5,
+      "champions_mesures": 8,
+      "occurrences": 1921,
+      "exemples": [
+        [
+          "Senna",
+          399.3,
+          42
+        ],
+        [
+          "Seraphine",
+          223.8,
+          413
+        ],
+        [
+          "Yuumi",
+          144.7,
+          50
+        ],
+        [
+          "Nami",
+          143.3,
+          540
+        ]
+      ]
+    },
+    "3026": {
+      "nom": "Ange gardien",
+      "delta_median_par_min": 118.4,
+      "champions_mesures": 29,
+      "occurrences": 1313,
+      "exemples": [
+        [
+          "XinZhao",
+          316.4,
+          28
+        ],
+        [
+          "Briar",
+          182.8,
+          33
+        ],
+        [
+          "Viego",
+          161.6,
+          70
+        ],
+        [
+          "Yone",
+          155.7,
+          33
+        ]
+      ]
+    },
+    "2502": {
+      "nom": "Désespoir infini",
+      "delta_median_par_min": 115.9,
+      "champions_mesures": 11,
+      "occurrences": 834,
+      "exemples": [
+        [
+          "Zac",
+          302.9,
+          40
+        ],
+        [
+          "Shen",
+          177.7,
+          37
+        ],
+        [
+          "Maokai",
+          177.6,
+          35
+        ],
+        [
+          "Skarner",
+          158.9,
+          72
+        ]
+      ]
+    },
+    "3146": {
+      "nom": "Pistolame Hextech",
+      "delta_median_par_min": 104.8,
+      "champions_mesures": 4,
+      "occurrences": 691,
+      "exemples": [
+        [
+          "Kennen",
+          117.0,
+          25
+        ],
+        [
+          "Akali",
+          109.0,
+          501
+        ],
+        [
+          "Jax",
+          100.7,
+          50
+        ],
+        [
+          "Katarina",
+          48.3,
+          115
+        ]
+      ]
+    },
+    "3107": {
+      "nom": "Rédemption",
+      "delta_median_par_min": 101.4,
+      "champions_mesures": 13,
+      "occurrences": 1328,
+      "exemples": [
+        [
+          "Soraka",
+          212.8,
+          211
+        ],
+        [
+          "Seraphine",
+          175.3,
+          53
+        ],
+        [
+          "Ivern",
+          126.3,
+          89
+        ],
+        [
+          "Yuumi",
+          118.7,
+          26
+        ]
+      ]
+    },
+    "6333": {
+      "nom": "Danse de la mort",
+      "delta_median_par_min": 98.7,
+      "champions_mesures": 36,
+      "occurrences": 4482,
+      "exemples": [
+        [
+          "Olaf",
+          199.3,
+          156
+        ],
+        [
+          "Fiora",
+          189.4,
+          121
+        ],
+        [
+          "Aatrox",
+          177.9,
+          192
+        ],
+        [
+          "Katarina",
+          177.2,
+          79
+        ]
+      ]
+    },
+    "3072": {
+      "nom": "Soif-de-sang",
+      "delta_median_par_min": 93.9,
+      "champions_mesures": 17,
+      "occurrences": 1186,
+      "exemples": [
+        [
+          "Tristana",
+          131.9,
+          115
+        ],
+        [
+          "Samira",
+          131.0,
+          82
+        ],
+        [
+          "Lucian",
+          124.3,
+          30
+        ],
+        [
+          "Yunara",
+          118.6,
+          40
+        ]
+      ]
+    },
+    "6610": {
+      "nom": "Ciel éventré",
+      "delta_median_par_min": 92.7,
+      "champions_mesures": 16,
+      "occurrences": 2745,
+      "exemples": [
+        [
+          "Aatrox",
+          168.2,
+          302
+        ],
+        [
+          "Zaahen",
+          134.9,
+          107
+        ],
+        [
+          "Poppy",
+          134.6,
+          91
+        ],
+        [
+          "Olaf",
+          126.9,
+          25
+        ]
+      ]
+    },
+    "6665": {
+      "nom": "Jak'Sho, le Protéiforme",
+      "delta_median_par_min": 86.4,
+      "champions_mesures": 17,
+      "occurrences": 983,
+      "exemples": [
+        [
+          "Zac",
+          395.1,
+          29
+        ],
+        [
+          "Nasus",
+          221.5,
+          73
+        ],
+        [
+          "Katarina",
+          179.3,
+          27
+        ],
+        [
+          "Sion",
+          104.5,
+          56
+        ]
+      ]
+    },
+    "3008": {
+      "nom": "Jambières gloutonnes",
+      "delta_median_par_min": 85.9,
+      "champions_mesures": 12,
+      "occurrences": 563,
+      "exemples": [
+        [
+          "Olaf",
+          274.2,
+          38
+        ],
+        [
+          "Gwen",
+          176.4,
+          25
+        ],
+        [
+          "Gangplank",
+          103.9,
+          68
+        ],
+        [
+          "Graves",
+          101.6,
+          45
+        ]
+      ]
+    },
+    "6657": {
+      "nom": "Bâton séculaire",
+      "delta_median_par_min": 84.8,
+      "champions_mesures": 8,
+      "occurrences": 1234,
+      "exemples": [
+        [
+          "Gragas",
+          195.4,
+          35
+        ],
+        [
+          "Anivia",
+          113.9,
+          309
+        ],
+        [
+          "Kassadin",
+          102.9,
+          235
+        ],
+        [
+          "Cassiopeia",
+          87.8,
+          178
+        ]
+      ]
+    },
+    "3153": {
+      "nom": "Lame du roi déchu",
+      "delta_median_par_min": 81.6,
+      "champions_mesures": 16,
+      "occurrences": 2687,
+      "exemples": [
+        [
+          "Belveth",
+          135.4,
+          95
+        ],
+        [
+          "Katarina",
+          124.2,
+          227
+        ],
+        [
+          "KogMaw",
+          93.1,
+          68
+        ],
+        [
+          "Sett",
+          92.9,
+          26
+        ]
+      ]
+    },
+    "3053": {
+      "nom": "Gage de Sterak",
+      "delta_median_par_min": 81.2,
+      "champions_mesures": 19,
+      "occurrences": 1466,
+      "exemples": [
+        [
+          "Warwick",
+          155.1,
+          27
+        ],
+        [
+          "RekSai",
+          141.7,
+          27
+        ],
+        [
+          "Yorick",
+          138.7,
+          35
+        ],
+        [
+          "Illaoi",
+          120.3,
+          105
+        ]
+      ]
+    },
+    "4401": {
+      "nom": "Force de la nature",
+      "delta_median_par_min": 78.2,
+      "champions_mesures": 5,
+      "occurrences": 458,
+      "exemples": [
+        [
+          "Nasus",
+          148.6,
+          47
+        ],
+        [
+          "Chogath",
+          129.3,
+          58
+        ],
+        [
+          "Darius",
+          78.2,
+          227
+        ],
+        [
+          "Garen",
+          31.5,
+          87
+        ]
+      ]
+    },
+    "2525": {
+      "nom": "Harnais protoplasmique",
+      "delta_median_par_min": 75.5,
+      "champions_mesures": 14,
+      "occurrences": 942,
+      "exemples": [
+        [
+          "Nasus",
+          226.4,
+          135
+        ],
+        [
+          "Alistar",
+          155.5,
+          50
+        ],
+        [
+          "Sejuani",
+          106.8,
+          31
+        ],
+        [
+          "Ornn",
+          103.3,
+          38
+        ]
+      ]
+    },
+    "4633": {
+      "nom": "Créateur de failles",
+      "delta_median_par_min": 74.8,
+      "champions_mesures": 12,
+      "occurrences": 2026,
+      "exemples": [
+        [
+          "Vladimir",
+          280.9,
+          193
+        ],
+        [
+          "Sylas",
+          215.6,
+          660
+        ],
+        [
+          "Diana",
+          199.3,
+          228
+        ],
+        [
+          "TahmKench",
+          140.6,
+          31
+        ]
+      ]
+    },
+    "3302": {
+      "nom": "Terminus",
+      "delta_median_par_min": 74.2,
+      "champions_mesures": 8,
+      "occurrences": 1010,
+      "exemples": [
+        [
+          "Katarina",
+          133.7,
+          203
+        ],
+        [
+          "Belveth",
+          117.1,
+          85
+        ],
+        [
+          "Kalista",
+          85.4,
+          125
+        ],
+        [
+          "KogMaw",
+          78.1,
+          67
+        ]
+      ]
+    },
+    "2501": {
+      "nom": "Armure sanguine",
+      "delta_median_par_min": 72.4,
+      "champions_mesures": 5,
+      "occurrences": 381,
+      "exemples": [
+        [
+          "Sion",
+          127.9,
+          39
+        ],
+        [
+          "Urgot",
+          76.0,
+          48
+        ],
+        [
+          "DrMundo",
+          72.4,
+          25
+        ],
+        [
+          "Kled",
+          60.2,
+          36
+        ]
+      ]
+    },
+    "3156": {
+      "nom": "Gueule de Malmortius",
+      "delta_median_par_min": 72.3,
+      "champions_mesures": 20,
+      "occurrences": 859,
+      "exemples": [
+        [
+          "Fiora",
+          209.6,
+          48
+        ],
+        [
+          "Aatrox",
+          144.5,
+          68
+        ],
+        [
+          "Hecarim",
+          138.3,
+          59
+        ],
+        [
+          "Camille",
+          135.4,
+          25
+        ]
+      ]
+    },
+    "6673": {
+      "nom": "Arc-bouclier immortel",
+      "delta_median_par_min": 71.3,
+      "champions_mesures": 11,
+      "occurrences": 2435,
+      "exemples": [
+        [
+          "Samira",
+          110.2,
+          166
+        ],
+        [
+          "Draven",
+          104.4,
+          38
+        ],
+        [
+          "Viego",
+          97.4,
+          421
+        ],
+        [
+          "Yone",
+          85.4,
+          646
+        ]
+      ]
+    },
+    "3742": {
+      "nom": "Plaque du mort",
+      "delta_median_par_min": 70.0,
+      "champions_mesures": 14,
+      "occurrences": 1723,
+      "exemples": [
+        [
+          "DrMundo",
+          568.4,
+          78
+        ],
+        [
+          "Nunu",
+          179.5,
+          30
+        ],
+        [
+          "Trundle",
+          152.6,
+          34
+        ],
+        [
+          "Chogath",
+          88.3,
+          124
+        ]
+      ]
+    },
+    "3073": {
+      "nom": "Hexplaque expérimentale",
+      "delta_median_par_min": 66.2,
+      "champions_mesures": 8,
+      "occurrences": 1015,
+      "exemples": [
+        [
+          "Nocturne",
+          114.5,
+          318
+        ],
+        [
+          "Olaf",
+          104.3,
+          169
+        ],
+        [
+          "MasterYi",
+          72.7,
+          129
+        ],
+        [
+          "Mordekaiser",
+          66.9,
+          46
+        ]
+      ]
+    },
+    "3091": {
+      "nom": "Au bout du rouleau",
+      "delta_median_par_min": 66.1,
+      "champions_mesures": 10,
+      "occurrences": 670,
+      "exemples": [
+        [
+          "Belveth",
+          148.6,
+          69
+        ],
+        [
+          "Jax",
+          99.2,
+          65
+        ],
+        [
+          "Vayne",
+          78.0,
+          60
+        ],
+        [
+          "Kalista",
+          67.4,
+          43
+        ]
+      ]
+    },
+    "3124": {
+      "nom": "Lame enragée de Guinsoo",
+      "delta_median_par_min": 64.1,
+      "champions_mesures": 6,
+      "occurrences": 1873,
+      "exemples": [
+        [
+          "KogMaw",
+          95.8,
+          118
+        ],
+        [
+          "MasterYi",
+          93.5,
+          275
+        ],
+        [
+          "Vayne",
+          64.4,
+          266
+        ],
+        [
+          "Kaisa",
+          63.7,
+          987
+        ]
+      ]
+    },
+    "3041": {
+      "nom": "Voleur d'âmes de Mejai",
+      "delta_median_par_min": 62.2,
+      "champions_mesures": 26,
+      "occurrences": 1281,
+      "exemples": [
+        [
+          "Vladimir",
+          389.1,
+          88
+        ],
+        [
+          "Zac",
+          384.3,
+          29
+        ],
+        [
+          "Nunu",
+          203.2,
+          25
+        ],
+        [
+          "Nami",
+          196.0,
+          26
+        ]
+      ]
+    },
+    "8010": {
+      "nom": "Malédiction du sanguinaire",
+      "delta_median_par_min": 61.4,
+      "champions_mesures": 5,
+      "occurrences": 290,
+      "exemples": [
+        [
+          "Sylas",
+          236.9,
+          57
+        ],
+        [
+          "Brand",
+          86.0,
+          34
+        ],
+        [
+          "Locke",
+          61.4,
+          90
+        ],
+        [
+          "AurelionSol",
+          23.1,
+          53
+        ]
+      ]
+    },
+    "2510": {
+      "nom": "Aube et crépuscule",
+      "delta_median_par_min": 58.5,
+      "champions_mesures": 17,
+      "occurrences": 2863,
+      "exemples": [
+        [
+          "Fizz",
+          204.3,
+          65
+        ],
+        [
+          "Diana",
+          193.6,
+          289
+        ],
+        [
+          "Mordekaiser",
+          161.8,
+          79
+        ],
+        [
+          "Malphite",
+          147.2,
+          44
+        ]
+      ]
+    },
+    "3031": {
+      "nom": "Lame d'infini",
+      "delta_median_par_min": 56.4,
+      "champions_mesures": 35,
+      "occurrences": 9594,
+      "exemples": [
+        [
+          "Samira",
+          115.6,
+          338
+        ],
+        [
+          "Tryndamere",
+          112.6,
+          137
+        ],
+        [
+          "Yone",
+          101.1,
+          425
+        ],
+        [
+          "Aphelios",
+          90.1,
+          322
+        ]
+      ]
+    },
+    "3168": {
+      "nom": "Voie immortelle",
+      "delta_median_par_min": 53.3,
+      "champions_mesures": 6,
+      "occurrences": 502,
+      "exemples": [
+        [
+          "Katarina",
+          109.1,
+          65
+        ],
+        [
+          "Akshan",
+          70.8,
+          119
+        ],
+        [
+          "Zed",
+          62.3,
+          128
+        ],
+        [
+          "Riven",
+          44.3,
+          64
+        ]
+      ]
+    },
+    "3222": {
+      "nom": "Bénédiction de Mikael",
+      "delta_median_par_min": 51.9,
+      "champions_mesures": 11,
+      "occurrences": 898,
+      "exemples": [
+        [
+          "Seraphine",
+          159.0,
+          31
+        ],
+        [
+          "Soraka",
+          101.6,
+          41
+        ],
+        [
+          "Karma",
+          78.1,
+          99
+        ],
+        [
+          "Bard",
+          68.2,
+          42
+        ]
+      ]
+    },
+    "3071": {
+      "nom": "Couperet noir",
+      "delta_median_par_min": 50.8,
+      "champions_mesures": 28,
+      "occurrences": 3984,
+      "exemples": [
+        [
+          "Briar",
+          175.2,
+          103
+        ],
+        [
+          "XinZhao",
+          153.6,
+          132
+        ],
+        [
+          "Graves",
+          143.3,
+          54
+        ],
+        [
+          "Kayn",
+          128.1,
+          167
+        ]
+      ]
+    },
+    "3161": {
+      "nom": "Lance de Shojin",
+      "delta_median_par_min": 50.4,
+      "champions_mesures": 20,
+      "occurrences": 2239,
+      "exemples": [
+        [
+          "Camille",
+          197.5,
+          62
+        ],
+        [
+          "RekSai",
+          142.2,
+          93
+        ],
+        [
+          "Kayn",
+          139.8,
+          71
+        ],
+        [
+          "Pantheon",
+          113.5,
+          31
+        ]
+      ]
+    },
+    "3143": {
+      "nom": "Présage de Randuin",
+      "delta_median_par_min": 50.3,
+      "champions_mesures": 15,
+      "occurrences": 586,
+      "exemples": [
+        [
+          "Zac",
+          180.8,
+          47
+        ],
+        [
+          "Mordekaiser",
+          128.7,
+          40
+        ],
+        [
+          "Darius",
+          110.5,
+          29
+        ],
+        [
+          "Nasus",
+          75.2,
+          46
+        ]
+      ]
+    },
+    "3181": {
+      "nom": "Brise-coques",
+      "delta_median_par_min": 50.2,
+      "champions_mesures": 5,
+      "occurrences": 388,
+      "exemples": [
+        [
+          "Trundle",
+          84.6,
+          54
+        ],
+        [
+          "Kled",
+          59.1,
+          48
+        ],
+        [
+          "Irelia",
+          50.2,
+          221
+        ],
+        [
+          "Yorick",
+          26.8,
+          38
+        ]
+      ]
+    },
+    "3036": {
+      "nom": "Salutations de Dominik",
+      "delta_median_par_min": 50.1,
+      "champions_mesures": 39,
+      "occurrences": 5611,
+      "exemples": [
+        [
+          "Samira",
+          90.6,
+          188
+        ],
+        [
+          "Talon",
+          88.1,
+          91
+        ],
+        [
+          "Zeri",
+          81.2,
+          114
+        ],
+        [
+          "Qiyana",
+          74.6,
+          39
+        ]
+      ]
+    },
+    "6675": {
+      "nom": "Tremblelame navori",
+      "delta_median_par_min": 48.7,
+      "champions_mesures": 7,
+      "occurrences": 1713,
+      "exemples": [
+        [
+          "Tryndamere",
+          70.3,
+          26
+        ],
+        [
+          "Tristana",
+          54.1,
+          572
+        ],
+        [
+          "Sivir",
+          49.4,
+          285
+        ],
+        [
+          "Xayah",
+          48.7,
+          310
+        ]
+      ]
+    },
+    "3094": {
+      "nom": "Canon ultrarapide",
+      "delta_median_par_min": 47.1,
+      "champions_mesures": 8,
+      "occurrences": 1624,
+      "exemples": [
+        [
+          "Draven",
+          94.2,
+          29
+        ],
+        [
+          "MissFortune",
+          63.9,
+          58
+        ],
+        [
+          "Caitlyn",
+          57.5,
+          397
+        ],
+        [
+          "Jhin",
+          53.7,
+          439
+        ]
+      ]
+    },
+    "3033": {
+      "nom": "Rappel mortel",
+      "delta_median_par_min": 43.7,
+      "champions_mesures": 28,
+      "occurrences": 2057,
+      "exemples": [
+        [
+          "Aatrox",
+          180.6,
+          33
+        ],
+        [
+          "Viego",
+          100.6,
+          72
+        ],
+        [
+          "Yunara",
+          60.3,
+          80
+        ],
+        [
+          "MissFortune",
+          59.7,
+          63
+        ]
+      ]
+    },
+    "6616": {
+      "nom": "Bâton des flots",
+      "delta_median_par_min": 39.8,
+      "champions_mesures": 4,
+      "occurrences": 386,
+      "exemples": [
+        [
+          "Nami",
+          53.3,
+          242
+        ],
+        [
+          "Ivern",
+          48.1,
+          28
+        ],
+        [
+          "Sona",
+          31.5,
+          78
+        ],
+        [
+          "Yuumi",
+          11.2,
+          38
+        ]
+      ]
+    },
+    "3085": {
+      "nom": "Ouragan de Runaan",
+      "delta_median_par_min": 39.0,
+      "champions_mesures": 8,
+      "occurrences": 1523,
+      "exemples": [
+        [
+          "KogMaw",
+          97.9,
+          62
+        ],
+        [
+          "Aphelios",
+          59.9,
+          65
+        ],
+        [
+          "Kaisa",
+          53.6,
+          30
+        ],
+        [
+          "Zeri",
+          50.0,
+          227
+        ]
+      ]
+    },
+    "6662": {
+      "nom": "Gantelet givrant",
+      "delta_median_par_min": 38.5,
+      "champions_mesures": 6,
+      "occurrences": 490,
+      "exemples": [
+        [
+          "Poppy",
+          83.2,
+          27
+        ],
+        [
+          "Malphite",
+          60.3,
+          28
+        ],
+        [
+          "KSante",
+          44.3,
+          182
+        ],
+        [
+          "Nasus",
+          32.7,
+          114
+        ]
+      ]
+    },
+    "3109": {
+      "nom": "Vœu du chevalier",
+      "delta_median_par_min": 38.3,
+      "champions_mesures": 12,
+      "occurrences": 1887,
+      "exemples": [
+        [
+          "Taric",
+          123.0,
+          38
+        ],
+        [
+          "Yuumi",
+          105.4,
+          66
+        ],
+        [
+          "Alistar",
+          68.4,
+          94
+        ],
+        [
+          "Leona",
+          45.4,
+          260
+        ]
+      ]
+    },
+    "1053": {
+      "nom": "Sceptre vampirique",
+      "delta_median_par_min": 36.7,
+      "champions_mesures": 15,
+      "occurrences": 642,
+      "exemples": [
+        [
+          "Zeri",
+          78.7,
+          28
+        ],
+        [
+          "Caitlyn",
+          62.0,
+          77
+        ],
+        [
+          "Jinx",
+          53.6,
+          81
+        ],
+        [
+          "Twitch",
+          49.2,
+          28
+        ]
+      ]
+    },
+    "3137": {
+      "nom": "Fleur de crypte",
+      "delta_median_par_min": 36.0,
+      "champions_mesures": 6,
+      "occurrences": 293,
+      "exemples": [
+        [
+          "Shaco",
+          96.7,
+          41
+        ],
+        [
+          "Veigar",
+          90.3,
+          69
+        ],
+        [
+          "Ahri",
+          37.5,
+          39
+        ],
+        [
+          "Syndra",
+          34.5,
+          83
+        ]
+      ]
+    },
+    "6694": {
+      "nom": "Rancune de Serylda",
+      "delta_median_par_min": 35.8,
+      "champions_mesures": 14,
+      "occurrences": 1929,
+      "exemples": [
+        [
+          "Aatrox",
+          150.4,
+          41
+        ],
+        [
+          "Hecarim",
+          146.2,
+          36
+        ],
+        [
+          "Riven",
+          101.3,
+          32
+        ],
+        [
+          "Ezreal",
+          91.4,
+          253
+        ]
+      ]
+    },
+    "3172": {
+      "nom": "Jambières de métal",
+      "delta_median_par_min": 35.5,
+      "champions_mesures": 4,
+      "occurrences": 931,
+      "exemples": [
+        [
+          "Yasuo",
+          57.4,
+          480
+        ],
+        [
+          "Tristana",
+          38.0,
+          44
+        ],
+        [
+          "Yone",
+          32.9,
+          357
+        ],
+        [
+          "Akshan",
+          17.3,
+          50
+        ]
+      ]
+    },
+    "3102": {
+      "nom": "Voile de la banshee",
+      "delta_median_par_min": 33.1,
+      "champions_mesures": 4,
+      "occurrences": 136,
+      "exemples": [
+        [
+          "Evelynn",
+          67.8,
+          31
+        ],
+        [
+          "Locke",
+          34.3,
+          39
+        ],
+        [
+          "Ahri",
+          32.0,
+          31
+        ],
+        [
+          "Veigar",
+          1.1,
+          35
+        ]
+      ]
+    },
+    "3115": {
+      "nom": "Dent de Nashor",
+      "delta_median_par_min": 31.7,
+      "champions_mesures": 10,
+      "occurrences": 1372,
+      "exemples": [
+        [
+          "Fizz",
+          255.3,
+          27
+        ],
+        [
+          "Ekko",
+          114.3,
+          135
+        ],
+        [
+          "Kayle",
+          87.4,
+          294
+        ],
+        [
+          "Diana",
+          85.6,
+          59
+        ]
+      ]
+    },
+    "6653": {
+      "nom": "Tourment de Liandry",
+      "delta_median_par_min": 28.9,
+      "champions_mesures": 30,
+      "occurrences": 3991,
+      "exemples": [
+        [
+          "Maokai",
+          238.8,
+          46
+        ],
+        [
+          "Amumu",
+          198.3,
+          147
+        ],
+        [
+          "Diana",
+          131.4,
+          65
+        ],
+        [
+          "Nunu",
+          88.9,
+          87
+        ]
+      ]
+    },
+    "3084": {
+      "nom": "Cœuracier",
+      "delta_median_par_min": 27.8,
+      "champions_mesures": 7,
+      "occurrences": 1253,
+      "exemples": [
+        [
+          "DrMundo",
+          119.2,
+          362
+        ],
+        [
+          "Skarner",
+          116.0,
+          104
+        ],
+        [
+          "Sejuani",
+          69.5,
+          156
+        ],
+        [
+          "TahmKench",
+          27.8,
+          298
+        ]
+      ]
+    },
+    "2512": {
+      "nom": "Chasseur de monstres",
+      "delta_median_par_min": 25.7,
+      "champions_mesures": 7,
+      "occurrences": 831,
+      "exemples": [
+        [
+          "Olaf",
+          231.5,
+          34
+        ],
+        [
+          "Nasus",
+          44.2,
+          29
+        ],
+        [
+          "Kaisa",
+          42.0,
+          42
+        ],
+        [
+          "Twitch",
+          25.7,
+          265
+        ]
+      ]
+    },
+    "3046": {
+      "nom": "Danseur fantôme",
+      "delta_median_par_min": 25.6,
+      "champions_mesures": 11,
+      "occurrences": 1732,
+      "exemples": [
+        [
+          "Senna",
+          93.2,
+          28
+        ],
+        [
+          "Tryndamere",
+          89.2,
+          117
+        ],
+        [
+          "Aphelios",
+          80.9,
+          71
+        ],
+        [
+          "Caitlyn",
+          53.4,
+          63
+        ]
+      ]
+    },
+    "4629": {
+      "nom": "Volonté cosmique",
+      "delta_median_par_min": 25.2,
+      "champions_mesures": 8,
+      "occurrences": 628,
+      "exemples": [
+        [
+          "Vladimir",
+          249.7,
+          84
+        ],
+        [
+          "Gragas",
+          72.7,
+          44
+        ],
+        [
+          "Zilean",
+          55.9,
+          52
+        ],
+        [
+          "Ahri",
+          25.7,
+          94
+        ]
+      ]
+    },
+    "3111": {
+      "nom": "Sandales de Mercure",
+      "delta_median_par_min": 24.5,
+      "champions_mesures": 80,
+      "occurrences": 7060,
+      "exemples": [
+        [
+          "Zed",
+          168.6,
+          25
+        ],
+        [
+          "Sylas",
+          152.5,
+          97
+        ],
+        [
+          "Diana",
+          130.2,
+          55
+        ],
+        [
+          "Maokai",
+          130.0,
+          37
+        ]
+      ]
+    },
+    "3157": {
+      "nom": "Sablier de Zhonya",
+      "delta_median_par_min": 22.6,
+      "champions_mesures": 56,
+      "occurrences": 6628,
+      "exemples": [
+        [
+          "Vladimir",
+          270.0,
+          61
+        ],
+        [
+          "Sylas",
+          153.1,
+          572
+        ],
+        [
+          "Gwen",
+          152.1,
+          59
+        ],
+        [
+          "Ekko",
+          117.8,
+          153
+        ]
+      ]
+    },
+    "3050": {
+      "nom": "Convergence de Zeke",
+      "delta_median_par_min": 21.9,
+      "champions_mesures": 12,
+      "occurrences": 1380,
+      "exemples": [
+        [
+          "Malphite",
+          100.0,
+          86
+        ],
+        [
+          "Sejuani",
+          52.4,
+          28
+        ],
+        [
+          "Alistar",
+          28.8,
+          215
+        ],
+        [
+          "Rakan",
+          27.7,
+          244
+        ]
+      ]
+    },
+    "3078": {
+      "nom": "Force de la trinité",
+      "delta_median_par_min": 21.8,
+      "champions_mesures": 16,
+      "occurrences": 3818,
+      "exemples": [
+        [
+          "Fiora",
+          134.8,
+          190
+        ],
+        [
+          "Camille",
+          131.3,
+          371
+        ],
+        [
+          "Trundle",
+          130.1,
+          116
+        ],
+        [
+          "MonkeyKing",
+          117.5,
+          488
+        ]
+      ]
+    },
+    "6631": {
+      "nom": "Estropieur",
+      "delta_median_par_min": 21.5,
+      "champions_mesures": 9,
+      "occurrences": 1861,
+      "exemples": [
+        [
+          "Nocturne",
+          116.0,
+          265
+        ],
+        [
+          "Belveth",
+          63.1,
+          109
+        ],
+        [
+          "RekSai",
+          38.9,
+          51
+        ],
+        [
+          "Warwick",
+          27.5,
+          154
+        ]
+      ]
+    },
+    "2520": {
+      "nom": "Briseur de bastion",
+      "delta_median_par_min": 21.1,
+      "champions_mesures": 8,
+      "occurrences": 1060,
+      "exemples": [
+        [
+          "Talon",
+          84.1,
+          252
+        ],
+        [
+          "Qiyana",
+          74.5,
+          122
+        ],
+        [
+          "Pyke",
+          44.7,
+          36
+        ],
+        [
+          "Jayce",
+          23.2,
+          48
+        ]
+      ]
+    },
+    "3075": {
+      "nom": "Cotte épineuse",
+      "delta_median_par_min": 20.2,
+      "champions_mesures": 26,
+      "occurrences": 1878,
+      "exemples": [
+        [
+          "Zac",
+          181.8,
+          78
+        ],
+        [
+          "DrMundo",
+          145.1,
+          58
+        ],
+        [
+          "Warwick",
+          132.2,
+          35
+        ],
+        [
+          "TahmKench",
+          101.0,
+          61
+        ]
+      ]
+    },
+    "3089": {
+      "nom": "Coiffe de Rabadon",
+      "delta_median_par_min": 20.1,
+      "champions_mesures": 51,
+      "occurrences": 6159,
+      "exemples": [
+        [
+          "Vladimir",
+          381.8,
+          322
+        ],
+        [
+          "Lillia",
+          166.5,
+          34
+        ],
+        [
+          "Sylas",
+          151.4,
+          187
+        ],
+        [
+          "Nidalee",
+          151.1,
+          41
+        ]
+      ]
+    },
+    "3135": {
+      "nom": "Bâton du vide",
+      "delta_median_par_min": 18.3,
+      "champions_mesures": 26,
+      "occurrences": 1292,
+      "exemples": [
+        [
+          "Vladimir",
+          256.5,
+          105
+        ],
+        [
+          "Kayle",
+          130.2,
+          26
+        ],
+        [
+          "Ekko",
+          128.5,
+          78
+        ],
+        [
+          "Elise",
+          116.9,
+          35
+        ]
+      ]
+    },
+    "3152": {
+      "nom": "Ceinture-roquette Hextech",
+      "delta_median_par_min": 18.2,
+      "champions_mesures": 26,
+      "occurrences": 3352,
+      "exemples": [
+        [
+          "Zac",
+          307.1,
+          101
+        ],
+        [
+          "FiddleSticks",
+          124.8,
+          109
+        ],
+        [
+          "Sylas",
+          104.2,
+          1008
+        ],
+        [
+          "Diana",
+          95.9,
+          113
+        ]
+      ]
+    },
+    "6672": {
+      "nom": "Tueur de krakens",
+      "delta_median_par_min": 17.6,
+      "champions_mesures": 16,
+      "occurrences": 3685,
+      "exemples": [
+        [
+          "Katarina",
+          101.2,
+          298
+        ],
+        [
+          "Irelia",
+          51.7,
+          164
+        ],
+        [
+          "Kaisa",
+          40.5,
+          874
+        ],
+        [
+          "Viego",
+          31.3,
+          450
+        ]
+      ]
+    },
+    "3504": {
+      "nom": "Encensoir ardent",
+      "delta_median_par_min": 17.3,
+      "champions_mesures": 8,
+      "occurrences": 1348,
+      "exemples": [
+        [
+          "Soraka",
+          94.9,
+          60
+        ],
+        [
+          "Ivern",
+          61.6,
+          37
+        ],
+        [
+          "Milio",
+          26.9,
+          219
+        ],
+        [
+          "Nami",
+          26.0,
+          227
+        ]
+      ]
+    },
+    "2523": {
+      "nom": "Lunettes Hextech C44",
+      "delta_median_par_min": 17.2,
+      "champions_mesures": 15,
+      "occurrences": 3092,
+      "exemples": [
+        [
+          "Twitch",
+          33.0,
+          37
+        ],
+        [
+          "Yunara",
+          31.1,
+          122
+        ],
+        [
+          "Senna",
+          29.3,
+          179
+        ],
+        [
+          "Akshan",
+          26.3,
+          91
+        ]
+      ]
+    },
+    "3032": {
+      "nom": "Flèches des Yun Tal",
+      "delta_median_par_min": 17.0,
+      "champions_mesures": 11,
+      "occurrences": 1608,
+      "exemples": [
+        [
+          "Tryndamere",
+          38.9,
+          55
+        ],
+        [
+          "Yunara",
+          27.6,
+          113
+        ],
+        [
+          "Jinx",
+          24.3,
+          179
+        ],
+        [
+          "Xayah",
+          22.6,
+          162
+        ]
+      ]
+    },
+    "3040": {
+      "nom": "Étreinte du séraphin",
+      "delta_median_par_min": 15.7,
+      "champions_mesures": 11,
+      "occurrences": 1265,
+      "exemples": [
+        [
+          "Cassiopeia",
+          79.7,
+          212
+        ],
+        [
+          "Sona",
+          64.5,
+          53
+        ],
+        [
+          "Veigar",
+          59.7,
+          212
+        ],
+        [
+          "Zilean",
+          41.5,
+          89
+        ]
+      ]
+    },
+    "2421": {
+      "nom": "Protège-bras pulvérisé",
+      "delta_median_par_min": 15.5,
+      "champions_mesures": 18,
+      "occurrences": 723,
+      "exemples": [
+        [
+          "Ekko",
+          61.8,
+          25
+        ],
+        [
+          "Kaisa",
+          25.0,
+          56
+        ],
+        [
+          "Ahri",
+          24.9,
+          46
+        ],
+        [
+          "Swain",
+          23.9,
+          32
+        ]
+      ]
+    },
+    "6696": {
+      "nom": "Arc axiomatique",
+      "delta_median_par_min": 14.5,
+      "champions_mesures": 12,
+      "occurrences": 1511,
+      "exemples": [
+        [
+          "Ambessa",
+          118.7,
+          45
+        ],
+        [
+          "Qiyana",
+          66.8,
+          107
+        ],
+        [
+          "Zed",
+          35.3,
+          324
+        ],
+        [
+          "Talon",
+          28.0,
+          163
+        ]
+      ]
+    },
+    "3020": {
+      "nom": "Chaussures de sorcier",
+      "delta_median_par_min": 14.3,
+      "champions_mesures": 41,
+      "occurrences": 4267,
+      "exemples": [
+        [
+          "Fizz",
+          221.2,
+          31
+        ],
+        [
+          "Karthus",
+          205.3,
+          93
+        ],
+        [
+          "Ekko",
+          188.9,
+          268
+        ],
+        [
+          "FiddleSticks",
+          167.3,
+          225
+        ]
+      ]
+    },
+    "3748": {
+      "nom": "Hydre titanesque",
+      "delta_median_par_min": 14.2,
+      "champions_mesures": 9,
+      "occurrences": 1131,
+      "exemples": [
+        [
+          "Briar",
+          154.2,
+          181
+        ],
+        [
+          "XinZhao",
+          61.7,
+          75
+        ],
+        [
+          "Sion",
+          56.7,
+          105
+        ],
+        [
+          "Kled",
+          21.5,
+          118
+        ]
+      ]
+    },
+    "2504": {
+      "nom": "Rookern kaénique",
+      "delta_median_par_min": 13.8,
+      "champions_mesures": 12,
+      "occurrences": 762,
+      "exemples": [
+        [
+          "Sejuani",
+          51.5,
+          66
+        ],
+        [
+          "Shen",
+          29.8,
+          70
+        ],
+        [
+          "Sion",
+          26.6,
+          29
+        ],
+        [
+          "Urgot",
+          16.8,
+          31
+        ]
+      ]
+    },
+    "3066": {
+      "nom": "Plaque de lune ailée",
+      "delta_median_par_min": 13.6,
+      "champions_mesures": 5,
+      "occurrences": 272,
+      "exemples": [
+        [
+          "Nasus",
+          61.2,
+          39
+        ],
+        [
+          "Chogath",
+          34.4,
+          30
+        ],
+        [
+          "Garen",
+          13.6,
+          93
+        ],
+        [
+          "Darius",
+          -46.3,
+          81
+        ]
+      ]
+    },
+    "3814": {
+      "nom": "Manteau de la nuit",
+      "delta_median_par_min": 13.3,
+      "champions_mesures": 15,
+      "occurrences": 1825,
+      "exemples": [
+        [
+          "Qiyana",
+          77.8,
+          195
+        ],
+        [
+          "Zed",
+          62.4,
+          229
+        ],
+        [
+          "Aatrox",
+          54.0,
+          34
+        ],
+        [
+          "Rengar",
+          40.0,
+          137
+        ]
+      ]
+    },
+    "2524": {
+      "nom": "Flûtes de Bandle",
+      "delta_median_par_min": 13.2,
+      "champions_mesures": 14,
+      "occurrences": 1479,
+      "exemples": [
+        [
+          "Shen",
+          66.1,
+          48
+        ],
+        [
+          "Alistar",
+          36.4,
+          71
+        ],
+        [
+          "Bard",
+          35.9,
+          174
+        ],
+        [
+          "Rell",
+          24.9,
+          43
+        ]
+      ]
+    },
+    "3116": {
+      "nom": "Sceptre de Rylai",
+      "delta_median_par_min": 12.6,
+      "champions_mesures": 12,
+      "occurrences": 2531,
+      "exemples": [
+        [
+          "Singed",
+          62.9,
+          269
+        ],
+        [
+          "Cassiopeia",
+          55.7,
+          157
+        ],
+        [
+          "Swain",
+          27.4,
+          283
+        ],
+        [
+          "Brand",
+          22.6,
+          287
+        ]
+      ]
+    },
+    "3870": {
+      "nom": "Rêve éveillé",
+      "delta_median_par_min": 12.4,
+      "champions_mesures": 9,
+      "occurrences": 3400,
+      "exemples": [
+        [
+          "Seraphine",
+          198.4,
+          328
+        ],
+        [
+          "Karma",
+          65.1,
+          417
+        ],
+        [
+          "Nami",
+          20.9,
+          789
+        ],
+        [
+          "Taric",
+          18.8,
+          48
+        ]
+      ]
+    },
+    "3068": {
+      "nom": "Égide solaire",
+      "delta_median_par_min": 11.7,
+      "champions_mesures": 9,
+      "occurrences": 952,
+      "exemples": [
+        [
+          "Zac",
+          265.8,
+          212
+        ],
+        [
+          "Amumu",
+          86.3,
+          99
+        ],
+        [
+          "Poppy",
+          30.6,
+          27
+        ],
+        [
+          "Malphite",
+          14.8,
+          275
+        ]
+      ]
+    },
+    "1057": {
+      "nom": "Manteau de Négatron",
+      "delta_median_par_min": 11.5,
+      "champions_mesures": 22,
+      "occurrences": 975,
+      "exemples": [
+        [
+          "Vayne",
+          62.6,
+          31
+        ],
+        [
+          "Amumu",
+          56.0,
+          28
+        ],
+        [
+          "Jax",
+          49.0,
+          31
+        ],
+        [
+          "Yone",
+          44.0,
+          33
+        ]
+      ]
+    },
+    "6695": {
+      "nom": "Crochet de serpent",
+      "delta_median_par_min": 10.7,
+      "champions_mesures": 15,
+      "occurrences": 942,
+      "exemples": [
+        [
+          "Ambessa",
+          97.4,
+          26
+        ],
+        [
+          "Naafiri",
+          48.7,
+          56
+        ],
+        [
+          "Pantheon",
+          44.0,
+          28
+        ],
+        [
+          "Qiyana",
+          34.2,
+          116
+        ]
+      ]
+    },
+    "2019": {
+      "nom": "Sceau d'acier",
+      "delta_median_par_min": 9.8,
+      "champions_mesures": 34,
+      "occurrences": 1983,
+      "exemples": [
+        [
+          "Katarina",
+          76.3,
+          29
+        ],
+        [
+          "Camille",
+          60.3,
+          89
+        ],
+        [
+          "Yone",
+          48.5,
+          125
+        ],
+        [
+          "Pantheon",
+          42.2,
+          39
+        ]
+      ]
+    },
+    "3142": {
+      "nom": "Lame spectre de Youmuu",
+      "delta_median_par_min": 9.5,
+      "champions_mesures": 15,
+      "occurrences": 1860,
+      "exemples": [
+        [
+          "Qiyana",
+          42.8,
+          28
+        ],
+        [
+          "Graves",
+          38.4,
+          72
+        ],
+        [
+          "Khazix",
+          33.2,
+          84
+        ],
+        [
+          "Shaco",
+          16.7,
+          86
+        ]
+      ]
+    },
+    "3110": {
+      "nom": "Cœur gelé",
+      "delta_median_par_min": 9.5,
+      "champions_mesures": 13,
+      "occurrences": 1085,
+      "exemples": [
+        [
+          "Ezreal",
+          84.4,
+          37
+        ],
+        [
+          "JarvanIV",
+          43.4,
+          88
+        ],
+        [
+          "Swain",
+          22.7,
+          40
+        ],
+        [
+          "Nasus",
+          21.5,
+          306
+        ]
+      ]
+    },
+    "3170": {
+      "nom": "Célérité martiale",
+      "delta_median_par_min": 9.5,
+      "champions_mesures": 7,
+      "occurrences": 459,
+      "exemples": [
+        [
+          "Anivia",
+          30.3,
+          67
+        ],
+        [
+          "Syndra",
+          22.7,
+          58
+        ],
+        [
+          "Viktor",
+          15.3,
+          35
+        ],
+        [
+          "Cassiopeia",
+          9.5,
+          84
+        ]
+      ]
+    },
+    "3155": {
+      "nom": "Hexterminateur",
+      "delta_median_par_min": 9.3,
+      "champions_mesures": 9,
+      "occurrences": 273,
+      "exemples": [
+        [
+          "Olaf",
+          94.5,
+          26
+        ],
+        [
+          "Nocturne",
+          65.6,
+          28
+        ],
+        [
+          "Hecarim",
+          38.9,
+          28
+        ],
+        [
+          "LeeSin",
+          19.1,
+          37
+        ]
+      ]
+    },
+    "2065": {
+      "nom": "Chant de guerre de Shurelya",
+      "delta_median_par_min": 8.8,
+      "champions_mesures": 9,
+      "occurrences": 957,
+      "exemples": [
+        [
+          "Milio",
+          51.1,
+          58
+        ],
+        [
+          "Karma",
+          14.5,
+          60
+        ],
+        [
+          "Nami",
+          11.9,
+          98
+        ],
+        [
+          "Renata",
+          10.2,
+          27
+        ]
+      ]
+    },
+    "3095": {
+      "nom": "Lame tempête",
+      "delta_median_par_min": 8.7,
+      "champions_mesures": 5,
+      "occurrences": 255,
+      "exemples": [
+        [
+          "Zeri",
+          61.5,
+          37
+        ],
+        [
+          "Aphelios",
+          22.2,
+          28
+        ],
+        [
+          "Yasuo",
+          8.7,
+          84
+        ],
+        [
+          "Jhin",
+          6.5,
+          79
+        ]
+      ]
+    },
+    "3097": {
+      "nom": "Item_3097",
+      "delta_median_par_min": 8.4,
+      "champions_mesures": 7,
+      "occurrences": 581,
+      "exemples": [
+        [
+          "Jhin",
+          30.1,
+          159
+        ],
+        [
+          "Akshan",
+          26.4,
+          31
+        ],
+        [
+          "Aphelios",
+          12.5,
+          85
+        ],
+        [
+          "Caitlyn",
+          8.4,
+          63
+        ]
+      ]
+    },
+    "3114": {
+      "nom": "Idole interdite",
+      "delta_median_par_min": 8.1,
+      "champions_mesures": 11,
+      "occurrences": 1239,
+      "exemples": [
+        [
+          "Sona",
+          77.7,
+          53
+        ],
+        [
+          "Seraphine",
+          77.4,
+          58
+        ],
+        [
+          "Soraka",
+          42.6,
+          159
+        ],
+        [
+          "Ivern",
+          39.2,
+          26
+        ]
+      ]
+    },
+    "4645": {
+      "nom": "Flamme-ombre",
+      "delta_median_par_min": 7.8,
+      "champions_mesures": 46,
+      "occurrences": 8234,
+      "exemples": [
+        [
+          "Elise",
+          96.6,
+          197
+        ],
+        [
+          "Zyra",
+          86.8,
+          66
+        ],
+        [
+          "Kayle",
+          80.6,
+          71
+        ],
+        [
+          "FiddleSticks",
+          70.7,
+          106
+        ]
+      ]
+    },
+    "3009": {
+      "nom": "Bottes de célérité",
+      "delta_median_par_min": 6.3,
+      "champions_mesures": 45,
+      "occurrences": 5966,
+      "exemples": [
+        [
+          "Nasus",
+          145.7,
+          80
+        ],
+        [
+          "Talon",
+          80.0,
+          232
+        ],
+        [
+          "Soraka",
+          75.1,
+          97
+        ],
+        [
+          "Darius",
+          66.4,
+          109
+        ]
+      ]
+    },
+    "3173": {
+      "nom": "Broyeuses à chaînes",
+      "delta_median_par_min": 5.6,
+      "champions_mesures": 22,
+      "occurrences": 1315,
+      "exemples": [
+        [
+          "Swain",
+          103.7,
+          26
+        ],
+        [
+          "Katarina",
+          55.0,
+          99
+        ],
+        [
+          "Kassadin",
+          53.8,
+          69
+        ],
+        [
+          "Pantheon",
+          24.6,
+          34
+        ]
+      ]
+    },
+    "3190": {
+      "nom": "Médaillon de l'Iron Solari",
+      "delta_median_par_min": 5.5,
+      "champions_mesures": 17,
+      "occurrences": 4107,
+      "exemples": [
+        [
+          "Nami",
+          45.8,
+          27
+        ],
+        [
+          "Lulu",
+          45.3,
+          47
+        ],
+        [
+          "Zilean",
+          33.0,
+          56
+        ],
+        [
+          "Bard",
+          27.3,
+          257
+        ]
+      ]
+    },
+    "3158": {
+      "nom": "Bottes de lucidité",
+      "delta_median_par_min": 3.9,
+      "champions_mesures": 48,
+      "occurrences": 8028,
+      "exemples": [
+        [
+          "Zac",
+          191.2,
+          112
+        ],
+        [
+          "Seraphine",
+          185.5,
+          555
+        ],
+        [
+          "Maokai",
+          158.7,
+          33
+        ],
+        [
+          "Sylas",
+          128.3,
+          177
+        ]
+      ]
+    },
+    "3211": {
+      "nom": "Manteau de spectre",
+      "delta_median_par_min": 3.9,
+      "champions_mesures": 13,
+      "occurrences": 415,
+      "exemples": [
+        [
+          "TahmKench",
+          60.7,
+          26
+        ],
+        [
+          "JarvanIV",
+          38.8,
+          28
+        ],
+        [
+          "Malphite",
+          31.0,
+          40
+        ],
+        [
+          "KSante",
+          29.5,
+          25
+        ]
+      ]
+    },
+    "4628": {
+      "nom": "Concentration lointaine",
+      "delta_median_par_min": 3.3,
+      "champions_mesures": 6,
+      "occurrences": 483,
+      "exemples": [
+        [
+          "Velkoz",
+          15.6,
+          147
+        ],
+        [
+          "Lux",
+          11.5,
+          32
+        ],
+        [
+          "Zoe",
+          5.3,
+          45
+        ],
+        [
+          "Ziggs",
+          1.3,
+          49
+        ]
+      ]
+    },
+    "4630": {
+      "nom": "Joyau putréfiant",
+      "delta_median_par_min": 3.0,
+      "champions_mesures": 18,
+      "occurrences": 719,
+      "exemples": [
+        [
+          "Akali",
+          50.9,
+          44
+        ],
+        [
+          "Vladimir",
+          50.2,
+          40
+        ],
+        [
+          "Ahri",
+          32.2,
+          52
+        ],
+        [
+          "Gwen",
+          30.6,
+          26
+        ]
+      ]
+    },
+    "2420": {
+      "nom": "Protège-bras du savant",
+      "delta_median_par_min": 2.8,
+      "champions_mesures": 12,
+      "occurrences": 510,
+      "exemples": [
+        [
+          "Locke",
+          33.3,
+          32
+        ],
+        [
+          "Sylas",
+          31.4,
+          68
+        ],
+        [
+          "Diana",
+          20.9,
+          32
+        ],
+        [
+          "Akali",
+          18.3,
+          33
+        ]
+      ]
+    },
+    "6699": {
+      "nom": "Cyclosabre voltaïque",
+      "delta_median_par_min": 1.8,
+      "champions_mesures": 19,
+      "occurrences": 3929,
+      "exemples": [
+        [
+          "Qiyana",
+          70.4,
+          437
+        ],
+        [
+          "Talon",
+          59.6,
+          437
+        ],
+        [
+          "Gangplank",
+          21.6,
+          53
+        ],
+        [
+          "Rengar",
+          17.7,
+          83
+        ]
+      ]
+    },
+    "2055": {
+      "nom": "Balise de contrôle",
+      "delta_median_par_min": 1.2,
+      "champions_mesures": 19,
+      "occurrences": 784,
+      "exemples": [
+        [
+          "Jax",
+          51.8,
+          28
+        ],
+        [
+          "Diana",
+          42.2,
+          27
+        ],
+        [
+          "Sylas",
+          33.4,
+          44
+        ],
+        [
+          "Ahri",
+          9.7,
+          29
+        ]
+      ]
+    },
+    "3006": {
+      "nom": "Jambières du berzerker",
+      "delta_median_par_min": 1.1,
+      "champions_mesures": 9,
+      "occurrences": 1715,
+      "exemples": [
+        [
+          "Kindred",
+          18.2,
+          37
+        ],
+        [
+          "Garen",
+          16.6,
+          458
+        ],
+        [
+          "Shaco",
+          10.9,
+          110
+        ],
+        [
+          "Kaisa",
+          7.3,
+          26
+        ]
+      ]
+    },
+    "2503": {
+      "nom": "Torche noire",
+      "delta_median_par_min": 1.0,
+      "champions_mesures": 21,
+      "occurrences": 4072,
+      "exemples": [
+        [
+          "Morgana",
+          28.3,
+          116
+        ],
+        [
+          "Ahri",
+          17.3,
+          260
+        ],
+        [
+          "Ziggs",
+          14.9,
+          40
+        ],
+        [
+          "Taliyah",
+          13.7,
+          196
+        ]
+      ]
+    },
+    "3100": {
+      "nom": "Fléau de liche",
+      "delta_median_par_min": 0.3,
+      "champions_mesures": 15,
+      "occurrences": 2905,
+      "exemples": [
+        [
+          "Elise",
+          86.8,
+          102
+        ],
+        [
+          "Nidalee",
+          47.9,
+          145
+        ],
+        [
+          "Gragas",
+          28.6,
+          182
+        ],
+        [
+          "TwistedFate",
+          20.6,
+          256
+        ]
+      ]
+    },
+    "2021": {
+      "nom": "Foreuse",
+      "delta_median_par_min": -0.2,
+      "champions_mesures": 32,
+      "occurrences": 1466,
+      "exemples": [
+        [
+          "Fiora",
+          40.1,
+          25
+        ],
+        [
+          "Hecarim",
+          39.2,
+          26
+        ],
+        [
+          "Shyvana",
+          30.3,
+          40
+        ],
+        [
+          "Renekton",
+          17.4,
+          51
+        ]
+      ]
+    },
+    "1058": {
+      "nom": "Baguette trop grosse",
+      "delta_median_par_min": -2.4,
+      "champions_mesures": 57,
+      "occurrences": 5241,
+      "exemples": [
+        [
+          "Shaco",
+          72.7,
+          26
+        ],
+        [
+          "Cassiopeia",
+          43.0,
+          29
+        ],
+        [
+          "Anivia",
+          34.1,
+          47
+        ],
+        [
+          "Zyra",
+          30.1,
+          26
+        ]
+      ]
+    },
+    "3171": {
+      "nom": "Lucidité pourpre",
+      "delta_median_par_min": -2.6,
+      "champions_mesures": 22,
+      "occurrences": 2140,
+      "exemples": [
+        [
+          "Vladimir",
+          61.9,
+          140
+        ],
+        [
+          "Locke",
+          54.3,
+          33
+        ],
+        [
+          "Veigar",
+          38.4,
+          73
+        ],
+        [
+          "TwistedFate",
+          19.7,
+          49
+        ]
+      ]
+    },
+    "1011": {
+      "nom": "Ceinture du géant",
+      "delta_median_par_min": -2.9,
+      "champions_mesures": 17,
+      "occurrences": 718,
+      "exemples": [
+        [
+          "Nasus",
+          55.7,
+          42
+        ],
+        [
+          "Vayne",
+          44.5,
+          41
+        ],
+        [
+          "Shen",
+          40.8,
+          38
+        ],
+        [
+          "Seraphine",
+          28.9,
+          50
+        ]
+      ]
+    },
+    "3916": {
+      "nom": "Orbe de l'oubli",
+      "delta_median_par_min": -3.1,
+      "champions_mesures": 27,
+      "occurrences": 1365,
+      "exemples": [
+        [
+          "Swain",
+          36.4,
+          49
+        ],
+        [
+          "Viktor",
+          23.7,
+          66
+        ],
+        [
+          "Janna",
+          23.1,
+          25
+        ],
+        [
+          "Bard",
+          22.2,
+          47
+        ]
+      ]
+    },
+    "3118": {
+      "nom": "Malfaisance",
+      "delta_median_par_min": -3.4,
+      "champions_mesures": 15,
+      "occurrences": 2486,
+      "exemples": [
+        [
+          "Kassadin",
+          18.5,
+          181
+        ],
+        [
+          "Anivia",
+          13.2,
+          180
+        ],
+        [
+          "Swain",
+          12.5,
+          99
+        ],
+        [
+          "Teemo",
+          12.1,
+          262
+        ]
+      ]
+    },
+    "3175": {
+      "nom": "Chaussures de lanceur de sorts",
+      "delta_median_par_min": -3.6,
+      "champions_mesures": 39,
+      "occurrences": 6701,
+      "exemples": [
+        [
+          "Morgana",
+          52.4,
+          26
+        ],
+        [
+          "Lissandra",
+          21.4,
+          239
+        ],
+        [
+          "Leblanc",
+          20.0,
+          260
+        ],
+        [
+          "Anivia",
+          19.0,
+          110
+        ]
+      ]
+    },
+    "1038": {
+      "nom": "BF Glaive",
+      "delta_median_par_min": -3.7,
+      "champions_mesures": 32,
+      "occurrences": 2410,
+      "exemples": [
+        [
+          "LeeSin",
+          101.0,
+          35
+        ],
+        [
+          "Kaisa",
+          29.7,
+          43
+        ],
+        [
+          "Zeri",
+          18.7,
+          78
+        ],
+        [
+          "Tristana",
+          14.4,
+          102
+        ]
+      ]
+    },
+    "4646": {
+      "nom": "Onde orageuse",
+      "delta_median_par_min": -4.3,
+      "champions_mesures": 26,
+      "occurrences": 2384,
+      "exemples": [
+        [
+          "Karthus",
+          40.2,
+          29
+        ],
+        [
+          "Gragas",
+          30.9,
+          56
+        ],
+        [
+          "Evelynn",
+          22.0,
+          27
+        ],
+        [
+          "Aurora",
+          18.8,
+          121
+        ]
+      ]
+    },
+    "6664": {
+      "nom": "Rayonnement du vide",
+      "delta_median_par_min": -5.0,
+      "champions_mesures": 8,
+      "occurrences": 531,
+      "exemples": [
+        [
+          "Rammus",
+          46.0,
+          27
+        ],
+        [
+          "Ornn",
+          26.7,
+          84
+        ],
+        [
+          "Sion",
+          19.0,
+          101
+        ],
+        [
+          "Galio",
+          1.3,
+          121
+        ]
+      ]
+    },
+    "3113": {
+      "nom": "Feu follet éthéré",
+      "delta_median_par_min": -5.0,
+      "champions_mesures": 7,
+      "occurrences": 279,
+      "exemples": [
+        [
+          "Milio",
+          26.4,
+          51
+        ],
+        [
+          "Lulu",
+          10.6,
+          51
+        ],
+        [
+          "Viktor",
+          3.5,
+          26
+        ],
+        [
+          "Janna",
+          -5.0,
+          36
+        ]
+      ]
+    },
+    "3174": {
+      "nom": "Avancée blindée",
+      "delta_median_par_min": -5.2,
+      "champions_mesures": 9,
+      "occurrences": 418,
+      "exemples": [
+        [
+          "Katarina",
+          60.0,
+          72
+        ],
+        [
+          "Ryze",
+          9.7,
+          26
+        ],
+        [
+          "Kassadin",
+          7.9,
+          73
+        ],
+        [
+          "Galio",
+          5.2,
+          67
+        ]
+      ]
+    },
+    "6697": {
+      "nom": "Orgueil",
+      "delta_median_par_min": -5.4,
+      "champions_mesures": 21,
+      "occurrences": 2600,
+      "exemples": [
+        [
+          "Ambessa",
+          147.5,
+          29
+        ],
+        [
+          "Aatrox",
+          115.6,
+          82
+        ],
+        [
+          "Zed",
+          90.3,
+          121
+        ],
+        [
+          "Quinn",
+          66.4,
+          66
+        ]
+      ]
+    },
+    "6676": {
+      "nom": "Percepteur",
+      "delta_median_par_min": -5.7,
+      "champions_mesures": 21,
+      "occurrences": 4543,
+      "exemples": [
+        [
+          "Quinn",
+          35.4,
+          127
+        ],
+        [
+          "Kindred",
+          24.1,
+          124
+        ],
+        [
+          "Draven",
+          21.5,
+          139
+        ],
+        [
+          "Twitch",
+          21.4,
+          305
+        ]
+      ]
+    },
+    "3877": {
+      "nom": "Mélodie du sang",
+      "delta_median_par_min": -5.7,
+      "champions_mesures": 16,
+      "occurrences": 2353,
+      "exemples": [
+        [
+          "Bard",
+          34.8,
+          431
+        ],
+        [
+          "Rell",
+          20.2,
+          28
+        ],
+        [
+          "Leona",
+          17.8,
+          221
+        ],
+        [
+          "Sona",
+          14.4,
+          173
+        ]
+      ]
+    },
+    "4005": {
+      "nom": "Mandat impérial",
+      "delta_median_par_min": -5.8,
+      "champions_mesures": 12,
+      "occurrences": 1396,
+      "exemples": [
+        [
+          "Maokai",
+          92.8,
+          30
+        ],
+        [
+          "Bard",
+          20.6,
+          36
+        ],
+        [
+          "Zilean",
+          16.2,
+          116
+        ],
+        [
+          "Shaco",
+          15.2,
+          120
+        ]
+      ]
+    },
+    "3876": {
+      "nom": "Traîneau du solstice",
+      "delta_median_par_min": -6.4,
+      "champions_mesures": 18,
+      "occurrences": 2582,
+      "exemples": [
+        [
+          "Seraphine",
+          29.3,
+          71
+        ],
+        [
+          "Braum",
+          11.4,
+          309
+        ],
+        [
+          "Rakan",
+          8.3,
+          114
+        ],
+        [
+          "Rell",
+          8.1,
+          78
+        ]
+      ]
+    },
+    "3179": {
+      "nom": "Glaive d'ombre",
+      "delta_median_par_min": -6.7,
+      "champions_mesures": 10,
+      "occurrences": 1983,
+      "exemples": [
+        [
+          "Talon",
+          130.0,
+          457
+        ],
+        [
+          "Riven",
+          79.0,
+          35
+        ],
+        [
+          "Graves",
+          42.2,
+          57
+        ],
+        [
+          "Rengar",
+          7.0,
+          283
+        ]
+      ]
+    },
+    "3076": {
+      "nom": "Armure roncière",
+      "delta_median_par_min": -6.8,
+      "champions_mesures": 27,
+      "occurrences": 1624,
+      "exemples": [
+        [
+          "Darius",
+          25.6,
+          33
+        ],
+        [
+          "Gnar",
+          25.1,
+          33
+        ],
+        [
+          "Poppy",
+          15.5,
+          52
+        ],
+        [
+          "KSante",
+          14.2,
+          45
+        ]
+      ]
+    },
+    "3123": {
+      "nom": "Marque du bourreau",
+      "delta_median_par_min": -6.8,
+      "champions_mesures": 12,
+      "occurrences": 526,
+      "exemples": [
+        [
+          "Yasuo",
+          18.2,
+          58
+        ],
+        [
+          "Yorick",
+          17.8,
+          25
+        ],
+        [
+          "Aatrox",
+          17.7,
+          38
+        ],
+        [
+          "Senna",
+          16.6,
+          86
+        ]
+      ]
+    },
+    "3869": {
+      "nom": "Opposition céleste",
+      "delta_median_par_min": -7.1,
+      "champions_mesures": 26,
+      "occurrences": 3138,
+      "exemples": [
+        [
+          "Soraka",
+          58.5,
+          132
+        ],
+        [
+          "Morgana",
+          29.9,
+          36
+        ],
+        [
+          "Lulu",
+          15.0,
+          34
+        ],
+        [
+          "Alistar",
+          12.6,
+          249
+        ]
+      ]
+    },
+    "3047": {
+      "nom": "Coques en acier",
+      "delta_median_par_min": -8.0,
+      "champions_mesures": 81,
+      "occurrences": 11480,
+      "exemples": [
+        [
+          "Sylas",
+          134.0,
+          66
+        ],
+        [
+          "Diana",
+          104.4,
+          67
+        ],
+        [
+          "Naafiri",
+          80.6,
+          55
+        ],
+        [
+          "Skarner",
+          62.5,
+          68
+        ]
+      ]
+    },
+    "6655": {
+      "nom": "Écho de Luden",
+      "delta_median_par_min": -8.2,
+      "champions_mesures": 23,
+      "occurrences": 3944,
+      "exemples": [
+        [
+          "Zilean",
+          102.2,
+          31
+        ],
+        [
+          "Velkoz",
+          14.5,
+          293
+        ],
+        [
+          "Taliyah",
+          8.9,
+          37
+        ],
+        [
+          "Zoe",
+          6.7,
+          181
+        ]
+      ]
+    },
+    "3042": {
+      "nom": "Muramana",
+      "delta_median_par_min": -8.2,
+      "champions_mesures": 7,
+      "occurrences": 1339,
+      "exemples": [
+        [
+          "Ezreal",
+          78.7,
+          736
+        ],
+        [
+          "Senna",
+          58.1,
+          80
+        ],
+        [
+          "Kassadin",
+          31.2,
+          67
+        ],
+        [
+          "Corki",
+          -8.2,
+          120
+        ]
+      ]
+    },
+    "3508": {
+      "nom": "Faux spectrale",
+      "delta_median_par_min": -10.2,
+      "champions_mesures": 8,
+      "occurrences": 710,
+      "exemples": [
+        [
+          "MissFortune",
+          39.1,
+          26
+        ],
+        [
+          "Corki",
+          30.9,
+          74
+        ],
+        [
+          "Nasus",
+          16.0,
+          50
+        ],
+        [
+          "Ezreal",
+          -4.9,
+          50
+        ]
+      ]
+    },
+    "1082": {
+      "nom": "Sceau noir",
+      "delta_median_par_min": -11.6,
+      "champions_mesures": 65,
+      "occurrences": 5556,
+      "exemples": [
+        [
+          "FiddleSticks",
+          69.8,
+          44
+        ],
+        [
+          "Nami",
+          41.4,
+          66
+        ],
+        [
+          "Morgana",
+          28.9,
+          30
+        ],
+        [
+          "Soraka",
+          26.3,
+          32
+        ]
+      ]
+    },
+    "3147": {
+      "nom": "Déguisement hanté",
+      "delta_median_par_min": -12.4,
+      "champions_mesures": 8,
+      "occurrences": 325,
+      "exemples": [
+        [
+          "Cassiopeia",
+          11.9,
+          27
+        ],
+        [
+          "Anivia",
+          -7.6,
+          43
+        ],
+        [
+          "Sylas",
+          -10.5,
+          73
+        ],
+        [
+          "Brand",
+          -11.2,
+          31
+        ]
+      ]
+    },
+    "6670": {
+      "nom": "Carquois zénithien",
+      "delta_median_par_min": -12.6,
+      "champions_mesures": 19,
+      "occurrences": 1091,
+      "exemples": [
+        [
+          "Senna",
+          13.3,
+          28
+        ],
+        [
+          "Ashe",
+          11.7,
+          37
+        ],
+        [
+          "Twitch",
+          10.2,
+          34
+        ],
+        [
+          "Samira",
+          2.7,
+          60
+        ]
+      ]
+    },
+    "3145": {
+      "nom": "Alternateur Hextech",
+      "delta_median_par_min": -13.6,
+      "champions_mesures": 24,
+      "occurrences": 1096,
+      "exemples": [
+        [
+          "Fizz",
+          7.5,
+          43
+        ],
+        [
+          "Evelynn",
+          7.2,
+          26
+        ],
+        [
+          "Xerath",
+          5.2,
+          68
+        ],
+        [
+          "Velkoz",
+          -2.6,
+          50
+        ]
+      ]
+    },
+    "3082": {
+      "nom": "Mailles du gardien",
+      "delta_median_par_min": -15.9,
+      "champions_mesures": 7,
+      "occurrences": 320,
+      "exemples": [
+        [
+          "JarvanIV",
+          19.4,
+          39
+        ],
+        [
+          "Thresh",
+          8.7,
+          76
+        ],
+        [
+          "Braum",
+          -1.9,
+          39
+        ],
+        [
+          "Malphite",
+          -15.9,
+          64
+        ]
+      ]
+    },
+    "1033": {
+      "nom": "Cape de néant",
+      "delta_median_par_min": -16.3,
+      "champions_mesures": 15,
+      "occurrences": 668,
+      "exemples": [
+        [
+          "Darius",
+          11.1,
+          25
+        ],
+        [
+          "Bard",
+          5.4,
+          61
+        ],
+        [
+          "Ornn",
+          1.5,
+          27
+        ],
+        [
+          "Malphite",
+          -2.2,
+          44
+        ]
+      ]
+    },
+    "3035": {
+      "nom": "Dernier souffle",
+      "delta_median_par_min": -16.4,
+      "champions_mesures": 28,
+      "occurrences": 1590,
+      "exemples": [
+        [
+          "Xayah",
+          15.2,
+          43
+        ],
+        [
+          "Ezreal",
+          11.7,
+          87
+        ],
+        [
+          "Tryndamere",
+          4.3,
+          35
+        ],
+        [
+          "Ashe",
+          2.3,
+          54
+        ]
+      ]
+    },
+    "1004": {
+      "nom": "Charme féérique",
+      "delta_median_par_min": -16.4,
+      "champions_mesures": 7,
+      "occurrences": 296,
+      "exemples": [
+        [
+          "Yuumi",
+          40.6,
+          25
+        ],
+        [
+          "Karma",
+          29.2,
+          27
+        ],
+        [
+          "Seraphine",
+          -10.0,
+          30
+        ],
+        [
+          "Lulu",
+          -16.4,
+          45
+        ]
+      ]
+    },
+    "1031": {
+      "nom": "Cotte de mailles",
+      "delta_median_par_min": -16.6,
+      "champions_mesures": 21,
+      "occurrences": 957,
+      "exemples": [
+        [
+          "Nasus",
+          48.6,
+          54
+        ],
+        [
+          "Shyvana",
+          17.0,
+          28
+        ],
+        [
+          "Garen",
+          12.4,
+          63
+        ],
+        [
+          "Alistar",
+          5.6,
+          32
+        ]
+      ]
+    },
+    "3067": {
+      "nom": "Gemme exaltante",
+      "delta_median_par_min": -18.0,
+      "champions_mesures": 33,
+      "occurrences": 2736,
+      "exemples": [
+        [
+          "Seraphine",
+          65.0,
+          59
+        ],
+        [
+          "DrMundo",
+          55.6,
+          29
+        ],
+        [
+          "Malphite",
+          24.7,
+          28
+        ],
+        [
+          "Braum",
+          11.4,
+          128
+        ]
+      ]
+    },
+    "3108": {
+      "nom": "Codex méphitique",
+      "delta_median_par_min": -18.1,
+      "champions_mesures": 18,
+      "occurrences": 818,
+      "exemples": [
+        [
+          "Nami",
+          21.4,
+          99
+        ],
+        [
+          "Zilean",
+          21.4,
+          48
+        ],
+        [
+          "Velkoz",
+          13.5,
+          31
+        ],
+        [
+          "Xerath",
+          0.2,
+          37
+        ]
+      ]
+    },
+    "1052": {
+      "nom": "Tome d'amplification",
+      "delta_median_par_min": -19.8,
+      "champions_mesures": 63,
+      "occurrences": 3978,
+      "exemples": [
+        [
+          "Karthus",
+          50.3,
+          29
+        ],
+        [
+          "Kayle",
+          32.3,
+          26
+        ],
+        [
+          "Diana",
+          29.6,
+          85
+        ],
+        [
+          "Aurora",
+          11.8,
+          38
+        ]
+      ]
+    },
+    "3133": {
+      "nom": "Marteau de Caulfield",
+      "delta_median_par_min": -20.7,
+      "champions_mesures": 31,
+      "occurrences": 1697,
+      "exemples": [
+        [
+          "Yone",
+          62.6,
+          25
+        ],
+        [
+          "Yasuo",
+          25.7,
+          30
+        ],
+        [
+          "Smolder",
+          13.6,
+          26
+        ],
+        [
+          "Zaahen",
+          9.2,
+          56
+        ]
+      ]
+    },
+    "1055": {
+      "nom": "Lame de Doran",
+      "delta_median_par_min": -23.2,
+      "champions_mesures": 56,
+      "occurrences": 6467,
+      "exemples": [
+        [
+          "Camille",
+          64.7,
+          147
+        ],
+        [
+          "Katarina",
+          51.2,
+          130
+        ],
+        [
+          "Kennen",
+          35.0,
+          28
+        ],
+        [
+          "Nilah",
+          17.5,
+          31
+        ]
+      ]
+    },
+    "2020": {
+      "nom": "Brutaliseur",
+      "delta_median_par_min": -23.3,
+      "champions_mesures": 4,
+      "occurrences": 142,
+      "exemples": [
+        [
+          "Pyke",
+          -5.4,
+          39
+        ],
+        [
+          "Khazix",
+          -17.5,
+          27
+        ],
+        [
+          "Zed",
+          -29.1,
+          47
+        ],
+        [
+          "Talon",
+          -53.8,
+          29
+        ]
+      ]
+    },
+    "1026": {
+      "nom": "Baguette explosive",
+      "delta_median_par_min": -23.8,
+      "champions_mesures": 13,
+      "occurrences": 455,
+      "exemples": [
+        [
+          "Ekko",
+          50.8,
+          28
+        ],
+        [
+          "Viktor",
+          9.0,
+          29
+        ],
+        [
+          "Syndra",
+          6.0,
+          27
+        ],
+        [
+          "Teemo",
+          -3.2,
+          32
+        ]
+      ]
+    },
+    "3871": {
+      "nom": "Pique dimensionnelle de Zaz'Zak",
+      "delta_median_par_min": -24.1,
+      "champions_mesures": 22,
+      "occurrences": 2020,
+      "exemples": [
+        [
+          "Hwei",
+          35.5,
+          27
+        ],
+        [
+          "Xerath",
+          30.2,
+          130
+        ],
+        [
+          "Velkoz",
+          27.6,
+          241
+        ],
+        [
+          "Mel",
+          18.8,
+          44
+        ]
+      ]
+    },
+    "1029": {
+      "nom": "Armure d'étoffe",
+      "delta_median_par_min": -24.4,
+      "champions_mesures": 38,
+      "occurrences": 1830,
+      "exemples": [
+        [
+          "Malphite",
+          5.1,
+          50
+        ],
+        [
+          "Kaisa",
+          3.1,
+          38
+        ],
+        [
+          "Yone",
+          0.7,
+          44
+        ],
+        [
+          "Sion",
+          -4.0,
+          27
+        ]
+      ]
+    },
+    "1120": {
+      "nom": "Casque de Doran",
+      "delta_median_par_min": -25.3,
+      "champions_mesures": 15,
+      "occurrences": 937,
+      "exemples": [
+        [
+          "Sion",
+          44.1,
+          45
+        ],
+        [
+          "TahmKench",
+          33.7,
+          26
+        ],
+        [
+          "Malphite",
+          1.4,
+          43
+        ],
+        [
+          "Yorick",
+          -3.2,
+          35
+        ]
+      ]
+    },
+    "3086": {
+      "nom": "Zèle",
+      "delta_median_par_min": -25.9,
+      "champions_mesures": 11,
+      "occurrences": 489,
+      "exemples": [
+        [
+          "Aphelios",
+          -14.5,
+          26
+        ],
+        [
+          "Jhin",
+          -15.2,
+          67
+        ],
+        [
+          "Caitlyn",
+          -18.6,
+          84
+        ],
+        [
+          "Smolder",
+          -23.9,
+          28
+        ]
+      ]
+    },
+    "3087": {
+      "nom": "Poignard de Statikk",
+      "delta_median_par_min": -26.2,
+      "champions_mesures": 8,
+      "occurrences": 1481,
+      "exemples": [
+        [
+          "Varus",
+          8.6,
+          140
+        ],
+        [
+          "XinZhao",
+          6.3,
+          35
+        ],
+        [
+          "Senna",
+          -0.7,
+          514
+        ],
+        [
+          "Teemo",
+          -21.8,
+          253
+        ]
+      ]
+    },
+    "6698": {
+      "nom": "Hydre profane",
+      "delta_median_par_min": -29.7,
+      "champions_mesures": 15,
+      "occurrences": 1382,
+      "exemples": [
+        [
+          "Ambessa",
+          112.4,
+          96
+        ],
+        [
+          "Rengar",
+          39.8,
+          295
+        ],
+        [
+          "Shaco",
+          23.4,
+          27
+        ],
+        [
+          "Naafiri",
+          22.5,
+          28
+        ]
+      ]
+    },
+    "6692": {
+      "nom": "Éclipse",
+      "delta_median_par_min": -30.2,
+      "champions_mesures": 16,
+      "occurrences": 2334,
+      "exemples": [
+        [
+          "Hecarim",
+          60.5,
+          27
+        ],
+        [
+          "Kayn",
+          39.0,
+          102
+        ],
+        [
+          "LeeSin",
+          17.0,
+          435
+        ],
+        [
+          "Renekton",
+          0.2,
+          274
+        ]
+      ]
+    },
+    "1056": {
+      "nom": "Anneau de Doran",
+      "delta_median_par_min": -31.7,
+      "champions_mesures": 49,
+      "occurrences": 6212,
+      "exemples": [
+        [
+          "Zilean",
+          39.7,
+          48
+        ],
+        [
+          "Heimerdinger",
+          2.0,
+          57
+        ],
+        [
+          "Annie",
+          -2.0,
+          69
+        ],
+        [
+          "Zoe",
+          -4.9,
+          76
+        ]
+      ]
+    },
+    "1028": {
+      "nom": "Cristal de rubis",
+      "delta_median_par_min": -32.6,
+      "champions_mesures": 56,
+      "occurrences": 2848,
+      "exemples": [
+        [
+          "Poppy",
+          30.7,
+          48
+        ],
+        [
+          "Briar",
+          24.8,
+          35
+        ],
+        [
+          "Vi",
+          12.3,
+          30
+        ],
+        [
+          "Alistar",
+          8.8,
+          55
+        ]
+      ]
+    },
+    "1083": {
+      "nom": "Abatteur",
+      "delta_median_par_min": -32.7,
+      "champions_mesures": 6,
+      "occurrences": 311,
+      "exemples": [
+        [
+          "Ashe",
+          6.2,
+          26
+        ],
+        [
+          "Kaisa",
+          -24.9,
+          127
+        ],
+        [
+          "Jinx",
+          -32.3,
+          61
+        ],
+        [
+          "Tristana",
+          -33.1,
+          29
+        ]
+      ]
+    },
+    "1086": {
+      "nom": "Arc de Doran",
+      "delta_median_par_min": -32.8,
+      "champions_mesures": 26,
+      "occurrences": 5144,
+      "exemples": [
+        [
+          "KogMaw",
+          44.1,
+          76
+        ],
+        [
+          "MissFortune",
+          -1.6,
+          78
+        ],
+        [
+          "Ashe",
+          -17.5,
+          251
+        ],
+        [
+          "Twitch",
+          -18.2,
+          197
+        ]
+      ]
+    },
+    "2022": {
+      "nom": "Poussière luisante",
+      "delta_median_par_min": -35.2,
+      "champions_mesures": 8,
+      "occurrences": 343,
+      "exemples": [
+        [
+          "Seraphine",
+          -11.4,
+          40
+        ],
+        [
+          "Thresh",
+          -15.7,
+          32
+        ],
+        [
+          "Lulu",
+          -22.5,
+          54
+        ],
+        [
+          "Karma",
+          -29.7,
+          47
+        ]
+      ]
+    },
+    "1018": {
+      "nom": "Cape d'agilité",
+      "delta_median_par_min": -35.4,
+      "champions_mesures": 31,
+      "occurrences": 2736,
+      "exemples": [
+        [
+          "Kaisa",
+          19.4,
+          31
+        ],
+        [
+          "Senna",
+          11.6,
+          96
+        ],
+        [
+          "Garen",
+          1.3,
+          45
+        ],
+        [
+          "Ashe",
+          -4.2,
+          95
+        ]
+      ]
+    },
+    "1036": {
+      "nom": "Épée longue",
+      "delta_median_par_min": -35.8,
+      "champions_mesures": 69,
+      "occurrences": 5875,
+      "exemples": [
+        [
+          "Twitch",
+          3.9,
+          65
+        ],
+        [
+          "Katarina",
+          2.4,
+          38
+        ],
+        [
+          "Sion",
+          1.9,
+          25
+        ],
+        [
+          "Jhin",
+          0.4,
+          152
+        ]
+      ]
+    },
+    "1037": {
+      "nom": "Pioche",
+      "delta_median_par_min": -36.0,
+      "champions_mesures": 61,
+      "occurrences": 3653,
+      "exemples": [
+        [
+          "Fiora",
+          95.5,
+          48
+        ],
+        [
+          "MonkeyKing",
+          23.0,
+          57
+        ],
+        [
+          "Camille",
+          16.6,
+          94
+        ],
+        [
+          "Jax",
+          15.2,
+          41
+        ]
+      ]
+    },
+    "4642": {
+      "nom": "Miroir en verre de Bandle",
+      "delta_median_par_min": -37.8,
+      "champions_mesures": 8,
+      "occurrences": 602,
+      "exemples": [
+        [
+          "Seraphine",
+          21.9,
+          99
+        ],
+        [
+          "Lulu",
+          -4.8,
+          97
+        ],
+        [
+          "Zilean",
+          -25.3,
+          32
+        ],
+        [
+          "Nami",
+          -35.8,
+          145
+        ]
+      ]
+    },
+    "3134": {
+      "nom": "Dague dentelée",
+      "delta_median_par_min": -39.3,
+      "champions_mesures": 13,
+      "occurrences": 847,
+      "exemples": [
+        [
+          "Zed",
+          -9.2,
+          135
+        ],
+        [
+          "Jayce",
+          -14.6,
+          57
+        ],
+        [
+          "Pyke",
+          -18.3,
+          160
+        ],
+        [
+          "Pantheon",
+          -19.0,
+          35
+        ]
+      ]
+    },
+    "1042": {
+      "nom": "Dague",
+      "delta_median_par_min": -39.6,
+      "champions_mesures": 13,
+      "occurrences": 701,
+      "exemples": [
+        [
+          "Aphelios",
+          -7.6,
+          31
+        ],
+        [
+          "Twitch",
+          -15.5,
+          29
+        ],
+        [
+          "Caitlyn",
+          -21.0,
+          91
+        ],
+        [
+          "Jhin",
+          -23.8,
+          58
+        ]
+      ]
+    },
+    "3144": {
+      "nom": "Fronde de l'éclaireur",
+      "delta_median_par_min": -40.5,
+      "champions_mesures": 6,
+      "occurrences": 269,
+      "exemples": [
+        [
+          "Twitch",
+          -24.7,
+          31
+        ],
+        [
+          "Caitlyn",
+          -28.3,
+          70
+        ],
+        [
+          "Jhin",
+          -33.0,
+          47
+        ],
+        [
+          "Vayne",
+          -48.0,
+          29
+        ]
+      ]
+    },
+    "3044": {
+      "nom": "Phage",
+      "delta_median_par_min": -41.1,
+      "champions_mesures": 6,
+      "occurrences": 181,
+      "exemples": [
+        [
+          "Nocturne",
+          3.8,
+          29
+        ],
+        [
+          "Pantheon",
+          -18.5,
+          31
+        ],
+        [
+          "LeeSin",
+          -34.2,
+          28
+        ],
+        [
+          "MonkeyKing",
+          -48.0,
+          35
+        ]
+      ]
+    },
+    "2422": {
+      "nom": "Chaussures légèrement magiques",
+      "delta_median_par_min": -50.1,
+      "champions_mesures": 5,
+      "occurrences": 214,
+      "exemples": [
+        [
+          "Graves",
+          4.9,
+          48
+        ],
+        [
+          "Talon",
+          -8.6,
+          50
+        ],
+        [
+          "Viego",
+          -50.1,
+          56
+        ],
+        [
+          "JarvanIV",
+          -56.9,
+          31
+        ]
+      ]
+    },
+    "2031": {
+      "nom": "Potion rechargeable",
+      "delta_median_par_min": -50.9,
+      "champions_mesures": 40,
+      "occurrences": 1514,
+      "exemples": [
+        [
+          "Leona",
+          5.6,
+          26
+        ],
+        [
+          "Veigar",
+          1.5,
+          31
+        ],
+        [
+          "Viktor",
+          -12.4,
+          61
+        ],
+        [
+          "Syndra",
+          -16.6,
+          34
+        ]
+      ]
+    },
+    "1054": {
+      "nom": "Bouclier de Doran",
+      "delta_median_par_min": -53.9,
+      "champions_mesures": 26,
+      "occurrences": 1680,
+      "exemples": [
+        [
+          "Malphite",
+          -2.1,
+          25
+        ],
+        [
+          "Camille",
+          -9.9,
+          50
+        ],
+        [
+          "TahmKench",
+          -21.1,
+          66
+        ],
+        [
+          "Katarina",
+          -23.3,
+          29
+        ]
+      ]
+    },
+    "1001": {
+      "nom": "Bottes",
+      "delta_median_par_min": -58.8,
+      "champions_mesures": 13,
+      "occurrences": 659,
+      "exemples": [
+        [
+          "Qiyana",
+          -25.5,
+          30
+        ],
+        [
+          "Shaco",
+          -34.7,
+          27
+        ],
+        [
+          "Rengar",
+          -41.6,
+          102
+        ],
+        [
+          "Khazix",
+          -51.0,
+          54
+        ]
+      ]
+    },
+    "1043": {
+      "nom": "Arc courbe",
+      "delta_median_par_min": -60.0,
+      "champions_mesures": 8,
+      "occurrences": 456,
+      "exemples": [
+        [
+          "Varus",
+          -1.7,
+          33
+        ],
+        [
+          "Vayne",
+          -9.1,
+          87
+        ],
+        [
+          "Katarina",
+          -15.2,
+          57
+        ],
+        [
+          "Kaisa",
+          -43.2,
+          112
+        ]
+      ]
+    },
+    "3070": {
+      "nom": "Larme de la déesse",
+      "delta_median_par_min": -78.0,
+      "champions_mesures": 9,
+      "occurrences": 443,
+      "exemples": [
+        [
+          "Kassadin",
+          -16.1,
+          44
+        ],
+        [
+          "Yuumi",
+          -18.3,
+          28
+        ],
+        [
+          "Veigar",
+          -39.0,
+          34
+        ],
+        [
+          "Senna",
+          -73.4,
+          40
+        ]
+      ]
+    }
+  },
+  "effet_domination": {
+    "en_avance": {
+      "ratio_median": 1.32,
+      "champions": 145
+    },
+    "en_retard": {
+      "ratio_median": 0.77,
+      "champions": 38
+    },
+    "moyen": {
+      "ratio_median": 1.0,
+      "champions": 162
+    },
+    "nourri": {
+      "ratio_median": 1.71,
+      "champions": 129
+    }
+  }
+}
