@@ -148,8 +148,8 @@ def test_un_bouclier_marginal_ne_suffit_pas(analyzer):
 
 
 @pytest.mark.parametrize("noms,attendu", [
-    (["Tahm Kench", "Shen"], True),      # 1.35 — deux vrais porteurs
-    (["Lux", "Orianna"], True),          # 1.30 — pile au seuil
+    (["Tahm Kench", "Shen"], True),      # 1.35 — pile au seuil, doit passer
+    (["Lux", "Orianna"], False),         # 1.30 — bouclier accessoire
     (["Braum", "Riven"], False),         # 1.15 — boucliers secondaires
     (["Malphite", "Diana"], False),      # 0.85 — passives marginales
     (["Sett", "Sion"], False),           # 1.00
@@ -173,6 +173,15 @@ def test_aucun_bouclier_en_face(analyzer):
 @pytest.mark.parametrize("champion", ["Lulu", "Karma", "Janna", "Shen", "Tahm Kench"])
 def test_les_boucliers_de_reference_sont_ponderes(champion):
     assert _SHIELD_CHAMPION_WEIGHTS.get(champion, 0) >= 0.55
+
+
+def test_le_seuil_est_insensible_aux_arrondis(analyzer):
+    """Tahm Kench + Shen vaut exactement le seuil : la somme est arrondie
+    pour que la comparaison ne dépende pas de la représentation binaire."""
+    sp = [("Tahm Kench", 13, []), ("Shen", 13, []), ("Darius", 13, [])]
+    t = analyzer._check_triggers(_eq(sp), "Assassin", 0.5, "AD", [], my_champion_name="Zed")
+    assert t["shield_weight"] == 1.35
+    assert t["need_antishield"] is True
 
 
 def test_les_poids_sont_des_fractions():
