@@ -66,6 +66,11 @@ MIN_LANE_GAMES = 200
 # Interface
 # ======================================================================
 
+_EVENEMENTS_MINIMAUX = (
+    "ITEM_PURCHASED", "ITEM_SOLD", "ITEM_UNDO", "ITEM_DESTROYED", "CHAMPION_KILL",
+)
+
+
 class StatsProvider(ABC):
     """Chaque source de données implémente cette interface."""
 
@@ -117,6 +122,9 @@ class RiotMatchProvider(StatsProvider):
         self.raw_dir = raw_dir
         
         self.is_production = False
+        # Par défaut on garde tout : l'espace disque se rachète, une donnée
+        # non collectée demande de tout retélécharger.
+        self.filtrer_timelines = False
         self._last_call = 0.0
         self._window_long = collections.deque(maxlen=100)
         self._window_short = collections.deque(maxlen=20)
@@ -221,21 +229,30 @@ class RiotMatchProvider(StatsProvider):
             with gzip.open(os.path.join(d, f"{mid}.json.gz"), "wt") as f:
                 json.dump(match, f)
             if timeline:
-                # Filtrer la timeline pour gagner de la place
-                filtered_frames = []
-                for frame in timeline.get("info", {}).get("frames", []):
-                    filtered_events = [
-                        e for e in frame.get("events", [])
-                        if e.get("type") in ("ITEM_PURCHASED", "ITEM_SOLD", "ITEM_UNDO", "ITEM_DESTROYED", "CHAMPION_KILL")
-                    ]
-                    filtered_frames.append({
-                        "timestamp": frame.get("timestamp"),
-                        "participantFrames": frame.get("participantFrames"),
-                        "events": filtered_events
-                    })
-                filtered_tl = {"metadata": timeline.get("metadata"), "info": {"frames": filtered_frames}}
+                # Timeline conservée INTÉGRALEMENT par défaut.
+                #
+                # L'ancien filtre ne gardait que cinq types d'événements pour
+                # gagner de la place. Il écartait définitivement la vision
+                # (WARD_PLACED, WARD_KILL), les objectifs (ELITE_MONSTER_KILL),
+                # les tours et plaques (BUILDING_KILL, TURRET_PLATE_DESTROYED)
+                # et l'ordre de compétences (SKILL_LEVEL_UP) — données qu'aucune
+                # analyse ultérieure ne peut reconstituer sans tout retélécharger.
+                a_ecrire = timeline
+                if self.filtrer_timelines:
+                    frames = []
+                    for frame in timeline.get("info", {}).get("frames", []):
+                        frames.append({
+                            "timestamp": frame.get("timestamp"),
+                            "participantFrames": frame.get("participantFrames"),
+                            "events": [
+                                e for e in frame.get("events", [])
+                                if e.get("type") in _EVENEMENTS_MINIMAUX
+                            ],
+                        })
+                    a_ecrire = {"metadata": timeline.get("metadata"),
+                                "info": {"frames": frames}}
                 with gzip.open(os.path.join(d, f"{mid}_timeline.json.gz"), "wt") as f:
-                    json.dump(filtered_tl, f)
+                    json.dump(a_ecrire, f)
 
         info = match.get("info", {})
         if info.get("queueId") != self.RANKED_SOLO_QUEUE:
@@ -554,6 +571,10 @@ def main():
     r.add_argument("--out", default="data/patch_stats.json")
     r.add_argument("--raw-dir", default="data/matches")
     r.add_argument("--production", action="store_true", help="Utiliser les limites de clé de production")
+    r.add_argument("--filtrer-timelines", action="store_true",
+                   help="N'enregistrer que les événements d'objets et de kills. "
+                        "Économise de la place mais perd définitivement la vision, "
+                        "les objectifs, les tours et l'ordre de compétences.")
 
     c = sub.add_parser("csv")
     c.add_argument("--pickrate")
@@ -574,6 +595,10 @@ def main():
         provider = RiotMatchProvider(a.key, a.region, a.matches, raw_dir=a.raw_dir)
         if getattr(a, "production", False):
             provider.set_production_limits()
+        provider.filtrer_timelines = getattr(a, "filtrer_timelines", False)
+        log.info("Timelines : %s",
+                 "filtrées (vision et objectifs perdus)" if provider.filtrer_timelines
+                 else "conservées intégralement")
     else:
         provider = CsvProvider(a.pickrate, a.banrate, a.lane, a.patch)
     data = provider.build()
