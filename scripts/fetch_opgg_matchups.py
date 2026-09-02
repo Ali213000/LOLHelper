@@ -26,6 +26,17 @@ parties dans nos propres données.
 Il fournit en prime les synergies alliées par voie, avec les mêmes volumes
 (Lee Sin + Thresh : 5 432 parties, 53 %), qui servent l'équilibre d'équipe.
 
+Palier de classement
+--------------------
+Les duels dépendent fortement du niveau : en or Lee Sin est contré par Hecarim
+et Skarner, en platine par Tryndamere et Qiyana, en diamant par Volibear.
+--tier cible donc son propre palier. Attention, OMETTRE le paramètre ne donne
+pas l'agrégat global mais un bracket par défaut — 176 097 parties sur Lee Sin
+contre 556 454 avec tier=all.
+
+Les paliers trop hauts se vident : challenger ne totalise que 903 parties sur
+Lee Sin, insuffisant pour des duels.
+
 Courtoisie : une requête à la fois, temporisée, reprise possible sur le fichier
 existant. Source à citer en cas d'usage public des données.
 """
@@ -198,6 +209,11 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--reprendre", action="store_true",
                     help="conserve les entrées déjà présentes dans le fichier")
+    ap.add_argument("--tier", default="",
+                    help="palier de classement (gold, platinum, diamond...). "
+                         "Omettre garde le bracket par defaut d'OP.GG, qui n'est "
+                         "PAS l'agregat global : 176 097 parties sur Lee Sin "
+                         "contre 556 454 avec tier=all.")
     a = ap.parse_args()
 
     paires = cibles()
@@ -216,9 +232,11 @@ def main():
         if cle in acquis:
             continue
         try:
-            texte = client.outil("lol_get_champion_analysis", {
-                "champion": upper_snake(cid), "position": poste,
-                "game_mode": "ranked"}, idx=100 + i)
+            arguments = {"champion": upper_snake(cid), "position": poste,
+                         "game_mode": "ranked"}
+            if a.tier:
+                arguments["tier"] = a.tier
+            texte = client.outil("lol_get_champion_analysis", arguments, idx=100 + i)
             entree = analyser(texte)
             if not entree["duels"]:
                 echecs.append((cle, "aucun duel"))
@@ -241,6 +259,7 @@ def main():
             "source": "OP.GG MCP officiel (https://mcp-api.op.gg/mcp)",
             "attribution": "Donnees de duels et synergies fournies par OP.GG",
             "recupere_le": time.strftime("%Y-%m-%d"),
+            "tier": a.tier or "(defaut OP.GG)",
             "entrees": acquis,
         }, f, ensure_ascii=False, indent=1)
 
