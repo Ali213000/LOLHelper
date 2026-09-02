@@ -153,3 +153,151 @@ def make_section_title(parent, text: str) -> ctk.CTkLabel:
         font=font_title(),
         text_color=PURPLE_PRIMARY,
     )
+
+# ---------------------------------------------------------------------------
+# Couleurs sémantiques d'état (dérivées de la palette ci-dessus)
+# ---------------------------------------------------------------------------
+STATE_OK        = "#3fb950"   # acheté et conforme au plan
+STATE_OK_DIM    = "#123a1c"
+STATE_DRIFT     = "#5c6b7a"   # acheté hors plan
+STATE_DRIFT_DIM = "#1b2733"
+STATE_PENDING   = PURPLE_PRIMARY
+STATE_WAIT      = TEAL_ACCENT
+STATE_WAIT_DIM  = TEAL_DIM
+
+# Échelle d'ombres simulées (CTk n'a pas d'ombre : on empile des fg_color)
+ELEV_0          = BG_ROOT
+ELEV_1          = BG_CARD
+ELEV_2          = BG_CARD_INNER
+ELEV_3          = BG_INPUT
+
+# ---------------------------------------------------------------------------
+# Échelle d'espacement (multiples de 4 — évite les valeurs magiques)
+# ---------------------------------------------------------------------------
+SP_1 = 4
+SP_2 = 8
+SP_3 = 12
+SP_4 = 16
+SP_5 = 24
+SP_6 = 32
+
+# Typographie complémentaire
+FONT_HERO   = ("Segoe UI", 26, "bold")   # gros chiffre / nom de champion
+FONT_MONO   = ("Consolas", 12)           # valeurs alignées (or, KDA, timers)
+FONT_MONO_LG = ("Consolas", 17, "bold")
+
+
+def font_hero() -> ctk.CTkFont:
+    return ctk.CTkFont(*FONT_HERO)
+
+
+def font_mono() -> ctk.CTkFont:
+    return ctk.CTkFont(*FONT_MONO)
+
+
+def font_mono_lg() -> ctk.CTkFont:
+    return ctk.CTkFont(*FONT_MONO_LG)
+
+
+# ---------------------------------------------------------------------------
+# Fabriques de widgets complémentaires
+# ---------------------------------------------------------------------------
+
+def make_pill(parent, text: str, fg: str, bg: str, **kwargs) -> ctk.CTkLabel:
+    """Petit badge arrondi (état, rôle, confiance)."""
+    return ctk.CTkLabel(
+        parent,
+        text=f" {text} ",
+        font=font_caps(),
+        text_color=fg,
+        fg_color=bg,
+        corner_radius=999,
+        **kwargs,
+    )
+
+
+def make_icon_button(parent, glyph: str, command=None, *, size: int = 34,
+                     color: str = TEXT_SECONDARY, hover: str = BG_HOVER,
+                     tooltip: str = "") -> ctk.CTkButton:
+    """Bouton icône carré, sans fond, pour les barres d'outils."""
+    btn = ctk.CTkButton(
+        parent,
+        text=glyph,
+        width=size,
+        height=size,
+        fg_color="transparent",
+        hover_color=hover,
+        text_color=color,
+        font=ctk.CTkFont("Segoe UI", int(size * 0.47)),
+        corner_radius=INNER_RADIUS,
+        command=command,
+    )
+    if tooltip:
+        attach_tooltip(btn, tooltip)
+    return btn
+
+
+def make_stat_tile(parent, caption: str, value: str = "—",
+                   value_color: str = TEXT_PRIMARY) -> tuple:
+    """Tuile statistique : petite légende en capitales + grande valeur.
+
+    Retourne (frame, value_label) pour permettre la mise à jour ultérieure.
+    """
+    tile = ctk.CTkFrame(parent, fg_color=ELEV_2, corner_radius=INNER_RADIUS)
+    ctk.CTkLabel(
+        tile, text=caption.upper(), font=font_caps(), text_color=TEXT_MUTED
+    ).pack(anchor="w", padx=SP_3, pady=(SP_2, 0))
+    val = ctk.CTkLabel(
+        tile, text=value, font=font_mono_lg(), text_color=value_color, anchor="w"
+    )
+    val.pack(anchor="w", padx=SP_3, pady=(0, SP_2))
+    return tile, val
+
+
+# ---------------------------------------------------------------------------
+# Infobulles — CTk n'en fournit pas
+# ---------------------------------------------------------------------------
+
+def attach_tooltip(widget, text: str, delay_ms: int = 450) -> None:
+    """Affiche *text* au survol de *widget*, après un court délai."""
+    state = {"job": None, "win": None}
+
+    def _spawn() -> None:
+        if state["win"] is not None:
+            return
+        try:
+            tip = ctk.CTkToplevel(widget)
+            tip.overrideredirect(True)
+            tip.attributes("-topmost", True)
+            ctk.CTkLabel(
+                tip, text=text, font=font_xs(), text_color=TEXT_PRIMARY,
+                fg_color=ELEV_3, corner_radius=INNER_RADIUS, padx=SP_2, pady=SP_1,
+            ).pack()
+            tip.update_idletasks()
+            x = widget.winfo_rootx() + widget.winfo_width() // 2 - tip.winfo_width() // 2
+            y = widget.winfo_rooty() + widget.winfo_height() + 6
+            tip.geometry(f"+{max(x, 0)}+{y}")
+            state["win"] = tip
+        except Exception:
+            state["win"] = None
+
+    def _enter(_event=None) -> None:
+        state["job"] = widget.after(delay_ms, _spawn)
+
+    def _leave(_event=None) -> None:
+        if state["job"] is not None:
+            try:
+                widget.after_cancel(state["job"])
+            except Exception:
+                pass
+            state["job"] = None
+        if state["win"] is not None:
+            try:
+                state["win"].destroy()
+            except Exception:
+                pass
+            state["win"] = None
+
+    widget.bind("<Enter>", _enter, add="+")
+    widget.bind("<Leave>", _leave, add="+")
+    widget.bind("<Destroy>", _leave, add="+")

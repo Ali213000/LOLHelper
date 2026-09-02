@@ -122,7 +122,7 @@ class AnimatedBadge(ctk.CTkFrame):
             **kwargs,
         )
         self._label = ctk.CTkLabel(
-            self, text="IDLE",
+            self, text="REPOS",
             font=T.font_xs(),
             text_color=T.TEXT_FAINT,
         )
@@ -146,7 +146,7 @@ class AnimatedBadge(ctk.CTkFrame):
     def set_idle(self) -> None:
         self._pulsing = False
         self._cancel()
-        self._label.configure(text="IDLE", text_color=T.TEXT_FAINT)
+        self._label.configure(text="REPOS", text_color=T.TEXT_FAINT)
         self.configure(fg_color=T.BG_CARD_INNER)
 
     def _pulse(self) -> None:

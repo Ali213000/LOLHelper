@@ -1,924 +1,1558 @@
 {
+  "Olaf|TOP": {
+    "6333": {
+      "rate": 0.343,
+      "samples": 68
+    }
+  },
   "Lillia|JUNGLE": {
     "3157": {
-      "rate": 0.487,
-      "samples": 56
+      "rate": 0.535,
+      "samples": 100
+    }
+  },
+  "Aurora|MID": {
+    "3089": {
+      "rate": 0.435,
+      "samples": 64
     }
   },
   "Samira|ADC": {
     "3036": {
-      "rate": 0.51,
-      "samples": 106
+      "rate": 0.518,
+      "samples": 159
+    },
+    "3072": {
+      "rate": 0.189,
+      "samples": 58
     },
     "6673": {
-      "rate": 0.428,
-      "samples": 89
+      "rate": 0.453,
+      "samples": 139
     }
   },
   "Tryndamere|TOP": {
     "3031": {
-      "rate": 0.364,
-      "samples": 55
+      "rate": 0.383,
+      "samples": 88
     }
   },
   "Kassadin|MID": {
     "3118": {
-      "rate": 0.401,
-      "samples": 61
+      "rate": 0.392,
+      "samples": 94
+    },
+    "3157": {
+      "rate": 0.208,
+      "samples": 50
+    },
+    "3003": {
+      "rate": 0.225,
+      "samples": 54
     }
   },
   "Yunara|ADC": {
+    "3033": {
+      "rate": 0.158,
+      "samples": 75
+    },
     "3031": {
-      "rate": 0.72,
-      "samples": 201
+      "rate": 0.727,
+      "samples": 346
     },
     "3036": {
-      "rate": 0.262,
-      "samples": 73
+      "rate": 0.275,
+      "samples": 131
+    },
+    "2523": {
+      "rate": 0.13,
+      "samples": 62
     }
   },
   "Aphelios|ADC": {
     "3036": {
-      "rate": 0.383,
-      "samples": 87
+      "rate": 0.407,
+      "samples": 124
+    },
+    "3085": {
+      "rate": 0.17,
+      "samples": 52
+    }
+  },
+  "FiddleSticks|JUNGLE": {
+    "3157": {
+      "rate": 0.358,
+      "samples": 58
     }
   },
   "Ahri|MID": {
     "4645": {
-      "rate": 0.12,
-      "samples": 54
+      "rate": 0.109,
+      "samples": 75
     },
     "3089": {
-      "rate": 0.304,
-      "samples": 137
+      "rate": 0.312,
+      "samples": 214
     },
     "3157": {
-      "rate": 0.253,
-      "samples": 114
+      "rate": 0.251,
+      "samples": 172
     }
   },
   "Ashe|ADC": {
     "3036": {
-      "rate": 0.23,
-      "samples": 74
+      "rate": 0.213,
+      "samples": 92
     },
     "3031": {
-      "rate": 0.615,
-      "samples": 198
+      "rate": 0.617,
+      "samples": 266
     },
     "3033": {
-      "rate": 0.155,
-      "samples": 50
+      "rate": 0.174,
+      "samples": 75
     }
   },
   "Qiyana|MID": {
     "6694": {
-      "rate": 0.546,
-      "samples": 71
+      "rate": 0.529,
+      "samples": 110
     }
   },
   "Jinx|ADC": {
     "3085": {
-      "rate": 0.157,
-      "samples": 85
+      "rate": 0.125,
+      "samples": 110
     },
     "3072": {
-      "rate": 0.109,
-      "samples": 59
+      "rate": 0.104,
+      "samples": 91
     },
     "3036": {
       "rate": 0.338,
-      "samples": 183
+      "samples": 297
     },
     "3031": {
-      "rate": 0.539,
-      "samples": 292
+      "rate": 0.577,
+      "samples": 507
     },
     "3033": {
-      "rate": 0.113,
-      "samples": 61
+      "rate": 0.126,
+      "samples": 111
+    },
+    "3026": {
+      "rate": 0.08,
+      "samples": 70
     }
   },
   "Gwen|TOP": {
     "3089": {
-      "rate": 0.389,
-      "samples": 56
+      "rate": 0.43,
+      "samples": 101
     }
   },
   "Diana|JUNGLE": {
+    "3089": {
+      "rate": 0.205,
+      "samples": 63
+    },
     "3157": {
-      "rate": 0.41,
-      "samples": 96
+      "rate": 0.432,
+      "samples": 133
+    }
+  },
+  "Hwei|MID": {
+    "3089": {
+      "rate": 0.292,
+      "samples": 75
     }
   },
   "Ziggs|ADC": {
     "3089": {
-      "rate": 0.484,
-      "samples": 61
+      "rate": 0.503,
+      "samples": 83
     }
   },
   "Kayle|TOP": {
     "3089": {
-      "rate": 0.489,
-      "samples": 66
+      "rate": 0.443,
+      "samples": 86
     }
   },
   "Nocturne|JUNGLE": {
     "3071": {
-      "rate": 0.225,
-      "samples": 64
+      "rate": 0.216,
+      "samples": 87
     },
     "6333": {
-      "rate": 0.215,
-      "samples": 61
+      "rate": 0.206,
+      "samples": 83
+    },
+    "3026": {
+      "rate": 0.157,
+      "samples": 63
+    },
+    "6699": {
+      "rate": 0.147,
+      "samples": 59
     }
   },
   "Vayne|ADC": {
     "3302": {
-      "rate": 0.333,
-      "samples": 80
+      "rate": 0.342,
+      "samples": 109
     }
   },
   "Riven|TOP": {
     "6333": {
-      "rate": 0.481,
-      "samples": 76
+      "rate": 0.433,
+      "samples": 87
     }
   },
   "Irelia|MID": {
     "6333": {
-      "rate": 0.537,
-      "samples": 51
+      "rate": 0.563,
+      "samples": 76
     }
   },
   "Ezreal|ADC": {
     "6694": {
-      "rate": 0.344,
-      "samples": 152
+      "rate": 0.336,
+      "samples": 221
     },
     "2517": {
-      "rate": 0.434,
-      "samples": 192
+      "rate": 0.423,
+      "samples": 278
     },
     "3161": {
-      "rate": 0.371,
-      "samples": 164
+      "rate": 0.426,
+      "samples": 280
     }
   },
   "Thresh|SUPPORT": {
-    "3109": {
-      "rate": 0.116,
+    "2524": {
+      "rate": 0.077,
       "samples": 59
+    },
+    "3050": {
+      "rate": 0.104,
+      "samples": 80
+    },
+    "3109": {
+      "rate": 0.1,
+      "samples": 77
+    },
+    "3110": {
+      "rate": 0.065,
+      "samples": 50
     }
   },
   "Shyvana|JUNGLE": {
+    "6665": {
+      "rate": 0.201,
+      "samples": 75
+    },
     "6333": {
-      "rate": 0.427,
-      "samples": 97
+      "rate": 0.44,
+      "samples": 164
     }
   },
   "Sylas|MID": {
     "3157": {
-      "rate": 0.384,
-      "samples": 96
+      "rate": 0.379,
+      "samples": 138
+    },
+    "3089": {
+      "rate": 0.146,
+      "samples": 53
     }
   },
   "Kaisa|ADC": {
     "2510": {
-      "rate": 0.203,
-      "samples": 133
+      "rate": 0.152,
+      "samples": 153
     },
     "3115": {
-      "rate": 0.356,
-      "samples": 233
+      "rate": 0.375,
+      "samples": 377
     },
-    "3157": {
-      "rate": 0.268,
-      "samples": 175
+    "3046": {
+      "rate": 0.076,
+      "samples": 76
     },
-    "3089": {
-      "rate": 0.11,
-      "samples": 72
+    "3031": {
+      "rate": 0.056,
+      "samples": 56
     },
     "3302": {
-      "rate": 0.196,
-      "samples": 128
+      "rate": 0.231,
+      "samples": 232
+    },
+    "3157": {
+      "rate": 0.273,
+      "samples": 274
+    },
+    "4645": {
+      "rate": 0.085,
+      "samples": 85
+    },
+    "3089": {
+      "rate": 0.1,
+      "samples": 100
     }
   },
   "Syndra|MID": {
     "3089": {
-      "rate": 0.496,
-      "samples": 194
+      "rate": 0.483,
+      "samples": 287
     },
     "3157": {
-      "rate": 0.235,
-      "samples": 92
+      "rate": 0.229,
+      "samples": 136
+    },
+    "4645": {
+      "rate": 0.118,
+      "samples": 70
     },
     "3135": {
-      "rate": 0.156,
-      "samples": 61
+      "rate": 0.128,
+      "samples": 76
+    }
+  },
+  "Karma|SUPPORT": {
+    "3107": {
+      "rate": 0.155,
+      "samples": 68
     }
   },
   "Malzahar|MID": {
     "3116": {
-      "rate": 0.44,
-      "samples": 113
+      "rate": 0.444,
+      "samples": 162
+    },
+    "3157": {
+      "rate": 0.142,
+      "samples": 52
     },
     "6653": {
-      "rate": 0.202,
-      "samples": 52
+      "rate": 0.203,
+      "samples": 74
+    },
+    "3089": {
+      "rate": 0.164,
+      "samples": 60
     }
   },
   "Caitlyn|ADC": {
     "3072": {
-      "rate": 0.114,
-      "samples": 66
+      "rate": 0.111,
+      "samples": 94
     },
     "3036": {
       "rate": 0.473,
-      "samples": 273
+      "samples": 400
     },
     "3094": {
-      "rate": 0.425,
-      "samples": 245
+      "rate": 0.402,
+      "samples": 340
     },
     "3026": {
-      "rate": 0.088,
-      "samples": 51
+      "rate": 0.084,
+      "samples": 71
+    },
+    "3031": {
+      "rate": 0.067,
+      "samples": 57
     },
     "3033": {
-      "rate": 0.107,
-      "samples": 62
-    }
-  },
-  "Talon|JUNGLE": {
-    "6699": {
-      "rate": 0.237,
-      "samples": 69
-    },
-    "6694": {
-      "rate": 0.316,
-      "samples": 92
-    },
-    "6696": {
-      "rate": 0.278,
-      "samples": 81
-    },
-    "3814": {
-      "rate": 0.333,
+      "rate": 0.115,
       "samples": 97
     }
   },
+  "Talon|JUNGLE": {
+    "3142": {
+      "rate": 0.11,
+      "samples": 50
+    },
+    "6699": {
+      "rate": 0.311,
+      "samples": 142
+    },
+    "3036": {
+      "rate": 0.175,
+      "samples": 80
+    },
+    "6694": {
+      "rate": 0.274,
+      "samples": 125
+    },
+    "6696": {
+      "rate": 0.228,
+      "samples": 104
+    },
+    "3814": {
+      "rate": 0.318,
+      "samples": 145
+    },
+    "6695": {
+      "rate": 0.173,
+      "samples": 79
+    }
+  },
   "Teemo|TOP": {
+    "4645": {
+      "rate": 0.222,
+      "samples": 53
+    },
     "3118": {
-      "rate": 0.384,
-      "samples": 61
+      "rate": 0.385,
+      "samples": 92
     }
   },
   "MasterYi|JUNGLE": {
+    "3153": {
+      "rate": 0.152,
+      "samples": 53
+    },
     "6333": {
-      "rate": 0.266,
-      "samples": 68
+      "rate": 0.258,
+      "samples": 90
     },
     "3073": {
-      "rate": 0.352,
-      "samples": 90
+      "rate": 0.335,
+      "samples": 117
+    },
+    "3091": {
+      "rate": 0.158,
+      "samples": 55
+    },
+    "3036": {
+      "rate": 0.149,
+      "samples": 52
     }
   },
   "Fizz|MID": {
     "3089": {
-      "rate": 0.436,
-      "samples": 96
+      "rate": 0.42,
+      "samples": 140
     },
     "4645": {
-      "rate": 0.268,
-      "samples": 59
+      "rate": 0.291,
+      "samples": 97
+    },
+    "3157": {
+      "rate": 0.234,
+      "samples": 78
     }
   },
   "Lucian|ADC": {
     "3036": {
-      "rate": 0.301,
-      "samples": 75
+      "rate": 0.339,
+      "samples": 134
     },
     "3031": {
-      "rate": 0.514,
-      "samples": 128
+      "rate": 0.534,
+      "samples": 211
+    },
+    "3033": {
+      "rate": 0.137,
+      "samples": 54
+    },
+    "6675": {
+      "rate": 0.137,
+      "samples": 54
     }
   },
   "Shen|TOP": {
     "3075": {
-      "rate": 0.244,
-      "samples": 54
+      "rate": 0.216,
+      "samples": 67
     }
   },
   "Smolder|ADC": {
     "3161": {
-      "rate": 0.371,
-      "samples": 99
-    },
-    "2517": {
-      "rate": 0.191,
-      "samples": 51
-    },
-    "3094": {
-      "rate": 0.457,
+      "rate": 0.369,
       "samples": 122
     },
+    "2517": {
+      "rate": 0.199,
+      "samples": 66
+    },
     "3031": {
-      "rate": 0.24,
-      "samples": 64
+      "rate": 0.239,
+      "samples": 79
+    },
+    "3094": {
+      "rate": 0.429,
+      "samples": 142
+    }
+  },
+  "Galio|MID": {
+    "3157": {
+      "rate": 0.289,
+      "samples": 55
     }
   },
   "Sylas|JUNGLE": {
     "3157": {
-      "rate": 0.565,
-      "samples": 152
+      "rate": 0.573,
+      "samples": 263
+    },
+    "3041": {
+      "rate": 0.137,
+      "samples": 63
+    },
+    "4645": {
+      "rate": 0.126,
+      "samples": 58
     },
     "3089": {
-      "rate": 0.223,
-      "samples": 60
+      "rate": 0.218,
+      "samples": 100
     }
   },
   "Lissandra|MID": {
+    "3089": {
+      "rate": 0.233,
+      "samples": 67
+    },
     "3157": {
-      "rate": 0.379,
-      "samples": 75
+      "rate": 0.372,
+      "samples": 107
+    },
+    "4645": {
+      "rate": 0.174,
+      "samples": 50
+    }
+  },
+  "Camille|TOP": {
+    "3161": {
+      "rate": 0.185,
+      "samples": 52
+    },
+    "6333": {
+      "rate": 0.246,
+      "samples": 69
     }
   },
   "Akali|MID": {
     "3089": {
-      "rate": 0.279,
-      "samples": 65
+      "rate": 0.282,
+      "samples": 96
     },
     "3157": {
-      "rate": 0.378,
-      "samples": 88
+      "rate": 0.37,
+      "samples": 126
     }
   },
   "MissFortune|ADC": {
+    "3033": {
+      "rate": 0.125,
+      "samples": 50
+    },
     "3031": {
-      "rate": 0.56,
-      "samples": 168
+      "rate": 0.564,
+      "samples": 225
     },
     "3036": {
-      "rate": 0.36,
-      "samples": 108
+      "rate": 0.388,
+      "samples": 155
+    },
+    "3094": {
+      "rate": 0.135,
+      "samples": 54
+    }
+  },
+  "Gnar|TOP": {
+    "3053": {
+      "rate": 0.243,
+      "samples": 64
+    },
+    "3143": {
+      "rate": 0.217,
+      "samples": 57
+    }
+  },
+  "Jayce|TOP": {
+    "6699": {
+      "rate": 0.238,
+      "samples": 56
+    },
+    "6694": {
+      "rate": 0.345,
+      "samples": 81
     }
   },
   "Kayn|JUNGLE": {
     "6333": {
       "rate": 0.285,
-      "samples": 72
+      "samples": 104
     },
     "6694": {
-      "rate": 0.217,
-      "samples": 55
+      "rate": 0.214,
+      "samples": 78
+    },
+    "3814": {
+      "rate": 0.189,
+      "samples": 69
     }
   },
   "JarvanIV|JUNGLE": {
     "6333": {
-      "rate": 0.271,
-      "samples": 77
+      "rate": 0.278,
+      "samples": 120
+    },
+    "3065": {
+      "rate": 0.144,
+      "samples": 62
     },
     "3110": {
-      "rate": 0.19,
-      "samples": 54
+      "rate": 0.176,
+      "samples": 76
+    },
+    "3026": {
+      "rate": 0.153,
+      "samples": 66
     }
   },
   "Jhin|ADC": {
     "3036": {
-      "rate": 0.32,
-      "samples": 161
+      "rate": 0.332,
+      "samples": 258
     },
     "3094": {
-      "rate": 0.352,
-      "samples": 177
+      "rate": 0.345,
+      "samples": 268
     },
     "3031": {
-      "rate": 0.342,
-      "samples": 172
+      "rate": 0.375,
+      "samples": 291
+    },
+    "3033": {
+      "rate": 0.086,
+      "samples": 67
+    },
+    "3026": {
+      "rate": 0.075,
+      "samples": 58
     }
   },
   "Viego|JUNGLE": {
     "6673": {
-      "rate": 0.475,
-      "samples": 220
+      "rate": 0.455,
+      "samples": 300
+    },
+    "3033": {
+      "rate": 0.1,
+      "samples": 66
+    },
+    "6333": {
+      "rate": 0.076,
+      "samples": 50
     },
     "3031": {
-      "rate": 0.251,
-      "samples": 116
+      "rate": 0.234,
+      "samples": 154
     },
     "3036": {
-      "rate": 0.404,
-      "samples": 187
+      "rate": 0.42,
+      "samples": 277
     },
     "3026": {
-      "rate": 0.117,
-      "samples": 54
+      "rate": 0.1,
+      "samples": 66
     }
   },
   "Lux|MID": {
+    "4645": {
+      "rate": 0.239,
+      "samples": 56
+    },
     "3089": {
-      "rate": 0.316,
-      "samples": 55
+      "rate": 0.338,
+      "samples": 79
     }
   },
   "Senna|ADC": {
     "2523": {
-      "rate": 0.37,
-      "samples": 74
+      "rate": 0.376,
+      "samples": 83
     },
     "3031": {
-      "rate": 0.31,
-      "samples": 62
+      "rate": 0.308,
+      "samples": 68
+    }
+  },
+  "Mordekaiser|TOP": {
+    "6653": {
+      "rate": 0.172,
+      "samples": 52
+    },
+    "3065": {
+      "rate": 0.201,
+      "samples": 61
     }
   },
   "Locke|MID": {
     "3157": {
-      "rate": 0.363,
-      "samples": 78
+      "rate": 0.39,
+      "samples": 144
     },
     "3089": {
-      "rate": 0.321,
-      "samples": 69
+      "rate": 0.322,
+      "samples": 119
+    },
+    "4645": {
+      "rate": 0.141,
+      "samples": 52
     }
   },
   "Seraphine|ADC": {
     "3116": {
-      "rate": 0.476,
-      "samples": 50
+      "rate": 0.524,
+      "samples": 89
     }
   },
   "Aatrox|TOP": {
     "6333": {
-      "rate": 0.266,
-      "samples": 53
+      "rate": 0.274,
+      "samples": 81
     }
   },
   "Rengar|JUNGLE": {
     "3814": {
-      "rate": 0.348,
-      "samples": 70
+      "rate": 0.372,
+      "samples": 110
     },
     "3036": {
-      "rate": 0.493,
-      "samples": 99
+      "rate": 0.52,
+      "samples": 154
+    },
+    "3031": {
+      "rate": 0.182,
+      "samples": 54
     }
   },
   "Vex|MID": {
+    "3089": {
+      "rate": 0.266,
+      "samples": 51
+    },
     "3157": {
-      "rate": 0.435,
-      "samples": 54
+      "rate": 0.458,
+      "samples": 88
+    }
+  },
+  "Illaoi|TOP": {
+    "3053": {
+      "rate": 0.337,
+      "samples": 55
+    }
+  },
+  "Yasuo|TOP": {
+    "3031": {
+      "rate": 0.399,
+      "samples": 65
     }
   },
   "Ryze|MID": {
     "2522": {
-      "rate": 0.687,
-      "samples": 101
+      "rate": 0.663,
+      "samples": 136
+    },
+    "3089": {
+      "rate": 0.244,
+      "samples": 50
     }
   },
   "Zeri|ADC": {
     "3036": {
-      "rate": 0.362,
-      "samples": 58
+      "rate": 0.351,
+      "samples": 95
     },
     "3031": {
-      "rate": 0.537,
-      "samples": 86
+      "rate": 0.594,
+      "samples": 161
+    }
+  },
+  "Ambessa|JUNGLE": {
+    "6333": {
+      "rate": 0.573,
+      "samples": 51
     }
   },
   "Nami|SUPPORT": {
     "3107": {
-      "rate": 0.089,
-      "samples": 50
+      "rate": 0.078,
+      "samples": 62
+    },
+    "6616": {
+      "rate": 0.066,
+      "samples": 52
+    },
+    "2065": {
+      "rate": 0.067,
+      "samples": 53
+    },
+    "3504": {
+      "rate": 0.072,
+      "samples": 57
     },
     "6617": {
-      "rate": 0.095,
-      "samples": 53
+      "rate": 0.098,
+      "samples": 78
     }
   },
   "Garen|TOP": {
     "3033": {
-      "rate": 0.338,
-      "samples": 134
+      "rate": 0.331,
+      "samples": 196
+    },
+    "4401": {
+      "rate": 0.113,
+      "samples": 67
+    },
+    "3046": {
+      "rate": 0.13,
+      "samples": 77
     },
     "3742": {
-      "rate": 0.215,
-      "samples": 85
+      "rate": 0.233,
+      "samples": 138
     },
     "3031": {
-      "rate": 0.144,
-      "samples": 57
+      "rate": 0.12,
+      "samples": 71
+    },
+    "3053": {
+      "rate": 0.093,
+      "samples": 55
     }
   },
   "Akshan|MID": {
     "3036": {
-      "rate": 0.422,
-      "samples": 70
+      "rate": 0.407,
+      "samples": 101
     },
     "3031": {
-      "rate": 0.398,
-      "samples": 66
+      "rate": 0.371,
+      "samples": 92
     }
   },
   "Irelia|TOP": {
     "3091": {
-      "rate": 0.335,
-      "samples": 52
+      "rate": 0.323,
+      "samples": 81
     },
     "6333": {
-      "rate": 0.381,
-      "samples": 59
+      "rate": 0.382,
+      "samples": 96
     }
   },
   "Hecarim|JUNGLE": {
     "6333": {
-      "rate": 0.348,
-      "samples": 69
+      "rate": 0.311,
+      "samples": 106
+    },
+    "3071": {
+      "rate": 0.15,
+      "samples": 51
     },
     "2517": {
-      "rate": 0.303,
-      "samples": 60
+      "rate": 0.328,
+      "samples": 112
+    }
+  },
+  "DrMundo|TOP": {
+    "3065": {
+      "rate": 0.241,
+      "samples": 57
+    },
+    "3748": {
+      "rate": 0.329,
+      "samples": 78
     }
   },
   "Belveth|JUNGLE": {
     "6333": {
-      "rate": 0.329,
-      "samples": 53
+      "rate": 0.325,
+      "samples": 79
+    },
+    "3091": {
+      "rate": 0.23,
+      "samples": 56
+    },
+    "3302": {
+      "rate": 0.292,
+      "samples": 71
     }
   },
   "Renekton|TOP": {
+    "3053": {
+      "rate": 0.216,
+      "samples": 66
+    },
     "6333": {
-      "rate": 0.287,
-      "samples": 58
+      "rate": 0.308,
+      "samples": 94
+    }
+  },
+  "Evelynn|JUNGLE": {
+    "3135": {
+      "rate": 0.327,
+      "samples": 54
     }
   },
   "Tristana|ADC": {
     "3036": {
-      "rate": 0.41,
-      "samples": 153
+      "rate": 0.43,
+      "samples": 275
     },
     "3031": {
-      "rate": 0.188,
-      "samples": 70
+      "rate": 0.182,
+      "samples": 116
     },
     "6675": {
-      "rate": 0.558,
-      "samples": 208
+      "rate": 0.546,
+      "samples": 349
     },
     "3072": {
-      "rate": 0.188,
-      "samples": 70
+      "rate": 0.172,
+      "samples": 110
+    },
+    "3033": {
+      "rate": 0.133,
+      "samples": 85
+    },
+    "3026": {
+      "rate": 0.122,
+      "samples": 78
     }
   },
   "Xayah|ADC": {
     "3036": {
-      "rate": 0.337,
-      "samples": 61
+      "rate": 0.334,
+      "samples": 104
     },
     "3031": {
-      "rate": 0.558,
-      "samples": 101
+      "rate": 0.524,
+      "samples": 163
+    },
+    "3033": {
+      "rate": 0.161,
+      "samples": 50
+    },
+    "6675": {
+      "rate": 0.164,
+      "samples": 51
+    }
+  },
+  "Pyke|SUPPORT": {
+    "3814": {
+      "rate": 0.168,
+      "samples": 62
     }
   },
   "Vladimir|MID": {
+    "3135": {
+      "rate": 0.195,
+      "samples": 51
+    },
     "3089": {
-      "rate": 0.351,
-      "samples": 67
+      "rate": 0.352,
+      "samples": 92
+    }
+  },
+  "Zac|JUNGLE": {
+    "3065": {
+      "rate": 0.34,
+      "samples": 65
     }
   },
   "Jax|TOP": {
     "3157": {
-      "rate": 0.328,
-      "samples": 58
+      "rate": 0.326,
+      "samples": 84
     }
   },
   "TwistedFate|MID": {
     "3094": {
-      "rate": 0.597,
-      "samples": 86
+      "rate": 0.613,
+      "samples": 149
+    },
+    "3157": {
+      "rate": 0.247,
+      "samples": 60
+    }
+  },
+  "Vi|JUNGLE": {
+    "3026": {
+      "rate": 0.202,
+      "samples": 56
+    },
+    "6333": {
+      "rate": 0.238,
+      "samples": 66
     }
   },
   "Twitch|ADC": {
+    "3031": {
+      "rate": 0.501,
+      "samples": 201
+    },
+    "3036": {
+      "rate": 0.329,
+      "samples": 132
+    },
     "3085": {
-      "rate": 0.22,
+      "rate": 0.219,
+      "samples": 88
+    }
+  },
+  "Lulu|SUPPORT": {
+    "2065": {
+      "rate": 0.108,
       "samples": 56
     },
-    "3036": {
-      "rate": 0.307,
-      "samples": 78
-    },
-    "3031": {
-      "rate": 0.531,
-      "samples": 135
-    }
-  },
-  "Katarina|MID": {
-    "3302": {
-      "rate": 0.202,
-      "samples": 64
-    },
-    "3089": {
-      "rate": 0.23,
-      "samples": 73
-    },
-    "3157": {
-      "rate": 0.293,
-      "samples": 93
-    }
-  },
-  "Sivir|ADC": {
-    "3036": {
-      "rate": 0.294,
-      "samples": 60
-    },
-    "3031": {
-      "rate": 0.461,
-      "samples": 94
-    },
-    "6675": {
-      "rate": 0.245,
-      "samples": 50
-    }
-  },
-  "Yone|MID": {
-    "3031": {
-      "rate": 0.431,
-      "samples": 84
-    }
-  },
-  "Ambessa|TOP": {
-    "6333": {
-      "rate": 0.341,
-      "samples": 61
-    }
-  },
-  "Gangplank|TOP": {
-    "3031": {
-      "rate": 0.568,
-      "samples": 109
-    },
-    "3036": {
-      "rate": 0.26,
-      "samples": 50
-    }
-  },
-  "Viktor|MID": {
-    "3157": {
-      "rate": 0.309,
-      "samples": 109
-    },
-    "3089": {
-      "rate": 0.255,
-      "samples": 90
-    },
-    "4645": {
-      "rate": 0.15,
-      "samples": 53
-    }
-  },
-  "Shaco|JUNGLE": {
-    "3036": {
-      "rate": 0.233,
-      "samples": 55
-    },
-    "3031": {
-      "rate": 0.22,
-      "samples": 52
-    }
-  },
-  "Zed|MID": {
-    "6696": {
-      "rate": 0.18,
+    "6617": {
+      "rate": 0.102,
       "samples": 53
     },
-    "3814": {
-      "rate": 0.276,
-      "samples": 81
-    },
-    "6694": {
-      "rate": 0.418,
-      "samples": 123
-    }
-  },
-  "Leblanc|MID": {
-    "3089": {
-      "rate": 0.377,
-      "samples": 60
-    }
-  },
-  "Malphite|TOP": {
-    "2504": {
-      "rate": 0.206,
-      "samples": 52
-    }
-  },
-  "Ekko|MID": {
-    "3089": {
-      "rate": 0.44,
-      "samples": 77
+    "3107": {
+      "rate": 0.129,
+      "samples": 67
     }
   },
   "Draven|ADC": {
     "3036": {
-      "rate": 0.438,
-      "samples": 91
+      "rate": 0.474,
+      "samples": 163
     },
     "3031": {
-      "rate": 0.558,
-      "samples": 116
+      "rate": 0.576,
+      "samples": 198
     }
   },
-  "Briar|JUNGLE": {
-    "6333": {
-      "rate": 0.33,
-      "samples": 60
+  "Nasus|JUNGLE": {
+    "3065": {
+      "rate": 0.394,
+      "samples": 50
     }
   },
-  "Fiora|TOP": {
-    "6333": {
-      "rate": 0.405,
-      "samples": 60
-    }
-  },
-  "Naafiri|JUNGLE": {
-    "6333": {
-      "rate": 0.311,
-      "samples": 57
+  "Katarina|MID": {
+    "3302": {
+      "rate": 0.182,
+      "samples": 86
     },
-    "6694": {
-      "rate": 0.475,
-      "samples": 87
+    "4645": {
+      "rate": 0.112,
+      "samples": 53
+    },
+    "3089": {
+      "rate": 0.237,
+      "samples": 112
+    },
+    "3157": {
+      "rate": 0.275,
+      "samples": 130
     }
   },
-  "MonkeyKing|JUNGLE": {
+  "Sivir|ADC": {
+    "3033": {
+      "rate": 0.22,
+      "samples": 69
+    },
+    "3036": {
+      "rate": 0.293,
+      "samples": 92
+    },
+    "3031": {
+      "rate": 0.395,
+      "samples": 124
+    },
+    "6675": {
+      "rate": 0.28,
+      "samples": 88
+    }
+  },
+  "Yone|MID": {
     "6333": {
-      "rate": 0.372,
+      "rate": 0.264,
       "samples": 81
     },
-    "3071": {
-      "rate": 0.257,
-      "samples": 56
+    "3031": {
+      "rate": 0.42,
+      "samples": 129
     }
   },
   "Veigar|MID": {
     "3089": {
-      "rate": 0.597,
-      "samples": 105
-    }
-  },
-  "Graves|JUNGLE": {
-    "3036": {
-      "rate": 0.505,
-      "samples": 202
-    },
-    "3031": {
-      "rate": 0.34,
-      "samples": 136
-    },
-    "6673": {
-      "rate": 0.282,
-      "samples": 113
-    }
-  },
-  "Ekko|JUNGLE": {
-    "3089": {
-      "rate": 0.484,
-      "samples": 89
-    }
-  },
-  "DrMundo|TOP": {
-    "3748": {
-      "rate": 0.327,
-      "samples": 55
-    }
-  },
-  "Darius|TOP": {
-    "3053": {
-      "rate": 0.204,
-      "samples": 69
-    },
-    "6333": {
-      "rate": 0.26,
-      "samples": 88
-    },
-    "4401": {
-      "rate": 0.249,
-      "samples": 84
-    },
-    "3742": {
-      "rate": 0.18,
-      "samples": 61
-    }
-  },
-  "Mel|ADC": {
-    "3089": {
-      "rate": 0.544,
-      "samples": 56
-    }
-  },
-  "Qiyana|JUNGLE": {
-    "3814": {
-      "rate": 0.365,
-      "samples": 62
-    },
-    "6694": {
-      "rate": 0.441,
-      "samples": 75
-    }
-  },
-  "Khazix|JUNGLE": {
-    "6694": {
-      "rate": 0.486,
-      "samples": 142
-    },
-    "3814": {
-      "rate": 0.5,
-      "samples": 146
-    },
-    "6695": {
-      "rate": 0.185,
-      "samples": 54
-    }
-  },
-  "Yasuo|MID": {
-    "6333": {
-      "rate": 0.18,
-      "samples": 53
-    },
-    "3031": {
-      "rate": 0.366,
-      "samples": 108
-    }
-  },
-  "Diana|MID": {
-    "3157": {
-      "rate": 0.391,
-      "samples": 54
-    }
-  },
-  "Xerath|MID": {
-    "3089": {
-      "rate": 0.393,
-      "samples": 72
-    }
-  },
-  "Yone|TOP": {
-    "3031": {
-      "rate": 0.429,
-      "samples": 96
-    }
-  },
-  "Nasus|TOP": {
-    "3065": {
-      "rate": 0.368,
-      "samples": 68
-    }
-  },
-  "Viktor|ADC": {
-    "3089": {
-      "rate": 0.374,
-      "samples": 55
-    },
-    "3157": {
-      "rate": 0.456,
-      "samples": 67
-    }
-  },
-  "LeeSin|JUNGLE": {
-    "6333": {
-      "rate": 0.337,
-      "samples": 95
-    }
-  },
-  "Syndra|ADC": {
-    "3089": {
-      "rate": 0.515,
-      "samples": 50
+      "rate": 0.586,
+      "samples": 139
     }
   },
   "Sett|TOP": {
     "2501": {
-      "rate": 0.291,
+      "rate": 0.34,
+      "samples": 102
+    },
+    "3053": {
+      "rate": 0.28,
+      "samples": 84
+    }
+  },
+  "Naafiri|JUNGLE": {
+    "6333": {
+      "rate": 0.341,
+      "samples": 84
+    },
+    "6694": {
+      "rate": 0.415,
+      "samples": 102
+    }
+  },
+  "Orianna|MID": {
+    "3089": {
+      "rate": 0.332,
+      "samples": 62
+    }
+  },
+  "Anivia|MID": {
+    "6653": {
+      "rate": 0.257,
       "samples": 53
+    },
+    "3157": {
+      "rate": 0.306,
+      "samples": 63
+    }
+  },
+  "Graves|JUNGLE": {
+    "6673": {
+      "rate": 0.305,
+      "samples": 179
+    },
+    "3036": {
+      "rate": 0.501,
+      "samples": 294
+    },
+    "3031": {
+      "rate": 0.325,
+      "samples": 191
+    },
+    "3033": {
+      "rate": 0.106,
+      "samples": 62
+    }
+  },
+  "Zed|JUNGLE": {
+    "6694": {
+      "rate": 0.434,
+      "samples": 62
+    },
+    "3814": {
+      "rate": 0.42,
+      "samples": 60
+    }
+  },
+  "Viktor|MID": {
+    "3157": {
+      "rate": 0.323,
+      "samples": 171
+    },
+    "3089": {
+      "rate": 0.24,
+      "samples": 127
+    },
+    "4645": {
+      "rate": 0.147,
+      "samples": 78
+    }
+  },
+  "LeeSin|JUNGLE": {
+    "6333": {
+      "rate": 0.376,
+      "samples": 170
+    },
+    "3026": {
+      "rate": 0.155,
+      "samples": 70
+    },
+    "3156": {
+      "rate": 0.131,
+      "samples": 59
+    },
+    "3071": {
+      "rate": 0.153,
+      "samples": 69
+    }
+  },
+  "Ekko|MID": {
+    "3089": {
+      "rate": 0.469,
+      "samples": 122
+    }
+  },
+  "Khazix|JUNGLE": {
+    "6694": {
+      "rate": 0.473,
+      "samples": 233
+    },
+    "3814": {
+      "rate": 0.469,
+      "samples": 231
+    },
+    "6695": {
+      "rate": 0.185,
+      "samples": 91
+    },
+    "6699": {
+      "rate": 0.103,
+      "samples": 51
+    },
+    "3026": {
+      "rate": 0.105,
+      "samples": 52
+    }
+  },
+  "Ambessa|TOP": {
+    "6333": {
+      "rate": 0.337,
+      "samples": 85
+    }
+  },
+  "Volibear|TOP": {
+    "3065": {
+      "rate": 0.381,
+      "samples": 59
+    }
+  },
+  "Gangplank|TOP": {
+    "3031": {
+      "rate": 0.522,
+      "samples": 141
+    },
+    "3036": {
+      "rate": 0.244,
+      "samples": 66
+    }
+  },
+  "Shaco|JUNGLE": {
+    "4005": {
+      "rate": 0.166,
+      "samples": 55
+    },
+    "3036": {
+      "rate": 0.235,
+      "samples": 78
+    },
+    "3031": {
+      "rate": 0.205,
+      "samples": 68
+    }
+  },
+  "Zed|MID": {
+    "3036": {
+      "rate": 0.144,
+      "samples": 72
+    },
+    "3814": {
+      "rate": 0.255,
+      "samples": 128
+    },
+    "6695": {
+      "rate": 0.154,
+      "samples": 77
+    },
+    "6696": {
+      "rate": 0.19,
+      "samples": 95
+    },
+    "6694": {
+      "rate": 0.413,
+      "samples": 207
+    },
+    "2520": {
+      "rate": 0.106,
+      "samples": 53
+    },
+    "2517": {
+      "rate": 0.106,
+      "samples": 53
+    }
+  },
+  "Senna|SUPPORT": {
+    "3094": {
+      "rate": 0.168,
+      "samples": 69
+    },
+    "3031": {
+      "rate": 0.127,
+      "samples": 52
+    }
+  },
+  "Yasuo|ADC": {
+    "6333": {
+      "rate": 0.342,
+      "samples": 53
+    },
+    "3031": {
+      "rate": 0.4,
+      "samples": 62
+    }
+  },
+  "Kindred|JUNGLE": {
+    "3036": {
+      "rate": 0.347,
+      "samples": 50
+    },
+    "3031": {
+      "rate": 0.382,
+      "samples": 55
+    }
+  },
+  "MonkeyKing|JUNGLE": {
+    "6333": {
+      "rate": 0.337,
+      "samples": 123
+    },
+    "3071": {
+      "rate": 0.23,
+      "samples": 84
+    }
+  },
+  "Malphite|TOP": {
+    "6665": {
+      "rate": 0.173,
+      "samples": 63
+    },
+    "3075": {
+      "rate": 0.154,
+      "samples": 56
+    },
+    "2504": {
+      "rate": 0.198,
+      "samples": 72
+    },
+    "3110": {
+      "rate": 0.148,
+      "samples": 54
+    }
+  },
+  "Zoe|MID": {
+    "3089": {
+      "rate": 0.357,
+      "samples": 50
+    }
+  },
+  "Corki|ADC": {
+    "3036": {
+      "rate": 0.382,
+      "samples": 60
+    },
+    "3031": {
+      "rate": 0.42,
+      "samples": 66
+    }
+  },
+  "Leblanc|MID": {
+    "3089": {
+      "rate": 0.343,
+      "samples": 85
+    }
+  },
+  "Yone|TOP": {
+    "6333": {
+      "rate": 0.195,
+      "samples": 71
+    },
+    "3031": {
+      "rate": 0.433,
+      "samples": 158
+    }
+  },
+  "Mel|MID": {
+    "3089": {
+      "rate": 0.424,
+      "samples": 56
+    }
+  },
+  "Aatrox|JUNGLE": {
+    "6333": {
+      "rate": 0.492,
+      "samples": 60
+    }
+  },
+  "Briar|JUNGLE": {
+    "3036": {
+      "rate": 0.242,
+      "samples": 60
+    },
+    "6333": {
+      "rate": 0.355,
+      "samples": 88
+    }
+  },
+  "Fiora|TOP": {
+    "6333": {
+      "rate": 0.409,
+      "samples": 92
+    }
+  },
+  "Ekko|JUNGLE": {
+    "3089": {
+      "rate": 0.489,
+      "samples": 128
+    },
+    "3157": {
+      "rate": 0.305,
+      "samples": 80
+    }
+  },
+  "Varus|ADC": {
+    "3302": {
+      "rate": 0.393,
+      "samples": 72
+    }
+  },
+  "Darius|TOP": {
+    "3053": {
+      "rate": 0.192,
+      "samples": 92
+    },
+    "6333": {
+      "rate": 0.257,
+      "samples": 123
+    },
+    "4401": {
+      "rate": 0.24,
+      "samples": 115
+    },
+    "3742": {
+      "rate": 0.171,
+      "samples": 82
+    }
+  },
+  "Xerath|ADC": {
+    "3089": {
+      "rate": 0.596,
+      "samples": 59
+    }
+  },
+  "Mel|ADC": {
+    "3089": {
+      "rate": 0.531,
+      "samples": 77
+    }
+  },
+  "Qiyana|JUNGLE": {
+    "3814": {
+      "rate": 0.426,
+      "samples": 115
+    },
+    "6694": {
+      "rate": 0.474,
+      "samples": 128
+    }
+  },
+  "Yasuo|MID": {
+    "6333": {
+      "rate": 0.193,
+      "samples": 88
+    },
+    "3031": {
+      "rate": 0.36,
+      "samples": 164
+    }
+  },
+  "Elise|JUNGLE": {
+    "3157": {
+      "rate": 0.366,
+      "samples": 59
+    },
+    "3089": {
+      "rate": 0.36,
+      "samples": 58
     }
   },
   "Kalista|ADC": {
     "3302": {
-      "rate": 0.674,
-      "samples": 62
+      "rate": 0.697,
+      "samples": 106
+    },
+    "6665": {
+      "rate": 0.434,
+      "samples": 66
     }
   },
-  "Veigar|ADC": {
+  "Syndra|ADC": {
+    "3157": {
+      "rate": 0.327,
+      "samples": 54
+    },
     "3089": {
-      "rate": 0.591,
-      "samples": 52
+      "rate": 0.57,
+      "samples": 94
+    }
+  },
+  "Diana|MID": {
+    "3089": {
+      "rate": 0.338,
+      "samples": 66
+    },
+    "3157": {
+      "rate": 0.379,
+      "samples": 74
+    }
+  },
+  "Zaahen|TOP": {
+    "6333": {
+      "rate": 0.319,
+      "samples": 66
+    }
+  },
+  "Xerath|MID": {
+    "3089": {
+      "rate": 0.43,
+      "samples": 128
+    },
+    "4645": {
+      "rate": 0.221,
+      "samples": 66
+    }
+  },
+  "Nasus|TOP": {
+    "3065": {
+      "rate": 0.361,
+      "samples": 105
+    }
+  },
+  "Viktor|ADC": {
+    "3089": {
+      "rate": 0.363,
+      "samples": 93
+    },
+    "3157": {
+      "rate": 0.414,
+      "samples": 106
+    }
+  },
+  "XinZhao|JUNGLE": {
+    "6333": {
+      "rate": 0.287,
+      "samples": 54
     }
   },
   "Singed|TOP": {
     "2525": {
-      "rate": 0.438,
-      "samples": 56
+      "rate": 0.433,
+      "samples": 94
+    }
+  },
+  "Veigar|ADC": {
+    "3089": {
+      "rate": 0.563,
+      "samples": 71
     }
   }
 }
