@@ -111,7 +111,7 @@ _HEALING_CHAMPION_WEIGHTS: dict[str, float] = {
     "Samira": 0.40,             "Cassiopeia": 0.38,         "Yuumi": 0.38,
     "Seraphine": 0.37,          "Nilah": 0.37,              "Rakan": 0.35,
     "Renekton": 0.35,           "Yasuo": 0.35,              "Yorick": 0.34,
-    "Kayn": 0.33,               "FiddleSticks": 0.33,       "Zilean": 0.33,
+    "Kayn": 0.33,               "Fiddlesticks": 0.33,       "Zilean": 0.33,
     "Cho'Gath": 0.32,           "Kassadin": 0.32,           "Sion": 0.32,
     "Bel'Veth": 0.31,           "Mordekaiser": 0.31,        "Kindred": 0.31,
     "Ekko": 0.31,

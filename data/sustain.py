@@ -57,6 +57,23 @@ def disponible() -> bool:
     return bool(_charger().get("champions"))
 
 
+def _fiche(champion: str) -> dict | None:
+    """Fiche d'un champion, avec repli insensible à la casse.
+
+    Match-V5 écrit « FiddleSticks », la Live Client API « Fiddlesticks » :
+    une comparaison stricte ne les rapproche jamais.
+    """
+    champions = _charger().get("champions", {})
+    fiche = champions.get(champion)
+    if fiche is not None:
+        return fiche
+    cible = (champion or "").lower()
+    for nom, v in champions.items():
+        if nom.lower() == cible:
+            return v
+    return None
+
+
 def _tranche(valeur: float, bornes: list[float]) -> int:
     for i, borne in enumerate(bornes):
         if valeur < borne:
@@ -96,7 +113,7 @@ def poids(champion: str, item_ids=None, kda: float = 1.5,
     exactement ce que l'app calcule déjà pour l'écart avec les adversaires.
     """
     m = _charger()
-    base = (m.get("champions", {}).get(champion) or {}).get("exces_par_min", 0.0)
+    base = (_fiche(champion) or {}).get("exces_par_min", 0.0)
     total = max(0.0, base) * facteur_domination(ratio_or, kda) + apport_objets(item_ids)
     if total <= 0:
         return 0.0
@@ -107,7 +124,7 @@ def detail(champion: str, item_ids=None, kda: float = 1.5,
            ratio_or: float = 1.0) -> dict:
     """Décomposition du poids, pour l'affichage et le diagnostic."""
     m = _charger()
-    base = (m.get("champions", {}).get(champion) or {}).get("exces_par_min", 0.0)
+    base = (_fiche(champion) or {}).get("exces_par_min", 0.0)
     fact = facteur_domination(ratio_or, kda)
     objets = _charger().get("objets", {})
     portes = [
