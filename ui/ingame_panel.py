@@ -32,13 +32,58 @@ class InGamePanel(ctk.CTkFrame):
         super().__init__(master, fg_color="transparent", **kwargs)
         self._alert_pulse_active = False
         self._build()
+        self.afficher_attente()
+
+    def _construire_attente(self) -> ctk.CTkFrame:
+        """Écran affiché tant qu'aucune partie n'est en cours."""
+        cadre = ctk.CTkFrame(self, fg_color="transparent")
+
+        centre = ctk.CTkFrame(cadre, fg_color="transparent")
+        centre.place(relx=0.5, rely=0.45, anchor="center")
+
+        ctk.CTkLabel(
+            centre, text="⚔", font=ctk.CTkFont("Segoe UI", 46),
+            text_color=T.BORDER_DEFAULT,
+        ).pack(pady=(0, T.SP_3))
+        ctk.CTkLabel(
+            centre, text="EN ATTENTE D'UNE PARTIE", font=T.font_title(),
+            text_color=T.TEXT_MUTED,
+        ).pack()
+        self._attente_detail = ctk.CTkLabel(
+            centre,
+            text="Le plan d'objets apparaîtra dès le début de la partie.",
+            font=T.font_sm(), text_color=T.TEXT_FAINT,
+        )
+        self._attente_detail.pack(pady=(T.SP_2, 0))
+        return cadre
+
+    def afficher_attente(self, detail: str = "") -> None:
+        """Bascule sur l'écran d'attente et masque les données de partie."""
+        if detail:
+            self._attente_detail.configure(text=detail)
+        if self._contenu.winfo_manager():
+            self._contenu.pack_forget()
+        if not self._attente.winfo_manager():
+            self._attente.pack(fill="both", expand=True)
+
+    def afficher_partie(self) -> None:
+        """Bascule sur les données de partie."""
+        if self._attente.winfo_manager():
+            self._attente.pack_forget()
+        if not self._contenu.winfo_manager():
+            self._contenu.pack(fill="both", expand=True)
 
     def _build(self) -> None:
+        # Deux états exclusifs : l'attente et la partie. Les cartes de partie
+        # vivent dans _contenu, qu'on masque d'un bloc hors partie plutôt que
+        # de laisser traîner des chiffres périmés.
+        self._attente = self._construire_attente()
+        self._contenu = ctk.CTkFrame(self, fg_color="transparent")
 
         # ================================================================
         # Stats row — individual mini-cards
         # ================================================================
-        stats_outer = ctk.CTkFrame(self, fg_color="transparent")
+        stats_outer = ctk.CTkFrame(self._contenu, fg_color="transparent")
         stats_outer.pack(fill="x", padx=T.PADX_CARD, pady=(T.PADY_CARD_TOP, 8))
         for _col in range(5):
             stats_outer.grid_columnconfigure(_col, weight=1, uniform="stat")
@@ -96,7 +141,7 @@ class InGamePanel(ctk.CTkFrame):
         # ================================================================
         # Current build row
         # ================================================================
-        build_card = T.make_card(self)
+        build_card = T.make_card(self._contenu)
         build_card.pack(fill="x", padx=T.PADX_CARD, pady=(0, 8))
 
         hdr = ctk.CTkFrame(build_card, fg_color="transparent")
@@ -158,7 +203,7 @@ class InGamePanel(ctk.CTkFrame):
         # Fed enemy alert banner (hidden by default)
         # ================================================================
         self._alert_frame = ctk.CTkFrame(
-            self,
+            self._contenu,
             fg_color=T.RED_DIM,
             corner_radius=T.CARD_RADIUS,
             border_color=T.RED_DANGER,
@@ -196,7 +241,7 @@ class InGamePanel(ctk.CTkFrame):
         # Item Recommendation — GlowBorderFrame + 6 slots (3×2 grid)
         # ================================================================
         self._rec_card = GlowBorderFrame(
-            self,
+            self._contenu,
             animate=True,
             glow_color=T.PURPLE_PRIMARY,
             dim_color=T.BORDER_DEFAULT,
@@ -284,6 +329,8 @@ class InGamePanel(ctk.CTkFrame):
     ) -> None:
         if enemy_gold_diffs is None:
             enemy_gold_diffs = []
+
+        self.afficher_partie()
 
         # Une partie tourne : on retire le message d'état vide.
         if self._build_empty is not None and self._build_empty.winfo_manager():
@@ -577,6 +624,20 @@ class InGamePanel(ctk.CTkFrame):
             self._item_badge.set_idle()
 
     def set_no_game(self) -> None:
+        """Fin de partie : on vide tout et on repasse en attente."""
+        self.afficher_attente()
+
+        # L'avantage en or et le sélecteur d'allié gardaient les valeurs de la
+        # partie précédente, affichées à côté de compteurs remis à zéro.
+        for icone, diff in self._adv_widgets:
+            icone.configure(image=None, text="")
+            diff.configure(text="—", text_color=T.TEXT_FAINT)
+        try:
+            self._ally_selector.configure(values=["(Moi)"])
+            self._ally_selector.set("(Moi)")
+        except Exception:
+            pass
+
         if self._build_empty is not None and not self._build_empty.winfo_manager():
             self._build_empty.pack(anchor="w", padx=14, pady=(0, 12))
         self._champ_lbl.configure(text="—", image=None)
@@ -591,13 +652,15 @@ class InGamePanel(ctk.CTkFrame):
         for lbl in self._item_labels:
             lbl.destroy()
         self._item_labels.clear()
-        ctk.CTkLabel(
+        vide = ctk.CTkLabel(
             self._items_container,
             text="Aucun objet",
             font=T.font_sm(),
             text_color=T.TEXT_MUTED,
-        ).pack(side="left")
+        )
+        vide.pack(side="left")
+        self._item_labels.append(vide)   # suivi, sinon il s'empile à chaque appel
 
         self.hide_fed_alert()
         self.clear_build_slots()
-        self.set_status_text("Waiting for a game…")
+        self.set_status_text("En attente d'une partie…")
