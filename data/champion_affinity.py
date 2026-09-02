@@ -50,6 +50,8 @@ class ChampionAffinity:
         with open(profiles_path, encoding="utf-8") as f:
             d = json.load(f)
         self.defaults = d["archetype_defaults"]
+        self._tags: dict | None = None
+        self._warned_tags: set[str] = set()
         self.overrides = d["champion_overrides"]
         self.stat_keys = d["stat_keys"]
 
@@ -80,21 +82,76 @@ class ChampionAffinity:
 
     # ------------------------------------------------------------------
 
+    # Tag principal Data Dragon -> archétype le plus proche.
+    _PAR_TAG = {
+        "Marksman": "adc_hypercarry",
+        "Assassin": "assassin",
+        "Mage": "mage_control",
+        "Tank": "tank_engage",
+        "Fighter": "bruiser_splitpush",
+        "Support": "enchanter",
+    }
+
+    def _archetype_par_tags(self, champion: str) -> str | None:
+        """Archétype déduit des tags, pour un champion absent des tables."""
+        tags = (self._tags_ddragon() or {}).get(champion) or []
+        for tag in tags:                      # l'ordre DDragon est significatif
+            if tag in self._PAR_TAG:
+                arch = self._PAR_TAG[tag]
+                if champion not in self._warned_tags:
+                    log.info("%s absent des tables — archétype %r déduit de %s.",
+                             champion, arch, tags)
+                    self._warned_tags.add(champion)
+                return arch
+        return None
+
+    def _tags_ddragon(self) -> dict:
+        if self._tags is None:
+            self._tags = {}
+            try:
+                import json as _json
+                with open("assets/champion_data.json", encoding="utf-8") as f:
+                    for v in _json.load(f).get("data", {}).values():
+                        if v.get("name"):
+                            self._tags[v["name"]] = v.get("tags", [])
+            except Exception as exc:
+                log.warning("Tags Data Dragon illisibles : %s", exc)
+        return self._tags
+
     def profile(self, champion: str, archetype: str | None = None) -> dict:
         """Profil fusionné : défaut d'archétype + surcharge champion."""
         if champion in self._cache:
             return self._cache[champion]
 
-        norm_champ = champion.replace("'", "").replace(" ", "").replace(".", "")
-        if norm_champ == "Wukong":
-            norm_champ = "MonkeyKing"
-        if norm_champ == "RenataGlasc":
-            norm_champ = "Renata"
-            
-        meta = self.by_champ.get(norm_champ, self.by_champ.get(champion, {}))
+        # Normalisation partagée avec le scorer : la version maison produisait
+        # "KaiSa" là où les tables attendent "Kaisa", et 15 champions sur 173
+        # se retrouvaient sans profil — donc sans le moindre filtrage d'objets.
+        # C'est ce qui faisait recommander un Couperet noir à Kai'Sa.
+        from ai.champion_scorer import norm_name
+        candidats = [
+            norm_name(champion),
+            champion.replace("'", "").replace(" ", "").replace(".", ""),
+            champion,
+        ]
+        meta = {}
+        for c in candidats:
+            if c in self.by_champ:
+                meta = self.by_champ[c]
+                norm_champ = c
+                break
+        else:
+            norm_champ = candidats[0]
         arch = archetype or meta.get("archetype")
 
         base = self.defaults.get(arch)
+        if base is None:
+            # Repli par tags Data Dragon. Le fichier annonce que « les nouveaux
+            # champions fonctionnent sans intervention » : sans ce repli, tout
+            # champion absent des tables tournait SANS filtrage d'objets, ce qui
+            # laissait passer n'importe quelle recommandation.
+            arch = self._archetype_par_tags(champion)
+            base = self.defaults.get(arch)
+
         if base is None:
             if champion not in self._warned:
                 log.warning(
@@ -113,7 +170,15 @@ class ChampionAffinity:
             "source": "archetype",
         }
 
-        ov = self.overrides.get(champion)
+        # Les surcharges sont indexées sur l'identifiant Riot ("Kaisa"), pas sur
+        # le nom d'affichage ("Kai'Sa") : chercher avec ce dernier les ignorait
+        # en silence. Kai'Sa se retrouvait avec les réglages par défaut d'un ADC
+        # à coups critiques, donc ses objets on-hit pénalisés à 0.45.
+        ov = None
+        for c in candidats:
+            if c in self.overrides:
+                ov = self.overrides[c]
+                break
         if ov:
             merged["affinity"].update(ov.get("affinity", {}))
             merged["flags"].update(ov.get("flags", {}))

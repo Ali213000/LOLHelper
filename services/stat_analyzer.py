@@ -2325,11 +2325,18 @@ class StatAnalyzer:
 
         # Resolve player class (handles Support subtypes)
         player_class = self._get_class(local.champion_name)
+        # Occuper le poste de support ne fait pas de vous un enchanteur. Un
+        # Pantheon support garde un profil de combattant : basculer aveuglément
+        # la classe poussait les statistiques de soin/bouclier et lui faisait
+        # conseiller Opposition céleste, jouée dans 10 % de ses parties pour
+        # 33 % de victoires, au lieu de Mélodie du sang jouée dans 88 %.
+        # heal_shield_power distingue les vrais supports (enchanteur 1.45,
+        # engage 0.8) de ceux qui n'en ont que le poste (0).
         if my_position.lower() in ("support", "utility"):
-            if player_class in ("Tank", "Fighter"):
-                player_class = "Tank_Support"
-            else:
-                player_class = "Support"
+            prof_moi = self.affinity.profile(local.champion_name) if self.affinity else {}
+            vrai_support = ((prof_moi.get("affinity") or {}).get("heal_shield_power", 0) > 0)
+            if vrai_support:
+                player_class = "Tank_Support" if player_class in ("Tank", "Fighter") else "Support"
 
         # ---- Helper: ID to Name conversion ----
         def to_names(item_ids: list[int]) -> list[str]:
@@ -2813,7 +2820,7 @@ class StatAnalyzer:
             fams.add("qss")
         return fams
 
-    def plan_with_confidence(self, game_state, lane_opponent, candidate_items: list[str], n_slots: int = 6, prev_plan_items: list[str] = None) -> list[tuple[str, float, float, bool]]:
+    def plan_with_confidence(self, game_state, lane_opponent, candidate_items: list[str], n_slots: int = 6, prev_plan_items: list[str] = None, my_position: str = "") -> list[tuple[str, float, float, bool]]:
         """
         Sequentially score N items, applying stats after each choice.
 
@@ -2834,7 +2841,11 @@ class StatAnalyzer:
             if not available_items:
                 break
                 
-            report = self.analyze(sim_state, lane_opponent, list(available_items))
+            # Le poste doit descendre jusqu'ici : analyze() bascule player_class
+            # en "Support"/"Tank_Support" et change tout le filtrage d'objets.
+            # Sans lui, un Pantheon support était noté comme un Pantheon top.
+            report = self.analyze(sim_state, lane_opponent, list(available_items),
+                                  my_position=my_position)
             
             best_item = None
             best_score = 0.0

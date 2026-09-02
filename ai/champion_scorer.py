@@ -71,7 +71,7 @@ ALIAS = {
     "Twisted Fate": "TwistedFate", "Aurelion Sol": "AurelionSol",
     "Master Yi": "MasterYi", "Miss Fortune": "MissFortune",
     "Xin Zhao": "XinZhao", "Jarvan IV": "JarvanIV", "Lee Sin": "LeeSin",
-    "Tahm Kench": "TahmKench",
+    "Tahm Kench": "TahmKench", "Nunu & Willump": "Nunu",
 }
 
 def norm_name(name: str) -> str:

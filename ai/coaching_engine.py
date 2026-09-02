@@ -359,6 +359,34 @@ class CoachingEngine:
     # Helpers
     # -----------------------------------------------------------------------
 
+    # Les cinq évolutions de l'objet de lane support. Chacune porte une passive
+    # typée : le choix se déduit du profil de dégâts, pas du poste seul.
+    _OBJETS_SUPPORT = {
+        "ad":        3877,   # Mélodie du sang — passive d'attaque
+        "ap":        3871,   # Pique de Zaz'Zak — dégâts magiques
+        "soin":      3870,   # Rêve éveillé — soigne un allié
+        "bouclier":  3869,   # Opposition céleste — bouclier
+        "engage":    3876,   # Traîneau du solstice — ralentissement
+    }
+
+    def _objet_de_support(self, champion: str):
+        """Évolution de l'objet de lane adaptée au champion joué en support."""
+        prof = self._aff.profile(champion) if self._aff else {}
+        aff = prof.get("affinity") or {}
+        mix = prof.get("damage_mix") or {}
+        arch = prof.get("archetype") or ""
+
+        if aff.get("heal_shield_power", 0) >= 1.2:
+            # Enchanteur : soin ou bouclier selon ce qu'il produit réellement.
+            from data import sustain
+            return self._OBJETS_SUPPORT[
+                "soin" if sustain.poids(champion, []) >= 0.5 else "bouclier"]
+        if "engage" in arch or "tank" in arch:
+            return self._OBJETS_SUPPORT["engage"]
+        if mix.get("ad", 0) >= 0.6:
+            return self._OBJETS_SUPPORT["ad"]
+        return self._OBJETS_SUPPORT["ap"]
+
     @staticmethod
     def _find_lane_opponent(enemies, my_position: str, local):
         """
@@ -493,7 +521,9 @@ class CoachingEngine:
             prev_items = [cache.get_item_name_by_id(i) for i in prev_items_ids]
             
         # Get raw plan from analyzer with hysteresis
-        raw_plan = analyzer.plan_with_confidence(game_state, lane_opp, candidate_items, n_slots=target_capacity, prev_plan_items=prev_items)
+        raw_plan = analyzer.plan_with_confidence(
+            game_state, lane_opp, candidate_items, n_slots=target_capacity,
+            prev_plan_items=prev_items, my_position=my_position)
         
         # --- Create BuildPlan Object ---
         
@@ -620,6 +650,14 @@ class CoachingEngine:
                 vus.add(slot.item_id)
             propres.append(slot)
 
+        # ── Objet de quête de support ─────────────────────────────────────
+        # Présent dans 88 % des parties de Pantheon support, il n'avait aucun
+        # emplacement : le plan proposait cinq objets de combat et jamais celui
+        # qui structure le poste.
+        objet_support = None
+        if my_position.upper() in ("UTILITY", "SUPPORT"):
+            objet_support = self._objet_de_support(local.champion_name)
+
         # ── Assemblage : achetés d'abord, puis la suite du plan ────────────
         # Remise à zéro en début de partie (aucun légendaire en inventaire).
         if not owned_ids:
@@ -643,6 +681,14 @@ class CoachingEngine:
                 if cache.get_item_id_by_name(n)
             }
         finaux: list[Slot] = []
+        if objet_support is not None and objet_support not in owned_ids:
+            finaux.append(Slot(
+                index=0,
+                state=SlotState.PLANNED,
+                item_id=objet_support,
+                confidence=0.88,
+                reason="quête de support",
+            ))
         for iid in owned_ids:
             finaux.append(Slot(
                 index=len(finaux),
