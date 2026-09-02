@@ -56,3 +56,35 @@ def test_normalisation_des_positions():
     assert normalize_position("Support") == "SUPPORT"
     assert normalize_position("") == ""
     assert normalize_position("nawak") == ""
+
+
+def test_la_position_du_joueur_sert_de_repli():
+    """
+    Si la position du champ select manque (app lancée en cours de partie,
+    reconnexion), la Live Client API fournit la position du joueur lui-même.
+    Cas réel : Mundo TOP face à Fiddlesticks TOP, Darius étant jungle.
+    """
+    moi = PlayerInGameData(
+        champion_name="Dr. Mundo", team="ORDER", position="TOP",
+        level=12, is_local_player=True,
+    )
+    enemies = [
+        enemy("Fiddlesticks", "TOP", level=8),
+        enemy("Darius", "JUNGLE", level=6),
+        enemy("Anivia", "MID", level=8),
+    ]
+    # my_position vide : le repli doit lire moi.position
+    assert find(enemies, "", moi).champion_name == "Fiddlesticks"
+
+
+def test_le_jungler_n_est_pas_pris_pour_le_vis_a_vis():
+    """L'ancienne heuristique par niveau désignait souvent le jungler."""
+    moi = PlayerInGameData(
+        champion_name="Dr. Mundo", team="ORDER", position="TOP",
+        level=6, is_local_player=True,
+    )
+    enemies = [
+        enemy("Fiddlesticks", "TOP", level=8),
+        enemy("Darius", "JUNGLE", level=6),   # même niveau que moi : le piège
+    ]
+    assert find(enemies, "TOP", moi).champion_name == "Fiddlesticks"

@@ -98,6 +98,14 @@ _HEALING_CHAMPION_WEIGHTS: dict[str, float] = {
     "Maokai":      0.55, "Gragas":       0.5,  "Lulu":        0.5,
     "Janna":       0.5,  "Xin Zhao":     0.5,  "Zac":         0.5,
     "Samira":      0.6,  "Renekton":     0.5,
+    # Absents de la table jusqu'ici, alors que leur soin est un vrai levier.
+    # Fiddlesticks (drain du W) était l'oubli le plus coûteux : c'est une cible
+    # classique d'anti-soin en top comme en jungle.
+    "Fiddlesticks": 0.75, "Viego":       0.8,  "Kayn":        0.7,
+    "Master Yi":    0.7,  "Udyr":        0.7,  "Gwen":        0.65,
+    "Ekko":         0.65, "Taric":       0.65, "Hecarim":     0.6,
+    "Tahm Kench":   0.6,  "Senna":       0.55, "Kayle":       0.55,
+    "Nunu & Willump": 0.55, "Aphelios":  0.55, "Garen":       0.5,
 }
 # Pre-computed set of champion names for fast membership tests
 _HEALING_CHAMPIONS: set[str] = set(_HEALING_CHAMPION_WEIGHTS.keys())
@@ -171,9 +179,17 @@ _MAGIC_PEN_ITEMS: dict[str, tuple[float, float]] = {
 }
 
 # Grievous Wounds items par type de dégâts
-_GW_AD_ITEMS  = {"Rappel mortel", "Danse de la mort", "Chaîne de Chempunk"}
-_GW_AP_ITEMS  = {"Flamme-ombre", "Morellonomicon", "Orbe de l'oubli"}
-_GW_TANK_ITEM = {"Plaques de l'épineux"}   # Thornmail
+# Repli si assets/item_data.json est indisponible. La liste réelle est
+# reconstruite depuis les descriptions DDragon dans _ensure_loaded() : les noms
+# écrits à la main dérivent à chaque patch. "Plaques de l'épineux" et
+# "Chaîne de Chempunk" n'existaient plus, ce qui désactivait silencieusement
+# tout le déclencheur anti-soin — pour les tanks, il ne pouvait jamais partir.
+_GW_AD_ITEMS  = {"Rappel mortel", "Épée dentelée chimico-punk", "Marque du bourreau"}
+_GW_AP_ITEMS  = {"Morellonomicon", "Orbe de l'oubli"}
+_GW_TANK_ITEM = {"Cotte épineuse", "Armure roncière"}   # Thornmail, Bramble Vest
+
+# Mot-clé Hémorragie dans la description FR = Grievous Wounds
+_GW_KEYWORD = "hémorragie"
 
 # Objets d'adaptation défensive par classe (damage-dealer qui achète 1 item défensif quand fed)
 _ADAPT_ASSASSIN = {
@@ -694,17 +710,52 @@ class StatAnalyzer:
 
         try:
             with open("assets/item_data.json", encoding="utf-8") as f:
-                for item_id_str, v in json.load(f).get("data", {}).items():
-                    n = v.get("name", "").strip()
-                    if n:
-                        self._item_db[n] = v
-                        self._ddragon_items.add(n)
-                        try:
-                            self._item_id_to_name[int(item_id_str)] = n
-                        except ValueError:
-                            pass
+                raw_items = json.load(f).get("data", {})
+
+            # 216 noms sont partagés par plusieurs IDs (variantes Arena 223xxx,
+            # Swarm 773xxx…). Indexer par nom sans arbitrer laissait la dernière
+            # variante lue écraser la version Faille de l'invocateur — pour 94
+            # objets, dont Thornmail, dont les stats, tags et description
+            # devenaient ceux d'un autre mode de jeu.
+            def _rang(entry):
+                item_id_str, v = entry
+                try:
+                    numeric = int(item_id_str)
+                except ValueError:
+                    numeric = 10 ** 9
+                sr = bool(v.get("maps", {}).get("11", False))
+                return (0 if sr else 1, numeric)   # Faille d'abord, puis ID de base
+
+            for item_id_str, v in sorted(raw_items.items(), key=_rang, reverse=True):
+                n = v.get("name", "").strip()
+                if n:
+                    self._item_db[n] = v          # le meilleur candidat écrit en dernier
+                    self._ddragon_items.add(n)
+                    try:
+                        self._item_id_to_name[int(item_id_str)] = n
+                    except ValueError:
+                        pass
         except Exception as e:
             logger.warning("StatAnalyzer: item_data load error: %s", e)
+
+        # ---- Anti-soin : listes déduites des descriptions DDragon ----
+        self._gw_ad, self._gw_ap, self._gw_tank = set(), set(), set()
+        for name, v in self._item_db.items():
+            desc = (v.get("description", "") or "").lower()
+            if _GW_KEYWORD not in desc:
+                continue
+            tags = v.get("tags", [])
+            if "Armor" in tags or "Health" in tags:
+                self._gw_tank.add(name)
+            if "SpellDamage" in tags:
+                self._gw_ap.add(name)
+            if "Damage" in tags or "CriticalStrike" in tags:
+                self._gw_ad.add(name)
+        if not (self._gw_ad or self._gw_ap or self._gw_tank):
+            self._gw_ad, self._gw_ap, self._gw_tank = (
+                set(_GW_AD_ITEMS), set(_GW_AP_ITEMS), set(_GW_TANK_ITEM))
+        logger.debug("Anti-soin — AD:%s AP:%s Tank:%s",
+                     sorted(self._gw_ad), sorted(self._gw_ap), sorted(self._gw_tank))
 
         try:
             with open("data/situational_frequencies.json", encoding="utf-8") as f:
@@ -1529,6 +1580,7 @@ class StatAnalyzer:
         ad_pct: float = 0.5,
         ap_pct: float = 0.5,
         player_deaths: int = 0,
+        lane_opponent_name: str = "",
     ) -> dict:
         enemy_names = {p.champion_name for p in enemies}
         tank_count  = self._count_tanks(enemies)
@@ -1544,6 +1596,14 @@ class StatAnalyzer:
         # Each heal item contributes 0.6 weight
         gw_weight  += len(heal_items) * 0.6
         gw_sources  = heal_champs + heal_items
+
+        # Le vis-à-vis de lane compte davantage : on l'affronte en boucle, son
+        # soin décide de l'échange. Un soigneur support croisé en teamfight n'a
+        # pas le même poids qu'un Fiddlesticks qui régénère à chaque trade.
+        _LANE_OPP_BONUS = 0.5
+        lane_heal = _HEALING_CHAMPION_WEIGHTS.get(lane_opponent_name, 0.0)
+        if lane_heal:
+            gw_weight += lane_heal * _LANE_OPP_BONUS
 
         max_single  = max((_HEALING_CHAMPION_WEIGHTS.get(c, 0.0) for c in heal_champs), default=0.0)
         need_gw     = gw_weight >= 1.5 or max_single >= 0.9
@@ -1771,9 +1831,9 @@ class StatAnalyzer:
         trigger_score = 0.0
 
         gw_items_for_class = (
-            _GW_AD_ITEMS  if player_class in ("Assassin", "Fighter", "Marksman")
-            else _GW_AP_ITEMS  if player_class == "Mage"
-            else _GW_TANK_ITEM
+            self._gw_ad   if player_class in ("Assassin", "Fighter", "Marksman")
+            else self._gw_ap   if player_class == "Mage"
+            else self._gw_tank
         )
         # Thornmail gives GW but only makes sense on tanks/fighters — exclude pure damage classes
         allowed_gw = gw_items_for_class
@@ -2242,6 +2302,7 @@ class StatAnalyzer:
             ad_pct=ad_pct,
             ap_pct=ap_pct,
             player_deaths=game_state.local_player.deaths,
+            lane_opponent_name=getattr(lane_opponent, "champion_name", "") or "",
         )
         logger.debug("Triggers: %s", triggers)
 
@@ -2467,6 +2528,7 @@ class StatAnalyzer:
                 ad_pct=ad_pct,
                 ap_pct=ap_pct,
                 player_deaths=game_state.local_player.deaths,
+                lane_opponent_name=getattr(lane_opponent, "champion_name", "") or "",
             )
 
             # Re-score all candidates except first, find diverse best second
@@ -2594,10 +2656,14 @@ class StatAnalyzer:
             fams.add("qss")
         return fams
 
-    def plan_with_confidence(self, game_state, lane_opponent, candidate_items: list[str], n_slots: int = 6, prev_plan_items: list[str] = None) -> list[tuple[str, float, float]]:
+    def plan_with_confidence(self, game_state, lane_opponent, candidate_items: list[str], n_slots: int = 6, prev_plan_items: list[str] = None) -> list[tuple[str, float, float, bool]]:
         """
         Sequentially score N items, applying stats after each choice.
-        Returns a list of (item_name, decayed_score, margin_vs_second).
+
+        Renvoie (nom, confiance, marge, verrou_declencheur). Le dernier champ
+        marque un emplacement remporté par un seuil binaire actif (anti-soin
+        notamment) : il ne doit pas être écrasé par une prescription statistique,
+        qui ignore le contexte de la partie.
         """
         import copy
         # Create a deep copy of the state so we can mutate it safely
@@ -2620,7 +2686,7 @@ class StatAnalyzer:
             # Get current families in the plan
             planned_fams = set()
             crit_count = 0
-            for p_item, _, _ in plan:
+            for p_item, *_ in plan:
                 planned_fams.update(self._get_item_families(p_item))
                 
                 # Also add unique groups
@@ -2697,7 +2763,11 @@ class StatAnalyzer:
                 # Confidence normalized between 0 and 1
                 confidence = min(1.0, margin / 0.03) * (0.85 ** step)
                 
-                plan.append((best_item, confidence, margin))
+                gw_all = self._gw_ad | self._gw_ap | self._gw_tank
+                trigger_locked = bool(
+                    getattr(report, "need_grievous", False) and best_item in gw_all
+                )
+                plan.append((best_item, confidence, margin, trigger_locked))
                 available_items.discard(best_item)
                 
                 # Apply additive stats to sim_state
