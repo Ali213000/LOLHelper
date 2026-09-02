@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from data.champion_affinity import ChampionAffinity
+from data import item_pool
 
 from typing import TYPE_CHECKING
 
@@ -767,13 +768,6 @@ class StatAnalyzer:
         logger.debug("Anti-soin — AD:%s AP:%s Tank:%s",
                      sorted(self._gw_ad), sorted(self._gw_ap), sorted(self._gw_tank))
 
-        try:
-            with open("data/situational_frequencies.json", encoding="utf-8") as f:
-                self._situational_freqs = json.load(f)
-        except Exception as e:
-            logger.warning("StatAnalyzer: situational_frequencies load error: %s", e)
-            self._situational_freqs = {}
-
         self._loaded = True
         
         # Build _UNIQUE_GROUPS for mechanical redundancy filtering
@@ -783,8 +777,9 @@ class StatAnalyzer:
                 if tag in desc:
                     self._UNIQUE_GROUPS.setdefault(tag, set()).add(data.get("name", iid))
                     
-        logger.info("StatAnalyzer: %d champions, %d items, %d freq profiles, %d unique groups", 
-                    len(self._champ_tags), len(self._item_db), len(self._situational_freqs), len(self._UNIQUE_GROUPS))
+        logger.info("StatAnalyzer: %d champions, %d objets, %d lots mesures, %d groupes uniques",
+                    len(self._champ_tags), len(self._item_db),
+                    len(item_pool._charger()), len(self._UNIQUE_GROUPS))
 
         # P0 — Validate constant pools against DDragon (silent failures become warnings)
         self._validate_item_pool()
@@ -1950,6 +1945,38 @@ class StatAnalyzer:
     # Universal item scoring
     # ----------------------------------------------------------
 
+    def _item_id_by_name(self, item_name: str) -> int | None:
+        for iid, nom in self._item_id_to_name.items():
+            if nom == item_name:
+                return iid
+        return None
+
+    def _repond_a_un_declencheur(self, item_name: str, triggers: dict,
+                                 player_class: str) -> bool:
+        """
+        Cet objet répond-il à un besoin actif de la partie en cours ?
+
+        Sert à protéger du filtre statistique les objets que le contexte réclame :
+        un anti-soin face à trois soigneurs reste le bon achat même si le
+        champion ne l'achète jamais en temps normal. Reprend les conditions des
+        seuils binaires de _score_item, sans les scorer.
+        """
+        if not triggers:
+            return False
+        gw = (
+            self._gw_ad   if player_class in ("Assassin", "Fighter", "Marksman")
+            else self._gw_ap   if player_class == "Mage"
+            else self._gw_tank
+        )
+        return bool(
+            (triggers.get("need_grievous") and item_name in gw)
+            or (triggers.get("need_armor_pen") and self._item_has_pct_armor_pen(item_name))
+            or (triggers.get("need_magic_pen") and self._item_has_pct_magic_pen(item_name))
+            or (triggers.get("need_tenacity") and item_name in _TENACITY_ITEMS)
+            or (triggers.get("need_antishield") and item_name in self._antishield_items)
+            or (triggers.get("need_qss") and item_name in self._qss_items)
+        )
+
     def _score_item(
         self,
         item_name: str,
@@ -2523,12 +2550,6 @@ class StatAnalyzer:
 
         scored: list[tuple[str, float, float, str]] = []
         
-        # GUARD: Situational Frequencies
-        champ_role_key = f"{local.champion_name}|{my_position}"
-        allowed_items = None
-        if hasattr(self, "_situational_freqs") and champ_role_key in self._situational_freqs:
-            allowed_items = set(self._situational_freqs[champ_role_key].keys())
-        
         # Pre-filter all items once
         filtered = []
         for item_name in candidates_filtered:
@@ -2548,19 +2569,27 @@ class StatAnalyzer:
             if item_name in complete_items_set:
                 keep, aff_factor, aff_why = self.affinity.item_filter(prof, aff_stats, item_gold)
                 
-            # Situational Guard
+            # ── Lot d'objets mesuré ───────────────────────────────────────
+            # Le score par statistiques est aveugle aux passives : Éclipse
+            # n'expose que « 60 AD » et perd contre une Hydre titanesque, alors
+            # que Pantheon l'achète dans 59 % de ses parties. Le lot apporte ce
+            # que les statistiques ne disent pas, mesuré sur 7 810 matchs.
+            #
+            # Il remplace _situational_freqs, qui ne couvrait que 134 couples
+            # champion|poste avec un seul objet chacun, sous une graphie
+            # Match-V5 que la recherche runtime ne trouvait pas.
             situational_penalty = 1.0
-            if keep and hasattr(self, "_situational_freqs") and champ_role_key in self._situational_freqs:
-                item_id_str = None
-                for k, v in self._item_id_to_name.items():
-                    if v == item_name:
-                        item_id_str = str(k)
-                        break
-                
-                if item_id_str:
-                    freq_data = self._situational_freqs[champ_role_key].get(item_id_str, {})
-                    freq = freq_data.get("rate", 0.0) if isinstance(freq_data, dict) else 0.0
-                    situational_penalty = 0.35 if freq == 0 else min(1.0, 0.5 + freq / 0.06)
+            if keep and item_name in complete_items_set:
+                situational_penalty = item_pool.merite(
+                    local.champion_name, my_position,
+                    self._item_id_by_name(item_name), item_name,
+                )
+                # Un objet hors lot qui répond à un besoin actif de la partie
+                # ne doit pas être écrasé par l'habitude : c'est précisément le
+                # cas où le contexte prime sur la statistique.
+                if (situational_penalty < item_pool.PLANCHER_DECLENCHEUR
+                        and self._repond_a_un_declencheur(item_name, triggers, player_class)):
+                    situational_penalty = item_pool.PLANCHER_DECLENCHEUR
 
             if keep:
                 filtered.append((item_name, aff_factor, aff_why, situational_penalty))
