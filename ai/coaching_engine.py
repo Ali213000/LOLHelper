@@ -540,85 +540,97 @@ class CoachingEngine:
             
         plan = BuildPlan(legendary_slots=legendary_slots, boots=boot_slot)
         
-        # Override with Core prescriptions for first two items
-        completed_owned = [name for name in my_item_names if name in candidate_items]
-        
-        if len(completed_owned) < 2:
-            # La table est indexée sur l'identifiant Riot ("DrMundo"), pas sur le
-            # nom d'affichage de la Live Client API ("Dr. Mundo"). Sans
-            # normalisation, la prescription était silencieusement introuvable
-            # pour tous les champions dont les deux formes diffèrent
-            # (Dr. Mundo, Kai'Sa, Cho'Gath, Lee Sin, Miss Fortune, Wukong…).
-            from ai.champion_scorer import norm_name
-            champ_key = norm_name(local.champion_name)
-            key = f"{champ_key}|{my_position.upper()}"
-            prescription_data = self._core_prescriptions.get(key)
-            if not prescription_data:
-                possible_keys = [k for k in self._core_prescriptions.keys() if k.startswith(f"{champ_key}|")]
-                if possible_keys:
-                    best_key = max(possible_keys, key=lambda k: self._core_prescriptions[k].get("global", {}).get("samples", 0))
-                    prescription_data = self._core_prescriptions[best_key]
-            if prescription_data:
-                tank_cat = "tank_hi" if enemy_tank_count >= 2 else "tank_lo"
-                ctx = {"lane_opp_type": lane_opp_type, "enemy_tank_count": tank_cat}
-                order = prescription_data.get("strata_order", [])
-                
-                best_stratum = prescription_data.get("global", {})
-                if order:
-                    full_key_parts = [ctx.get(f, "") for f in order]
-                    for depth in range(len(full_key_parts), 0, -1):
-                        k = "|".join(full_key_parts[:depth])
-                        if k in prescription_data.get("strata", {}):
-                            best_stratum = prescription_data["strata"][k]
-                            break
-                            
-                if best_stratum:
-                    p_conf = best_stratum.get("confidence", 0)
-                    if p_conf > 0.35:
-                        core_items = best_stratum.get("items", [])
-                        # Un seuil binaire actif prime sur la prescription : elle
-                        # est statistique et aveugle au contexte, lui répond à la
-                        # composition adverse. On la décale sur les emplacements
-                        # libres au lieu d'écraser l'anti-soin.
-                        libres = [
-                            s_ for s_ in plan.legendary_slots
-                            if s_.reason != "anti-soin"
-                        ]
-                        remplis = []
-                        for idx, c_id in enumerate(core_items):
-                            if idx < len(libres):
-                                slot = libres[idx]
-                                remplis.append(slot)
-                                slot.item_id = c_id
-                                slot.state = SlotState.PLANNED
-                                slot.reason = "prescrit"
-                                # La confiance affichée doit être celle de la
-                                # prescription empirique, pas celle du score
-                                # mathématique qu'elle vient de remplacer.
-                                slot.confidence = p_conf
+        # ── Objets déjà achetés ───────────────────────────────────────────
+        # Ils occupent leurs PROPRES emplacements. Auparavant, BuildPlan.lock()
+        # écrasait le premier emplacement recommandé : acheter un objet effaçait
+        # donc la recommandation suivante — c'est ainsi que le conseil anti-soin
+        # disparaissait dès l'achat de Cœuracier.
+        candidate_set = set(candidate_items)
+        owned_ids: list[int] = []
+        for iid in local.items:
+            if cache.is_boots(iid):
+                continue                       # les bottes ont leur emplacement
+            nom = cache.get_item_name_by_id(iid)
+            if nom in candidate_set and iid not in owned_ids:
+                owned_ids.append(iid)
 
-                        # Le plan mathématique proposait parfois déjà l'un de ces
-                        # objets plus loin : sans ce filtre, il apparaissait deux
-                        # fois dans la grille.
-                        # Le plan mathématique proposait parfois déjà l'un de ces
-                        # objets ailleurs : on vide ces emplacements-là, en
-                        # comparant les slots eux-mêmes et non leur identifiant.
-                        prescrits = set(core_items)
-                        for later in plan.legendary_slots:
-                            if any(later is r for r in remplis):
-                                continue
-                            if later.item_id in prescrits:
-                                later.item_id = None
-                                later.state = SlotState.UNDETERMINED
-                                later.confidence = 0.0
-        
-        # Lock owned items
-        for item_name in completed_owned:
-            iid = cache.get_item_id_by_name(item_name)
-            if iid:
-                cl = plan.classify_purchase(iid)
-                plan.lock(iid, cl)
-                
+        # ── Prescription empirique ────────────────────────────────────────
+        # Toujours consultée : même quand tous ses objets sont déjà achetés,
+        # elle sert à savoir s'ils étaient conformes au plan (vert) ou non (gris).
+        from ai.champion_scorer import norm_name
+        champ_key = norm_name(local.champion_name)
+        key = f"{champ_key}|{my_position.upper()}"
+        prescription_data = self._core_prescriptions.get(key)
+        if not prescription_data:
+            possible_keys = [k for k in self._core_prescriptions if k.startswith(f"{champ_key}|")]
+            if possible_keys:
+                best_key = max(
+                    possible_keys,
+                    key=lambda k: self._core_prescriptions[k].get("global", {}).get("samples", 0),
+                )
+                prescription_data = self._core_prescriptions[best_key]
+
+        core_items: list[int] = []
+        if prescription_data:
+            tank_cat = "tank_hi" if enemy_tank_count >= 2 else "tank_lo"
+            ctx = {"lane_opp_type": lane_opp_type, "enemy_tank_count": tank_cat}
+            order = prescription_data.get("strata_order", [])
+            best_stratum = prescription_data.get("global", {})
+            if order:
+                parts = [ctx.get(f, "") for f in order]
+                for depth in range(len(parts), 0, -1):
+                    k = "|".join(parts[:depth])
+                    if k in prescription_data.get("strata", {}):
+                        best_stratum = prescription_data["strata"][k]
+                        break
+            if best_stratum and best_stratum.get("confidence", 0) > 0.35:
+                core_items = list(best_stratum.get("items", []))
+                p_conf = best_stratum.get("confidence", 0)
+
+        # ── Recommandations restantes ─────────────────────────────────────
+        # Un emplacement remporté par un seuil binaire actif (anti-soin) prime
+        # sur la prescription, qui est statistique et aveugle au contexte.
+        restants = [s for s in legendary_slots if s.item_id not in owned_ids]
+        a_prescrire = [i for i in core_items if i not in owned_ids]
+        for slot in restants:
+            if not a_prescrire:
+                break
+            if slot.reason == "anti-soin":
+                continue
+            slot.item_id = a_prescrire.pop(0)
+            slot.state = SlotState.PLANNED
+            slot.reason = "prescrit"
+            slot.confidence = p_conf
+
+        # Dédoublonnage : le score mathématique proposait parfois déjà un objet
+        # prescrit ailleurs dans la liste.
+        vus: set[int] = set(owned_ids)
+        propres = []
+        for slot in restants:
+            if slot.item_id is not None:
+                if slot.item_id in vus:
+                    continue
+                vus.add(slot.item_id)
+            propres.append(slot)
+
+        # ── Assemblage : achetés d'abord, puis la suite du plan ────────────
+        reference = set(core_items) | {s.item_id for s in legendary_slots if s.item_id}
+        finaux: list[Slot] = []
+        for iid in owned_ids:
+            finaux.append(Slot(
+                index=len(finaux),
+                state=SlotState.OWNED_ON_PLAN if iid in reference else SlotState.OWNED_OFF_PLAN,
+                item_id=iid,
+                confidence=1.0,
+                reason="acheté",
+            ))
+        for slot in propres:
+            if len(finaux) >= target_capacity:
+                break
+            slot.index = len(finaux)
+            finaux.append(slot)
+        plan.legendary_slots = finaux
+
         if owned_boot_id:
             plan.boots.item_id = owned_boot_id
             plan.boots.state = SlotState.OWNED_ON_PLAN

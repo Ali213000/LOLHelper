@@ -76,8 +76,5 @@ def test_la_confiance_de_la_prescription_est_reportee():
     assert "slot.confidence = p_conf" in ENGINE_SRC
 
 
-def test_les_doublons_de_prescription_sont_filtres():
-    assert "prescrits = set(core_items)" in ENGINE_SRC, (
-        "un objet prescrit déjà proposé plus loin par le score mathématique "
-        "apparaissait deux fois dans la grille"
-    )
+# L'absence de doublons est vérifiée sur un plan réel dans
+# tests/test_plan_assemblage.py::test_aucun_doublon

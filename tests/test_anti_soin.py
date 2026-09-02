@@ -108,9 +108,5 @@ def test_le_cas_reel_du_joueur(analyzer):
     assert "Fiddlesticks" in t["gw_source"] and "Darius" in t["gw_source"]
 
 
-def test_un_slot_anti_soin_resiste_a_la_prescription():
-    """La prescription est aveugle au contexte : elle ne doit pas écraser un
-    seuil binaire actif."""
-    src = (ROOT / "ai" / "coaching_engine.py").read_text(encoding="utf-8")
-    assert 's_.reason != "anti-soin"' in src
-    assert 'reason="anti-soin" if trigger_locked else "math"' in src
+# Le comportement « l'anti-soin résiste à la prescription et aux achats » est
+# vérifié dans tests/test_plan_assemblage.py, sur un plan réellement calculé.
