@@ -94,6 +94,28 @@ calculé par le moteur.
 Un objet peut porter plusieurs conditions : Rappel mortel dépend à la fois de
 l'anti-soin et de la pénétration d'armure, et cumule les deux décotes.
 
+### Résistances adverses
+
+La Live Client API n'expose `championStats` (armure, résistance magique) **que
+pour le joueur local**. Pour les adversaires, seuls le champion, le niveau et
+les identifiants d'objets sont disponibles.
+
+Les résistances sont donc reconstituées, et le résultat est exact :
+
+```
+armure = base_champion + croissance x (n-1) x (0.7025 + 0.0175 x (n-1)) + objets
+```
+
+Les statistiques de base viennent de Data Dragon (exactes, 173 champions) et les
+objets sont résolus depuis leurs identifiants. Deux réserves : les **fragments
+de runes** adverses ne sont pas exposés (au plus ±8 RM / ±6 armure), et les
+bonus temporaires (élixir, âme de dragon, résistances accordées par une
+compétence) sont invisibles.
+
+Les seuils de pénétration sont distincts pour l'armure et la RM : au niveau 16
+un champion nu tourne autour de 100 d'armure mais seulement 55 de RM, un seuil
+commun rendrait la pénétration magique indéclenchable.
+
 ### ⚠️ Locale des assets Data Dragon
 
 `services/stat_analyzer.py` indexe toutes ses tables sur les noms d'objets
