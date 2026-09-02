@@ -116,13 +116,7 @@ _HEALING_ITEMS: set[str] = {
 
 # Champions with notable hard CC (trigger tenacity if 3+ in enemy team).
 # Only kept champions with *hard* CC (stuns/suppressions/knockups) — not slows.
-_CC_CHAMPIONS: set[str] = {
-    "Leona", "Nautilus", "Amumu", "Malphite", "Annie", "Ashe", "Zac",
-    "Alistar", "Thresh", "Blitzcrank", "Morgana", "Lissandra", "Rammus",
-    "Galio", "Vi", "Jarvan IV", "Cho'Gath", "Ornn", "Sion", "Veigar",
-    "Twisted Fate", "Poppy", "Rell", "Sejuani", "Fiddlesticks", "Volibear",
-    "Urgot", "Nunu et Willump", "Wukong", "Kennen", "Ryze",
-}
+from data.hard_cc import HARD_CC_CHAMPIONS as _CC_CHAMPIONS
 
 # Enemy damage type by class
 _CLASS_DAMAGE_SPLIT: dict[str, tuple[float, float]] = {
