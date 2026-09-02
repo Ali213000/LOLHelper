@@ -74,6 +74,26 @@ rafraîchissement manuel) et se masque tout seul après `OVERLAY_AUTO_HIDE_SECON
   aucun clic. `tests/test_overlay.py` vérifie que l'appel est bien effectué —
   il avait été oublié pendant un temps, et l'overlay bloquait alors la souris.
 
+### Effets d'objets conditionnels
+
+`data/item_conditions.json` recense les objets dont la valeur **dépend de la
+composition adverse** : anti-soin, anti-critique, anti-auto-attaque, purge de
+CC, anti-bouclier, pénétration en pourcentage, ténacité. Quand le déclencheur
+correspondant n'est pas actif, la part indiquée du prix est décotée dans le
+score — c'est ce qui empêche de conseiller un Présage de Randuin face à une
+équipe sans coups critiques.
+
+La base est **indexée par identifiant d'objet, jamais par nom**. Les listes
+écrites à la main en français avaient dérivé trois fois (« Plaques de
+l'épineux », « Chaîne de Chempunk », « Voile de mercure » n'existaient plus) et
+l'échec était silencieux : le déclencheur ne partait simplement jamais. Un
+identifiant introuvable est désormais journalisé au chargement, et
+`tests/test_item_conditions.py` vérifie que chaque déclencheur déclaré est bien
+calculé par le moteur.
+
+Un objet peut porter plusieurs conditions : Rappel mortel dépend à la fois de
+l'anti-soin et de la pénétration d'armure, et cumule les deux décotes.
+
 ### ⚠️ Locale des assets Data Dragon
 
 `services/stat_analyzer.py` indexe toutes ses tables sur les noms d'objets
