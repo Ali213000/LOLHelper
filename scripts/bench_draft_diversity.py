@@ -83,6 +83,7 @@ def main():
     meta_reel = ChampionScorer._score_meta
     pen_reel = ChampionScorer._calculer_penalites
     menace_reelle = ChampionScorer._meta_threat
+    lane_reel = ChampionScorer._score_lane
 
     def menace_ancienne(self, cid, my_role=""):
         ch = cs.get_champion(cid)
@@ -95,12 +96,14 @@ def main():
     ChampionScorer._score_meta = lambda self, c, d: 0.5
     ChampionScorer._calculer_penalites = lambda self, c, d, a, e: 0.0
     ChampionScorer._meta_threat = menace_ancienne
-    avant = mesurer(scorer, "AVANT (meta constante, aucune penalite)")
+    ChampionScorer._score_lane = lambda self, c, d: 0.5
+    avant = mesurer(scorer, "AVANT (meta et duels constants, aucune penalite)")
 
     ChampionScorer._score_meta = meta_reel
     ChampionScorer._calculer_penalites = pen_reel
     ChampionScorer._meta_threat = menace_reelle
-    apres = mesurer(scorer, "APRES (meta mesuree, penalites appliquees)")
+    ChampionScorer._score_lane = lane_reel
+    apres = mesurer(scorer, "APRES (meta et duels mesures, penalites appliquees)")
 
     print(f"\npicks : {avant[0]} -> {apres[0]} champions distincts "
           f"({(apres[0]/max(1,avant[0])-1):+.0%})")

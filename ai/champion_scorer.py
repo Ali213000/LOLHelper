@@ -9,6 +9,8 @@ from pathlib import Path
 from dataclasses import dataclass, field
 from typing import Optional
 
+from data import matchup_db
+
 STUB_STATS = True  # Set to False when real stats are plugged in
 
 logger = logging.getLogger(__name__)
@@ -29,6 +31,31 @@ _CONF_FLAT_SCHEMA = 0.5
 # 0.00049 + variance d'echantillonnage 0.00180. Soit 2.2 points seulement --
 # l'etendue brute 32 %-62 % est presque entierement du bruit.
 _META_SD = 0.022
+
+# Denominateur commun des composantes mesurees, en points de victoire : l'effet
+# du plus fort axe de composition etabli (sustain, +5.0 points d'ecart entre
+# quintiles, z=3.15 apres Bonferroni). Voir scripts/calibrate_draft_config.py.
+_EFFET_REFERENCE = 0.05
+
+# Duels de voie mesures par OP.GG (data/matchup_db.py).
+#
+# Decomposition brute sur les 1 150 duels collectes : variance observee 0.00515
+# = vraie 0.00411 + echantillonnage 0.00104, soit un ecart-type de 6.4 points --
+# pres de trois fois celui de la force par champion (2.2). Le signal est reel.
+#
+# Mais OP.GG ne publie que les 3 meilleurs et 3 pires contres : l'echantillon
+# est SELECTIONNE sur sa valeur extreme. La decomposition impute tout l'exces a
+# la variance vraie alors qu'une part vient de cette selection, et un duel
+# retenu parce qu'il paraissait extreme regresse vers la moyenne quand on le
+# remesure. Les six retenus se repartissant autour de +/- 2 ecarts-types, on
+# estime l'ecart-type vrai a ~3.2 points, d'ou k ~= 240 au lieu des 61 que
+# donnerait la lecture naive. Approximation assumee : sans la table complete,
+# on ne peut pas corriger proprement, et sous-lisser serait le pire des deux.
+_DUEL_K = 240
+
+# Plancher de volume. OP.GG descend a 100 parties ; le lissage porte deja
+# l'incertitude, un plancher plus haut ne ferait que jeter des duels utiles.
+_DUEL_MIN_PARTIES = 100
 
 # Part de la menace de ban imputee a ma propre voie, le reste etant la menace
 # globale du champion sur l'ensemble de l'equipe adverse.
@@ -95,6 +122,32 @@ ALIAS = {
 def norm_name(name: str) -> str:
     """Normalize champion names to match Riot's internal IDs (e.g. Kha'Zix -> Khazix)."""
     return ALIAS.get(name, name.replace(" ", "").replace("'", "").replace(".", ""))
+
+
+def _sur_echelle(taux: float) -> float:
+    """
+    Place un taux de victoire sur la règle commune des composantes de score.
+
+    Les quatre composantes sont combinées par des poids qui supposent des
+    échelles comparables. Or team_fit et counter_comp occupent tout [0, 1]
+    tandis qu'un taux de victoire lissé ne quitte pas [0.46, 0.54] : les
+    composantes MESURÉES pesaient trente fois moins que leur poids nominal, et
+    les heuristiques décidaient seules quel que soit le réglage.
+
+    Normaliser chaque composante sur son PROPRE écart-type corrige l'échelle
+    mais détruit l'information de taille d'effet : la force par champion, qui
+    ne vaut que 2.2 points, occuperait alors autant de place qu'un duel à 6
+    points. Mesuré, l'effet est brutal — la diversité des propositions tombait
+    de 78 à 58 champions, sous la valeur de départ, le scoreur convergeant vers
+    « les meilleurs champions » quelle que soit la composition.
+
+    On rapporte donc chaque taux au même dénominateur, exprimé en points de
+    victoire : l'effet du plus fort axe de composition mesuré (sustain, +5.0
+    points d'écart entre quintiles). Une composante vaut alors exactement ce
+    que sa taille d'effet justifie, et les poids de draft_config retrouvent le
+    sens qu'ils prétendaient avoir.
+    """
+    return max(0.0, min(1.0, 0.5 + (taux - 0.5) / (2.0 * _EFFET_REFERENCE)))
 
 def load_data(data_dir: Path):
     global config, by_id, by_role
@@ -449,13 +502,31 @@ class ChampionScorer:
         
         if games == 0:
             return 0.5
-            
-        return (wins + k * prior) / (games + k)
+
+        lisse = (wins + k * prior) / (games + k)
+        return _sur_echelle(lisse)
 
     def _score_lane(self, candidat: dict, draft: ScorerDraftState) -> float:
-        if STUB_STATS or not draft.lane_opponent:
+        if not draft.lane_opponent:
             return 0.5
-            
+
+        # Duels mesurés par OP.GG. La clé « lane » de patch_stats.json ne
+        # contient que les cinq noms de rôles, jamais de duels : cette fonction
+        # renvoyait 0.5 pour tout le monde alors qu'elle pèse jusqu'à 0.25 du
+        # score. Notre propre collecte ne peut pas combler ce trou — il faudrait
+        # un million de matchs pour couvrir 84 % des duels vécus.
+        d = matchup_db.duel(candidat["id"], draft.lane_opponent, draft.my_role)
+        if d and d["parties"] >= _DUEL_MIN_PARTIES:
+            prior = config.get("bayesian_shrinkage", {}).get("prior", 0.50)
+            lisse = (d["victoires"] + _DUEL_K * prior) / (d["parties"] + _DUEL_K)
+            return _sur_echelle(lisse)
+
+        # Appariement non couvert : OP.GG ne publie que six duels par champion.
+        # Inconnu n'est pas neutre — mais en l'absence de mesure, la valeur
+        # neutre est la seule réponse honnête.
+        if STUB_STATS:
+            return 0.5
+
         cid = candidat["id"]
         opp = norm_name(draft.lane_opponent)
         role = draft.my_role.upper()
