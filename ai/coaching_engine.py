@@ -244,6 +244,21 @@ class CoachingEngine:
                 # Count locked picks + my turn to estimate
                 pick_slot = min(5, len(state.ally_champion_names) + 1)
 
+                # ── Adversaire de voie ────────────────────────────────────
+                # Il n'était jamais renseigné : la composante de duel restait
+                # neutre en production, quelle que soit la qualité des données.
+                # Riot ne communique pas les postes adverses en sélection, on
+                # les déduit donc des taux de rôle mesurés.
+                from data import matchup_db
+
+                postes_ennemis = matchup_db.deviner_postes(state.enemy_champion_names)
+                for e in enemies:
+                    for poste, champ in postes_ennemis.items():
+                        if champ == e["id"]:
+                            e["role"] = poste
+                            break
+                lane_opp = postes_ennemis.get(my_role)
+
                 draft = ScorerDraftState(
                     my_role=my_role,
                     pick_slot=pick_slot,
@@ -252,22 +267,37 @@ class CoachingEngine:
                     allies=allies,
                     enemies=enemies,
                     bans=bans,
-                    rank="PLATINUM" # Mock rank for now
+                    # Champ inutilisé par le scoreur ; conservé pour la signature.
+                    rank="",
+                    lane_opponent=lane_opp,
+                    my_recent_picks=state.my_recent_picks,
                 )
-                
+
                 # Import the global from module for available pool
                 import ai.champion_scorer as cs
                 draft.available = list(cs.by_id.keys())
 
                 cands = self._scorer.recommend(draft)
-                
+
                 suggestions = [c.champion_id for c in cands]
                 reasons = [c.dominant_reason for c in cands]
-                
-                logger.info(f"Algorithmic suggestions generated: {suggestions}")
+
+                # Champions que le joueur a joués récemment à ce poste. Signal
+                # d'affichage uniquement : il ne pondère PAS le classement, car
+                # l'effet de la maîtrise n'est mesurable sur aucune de nos
+                # données. Marquer sans départager reste honnête.
+                pool = {
+                    cs.norm_name(n)
+                    for n in (state.my_recent_picks or {}).get(my_role, [])
+                }
+
+                logger.info("Suggestions : %s (adversaire de voie : %s)",
+                            suggestions, lane_opp or "inconnu")
                 bus.emit(EventBus.CHAMP_SUGGESTIONS_READY, {
                     "suggestions": suggestions,
                     "reasons": reasons,
+                    "pool": sorted(pool),
+                    "lane_opponent": lane_opp,
                 })
             except Exception as e:
                 logger.exception(f"Error generating algorithmic suggestions: {e}")

@@ -168,3 +168,67 @@ def test_sans_adversaire_connu_la_composante_est_neutre(scorer):
         my_role="MID", pick_slot=1, mode="draft", available=list(cs.by_role["MID"]),
         allies=[], enemies=[], bans=[], rank="PLATINUM", lane_opponent=None)
     assert scorer._score_lane(cs.by_role["MID"]["Ahri"], etat) == 0.5
+
+
+# --------------------------------------- adversaire de voie deviné
+
+def test_les_postes_adverses_sont_deduits():
+    """
+    Riot ne communique pas les postes de l'équipe adverse en sélection. Sans
+    inférence, lane_opponent restait None et TOUTE la composante de duel était
+    neutre en production — les données avaient beau être bonnes, elles
+    n'atteignaient jamais le score.
+    """
+    postes = matchup_db.deviner_postes(
+        ["Darius", "Lee Sin", "Ahri", "Jinx", "Thresh"])
+    assert postes == {"TOP": "Darius", "JUNGLE": "Lee Sin", "MID": "Ahri",
+                      "ADC": "Jinx", "SUPPORT": "Thresh"}
+
+
+def test_l_affectation_est_globale_et_non_champion_par_champion():
+    """
+    Sylas est joué 45 % en jungle et 45 % en mid : son poste dépend de ce que
+    jouent les autres. Un argmax indépendant placerait deux ennemis sur la même
+    voie et en laisserait une vide.
+    """
+    sans_jungler = matchup_db.deviner_postes(
+        ["Ornn", "Sylas", "Ahri", "Caitlyn", "Lulu"])
+    avec_jungler = matchup_db.deviner_postes(
+        ["Gnar", "Viego", "Sylas", "Ezreal", "Nautilus"])
+    assert sans_jungler["JUNGLE"] == "Sylas"
+    assert avec_jungler["MID"] == "Sylas"
+    for postes in (sans_jungler, avec_jungler):
+        assert len(set(postes.values())) == 5, "un champion affecté deux fois"
+
+
+def test_l_adversaire_de_voie_est_trouve():
+    eq = ["Darius", "Lee Sin", "Ahri", "Jinx", "Thresh"]
+    assert matchup_db.adversaire_de_voie(eq, "MID") == "Ahri"
+    assert matchup_db.adversaire_de_voie(eq, "UTILITY") == "Thresh"
+    assert matchup_db.adversaire_de_voie([], "MID") is None
+
+
+def test_le_moteur_transmet_l_adversaire_de_voie():
+    """La déduction doit atteindre le scoreur, pas rester dans son module."""
+    import inspect
+
+    from ai.coaching_engine import CoachingEngine
+
+    src = inspect.getsource(CoachingEngine)
+    assert "deviner_postes" in src
+    assert "lane_opponent=lane_opp" in src
+
+
+def test_le_pool_est_un_signal_d_affichage():
+    """
+    Le pool du joueur est marqué à l'écran mais n'entre PAS dans le score :
+    l'effet de la maîtrise n'est mesurable sur aucune de nos données, et le
+    scoreur ne contient plus aucune pondération non vérifiée.
+    """
+    import inspect
+
+    from ai import champion_scorer
+
+    src = inspect.getsource(champion_scorer.ChampionScorer.recommend)
+    assert "my_recent_picks" not in src, (
+        "le pool influence le classement alors qu'aucune mesure ne le justifie")

@@ -124,3 +124,46 @@ def stats_poste(champion: str, poste: str) -> dict | None:
     """Parties, victoire, taux de pick et de ban du champion à ce poste."""
     e = _entree(champion, poste)
     return (e or {}).get("stats") or None
+
+
+_POSTES = ("TOP", "JUNGLE", "MID", "ADC", "SUPPORT")
+
+
+def deviner_postes(champions) -> dict:
+    """
+    Affecte des champions adverses aux cinq voies, d'après leur taux de rôle
+    mesuré. Rend {poste: champion}.
+
+    Riot ne communique pas les postes de l'équipe adverse en sélection : sans
+    cette inférence, l'adversaire de voie reste inconnu et toute la composante
+    de duel demeure neutre — ce qui était le cas en production.
+
+    L'affectation est GLOBALE, pas champion par champion. Un argmax indépendant
+    place deux ennemis sur la même voie dès qu'un champion est ambigu : Sylas
+    est joué 45 % en jungle et 45 % en mid, et son choix dépend de ce que jouent
+    les quatre autres. On maximise donc la somme des taux de rôle sur
+    l'ensemble, ce qui reste trivial à cinq voies.
+    """
+    from itertools import permutations
+
+    noms = [c for c in (champions or []) if c][:5]
+    if not noms:
+        return {}
+
+    taux = {
+        c: {p: (stats_poste(c, p) or {}).get("taux_role", 0.0) for p in _POSTES}
+        for c in noms
+    }
+    meilleur, score_max = {}, -1.0
+    for combinaison in permutations(_POSTES, len(noms)):
+        score = sum(taux[c][p] for c, p in zip(noms, combinaison))
+        if score > score_max:
+            score_max = score
+            meilleur = {p: c for c, p in zip(noms, combinaison)}
+    return meilleur
+
+
+def adversaire_de_voie(champions, mon_poste: str) -> str | None:
+    """Champion adverse le plus probable sur ma voie."""
+    p = _ALIAS_POSTE.get((mon_poste or "").upper(), (mon_poste or "").upper())
+    return deviner_postes(champions).get(p)
