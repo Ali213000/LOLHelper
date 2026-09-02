@@ -348,6 +348,9 @@ class MainWindow(ctk.CTk):
         self.after(0, lambda: (
             self._lcu_indicator.configure(text_color=T.TEAL_ACCENT),
             self._set_status("Client League connecté."),
+            self._panels["ingame"].afficher_attente(
+                "Client connecté — lance une partie depuis le client League."
+            ),
         ))
         self.after(0, lambda: ToastNotification(
             self, "Client League connecté", style="success"
@@ -378,6 +381,9 @@ class MainWindow(ctk.CTk):
         self.after(0, lambda: (
             self._switch_tab("champ_select"),
             self._set_phase("DRAFT", T.PURPLE_PRIMARY, T.PURPLE_DIM),
+            self._panels["ingame"].afficher_attente(
+                "Draft en cours — le plan arrivera au début de la partie."
+            ),
         ))
 
     def _on_champ_select_ended(self) -> None:
@@ -398,6 +404,9 @@ class MainWindow(ctk.CTk):
             self._ingame_indicator.configure(text_color=T.TEXT_INVISIBLE),
             self._set_phase("APRÈS-PARTIE", T.GOLD_ACCENT, T.GOLD_DIM),
             self._panels["ingame"].set_no_game(),
+            self._panels["ingame"].afficher_attente(
+                "Partie terminée. Lance-en une nouvelle depuis le client."
+            ),
         ))
         self.after(0, lambda: ToastNotification(
             self, "Partie terminée", style="warning"
