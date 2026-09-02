@@ -1395,7 +1395,9 @@ class StatAnalyzer:
         """Poids cumulé des boucliers adverses, poids maximal, et sources."""
         noms = sorted({p.champion_name for p in enemies} & _SHIELD_CHAMPIONS)
         poids = [_SHIELD_CHAMPION_WEIGHTS.get(n, 0.0) for n in noms]
-        return sum(poids), max(poids, default=0.0), noms
+        # Arrondi à 2 décimales, comme les poids eux-mêmes : sans lui, une paire
+        # pile au seuil peut basculer sur un arrondi binaire.
+        return round(sum(poids), 2), max(poids, default=0.0), noms
 
     def _count_qss_cc(self, enemies) -> int:
         """Count enemies with QSS-removable hard CC."""
@@ -1729,10 +1731,10 @@ class StatAnalyzer:
         # échelles ne sont pas comparables — plusieurs champions atteignent 1.0
         # en soin (Aatrox, Vladimir, Soraka, Yuumi) alors que seule Lulu y arrive
         # en bouclier, donc les cumuls y sont mécaniquement plus bas.
-        # 1.3 sépare deux vrais porteurs (Tahm Kench + Shen = 1.35, Lux +
-        # Orianna = 1.30) des boucliers secondaires (Braum + Riven = 1.15,
-        # Malphite + Diana = 0.85).
-        _SEUIL_BOUCLIER = 1.3
+        # 1.35 sépare deux porteurs qui protègent vraiment (Tahm Kench + Shen)
+        # de paires où le bouclier reste accessoire (Lux + Orianna = 1.30,
+        # Braum + Riven = 1.15, Malphite + Diana = 0.85).
+        _SEUIL_BOUCLIER = 1.35
         need_antishield = shield_weight >= _SEUIL_BOUCLIER or shield_max >= 0.9
         qss_cc_sources = [p.champion_name for p in enemies if p.champion_name in _QSS_CC_CHAMPIONS]
         need_qss = len(qss_cc_sources) > 0
