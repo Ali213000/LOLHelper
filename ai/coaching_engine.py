@@ -92,6 +92,11 @@ class CoachingEngine:
         self._last_ban_hash           = ""
         self._last_ban_time           = 0.0
         self._last_build_plan         = None
+        # Tout ce que l'app a recommandé durant la partie en cours. Un objet
+        # acheté sort de la liste des recommandations : son absence ne prouve
+        # donc rien. Sans cette mémoire, acheter l'objet conseillé l'affichait
+        # en écart (gris) au lieu de conforme (vert).
+        self._recommended_ids: set[int] = set()
 
         self._lock = threading.Lock()
         self._core_prescriptions = self._load_core_prescriptions()
@@ -482,8 +487,10 @@ class CoachingEngine:
         # Load previous plan for hysteresis
         prev_plan = self._last_build_plan
         prev_items = []
+        prev_items_ids: list[int] = []
         if prev_plan:
-            prev_items = [cache.get_item_name_by_id(s.item_id) for s in prev_plan.legendary_slots if s.item_id]
+            prev_items_ids = [s.item_id for s in prev_plan.legendary_slots if s.item_id]
+            prev_items = [cache.get_item_name_by_id(i) for i in prev_items_ids]
             
         # Get raw plan from analyzer with hysteresis
         raw_plan = analyzer.plan_with_confidence(game_state, lane_opp, candidate_items, n_slots=target_capacity, prev_plan_items=prev_items)
@@ -614,7 +621,27 @@ class CoachingEngine:
             propres.append(slot)
 
         # ── Assemblage : achetés d'abord, puis la suite du plan ────────────
-        reference = set(core_items) | {s.item_id for s in legendary_slots if s.item_id}
+        # Remise à zéro en début de partie (aucun légendaire en inventaire).
+        if not owned_ids:
+            self._recommended_ids = set()
+
+        reference = (
+            set(core_items)
+            | {s.item_id for s in legendary_slots if s.item_id}
+            | set(prev_items_ids)
+            | self._recommended_ids
+        )
+
+        # Un anti-soin acheté face à des soigneurs est conforme au plan, même si
+        # l'app n'a pas eu l'occasion de le conseiller (démarrage en cours de
+        # partie) : il ne disparaît de la liste que parce qu'il est déjà acquis.
+        from services.stat_analyzer import _HEALING_CHAMPION_WEIGHTS
+        if any(_HEALING_CHAMPION_WEIGHTS.get(n, 0) for n in enemy_team_names):
+            anti_soin = analyzer._gw_ad | analyzer._gw_ap | analyzer._gw_tank
+            reference |= {
+                cache.get_item_id_by_name(n) for n in anti_soin
+                if cache.get_item_id_by_name(n)
+            }
         finaux: list[Slot] = []
         for iid in owned_ids:
             finaux.append(Slot(
@@ -630,6 +657,10 @@ class CoachingEngine:
             slot.index = len(finaux)
             finaux.append(slot)
         plan.legendary_slots = finaux
+        self._recommended_ids.update(
+            s.item_id for s in finaux
+            if s.item_id and s.state is SlotState.PLANNED
+        )
 
         if owned_boot_id:
             plan.boots.item_id = owned_boot_id
