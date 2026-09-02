@@ -368,7 +368,10 @@ class CoachingEngine:
             return None
 
         from api.live_client import normalize_position
-        want = normalize_position(my_position)
+        # La position du champ select peut manquer (app lancée en cours de
+        # partie, reconnexion…). La Live Client API expose la position du joueur
+        # lui-même : c'est la source la plus fiable une fois en jeu.
+        want = normalize_position(my_position) or getattr(local, "position", "")
 
         if want:
             by_pos = [p for p in enemies if p.position == want]
@@ -515,7 +518,7 @@ class CoachingEngine:
         
         # Populate legendary slots
         legendary_slots = []
-        for i, (item_name, conf, margin) in enumerate(raw_plan):
+        for i, (item_name, conf, margin, trigger_locked) in enumerate(raw_plan):
             # Le PROCHAIN objet est toujours révélé : c'est la seule information
             # dont le joueur a besoin devant la boutique. Le masquer parce que la
             # confiance est basse laissait un « ? » et aucune décision possible.
@@ -529,8 +532,10 @@ class CoachingEngine:
                 state=state,
                 item_id=cache.get_item_id_by_name(item_name),
                 confidence=conf,
-                reason="math"
+                reason="anti-soin" if trigger_locked else "math",
             )
+            if trigger_locked:
+                slot.state = SlotState.PLANNED
             legendary_slots.append(slot)
             
         plan = BuildPlan(legendary_slots=legendary_slots, boots=boot_slot)
@@ -571,9 +576,19 @@ class CoachingEngine:
                     p_conf = best_stratum.get("confidence", 0)
                     if p_conf > 0.35:
                         core_items = best_stratum.get("items", [])
+                        # Un seuil binaire actif prime sur la prescription : elle
+                        # est statistique et aveugle au contexte, lui répond à la
+                        # composition adverse. On la décale sur les emplacements
+                        # libres au lieu d'écraser l'anti-soin.
+                        libres = [
+                            s_ for s_ in plan.legendary_slots
+                            if s_.reason != "anti-soin"
+                        ]
+                        remplis = []
                         for idx, c_id in enumerate(core_items):
-                            if idx < len(plan.legendary_slots):
-                                slot = plan.legendary_slots[idx]
+                            if idx < len(libres):
+                                slot = libres[idx]
+                                remplis.append(slot)
                                 slot.item_id = c_id
                                 slot.state = SlotState.PLANNED
                                 slot.reason = "prescrit"
@@ -585,8 +600,13 @@ class CoachingEngine:
                         # Le plan mathématique proposait parfois déjà l'un de ces
                         # objets plus loin : sans ce filtre, il apparaissait deux
                         # fois dans la grille.
+                        # Le plan mathématique proposait parfois déjà l'un de ces
+                        # objets ailleurs : on vide ces emplacements-là, en
+                        # comparant les slots eux-mêmes et non leur identifiant.
                         prescrits = set(core_items)
-                        for later in plan.legendary_slots[len(core_items):]:
+                        for later in plan.legendary_slots:
+                            if any(later is r for r in remplis):
+                                continue
                             if later.item_id in prescrits:
                                 later.item_id = None
                                 later.state = SlotState.UNDETERMINED
